@@ -139,7 +139,7 @@ public class MemberController {
 		return pwdChk;
 	}
 	
-	// �븘�씠�뵒 以묐났 泥댄겕
+	
 	@ResponseBody
 	@RequestMapping(value="/idChk", method = RequestMethod.POST)
 	public int idChk(MemberVO vo) throws Exception {
