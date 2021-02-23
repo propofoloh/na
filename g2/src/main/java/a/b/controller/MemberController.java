@@ -129,7 +129,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	// �뙣�뒪�썙�뱶 泥댄겕
+	
 	@ResponseBody
 	@RequestMapping(value="/passChk", method = RequestMethod.POST)
 	public boolean passChk(MemberVO vo) throws Exception {
@@ -139,6 +139,7 @@ public class MemberController {
 		return pwdChk;
 	}
 	
+
 	
 	@ResponseBody
 	@RequestMapping(value="/idChk", method = RequestMethod.POST)
