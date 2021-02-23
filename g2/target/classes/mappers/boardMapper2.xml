@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+   
+      <!-- 게시판 글 작성 -->
+   <insert id="insert">
+	   INSERT INTO MP_BOARD2(    BNO2
+	   					      , TITLE2 
+	   					      , CONTENT2 
+	   					      , WRITER  )
+	                 VALUES(    MP_BOARD_SEQ.NEXTVAL 
+	                 		  , #{title2}
+	                 		  , #{content2}
+	                 		  , #{writer2}  )
+   
+   </insert>
+   
+   
+<select id="listPage2" resultType="a.b.vo.BoardVO2" parameterType="a.b.vo.SearchCriteria">
+		SELECT  BNO2, 
+		        TITLE2, 
+		        CONTENT2,
+		        WRITER2, 
+		        REGDATE2,
+		        HIT2
+		 FROM ( 
+		        SELECT BNO2, 
+		               TITLE2, 
+		               CONTENT2, 
+		               WRITER2, 
+		               REGDATE2, 
+		               HIT2,
+		               ROW_NUMBER() OVER(ORDER BY BNO DESC) AS RNUM2
+		         FROM MP_BOARD2
+		         WHERE 1=1 
+		         	<include refid="search"></include>
+		                       ) MP
+		WHERE RNUM2 BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY BNO DESC
+	</select>
+	
+		<select id="read2" parameterType="int" resultType="a.b.vo.BoardVO2">
+		SELECT	BNO2
+			  , TITLE2
+			  , CONTENT2
+			  , WRITER2
+			  , REGDATE2
+		 FROM MP_BOARD2
+		 WHERE BNO2 = #{bno2}
+	</select>
+	
+	    <update id="update2" parameterType="a.b.vo.BoardVO2">
+		UPDATE MP_BOARD2
+		   SET TITLE2    =   #{title2},
+		   	   CONTENT2  =   #{content2}
+		 WHERE BNO2 = #{bno2} 
+	</update>
+	
+	<delete id="delete2" parameterType="int">
+		DELETE 
+		  FROM MP_BOARD2
+		 WHERE BNO2 = #{bno2}
+	</delete>
+	
+	<select id="listCount2" parameterType="a.b.vo.SearchCriteria" resultType="int">
+		SELECT COUNT(BNO2)
+		   FROM MP_BOARD2
+		   WHERE 1=1
+		<include refid="search"></include>	
+		   AND BNO2 > 0
+	</select>
+	
+	<sql id="search2">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND CONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (TITLE LIKE '%' || #{keyword} || '%') or (CONTENT LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+	
+        <!-- 게시판 조회수 -->
+    <update id="boardHit2" parameterType="int">
+    	UPDATE MP_BOARD2 SET
+    	HIT2 = HIT2+1
+    	WHERE BNO2 = #{bno2}
+    </update>
+    
+</mapper>
+	
