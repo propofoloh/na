@@ -243,7 +243,6 @@ public class BoardController {
 			return "board/replyDeleteView";
 		}
 		
-		//�뙎湲� �궘�젣
 		@RequestMapping(value="/replyDelete", method = RequestMethod.POST)
 		public String replyDelete(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 			logger.info("reply Write");
