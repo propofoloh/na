@@ -15,7 +15,7 @@
 	<body>
 		<div class="container">
 			<header>
-				<h1>접수 중인 사업</h1>
+				<h1>접수사업 현황</h1>
 			</header>
 			<hr />
 			 

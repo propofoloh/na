@@ -121,7 +121,7 @@
 				<span>파일 목록</span>
 				<div class="form-group" style="border: 1px solid #dbdbdb;">
 					<c:forEach var="file" items="${file}">
-						<a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
+						<a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE})<br>
 					</c:forEach>
 				</div>
 				<hr>
@@ -129,7 +129,12 @@
 					<button type="button" class="update_btn btn btn-warning">수정</button>
 					<button type="button" class="delete_btn btn btn-danger">삭제</button>
 					<button type="button" class="list_btn btn btn-primary">목록</button>	
-				</div>
+					<button type="button" class="receipt_btn btn btn-info" style="width:right;" onclick="location.href='writeView'">접수하기</button>
+					<button type="button" class="receipt_btn btn btn-info" style="width:right;" onclick="location.href='list2'">접수 리스트(관리자)</button>
+				<c:if test="${member.verify == 9}">
+					<button type="button" class="list_btn btn btn-primary" style="width:right;" onclick="location.href='list3'">접수 리스트(관리자)</button>
+				</c:if>
+			</div>
 				
 				<!-- 댓글 -->
 				<div id="reply">

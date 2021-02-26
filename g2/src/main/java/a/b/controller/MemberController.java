@@ -72,12 +72,12 @@ public class MemberController {
 		if(login != null && pwdMatch == true) {
 			session.setAttribute("member", login);
 		} else {
-			session.setAttribute("member", null);
+			session.setAttribute("member", null); 
 			rttr.addFlashAttribute("msg", false);
 		}
 		
 		
-		return "redirect:/board/list2";
+		return "redirect:/board/list";
 	}
 	
 	// 濡쒓렇�븘�썐 post
