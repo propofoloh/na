@@ -46,6 +46,11 @@ public class BoardController {
 		
 	}
 	
+	@RequestMapping(value = "/board/writeView2", method = RequestMethod.GET)
+	public void writeView2() throws Exception{
+		logger.info("writeView2");
+	}
+	
 	// 寃뚯떆�뙋 湲� �옉�꽦
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception{
@@ -120,6 +125,20 @@ public class BoardController {
 		return "board/list4";
 		
 	}	
+	
+	@RequestMapping(value = "/board/table", method = RequestMethod.GET)
+	public String table() throws Exception{
+		logger.info("writeView");
+	
+		return "board/table";
+	}
+	
+	@RequestMapping(value = "/board/opinion", method = RequestMethod.GET)
+	public String opinion() throws Exception{
+		logger.info("opinion");
+	
+		return "board/opinion";
+	}
 	
 	// 寃뚯떆�뙋 議고쉶
 	@RequestMapping(value = "/readView", method = RequestMethod.GET)

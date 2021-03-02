@@ -104,9 +104,11 @@
 								<td>
 									<button style="margin-top: 10px;" class="btn btn-success"
 										type="submit">접수</button>
-							<label className="input-file-button" for="input-file"
+							<label classNam=="input-file-button" for="input-file"
 								style="margin-top: 10px;" class="btn btn-success"> 첨부파일 </label>
 							<input type="file" id="input-file" style="display: none" />
+							
+							<button class="fileAdd_btn" type="button">파일추가</button>	
 								</td>
 							</tr>
 						</c:if>
