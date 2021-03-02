@@ -84,7 +84,7 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<button type="button" class="receipt_btn btn btn-info" style="float: right;" onclick="location.href='writeView'">글쓰기</button>
+					<button type="button" class="receipt_btn btn btn-info" style="float: right;" onclick="location.href='writeView2'">사업 리스트 등록</button>
 
 					<div style="width:100%;" class="col-md-offset-3">
 						<ul class="pagination">
