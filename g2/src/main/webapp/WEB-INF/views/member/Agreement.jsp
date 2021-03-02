@@ -14,7 +14,7 @@
 <script>
         $(document).ready(function(){
             
- 			$("#registerAgreeBtn").click(function (){
+ 			$(".registerAgreeBtn").click(function (){
  				
   				if(checkForm()){
  					alert("동의 성공")
@@ -73,20 +73,70 @@
 			return true;
 		}
 
+		
+		
 </script>
+<style>
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+		
+		margin :0 35%;
+}
+
+.Agree-text{
+	margin: 90px 0px 50px 0px;
+	text-align: center;
+	font-size: 3.235rem;
+	font-weight: 5px;
+}
+.AgreeTextArea{
+	overflow: scroll;
+	border: 1px solid black;
+	width : 100%;
+}
+
+.checkbox-text{
+	font-size: 1.2375rem;
+	vertical-align: middle;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+
+.registerBtn input{
+
+	border : 0px;
+	width : 49%;
+	height: 8%;
+	
+}
+.registerCancelBtn{
+	
+	background-color: #EAEAEA;
+	color : #00000;
+}
+
+.registerAgreeBtn{
+	
+	background-color: #dd4132;
+	color : #ffffff;
+ 
+}
+
+
+</style>
 <html>
 <body>
-	<div id="content" style="margin-top: 200px; margin-left: 30%; margin-right: 20%">
-
-		<h4 class="h4Tit mb-3">개인정보 수집동의</h4>
-			<div class="form-control col-sm-5" style="width: 70%; height: 40%">
+	<div id="content">
+		<div class ="Agree-text">개인정보 수집동의</div>
+			<div class ="AgreeTextArea">
 				<p>
 					<strong>개인정보의 수집, 이용 목적</strong>
 				</p>
-				<p>평가관리 시스템은 별도의 개인정보 입력 없이도 대부분의 콘텐츠에 자유롭게 접근할 수 있으나, 승선신고 서비스를
-					이용하고자 할 경우 별도의 정보입력절차를 거쳐야 합니다.</p>
+				<p>평가관리 시스템은 별도의 개인정보 입력 없이도 대부분의 콘텐츠에 자유롭게 접근할 수 있으나, 승선신고 서비스를이용하고자 할 경우 별도의 정보입력절차를 거쳐야 합니다.</p>
 				<p class="mt15">
-					<strong>수집하려는 개인정보의 항목</strong>
+				<strong>수집하려는 개인정보의 항목</strong>
 				</p>
 				<p>
 					평가관리 시스템 서비스 제공을 위해 아래와 같은 최소한의 개인정보를 필수항목으로 수집하고 있습니다.<br />(성명,
@@ -103,21 +153,19 @@
 				<p>평가관리시스템 이용자는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있으나, 동의 거부 시 승선신고
 					서비스를 이용할 수 없습니다.</p>
 			</div>
-		<div class="form-group mb20">
-			<div class="col-xs-12">
-				<label for="u_agree" class="checkbox-inline" style="margin-bottom : 20px; margin-top : 20px; width: 100%;">
-					<input type="checkbox" id="u_agree" name="u_agree" value="Y"
-					style="zoom: 1.5; vertical-align: middle; position: relative;" />&nbsp;<strong
-					class="mt15" style="font-size: 1.2375rem; vertical-align: middle;">개인정보
-						취급방침에 동의합니다.</strong>
+		
+		<!--  약관동의 버튼 영역 -->
+		<div>
+			<div>
+				<label class="checkbox-text" for="u_agree">
+					<input type="checkbox" id="u_agree" name="u_agree" value="Y" /> &nbsp;
+					<strong >개인정보 취급방침에 동의합니다.</strong>
 				</label>
 			</div>
 		</div>
-		
-		
-		<div style="margin-top : 100px;">
-			<input id="registerCancelBtn" style="  float:letf;  width: 35%; height: 5%;" type="button" class="btn" value="취소">
-			<input id="registerAgreeBtn" style=" width: 35%; height: 5%;" type="button" class="btn btn-primary form-control" value="확인">
+		<div class ="registerBtn">
+			<input class="registerCancelBtn" type="button" value="취소">
+			<input class="registerAgreeBtn" type="button" value="확인"> 
 		</div>
 	</div>
 </body>
