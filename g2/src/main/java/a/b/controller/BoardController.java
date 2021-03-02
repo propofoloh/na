@@ -39,14 +39,14 @@ public class BoardController {
 	@Inject
 	ReplyService replyService;
 	
-	// 게시판 글 작성 화면
+	// 寃뚯떆�뙋 湲� �옉�꽦 �솕硫�
 	@RequestMapping(value = "/board/writeView", method = RequestMethod.GET)
 	public void writeView() throws Exception{
 		logger.info("writeView");
 		
 	}
 	
-	// 게시판 글 작성
+	// 寃뚯떆�뙋 湲� �옉�꽦
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception{
 		logger.info("write");
@@ -55,7 +55,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	// 게시판 목록 조회
+	// 寃뚯떆�뙋 紐⑸줉 議고쉶
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		logger.info("list");
@@ -72,7 +72,7 @@ public class BoardController {
 		
 	}
 	
-	// 게시판2 목록 조회
+	// 寃뚯떆�뙋2 紐⑸줉 議고쉶
 	@RequestMapping(value = "/list2", method = RequestMethod.GET)
 	public String list2(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		logger.info("list2");
@@ -88,8 +88,40 @@ public class BoardController {
 		return "board/list2";
 		
 	}
+
+	@RequestMapping(value = "/list3", method = RequestMethod.GET)
+	public String list3(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		logger.info("list3");
+		
+		model.addAttribute("list3", service.list(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.listCount(scri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "board/list3";
+		
+	}
 	
-	// 게시판 조회
+	@RequestMapping(value = "/list4", method = RequestMethod.GET)
+	public String list4(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		logger.info("list4");
+		
+		model.addAttribute("list4", service.list(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.listCount(scri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "board/list4";
+		
+	}	
+	
+	// 寃뚯떆�뙋 議고쉶
 	@RequestMapping(value = "/readView", method = RequestMethod.GET)
 	public String read(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 		logger.info("read");
@@ -100,12 +132,15 @@ public class BoardController {
 		List<ReplyVO> replyList = replyService.readReply(boardVO.getBno());
 		model.addAttribute("replyList", replyList);
 
-		List<Map<String, Object>> fileList = service.selectFileList(boardVO.getBno());
-		model.addAttribute("file", fileList);
+		/*
+		 * List<Map<String, Object>> fileList =
+		 * service.selectFileList(boardVO.getBno()); model.addAttribute("file",
+		 * fileList);
+		 */		
 		return "board/readView";
 	}
 	
-	// 게시판 수정뷰
+	// 寃뚯떆�뙋 �닔�젙酉�
 	@RequestMapping(value = "/updateView", method = RequestMethod.GET)
 	public String updateView(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model)
 			throws Exception {
@@ -119,7 +154,7 @@ public class BoardController {
 		return "board/updateView";
 	}
 
-	// 게시판 수정
+	// 寃뚯떆�뙋 �닔�젙
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(BoardVO boardVO, 
 						 @ModelAttribute("scri") SearchCriteria scri, 
@@ -138,7 +173,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
-	// 게시판 삭제
+	// 寃뚯떆�뙋 �궘�젣
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 		logger.info("delete");
@@ -153,7 +188,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	//댓글 작성
+	//�뙎湲� �옉�꽦
 	@RequestMapping(value="/replyWrite", method = RequestMethod.POST)
 	public String replyWrite(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 		logger.info("reply Write");
@@ -169,7 +204,7 @@ public class BoardController {
 		return "redirect:/board/readView";
 	}
 	
-	//댓글 수정 GET
+	//�뙎湲� �닔�젙 GET
 		@RequestMapping(value="/replyUpdateView", method = RequestMethod.GET)
 		public String replyUpdateView(ReplyVO vo, SearchCriteria scri, Model model) throws Exception {
 			logger.info("reply Write");
@@ -180,7 +215,7 @@ public class BoardController {
 			return "board/replyUpdateView";
 		}
 		
-		//댓글 수정 POST
+		//�뙎湲� �닔�젙 POST
 		@RequestMapping(value="/replyUpdate", method = RequestMethod.POST)
 		public String replyUpdate(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 			logger.info("reply Write");
@@ -196,7 +231,7 @@ public class BoardController {
 			return "redirect:/board/readView";
 		}
 	
-	//댓글 삭제 GET
+	//�뙎湲� �궘�젣 GET
 		@RequestMapping(value="/replyDeleteView", method = RequestMethod.GET)
 		public String replyDeleteView(ReplyVO vo, SearchCriteria scri, Model model) throws Exception {
 			logger.info("reply Write");
@@ -208,7 +243,6 @@ public class BoardController {
 			return "board/replyDeleteView";
 		}
 		
-		//댓글 삭제
 		@RequestMapping(value="/replyDelete", method = RequestMethod.POST)
 		public String replyDelete(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 			logger.info("reply Write");
@@ -231,7 +265,7 @@ public class BoardController {
 			String storedFileName = (String) resultMap.get("STORED_FILE_NAME");
 			String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
 			
-			// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
+			// �뙆�씪�쓣 ���옣�뻽�뜕 �쐞移섏뿉�꽌 泥⑤��뙆�씪�쓣 �씫�뼱 byte[]�삎�떇�쑝濡� 蹂��솚�븳�떎.
 			byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray(new File("C:\\mp\\file\\"+storedFileName));
 			
 			response.setContentType("application/octet-stream");

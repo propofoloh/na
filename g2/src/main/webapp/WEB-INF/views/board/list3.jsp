@@ -14,7 +14,7 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<title>게시판</title>
+<title>평가가위원 화면</title>
 </head>
 <body>
 	<div style="float: right;">
@@ -22,7 +22,7 @@
 	</div>
 	<div class="container">
 		<header>
-			<h1>접수 리스트</h1>
+			<h1>평가 사업</h1>
 		</header>
 		<hr />
 
