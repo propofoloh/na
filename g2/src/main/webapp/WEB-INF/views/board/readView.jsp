@@ -129,8 +129,8 @@
 					<button type="button" class="update_btn btn btn-warning">수정</button>
 					<button type="button" class="delete_btn btn btn-danger">삭제</button>
 					<button type="button" class="list_btn btn btn-primary">목록</button>	
-					<button type="button" class="receipt_btn btn btn-info" style="width:right;" onclick="location.href='writeView'">접수하기</button>
-					<button type="button" class="receipt_btn btn btn-info" style="width:right;" onclick="location.href='list2'">접수 리스트(관리자)</button>
+					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='writeView'">접수하기</button>
+					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='list2'">접수 리스트(관리자)</button>
 				<c:if test="${member.verify == 9}">
 					<button type="button" class="list_btn btn btn-primary" style="width:right;" onclick="location.href='list3'">접수 리스트(관리자)</button>
 				</c:if>
