@@ -12,11 +12,50 @@
 	 
 	 	<title>게시판</title>
 	</head>
+
+	<style>
+	body{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+			margin :0 20%;
+	}
+	.searchrow{
+		float : right;
+		
+	}
+	
+	#searchdiv{
+		width : 350px;
+		display: flex;
+	}
+	#searchbox{
+	
+		margin-right: -30px;
+	}
+	.searchBtn{
+	
+		border : 0px;
+		background-color: #dd4132;
+		color : #ffffff;
+		width : 25%;
+		margin-right: -52px;
+		border-radius: 5px;
+	}
+	.writebtn{
+		
+		border : 0px;
+		background-color: #dd4132;
+		color : #ffffff;
+		width :  8%;
+		height : 5%;
+		border-radius: 5px;
+	
+	}
+	
+	</style>
 	<body>
 		<div style="float: right;">
 			<%@include file="nav.jsp"%>
 		</div>
-		<div class="container">
 			<header>
 				<h1>접수 중인 사업</h1>
 			</header>
@@ -24,10 +63,8 @@
 			
 			<section id="container">
 				<form role="form" method="get">
-					
-				<div class="search row" style="float: right; width: 500px;">
-					<div class="col-xs-3 col-sm-3"
-						style="margin-left: 3px; margin-right: -25px;">
+				<div class="searchrow">
+					<div id="searchbox"class="col-sm-3">
 						<select name="searchType" class="form-control">
 							<option value="n"
 								<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
@@ -41,15 +78,9 @@
 								<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>사업명+내용</option>
 						</select>
 					</div>
-
-					<div class="col-xs-7 col-sm-7" style="width: 390px">
-						<div class="input-group">
-							<input type="text" name="keyword" id="keywordInput"
-								value="${scri.keyword}" class="form-control" /> <span
-								class="input-group-btn">
-								<button id="searchBtn" type="button" class="btn btn-default">검색</button>
-							</span>
-						</div>
+					<div id="searchdiv" class="col-xs-7 col-sm-7">
+						<input type="text" name="keyword" id="keywordInput"value="${scri.keyword}" class="form-control"> 
+						<button id="searchBtn" type="button" class="searchBtn">검색</button>
 					</div>
 
 					<script>
@@ -84,7 +115,7 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<button type="button" class="receipt_btn btn btn-info" style="float: right;" onclick="location.href='writeView2'">사업 리스트 등록</button>
+					<button type="button" class="writebtn" style="float: right;" onclick="location.href='writeView'">사업등록</button>
 
 					<div style="width:100%;" class="col-md-offset-3">
 						<ul class="pagination">
@@ -104,6 +135,5 @@
 					</div>
 				</form>
 			</section>
-		</div>
 	</body>
 </html>
