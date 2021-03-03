@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div style="float: right;">
-		<%@include file="nav.jsp"%>
+		<%@include file="../board/nav.jsp"%>
 	</div>
 	<div class="container">
 		<header>

@@ -62,7 +62,7 @@
 	</style>
 	<body>
 		<div style="float: right;">
-			<%@include file="nav.jsp"%>
+			<%@include file="../board/nav.jsp"%>
 		</div>
 			<header>
 				<h1>접수 중인 사업</h1>
@@ -115,7 +115,7 @@
 							<tr>
 								<td style="text-align: center;"><c:out value="${list.bno}" /></td>
 								<td style="text-align: center;">
-									<a href="/board/readView?bno=${list.bno}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.title}" /></a>
+									<a href="../board/readView?bno=${list.bno}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.title}" /></a>
 								</td>
 								<td style="text-align: center;"><c:out value="${list.writer}" /></td>
 								<td style="text-align: center;"><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
@@ -123,7 +123,7 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<button type="button" class="writebtn"  onclick="location.href='writeView'">사업등록</button>
+					<button type="button" class="writebtn"  onclick="location.href='businessWriteView'">사업등록</button>
 
 					<div class="pasingDiv" style="width:100%; text-align: center">
 						<ul class="pagination">

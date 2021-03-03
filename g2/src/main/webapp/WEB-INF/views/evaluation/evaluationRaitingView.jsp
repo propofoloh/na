@@ -204,8 +204,8 @@
 	  </table>
 		 
 		 <div class="submitForm">
-			    <input class ="succesbtn" type="button" value="선정">
-			    <input class ="canclebtn" type="button" value="탈락"> 
+			    <input class ="succesbtn" type="button" value="선정" onclick="location.href='/evaluation/evaluationList'">
+			    <input class ="canclebtn" type="button" value="탈락" onclick="location.href='/evaluation/evaluationList'"> 
 		</div>
     </form>
     </table>

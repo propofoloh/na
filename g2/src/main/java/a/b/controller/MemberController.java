@@ -77,7 +77,7 @@ public class MemberController {
 		}
 		
 		
-		return "redirect:/board/list";
+		return "redirect:/business/receiptList";
 	}
 	
 	// 濡쒓렇�븘�썐 post

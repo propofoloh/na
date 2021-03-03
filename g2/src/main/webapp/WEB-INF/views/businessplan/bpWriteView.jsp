@@ -15,19 +15,6 @@
 
 <title>게시판</title>
 </head>
-
-<style>
-	.evaluationbtn{
-		float: right;
-		border : 0px;
-		background-color: #dd4132;
-		color : #ffffff;
-		width :  8%;
-		height : 5%;
-		margin-top : 10px;
-	}
-
-</style>
 <script type="text/javascript">
 		$(document).ready(function(){
 			var formObj = $("form[name='writeForm']");
@@ -66,7 +53,7 @@
 
 	<div class="container" id="root">
 		<div style="float:right;">
-			<%@include file="nav.jsp"%>
+			<%@include file="../board/nav.jsp"%>
 		</div>
 		<header>
 			<h1>사업계획서 접수</h1>
@@ -85,26 +72,26 @@
 							</c:if>
 							<div class="from-group">
 								<label for="title" class="colsm-2 control-Label">연구목표</label>
-								<input type="text" id="title" name="title" class="form-control"
-									title="연구목표를 입력하세요." readonly="readonly" value="<c:out value="1"/>">
+								<textarea id="title" name="title" class="form-control"
+									title="연구목표를 입력하세요."></textarea>
 							</div>
 
 							<div class="from-group" style="margin-top: 30px;">
 								<label for="content">연구내용</label>
-								<input type="text" id="content" name="content" class="form-control"
-									title="연구내용을 입력하세요." readonly="readonly" value="<c:out value="1"/>">
+								<textarea id="content" name="content" class="form-control"
+									title="연구내용을 입력하세요."></textarea>
 							</div>
 
 							<div class="from-group" style="margin-top: 30px;">
 								<label for="content">기대효과</label>
-								<input type="text" id="content2" name="content2" class="form-control"
-									title="기대효과를 입력하세요." readonly="readonly" value="<c:out value="1"/>">
+								<textarea id="content2" name="content2" class="form-control"
+									title="기대효과를 입력하세요."></textarea>
 							</div>
 
 							<div class="from-group" style="margin-top: 30px;">
 								<label for="content">연구 개발비 총괄</label>
-								<input type="text" id="content3" name="content3" class="form-control"
-									title="연구 개발비 총괄을 입력하세요." readonly="readonly" value="<c:out value="1"/>">
+								<textarea id="content3" name="content3" class="form-control"
+									title="연구 개발비 총괄을 입력하세요."></textarea>
 							</div>
 
 							
@@ -115,8 +102,8 @@
 				
 							<tr>
 								<td>
-									<!-- <button style="margin-top: 10px;" class="btn btn-success"
-										type="submit">접수</button> -->
+									<button style="margin-top: 10px;" class="btn btn-success"
+										type="submit">접수</button>
 							<label classNam=="input-file-button" for="input-file"
 								style="margin-top: 10px;" class="btn btn-success"> 첨부파일 </label>
 							<input type="file" id="input-file" style="display: none" />
@@ -124,14 +111,12 @@
 							<button class="fileAdd_btn" type="button">파일추가</button>	
 								</td>
 							</tr>
-							
 						</c:if>
 					</tbody>
 				</table>
 			</form>
 		</section>
 		<hr />
-		<button class="evaluationbtn" type="button" onclick="location.href='table'">평가하기</button>
 	</div>
 </body>
 </html>

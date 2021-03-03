@@ -13,7 +13,7 @@
 
 <style>
 
-body {
+.body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 		
@@ -92,6 +92,11 @@ body {
 		})
 	</script>
 	<body>
+	
+	<div style="float: right;">
+		<%@include file="../board/nav.jsp"%>
+	</div>
+  <div class="body">
 	<div class="memberUpdate-text">회원정보 수정</div>
 		<section id="container">
 			<form id="updateForm" action="/member/memberUpdate" method="post">
@@ -106,7 +111,7 @@ body {
 					<button class="memberUpdate-Btn" type="button">취소</button>
 				</div>
 		</section>
-		
+		</div>
 	</body>
 	
 </html>

@@ -212,7 +212,7 @@
 		 
 		 <div class="submitForm">
 			    <input class ="canclebtn" type="button" value="취소"> 
-			    <input class ="succesbtn" type="button" onclick="location.href='/board/list3'" value="평가완료">
+			    <input class ="succesbtn" type="button" onclick="location.href='/evaluation/evaluationList'" value="평가완료">
 		</div>
     </form>
     </table>

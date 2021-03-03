@@ -129,9 +129,9 @@
 					<button type="button" class="update_btn btn btn-warning">수정</button>
 					<button type="button" class="delete_btn btn btn-danger">삭제</button>
 					<button type="button" class="list_btn btn btn-primary">목록</button>	
-					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='writeView'">접수하기</button>
-					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='list2'">사업자 별 평가</button>
-					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='opinion'">종합의견</button>
+					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='../businessplan/bpWriteView'">접수하기</button>
+					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='../businessplan/bpList'">사업자 별 평가</button>
+					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='../evaluation/opinion'">종합의견</button>
 			</div>
 				
 				<!-- 댓글 -->
