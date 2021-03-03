@@ -92,6 +92,17 @@ td input{
 	background-color: #EAEAEA;
 }
 
+.listbtn{
+	float : right;
+	border : 0px;
+	background-color: #dd4132;
+	color : #ffffff;
+	width :  10%;
+	height : 40px;
+	border-radius: 5px;
+	margin-top : 10px;
+}
+
 
 </style>
 <script type="text/javascript">
@@ -347,6 +358,7 @@ $(document).ready(function() {
     <div class ="opiniondiv">
 	
 	</div>
+		<button class="listbtn" onclick="/businessplan/bpList">목록</button>
    </form>
   </body>
 </html>
