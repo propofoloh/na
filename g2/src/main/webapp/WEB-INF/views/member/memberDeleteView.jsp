@@ -10,6 +10,42 @@
 	 	
 	 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<title>회원탈퇴</title>
+		
+<style>
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+		
+		margin :0 32%;
+}
+.memberDelete-Btn {
+	border: 0px;
+	background-color: #dd4132;
+	color: #ffffff;
+	width: 100px;
+	height: 5%;
+}
+.memberDelete {
+	display: flex;
+	flex-direction: column;
+	margin: 0px 30px;
+}
+.memberDelete input {
+	border: none;
+	padding: 10px 0px;
+	font-size: 18px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	transition: border-color 0.3s ease-in-out;
+	margin-bottom: 25px;	
+}
+.memberDelete-text {
+	margin: 90px 0px 50px 0px;
+	text-align: center;
+	font-size: 35px;
+	font-weight: 5px;	
+}
+</style>
+
 	</head>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -51,6 +87,8 @@
 		})
 	</script>
 	<body>
+	<div class="memberDelete">회원탈퇴
+	</div>
 		<section id="container">
 			<form action="/member/memberDelete" method="post" id="delForm">
 				<div class="form-group has-feedback">

@@ -10,7 +10,45 @@
 	 	
 	 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<title>회원가입</title>
-	</head>
+
+<style>
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+		
+		margin :0 32%;
+}
+.memberUpdate-Btn {
+	border: 0px;
+	background-color: #dd4132;
+	color: #ffffff;
+	width: 100px;
+	height: 5%;
+}
+.memberUpdate {
+	display: flex;
+	flex-direction: column;
+	margin: 0px 30px;
+}
+.memberUpdate input {
+	border: none;
+	padding: 10px 0px;
+	font-size: 18px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	transition: border-color 0.3s ease-in-out;
+	margin-bottom: 25px;	
+}
+.memberUpdate-text {
+	margin: 90px 0px 50px 0px;
+	text-align: center;
+	font-size: 35px;
+	font-weight: 5px;	
+}
+
+</style>
+
+</head>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			// 취소
@@ -54,24 +92,18 @@
 		})
 	</script>
 	<body>
+	<div class="memberUpdate-text">회원정보 수정</div>
 		<section id="container">
 			<form id="updateForm" action="/member/memberUpdate" method="post">
-				<div class="form-group has-feedback">
-					<label class="control-label" for="userId">아이디</label>
-					<input class="form-control" type="text" id="userId" name="userId" value="${member.userId}" readonly="readonly"/>
-				</div>
-				<div class="form-group has-feedback">
-					<label class="control-label" for="userPass">패스워드</label>
-					<input class="form-control" type="password" id="userPass" name="userPass" />
-				</div>
-				<div class="form-group has-feedback">
-					<label class="control-label" for="userName">성명</label>
-					<input class="form-control" type="text" id="userName" name="userName" value="${member.userName}"/>
-				</div>
+	
+			<div class="memberUpdate">
+				<input class="text" type="text" id="userName" name="userName" readonly="readonly" placeholder="로그인을 해주세요." value="${member.userName}"/>
+				<input type="password" placeholder="비밀번호" id="userPass" name="userPass" maxlength="20">
+			</div>
 			</form>
-				<div class="form-group has-feedback">
-					<button class="btn btn-success" type="button" id="submit">회원정보수정</button>
-					<button class="cencle btn btn-danger" type="button">취소</button>
+				<div class="form-group has-feedback" style="text-align: center;">
+					<button class="memberUpdate-Btn" type="button" id="submit">회원정보수정</button>
+					<button class="memberUpdate-Btn" type="button">취소</button>
 				</div>
 		</section>
 		

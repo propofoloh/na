@@ -130,10 +130,8 @@
 					<button type="button" class="delete_btn btn btn-danger">삭제</button>
 					<button type="button" class="list_btn btn btn-primary">목록</button>	
 					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='writeView'">접수하기</button>
-					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='list2'">접수 리스트(관리자)</button>
-				<c:if test="${member.verify == 9}">
-					<button type="button" class="list_btn btn btn-primary" style="width:right;" onclick="location.href='list3'">접수 리스트(관리자)</button>
-				</c:if>
+					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='list2'">사업자 별 평가</button>
+					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='opinion'">종합의견</button>
 			</div>
 				
 				<!-- 댓글 -->
@@ -155,34 +153,6 @@
 						</c:forEach>   
 					</ol>
 				</div>
-				
-				<form name="replyForm" method="post" class="form-horizontal">
-					<input type="hidden" id="bno" name="bno" value="${read.bno}" />
-					<input type="hidden" id="page" name="page" value="${scri.page}"> 
-					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
-					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
-					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
-				
-					<div class="form-group">
-						<label for="writer" class="col-sm-2 control-label">댓글 작성자</label>
-						<div class="col-sm-10">
-							<input type="text" id="writer" name="writer" class="form-control" />
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label for="content" class="col-sm-2 control-label">댓글 내용</label>
-						<div class="col-sm-10">
-							<input type="text" id="content" name="content" class="form-control"/>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" class="replyWriteBtn btn btn-success">작성</button>
-						</div>
-					</div>
-				</form>
 			</section>
 			<hr />
 		</div>

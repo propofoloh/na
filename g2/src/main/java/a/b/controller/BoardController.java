@@ -57,7 +57,7 @@ public class BoardController {
 		logger.info("write");
 		service.write(boardVO, mpRequest);
 		
-		return "redirect:/board/list";
+		return "redirect:/board/list2";
 	}
 	
 	// 寃뚯떆�뙋 紐⑸줉 議고쉶
@@ -93,6 +93,27 @@ public class BoardController {
 		return "board/list2";
 		
 	}
+	
+	@RequestMapping(value = "/businessPlanRead", method = RequestMethod.GET)
+	public String businessPlanRead(BoardVO boardVO, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		logger.info("businessPlanRead");
+
+		
+		model.addAttribute("read", service.read(boardVO.getBno()));
+		model.addAttribute("scri", scri);
+		 
+
+		//List<ReplyVO> replyList = replyService.readReply(boardVO.getBno());
+		//model.addAttribute("replyList", replyList);
+
+		/*
+		 * List<Map<String, Object>> fileList =
+		 * service.selectFileList(boardVO.getBno()); model.addAttribute("file",
+		 * fileList);
+		 */		
+		return "board/businessPlanRead";
+		
+	}
 
 	@RequestMapping(value = "/list3", method = RequestMethod.GET)
 	public String list3(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
@@ -125,6 +146,13 @@ public class BoardController {
 		return "board/list4";
 		
 	}	
+	
+	@RequestMapping(value = "/board/evaluationRaitingView", method = RequestMethod.GET)
+	public String evaluationRaitingView() throws Exception{
+		logger.info("writeView");
+	
+		return "board/evaluationRaitingView";
+	}
 	
 	@RequestMapping(value = "/board/table", method = RequestMethod.GET)
 	public String table() throws Exception{

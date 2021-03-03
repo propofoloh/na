@@ -20,6 +20,7 @@
 	}
 	.searchrow{
 		float : right;
+		margin-bottom: 20px;
 		
 	}
 	
@@ -41,15 +42,22 @@
 		border-radius: 5px;
 	}
 	.writebtn{
-		
+		float: right;
 		border : 0px;
 		background-color: #dd4132;
 		color : #ffffff;
 		width :  8%;
 		height : 5%;
 		border-radius: 5px;
+		margin-top : 10px;
 	
 	}
+	
+	.pasingDiv{
+		margin-top : 25px;
+		
+	}
+	
 	
 	</style>
 	<body>
@@ -115,9 +123,9 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<button type="button" class="writebtn" style="float: right;" onclick="location.href='writeView'">사업등록</button>
+					<button type="button" class="writebtn"  onclick="location.href='writeView'">사업등록</button>
 
-					<div style="width:100%;" class="col-md-offset-3">
+					<div class="pasingDiv" style="width:100%; text-align: center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev}">
 								<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>

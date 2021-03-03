@@ -37,7 +37,7 @@
   }
   tr th input {
   	border : 0px;
-  	width : 75%;
+  	width : 80%;
   	min-height: 30px;
   	text-align: center;
   	margin-left: 13px;
@@ -76,15 +76,13 @@
   }
   
   .canclebtn{
- 	border : 0px;
-	background-color: #B4B4B4;
+    border : 0px;
+	background-color: #dd4132;
 	color : #ffffff;
 	width : 100px;
 	height: 50px;
-	margin-right: 10px;
-	font-size: 15px;
-		
-	}
+  	font-size: 15px;
+ }
 	
   .succesbtn{
   	border : 0px;
@@ -92,7 +90,8 @@
 	color : #ffffff;
 	width : 100px;
 	height: 50px;
-  	font-size: 15px;
+	margin-right: 10px;
+	font-size: 15px;
   }
   
 </style>
@@ -100,7 +99,7 @@
   <body>
   	
   <form action="#">
-    <table>
+    <table class="subjecttable">
     	<p>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</p>
     	<colgroup>
     		<col style="width:15%">
@@ -118,19 +117,19 @@
         </tr>
       </tbody>
     </table>
-    <table class="evaluationboard">
+    <table class="evaluationtable">
     	  <colgroup>
     		<col style="width:10%">
  			<col style="width:15%">
- 			<col style="width:55%">
+ 			<col style="width:55%;">
  			<col style="width:10%">
  			<col style="width:10%">
     	  </colgroup>
       <thead>
-	        <tr class="evaluationTableHeader">
+	        <tr class ="evaluationTableHeader">
 	          <th rowspan="6" scope="col">분류</th>
 	          <th scope="col">구분</th>
-	          <th scope="col">평가항목</th>
+	          <td scope="col">평가항목</th>
 	          <th scope="col">배점</th>
 	          <th scope="col">평점</th>
 	        </tr>
@@ -138,59 +137,53 @@
 	  <tbody>
 	        <tr>
 	        <th rowspan="6" scope="col">신청기업</th>
-	          <th rowspan="2" scope="col"><textarea></textarea></th>
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>	
-	          <th scope="col"><input type="number"></th>
+	          <th rowspan="2" scope="col">추진계획 타당성</th>
+	          <td scope="col">사전준비도 및 사업목표의 명확성</th>
+	          <th rowspan="2" scope="col">20</th>	
+	          <th rowspan="2" scope="col">15</th>
 	        </tr>
 	        <tr>
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
-	          <th scope="col"><input type="number"></th>
+	          <td scope="col">사업 추진방안의 타당성</th>
 	        </tr>
 	        <tr>
-	          
-	          <th rowspan="2" scope="col"><textarea></textarea></th>
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
-	          <th scope="col"><input type="number"></th>
+	          <th rowspan="2" scope="col">지원 필요성 및 추진역량</th>
+	          <td scope="col">지원의 필요성 및 신청지원 분야의 적합성</th>
+	          <th rowspan="2" scope="col">20</th>
+	          <th rowspan="2" scope="col">15</th>
 	        </tr>
 	         <tr>
-	         
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
-	          <th scope="col"><input type="number"></th>
+	          <td scope="col">사업추진역량 및 의지</th>
 	        </tr>
 	         <tr>
 	          
-	          <th rowspan="2" scope="col"><textarea></textarea></th>
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
-	          <th scope="col"><input type="number"></th>
+	          <th rowspan="2" scope="col">지원 효과성 및 사업비 적정성</th>
+	          <td scope="col">사업지원의 기대효과</th>
+	          <th scope="col">15</th>
+	          <th scope="col">15</th>
 	        </tr>
 	         <tr>
 
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
-	          <th scope="col"><input type="number"></th>
+	          <td scope="col">사업비 구성의 적정성 및 합리성</th>
+	          <th scope="col">15</th>
+	          <th scope="col">15</th>
 	        </tr>
 	         <tr>
 	          <th rowspan="2" scope="col">수행기관</th>
-	          <th rowspan="2" scope="col"><textarea></textarea></th>
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
-	          <th scope="col"><input type="number"></th>
+	          <th rowspan="2" scope="col">관련 분야 전문성 및 역량</th>
+	          <td scope="col">지원분야의 수행기관 매칭 적합성 및 관련 실적</th>
+	          <th scope="col">15</th>
+	          <th scope="col">10</th>
 	        </tr>
 	         <tr>
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
-	          <th scope="col"><input type="number"></th>
+	          <td scope="col">참여인력의 업무수행 능력 및 역량</th>
+	          <th scope="col">15</th>
+	          <th scope="col">10</th>
 	        </tr>
-	        <tr class="evaluationTableSum">
+	        <tr class ="evaluationTableSum">
 	 			<!-- 합계 -->
-	        	<th  colspan="3">합계</th>
+	        	<th colspan="3">합계</th>
 		        <th>100</th>
-		        <th>0</th>
+		        <th class="rating">80</th>
 		    </tr>
 	  </tbody>  
 	 </table>
@@ -199,20 +192,20 @@
 	  	<tbody>
 	   		<tr style="height: 300px;">
 				<th style="width: 20%;">평가의견</th>
-				<th colspan="3"><textarea class="remark"></textarea></th>
+				<th colspan="3">종합적인 의견을 보았을대 적합한 사업수행에 적합한 기업으로 평가됩니다.</th>
 		    </tr>
 		    <tr style="height: 50px;">
 				<th style="width: 20%;">일자</div></th>
 				<th>2021.03.02</th>
 				<th>평가위원 성명</th>
-				<th style="text-align: right"><input type="text" value ="  　     　(서명)"></th>
+				<th style="text-align: right">평가위원　　(서명)</th>
 		    </tr>
 	 	 </tbody>
 	  </table>
 		 
 		 <div class="submitForm">
-			    <input class ="canclebtn" type="button" value="취소"> 
-			    <input class ="succesbtn" type="button" onclick="location.href='/board/list3'" value="평가완료">
+			    <input class ="succesbtn" type="button" value="선정">
+			    <input class ="canclebtn" type="button" value="탈락"> 
 		</div>
     </form>
     </table>
