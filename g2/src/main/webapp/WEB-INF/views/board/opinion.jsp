@@ -18,6 +18,18 @@ table {
 	border-collapse: collapse;
 }
 
+form p{
+
+	font-size: 2.5rem; 
+	font-weight: bolder; 
+	font-family: '돋움'; 
+	float: center; 
+	text-align: center;"
+
+}
+
+
+
 th, td {
 	border: 1px solid #444444;
 }
@@ -38,23 +50,43 @@ body {
 		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
 }
 
-/* 평가 의견*/
-#toc-content {
-	display: none;
+
+
+
+thead tr td{
+	font-weight: bold;
+	text-align: center;
 }
 
-#toc-toggle {
-	cursor: pointer;
-	color: #2962ff;
+td input{
+
+	border : 0px;
+	background-color: #dd4132;
+	color : #ffffff;
+	width :  80%;
+	height : 40px;
+	border-radius: 5px;
 }
 
-#toc-toggle:hover {
-	text-decoration: underline;
+.opiniondiv{
+
+	border : 2px solid;
+	width : 100%;
+	height: 40%;
+	
 }
 
-#overallOpinionBtn {
-	background-color: white;
+.toptable {
+	height: 50px; 
+	background-color: #EAEAEA;
 }
+
+.middletable{
+	height: 100px; 
+	background-color: #EAEAEA;
+}
+
+
 </style>
 <script type="text/javascript">
 $("span[name='toggle-control']").click(function() { 
@@ -71,11 +103,10 @@ $(document).ready(function() {
 	$("input").on("click",function(){
 		
 		var status = $(this).css('background-color'); 
-   		alert(status)
-    	if(status != "rgb(255, 255, 255)")   	
-    		$(this).css('background-color','white');
-    	else if(status == "rgb(255, 255, 255)")
-    		$(this).css('background-color','black')
+    	if(status != "rgb(221, 65, 50)")   	
+    		$(this).css('background-color','#dd4132');
+    	else if(status == "rgb(221, 65, 50)")
+    		$(this).css('background-color','#5D0000')
 		setData();
 		
 	});
@@ -93,13 +124,13 @@ $(document).ready(function() {
    	} */
     function setData(){
     	
-    	var value = $("#toc-content1").children().length;
-    	if(value <= 0){
-    		$("#toc-content1").append("<p>테스트입니다</p>");
-    	}
+    	var value = $(".opiniondiv").children().length;
+    	if(value <= 0)
+    		$(".opiniondiv").append("<p>테스트입니다</p>");
     	else{
-    		$("#toc-content1").children('p').remove();
-    	}
+    		$(".opiniondiv").children('p').remove();
+    		$(".opiniondiv").append("<p>테스트입니다2</p>");
+    		}
     	
     }
     
@@ -112,7 +143,7 @@ $(document).ready(function() {
   
   <form style="margin-bottom:30px;">
     <table border="3">
-    	<p style="font-size: 1.5rem; font-weight: bolder; font-family: '돋움'; float: center; text-align: center;">충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</p>
+    	<p>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</p>
     	<colgroup>
     		<col style="width: 400px;;">
     		<col style="width: 500px;">
@@ -126,27 +157,27 @@ $(document).ready(function() {
     		<col style="width: 300px;">
     	</colgroup>
       <thead>
-        <tr style="height: 50px; background-color: #EAEAEA;">
-          <th class="backslash"></th>
-          <th colspan="6" scope="col">평가 항목별 점수</th>
-          <th colspan="2" scope="col">합계</th>
-          <th style="background-color: #FFFFFF; border: none;"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="height: 100px; text-align: center; background-color: #EAEAEA;">
-          <th>평가위원</th>
-          <th>추진 계획 타당성</th>
-          <th>지원 필요성 및 추진 역량</th>
-          <th>사업 지원의 기대 효과</th>
-          <th>사업비 구성의 적정성 및 합리성</th>
-          <th>지원 분야의 수행기관 매칭 적합성 및 관련 실적</th>
-          <th>참여 인력의 업무수행 능력 및 역량</th>
-          <th>총합</th>
-          <th>평균</th>
-          <th style="background-color: #FFFFFF; border:none;"></th>
-        </tr>
-        
+	        <tr class="toptable">
+	          <td class="backslash"></td>
+	          <td colspan="6" scope="col">평가 항목별 점수</td>
+	          <td colspan="2" scope="col">합계</td>
+	          <th></th>
+	        </tr>
+
+	        <tr class="middletable">
+	          <td>평가위원</td>
+	          <td>추진 계획 타당성</td>
+	          <td>지원 필요성 및 추진 역량</td>
+	          <td>사업 지원의 기대 효과</td>
+	          <td>사업비 구성의 적정성 및 합리성</td>
+	          <td>지원 분야의 수행기관 매칭 적합성 및 관련 실적</td>
+	          <td>참여 인력의 업무수행 능력 및 역량</td>
+	          <td>총합</td>
+	          <td>평균</td>
+	          <td>평가의견</td>
+	        </tr>
+        </thead>
+        <tbody>
         <tr class="user">
           <td>평가위원1</td>
           <td>10</td>
@@ -157,9 +188,9 @@ $(document).ready(function() {
           <td>19</td>
           <td>70</td>
           <td>50</td>
-          <th style="border: none;">
-			<input type="button" id="1" value = "button">
-          </th>
+          <td>
+			<input type="button" value = "평가의견">
+          </td>
         </tr>
         
         <tr class="user">
@@ -172,9 +203,9 @@ $(document).ready(function() {
           <td>19</td>
           <td>80</td>
           <td>60</td>
-          <th style="border: none;">
-          	<input type="button" id="2" value = "button">
-          </th>
+          <td>
+          	<input type="button" value = "평가의견">
+          </td>
         </tr>
         
         <tr class="user">
@@ -187,9 +218,9 @@ $(document).ready(function() {
           <td>19</td>
           <td>75</td>
           <td>60</td>
-          <th style="border: none;">
-          	<input type="button" id="overallOpinionBtn" value = "button">
-          </th>
+          <td>
+          	<input type="button" value = "평가의견">
+          </td>
         </tr>
         
         <tr class="user">
@@ -202,9 +233,9 @@ $(document).ready(function() {
           <td>19</td>
           <td>90</td>
           <td>85</td>
-          <th style="border: none;">
-          	<input type="button" id="overallOpinionBtn" value = "button">
-          </th>
+          <td>
+          	<input type="button" value = "평가의견">
+          </td>
         </tr>
         
         <tr class="user">
@@ -217,10 +248,12 @@ $(document).ready(function() {
           <td>19</td>
           <td>총합</td>
           <td>평균</td>
-          <th style="border: none;">
-          	<input type="button" id="overallOpinionBtn" value = "button">
-          </th>
+          <td>
+          	<input type="button" value = "평가의견">
+          </td>
         </tr>
+        
+        
         
         <tr class="user">
           <td>평가위원6</td>
@@ -232,9 +265,9 @@ $(document).ready(function() {
           <td>19</td>
           <td>총합</td>
           <td>평균</td>
-          <th style="border: none;">
-          	<input type="button" id="overallOpinionBtn" value = "button">
-          </th>
+          <td>
+          	<input type="button" value = "평가의견">
+          </td>
         </tr>
         
         <tr class="user">
@@ -247,9 +280,9 @@ $(document).ready(function() {
           <td>19</td>
           <td>총합</td>
           <td>평균</td>
-          <th style="border: none;">
-          	<input type="button" id="overallOpinionBtn" value = "button">
-          </th>
+          <td>
+          	<input type="button" value = "평가의견">
+          </td>
         </tr>
         
         <tr class="user">
@@ -262,9 +295,9 @@ $(document).ready(function() {
           <td>19</td>
           <td>총합</td>
           <td>평균</td>
-          <th style="border: none;">
-          	<input type="button" id="overallOpinionBtn" value = "button">
-          </th>
+          <td>
+          	<input type="button" value = "평가의견">
+          </td>
         </tr>
         
         <tr class="user">
@@ -277,9 +310,9 @@ $(document).ready(function() {
           <td>19</td>
           <td>총합</td>
           <td>평균</td>
-          <th style="border: none;">
- 			<input type="button" id="overallOpinionBtn" value = "button">
-          </th>
+          <td>
+ 			<input type="button" value = "평가의견">
+          </td>
         </tr>
         
         <tr class="user">
@@ -292,13 +325,14 @@ $(document).ready(function() {
           <td>19</td>
           <td>총합</td>
           <td>평균</td>
-          <th style="border: none;">
-          	<input type="button" id="overallOpinionBtn" value = "button">
-          </th>
+          <td>
+          	<input type="button" value = "평가의견">
+          </td>
         </tr>
       </tbody>
     </table>
-    <div id="toc-content1">
+    <div class ="opiniondiv">
+	
 	</div>
    </form>
   </body>
