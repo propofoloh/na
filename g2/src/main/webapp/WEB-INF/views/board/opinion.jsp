@@ -37,7 +37,7 @@ th, td {
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-	margin: 0 1%;
+	margin: 0 20%;
 }
 
 .user {
@@ -58,6 +58,12 @@ thead tr td{
 	text-align: center;
 }
 
+tfoot tr {
+	font-weight: bold;
+	text-align: center;
+	background-color: #EAEAEA;
+	
+}
 td input{
 
 	border : 0px;
@@ -146,15 +152,15 @@ $(document).ready(function() {
     	<p>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</p>
     	<colgroup>
     		<col style="width: 400px;;">
-    		<col style="width: 500px;">
-    		<col style="width: 500px;">
-    		<col style="width: 500px;">
-    		<col style="width: 500px;">
-    		<col style="width: 500px;">
-    		<col style="width: 500px;">
     		<col style="width: 200px;">
     		<col style="width: 200px;">
-    		<col style="width: 300px;">
+    		<col style="width: 200px;">
+    		<col style="width: 200px;">
+    		<col style="width: 200px;">
+    		<col style="width: 200px;">
+    		<col style="width: 100px;">
+    		<col style="width: 100px;">
+    		<col style="width: 200px;">
     	</colgroup>
       <thead>
 	        <tr class="toptable">
@@ -330,6 +336,13 @@ $(document).ready(function() {
           </td>
         </tr>
       </tbody>
+      <tfoot>
+      	<tr>
+      		<td colspan="7">합계</td>
+      		<td>745</td>
+      		<td colspan="2">74.5</td>
+      	</tr>
+      </tfoot>
     </table>
     <div class ="opiniondiv">
 	
