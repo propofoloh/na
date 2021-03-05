@@ -14,24 +14,49 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<title>게시판</title>
+<style type="text/css">
+	.searchrow{
+		float : right;
+		margin-bottom: 20px;
+		
+	}
+	
+	#searchdiv{
+		width : 350px;
+		display: flex;
+	}
+	#searchbox{
+	
+		margin-right: -30px;
+	}
+	.searchBtn{
+	
+		border : 0px;
+		background-color: #dd4132;
+		color : #ffffff;
+		width : 25%;
+		margin-right: -52px;
+		border-radius: 5px;
+	}
+
+</style>
+
+<title>평가가위원 화면</title>
 </head>
 <body>
 	<div style="float: right;">
-		<%@include file="nav.jsp"%>
+		<%@include file="../board/nav.jsp"%>
 	</div>
 	<div class="container">
 		<header>
-			<h1>접수 리스트</h1>
+			<h1>평가 사업 리스트</h1>
 		</header>
 		<hr />
 
-		<section id="container">
-			<form role="form" method="get">
-
-				<div class="search row" style="float: right; width: 500px;">
-					<div class="col-xs-3 col-sm-3"
-						style="margin-left: 3px; margin-right: -25px;">
+			<section id="container">
+				<form role="form" method="get">
+				<div class="searchrow">
+					<div id="searchbox"class="col-sm-3">
 						<select name="searchType" class="form-control">
 							<option value="n"
 								<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
@@ -45,15 +70,9 @@
 								<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>사업명+내용</option>
 						</select>
 					</div>
-
-					<div class="col-xs-7 col-sm-7" style="width: 390px">
-						<div class="input-group">
-							<input type="text" name="keyword" id="keywordInput"
-								value="${scri.keyword}" class="form-control" /> <span
-								class="input-group-btn">
-								<button id="searchBtn" type="button" class="btn btn-default">검색</button>
-							</span>
-						</div>
+					<div id="searchdiv" class="col-xs-7 col-sm-7">
+						<input type="text" name="keyword" id="keywordInput"value="${scri.keyword}" class="form-control"> 
+						<button id="searchBtn" type="button" class="searchBtn">검색</button>
 					</div>
 
 					<script>
@@ -76,23 +95,79 @@
 						</tr>
 					</thead>
 					<tr>
-						<td style="text-align: center;">1</td>
-						<td style="text-align: center;"><a href="/board/readView?bno=${list.bno}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.title}" />사업1</a></td>
-						<td style="text-align: center;">홍길동</td>
+						<td style="text-align: center;">10</td>
+						<td style="text-align: center;">사업 계획서 접수10</td>
+						<td style="text-align: center;">기업10</td>
 						<td style="text-align: center;">2021-02-22</td>
+						<td style="text-align: center;">12</td>
+					</tr>
+					
+					<tr>
+						<td style="text-align: center;">9</td>
+						<td style="text-align: center;">사업 계획서 접수9</td>
+						<td style="text-align: center;">기업9</td>
+						<td style="text-align: center;">2021-02-22</td>
+						<td style="text-align: center;">161</td>
+					</tr>
+					
+					<tr>
+						<td style="text-align: center;">8</td>
+						<td style="text-align: center;">사업 계획서 접수8</td>
+						<td style="text-align: center;">기업8</td>
+						<td style="text-align: center;">2021-02-22</td>
+						<td style="text-align: center;">101</td>
+					</tr>
+					
+					<tr>
+						<td style="text-align: center;">7</td>
+						<td style="text-align: center;">사업 계획서 접수7</td>
+						<td style="text-align: center;">기업7</td>
+						<td style="text-align: center;">2021-02-22</td>
+						<td style="text-align: center;">110</td>
+					</tr>
+					
+					<tr>
+						<td style="text-align: center;">6</td>
+						<td style="text-align: center;">사업 계획서 접수6</td>
+						<td style="text-align: center;">기업6</td>
+						<td style="text-align: center;">2021-02-22</td>
+						<td style="text-align: center;">141</td>
+					</tr>
+					
+					<tr>
+						<td style="text-align: center;">5</td>
+						<td style="text-align: center;">사업 계획서 접수5</td>
+						<td style="text-align: center;">기업5</td>
+						<td style="text-align: center;">2021-02-22</td>
+						<td style="text-align: center;">80</td>
+					</tr>
+					
+					<tr>
+						<td style="text-align: center;">4</td>
+						<td style="text-align: center;">사업 계획서 접수4</td>
+						<td style="text-align: center;">기업4</td>
+						<td style="text-align: center;">2021-02-22</td>
+						<td style="text-align: center;">141</td>
+					</tr>			
+					
+					<tr>
+						<td style="text-align: center;">3</td>
+						<td style="text-align: center;"><a href="../board/readView?bno=${list.bno}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.title}" />사업 계획서 접수3</a></td>
+						<td style="text-align: center;">기업3</td>
+						<td style="text-align: center;">2021-01-01</td>
 						<td style="text-align: center;">100</td>
 					</tr>
 					<tr>
 						<td style="text-align: center;">2</td>
-						<td style="text-align: center;">사업2</td>
-						<td style="text-align: center;">작성자2</td>
+						<td style="text-align: center;">사업 계획서 접수2</td>
+						<td style="text-align: center;">기업2</td>
 						<td style="text-align: center;">2021-02-22</td>
 						<td style="text-align: center;">105</td>
 					</tr>
 					<tr>
-						<td style="text-align: center;">3</td>
-						<td style="text-align: center;">사업3</td>
-						<td style="text-align: center;">작성자3</td>
+						<td style="text-align: center;">1</td>
+						<td style="text-align: center;">사업 계획서 접수1</td>
+						<td style="text-align: center;">기업1</td>
 						<td style="text-align: center;">2021-02-22</td>
 						<td style="text-align: center;">141</td>
 					</tr>

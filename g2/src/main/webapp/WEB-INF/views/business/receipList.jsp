@@ -54,7 +54,7 @@
 	}
 	
 	.pasingDiv{
-		margin-top : 25px;
+		margin-top : 25px; 
 		
 	}
 	

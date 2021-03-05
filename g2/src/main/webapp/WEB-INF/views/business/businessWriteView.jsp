@@ -19,6 +19,40 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<style type="text/css">
+	.writebtn{
+		float: right;
+		border : 0px;
+		background-color: #dd4132;
+		color : #ffffff;
+		width :  10%;
+		height : 5%;
+		border-radius: 5px;
+		margin-top : 10px;
+	}
+	
+	.filebtn{
+		border : 0px;
+		background-color: #dd4132;
+		color : #ffffff;
+		width :  10%;
+		height : 5%;
+		border-radius: 5px;
+		margin-top : 10px;
+	}
+	
+	.evaluator-check{
+		border : 0px;
+		background-color: #dd4132;
+		color : #ffffff;
+		width : 10%;
+		height: 4%;
+		margin-left: 5px;
+		border-radius: 5px;
+	}
+
+</style>
+
 <title>게시판</title>
 </head>
 <script type="text/javascript">
@@ -64,22 +98,10 @@ $(function() {
 });
 </script>
 
-<style>
-	.evaluator-check{
-		border : 0px;
-		background-color: #dd4132;
-		color : #ffffff;
-		width : 10%;
-		height: 4%;
-		margin-left: 5px;
-	}
-	
-</style>
 <body>
-
 	<div class="container" id="root" style="margin-top:30px;">
 		<div style="float:right;">
-			<%@include file="nav.jsp"%>
+			<%@include file="../board/nav.jsp"%>
 		</div>
 		<header>
 			<h1>사업 리스트 등록</h1>
@@ -88,8 +110,7 @@ $(function() {
 
 
 		<section id="container">
-			<form name="writeForm" method="post" action="/board/write"
-				enctype="multipart/form-data">
+			<form name="writeForm" method="post" action="/board/write" enctype="multipart/form-data">
 				<table>
 					<tbody>
 						<c:if test="${member.userId != null}">
@@ -119,22 +140,20 @@ $(function() {
 								<textarea id="content3" name="content" class="form-control"
 									title="내용" style="height: 100px;"></textarea>
 							</div>
-				
-							<tr>
-								<td>
-									<button style="margin-top: 10px;" class="btn btn-success"
-										type="submit">등록</button>
-							<label classNam=="input-file-button" for="input-file"
-								style="margin-top: 10px;" class="btn btn-success"> 첨부파일 </label>
-							<input type="file" id="input-file" style="display: none" />
+	
+							<div>
+							<label for="input-file">파일</label>
+							<input type="file" id="input-file"/>
+							</div>
 							
+							<div>
+							<button class="writebtn" type="submit">등록</button>
+							</div>
 								<div class="form-group" style="margin-top: 30px; width: 100%">
 									<label for="writer" class="col-sm-2 control-label" style="width: 380px;">작성자</label>
 									<input type="text" id="writer" name="writer" class="form-control" value="${member.userId}"  readonly="readonly" style="width: 100px"/>
 								</div>
-							</td>
-						</tr>
-							
+
 
 						</c:if>
 					</tbody>
