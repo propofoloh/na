@@ -28,7 +28,7 @@ import a.b.vo.ReplyVO;
 import a.b.vo.SearchCriteria;
 
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/*")
 public class BoardController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
@@ -39,33 +39,33 @@ public class BoardController {
 	@Inject
 	ReplyService replyService;
 	
-	// 寃뚯떆�뙋 湲� �옉�꽦 �솕硫�
-	@RequestMapping(value = "/board/writeView", method = RequestMethod.GET)
-	public void writeView() throws Exception{
-		logger.info("writeView");
+	// 野껊슣�뻻占쎈솇 疫뀐옙 占쎌삂占쎄쉐 占쎌넅筌롳옙
+	@RequestMapping(value = "/businessplan/bpWriteView", method = RequestMethod.GET)
+	public void bpWriteView() throws Exception{
+		logger.info("bpWriteView");
 		
 	}
 	
-	@RequestMapping(value = "/board/writeView2", method = RequestMethod.GET)
-	public void writeView2() throws Exception{
-		logger.info("writeView2");
+	@RequestMapping(value = "/business/businessWriteView", method = RequestMethod.GET)
+	public void businessWriteView() throws Exception{
+		logger.info("businessWriteView");
 	}
 	
-	// 寃뚯떆�뙋 湲� �옉�꽦
-	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	// 野껊슣�뻻占쎈솇 疫뀐옙 占쎌삂占쎄쉐
+	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
 	public String write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception{
-		logger.info("write");
+		logger.info("receipList");
 		service.write(boardVO, mpRequest);
 		
-		return "redirect:/board/list2";
+		return "redirect:/business/receipList";
 	}
 	
-	// 寃뚯떆�뙋 紐⑸줉 議고쉶
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
-		logger.info("list");
+	// 野껊슣�뻻占쎈솇 筌뤴뫖以� 鈺곌퀬�돳
+	@RequestMapping(value = "/business/receipList", method = RequestMethod.GET)
+	public String receipList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		logger.info("receipList");
 		
-		model.addAttribute("list", service.list(scri));
+		model.addAttribute("list", service.receipList(scri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -73,16 +73,16 @@ public class BoardController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
-		return "board/list";
+		return "business/receipList";
 		
 	}
 	
-	// 寃뚯떆�뙋2 紐⑸줉 議고쉶
-	@RequestMapping(value = "/list2", method = RequestMethod.GET)
-	public String list2(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
-		logger.info("list2");
+	// 野껊슣�뻻占쎈솇2 筌뤴뫖以� 鈺곌퀬�돳
+	@RequestMapping(value = "/businessplan/bpList", method = RequestMethod.GET)
+	public String bpList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		logger.info("bpList");
 		
-		model.addAttribute("list2", service.list(scri));
+		model.addAttribute("bpList", service.receipList(scri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -90,13 +90,13 @@ public class BoardController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
-		return "board/list2";
+		return "businessplan/bpList";
 		
 	}
 	
-	@RequestMapping(value = "/businessPlanRead", method = RequestMethod.GET)
-	public String businessPlanRead(BoardVO boardVO, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
-		logger.info("businessPlanRead");
+	@RequestMapping(value = "/businessplan/bpReadView", method = RequestMethod.GET)
+	public String bpReadView(BoardVO boardVO, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		logger.info("bpReadView");
 
 		
 		model.addAttribute("read", service.read(boardVO.getBno()));
@@ -111,15 +111,15 @@ public class BoardController {
 		 * service.selectFileList(boardVO.getBno()); model.addAttribute("file",
 		 * fileList);
 		 */		
-		return "board/businessPlanRead";
+		return "businessplan/bpReadView";
 		
 	}
 
-	@RequestMapping(value = "/list3", method = RequestMethod.GET)
-	public String list3(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
-		logger.info("list3");
+	@RequestMapping(value = "/evaluation/evaluationList", method = RequestMethod.GET)
+	public String evaluationList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		logger.info("evaluationList");
 		
-		model.addAttribute("list3", service.list(scri));
+		model.addAttribute("evaluationList", service.receipList(scri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -127,15 +127,20 @@ public class BoardController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
-		return "board/list3";
+		return "evaluation/evaluationList";
 		
+	}
+	
+	@RequestMapping(value = "/evaluation/evaluationRaitingView", method = RequestMethod.GET)
+	public void evaluationRaitingView() throws Exception{
+		logger.info("evaluationRaitingView");
 	}
 	
 	@RequestMapping(value = "/list4", method = RequestMethod.GET)
 	public String list4(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		logger.info("list4");
 		
-		model.addAttribute("list4", service.list(scri));
+		model.addAttribute("list4", service.receipList(scri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -147,29 +152,22 @@ public class BoardController {
 		
 	}	
 	
-	@RequestMapping(value = "/board/evaluationRaitingView", method = RequestMethod.GET)
-	public String evaluationRaitingView() throws Exception{
-		logger.info("writeView");
+	@RequestMapping(value = "/evaluation/evaluationScore", method = RequestMethod.GET)
+	public String evaluationScore() throws Exception{
+		logger.info("evaluationScore");
 	
-		return "board/evaluationRaitingView";
+		return "evaluation/evaluationScore";
 	}
 	
-	@RequestMapping(value = "/board/table", method = RequestMethod.GET)
-	public String table() throws Exception{
-		logger.info("writeView");
-	
-		return "board/table";
-	}
-	
-	@RequestMapping(value = "/board/opinion", method = RequestMethod.GET)
+	@RequestMapping(value = "/evaluation/opinion", method = RequestMethod.GET)
 	public String opinion() throws Exception{
 		logger.info("opinion");
 	
-		return "board/opinion";
+		return "evaluation/opinion";
 	}
 	
-	// 寃뚯떆�뙋 議고쉶
-	@RequestMapping(value = "/readView", method = RequestMethod.GET)
+	// 野껊슣�뻻占쎈솇 鈺곌퀬�돳
+	@RequestMapping(value = "/board/readView", method = RequestMethod.GET)
 	public String read(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 		logger.info("read");
 
@@ -187,7 +185,7 @@ public class BoardController {
 		return "board/readView";
 	}
 	
-	// 寃뚯떆�뙋 �닔�젙酉�
+	// 野껊슣�뻻占쎈솇 占쎈땾占쎌젟�뀎占�
 	@RequestMapping(value = "/updateView", method = RequestMethod.GET)
 	public String updateView(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model)
 			throws Exception {
@@ -201,7 +199,7 @@ public class BoardController {
 		return "board/updateView";
 	}
 
-	// 寃뚯떆�뙋 �닔�젙
+	// 野껊슣�뻻占쎈솇 占쎈땾占쎌젟
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(BoardVO boardVO, 
 						 @ModelAttribute("scri") SearchCriteria scri, 
@@ -217,10 +215,10 @@ public class BoardController {
 		rttr.addAttribute("searchType", scri.getSearchType());
 		rttr.addAttribute("keyword", scri.getKeyword());
 
-		return "redirect:/board/list";
+		return "redirect:/business/receipList";
 	}
 
-	// 寃뚯떆�뙋 �궘�젣
+	// 野껊슣�뻻占쎈솇 占쎄텣占쎌젫
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 		logger.info("delete");
@@ -232,10 +230,10 @@ public class BoardController {
 		rttr.addAttribute("searchType", scri.getSearchType());
 		rttr.addAttribute("keyword", scri.getKeyword());
 		
-		return "redirect:/board/list";
+		return "redirect:/business/receipList";
 	}
 	
-	//�뙎湲� �옉�꽦
+	//占쎈솊疫뀐옙 占쎌삂占쎄쉐
 	@RequestMapping(value="/replyWrite", method = RequestMethod.POST)
 	public String replyWrite(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 		logger.info("reply Write");
@@ -251,7 +249,7 @@ public class BoardController {
 		return "redirect:/board/readView";
 	}
 	
-	//�뙎湲� �닔�젙 GET
+	//占쎈솊疫뀐옙 占쎈땾占쎌젟 GET
 		@RequestMapping(value="/replyUpdateView", method = RequestMethod.GET)
 		public String replyUpdateView(ReplyVO vo, SearchCriteria scri, Model model) throws Exception {
 			logger.info("reply Write");
@@ -262,7 +260,7 @@ public class BoardController {
 			return "board/replyUpdateView";
 		}
 		
-		//�뙎湲� �닔�젙 POST
+		//占쎈솊疫뀐옙 占쎈땾占쎌젟 POST
 		@RequestMapping(value="/replyUpdate", method = RequestMethod.POST)
 		public String replyUpdate(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 			logger.info("reply Write");
@@ -278,7 +276,7 @@ public class BoardController {
 			return "redirect:/board/readView";
 		}
 	
-	//�뙎湲� �궘�젣 GET
+	//占쎈솊疫뀐옙 占쎄텣占쎌젫 GET
 		@RequestMapping(value="/replyDeleteView", method = RequestMethod.GET)
 		public String replyDeleteView(ReplyVO vo, SearchCriteria scri, Model model) throws Exception {
 			logger.info("reply Write");
@@ -312,7 +310,7 @@ public class BoardController {
 			String storedFileName = (String) resultMap.get("STORED_FILE_NAME");
 			String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
 			
-			// �뙆�씪�쓣 ���옣�뻽�뜕 �쐞移섏뿉�꽌 泥⑤��뙆�씪�쓣 �씫�뼱 byte[]�삎�떇�쑝濡� 蹂��솚�븳�떎.
+			// 占쎈솁占쎌뵬占쎌뱽 占쏙옙占쎌삢占쎈뻥占쎈쐲 占쎌맄燁살꼷肉됵옙苑� 筌ｂ뫀占쏙옙�솁占쎌뵬占쎌뱽 占쎌뵭占쎈선 byte[]占쎌굨占쎈뻼占쎌몵嚥∽옙 癰귨옙占쎌넎占쎈립占쎈뼄.
 			byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray(new File("C:\\mp\\file\\"+storedFileName));
 			
 			response.setContentType("application/octet-stream");

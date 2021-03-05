@@ -59,7 +59,7 @@
 	
 	<!-- 새션 유지 시간 -->
 	<session-config>
-		<session-timeout>1</session-timeout>
+		<session-timeout>10000</session-timeout>
 	</session-config>
 	
 

@@ -26,7 +26,6 @@ li {
 
 	<c:if test="${member == null}">
 		<li><a href="/">로그인</a></li>
-		<li><a href="/member/register">회원가입</a></li>
 	</c:if>
 
 	<li><c:if test="${member != null}">

@@ -77,7 +77,7 @@ public class MemberController {
 		}
 		
 		
-		return "redirect:/board/list";
+		return "redirect:/business/receipList";
 	}
 	
 	// 濡쒓렇�븘�썐 post
@@ -99,7 +99,7 @@ public class MemberController {
 	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
 	public String registerUpdate(MemberVO vo, HttpSession session) throws Exception{
 		
-/*		MemberVO login = service.login(vo);
+		MemberVO login = service.login(vo);
 		
 		boolean pwdMatch = pwdEncoder.matches(vo.getUserPass(), login.getUserPass());
 		if(pwdMatch) {
@@ -107,7 +107,7 @@ public class MemberController {
 			session.invalidate();
 		}else {
 			return "member/memberUpdateView";
-		}*/
+		}
 		service.memberUpdate(vo);
 		session.invalidate();
 		return "redirect:/";
