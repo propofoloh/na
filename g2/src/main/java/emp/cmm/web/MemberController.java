@@ -20,7 +20,7 @@ import a.b.service.MemberService;
 import a.b.vo.MemberVO;
 
 @Controller
-@RequestMapping("/member/*")
+@RequestMapping("/cmm/*")
 public class MemberController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -44,7 +44,7 @@ public class MemberController {
 		int result = service.idChk(vo);
 		try {
 			if(result == 1) {
-				return "/member/register";
+				return "/cmm/register";
 			}else if(result == 0) {
 				String inputPass = vo.getUserPass();
 				String pwd = pwdEncoder.encode(inputPass);
@@ -57,7 +57,7 @@ public class MemberController {
 		} catch (Exception e) {
 			throw new RuntimeException();
 		}
-		return "redirect:/";
+		return "redirect:/cmm/login";
 	}
 	
 	// 濡쒓렇�씤 post
@@ -77,7 +77,7 @@ public class MemberController {
 		}
 		
 		
-		return "redirect:/business/receipList";
+		return "redirect:/bam/businessAnnouncementList";
 	}
 	
 	// 濡쒓렇�븘�썐 post
@@ -86,13 +86,13 @@ public class MemberController {
 		
 		session.invalidate();
 		
-		return "redirect:/";
+		return "redirect:/cmm/login";
 	}
 	
 	// �쉶�썝�젙蹂� �닔�젙 get
-	@RequestMapping(value="/memberUpdateView", method = RequestMethod.GET)
-	public String registerUpdateView() throws Exception{
-		return "member/memberUpdateView";
+	@RequestMapping(value="/memberManagement", method = RequestMethod.GET)
+	public String memberManagement() throws Exception{
+		return "cmm/memberManagement";
 	}
 	
 	// �쉶�썝�젙蹂� �닔�젙  post
@@ -106,17 +106,17 @@ public class MemberController {
 			service.memberUpdate(vo);
 			session.invalidate();
 		}else {
-			return "member/memberUpdateView";
+			return "cmm/memberUpdateView";
 		}
 		service.memberUpdate(vo);
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:/cmm/login";
 	}
 	
 	// �쉶�썝 �깉�눜 get
 	@RequestMapping(value="/memberDeleteView", method = RequestMethod.GET)
 	public String memberDeleteView() throws Exception{
-		return "member/memberDeleteView";
+		return "cmm/memberDeleteView";
 	}
 	
 	// �쉶�썝 �깉�눜 post
@@ -126,7 +126,7 @@ public class MemberController {
 		service.memberDelete(vo);
 		session.invalidate();
 		
-		return "redirect:/";
+		return "redirect:/cmm/login";
 	}
 	
 	
@@ -147,10 +147,10 @@ public class MemberController {
 		int result = service.idChk(vo);
 		return result;
 	}
-	@RequestMapping(value="/Agreement", method = RequestMethod.GET)
-	public String Agreement(MemberVO vo, HttpSession session) throws Exception{
+	@RequestMapping(value="/agreement", method = RequestMethod.GET)
+	public String agreement(MemberVO vo, HttpSession session) throws Exception{
 		
-		return "member/Agreement";
+		return "cmm/agreement";
 	}
 }
 
