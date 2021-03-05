@@ -94,6 +94,27 @@ public class BoardController {
 		
 	}
 	
+	@RequestMapping(value = "/business/businessReadView", method = RequestMethod.GET)
+	public String businessReadView(BoardVO boardVO, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		logger.info("businessReadView");
+
+		
+		model.addAttribute("read", service.read(boardVO.getBno()));
+		model.addAttribute("scri", scri);
+		 
+
+		//List<ReplyVO> replyList = replyService.readReply(boardVO.getBno());
+		//model.addAttribute("replyList", replyList);
+
+		/*
+		 * List<Map<String, Object>> fileList =
+		 * service.selectFileList(boardVO.getBno()); model.addAttribute("file",
+		 * fileList);
+		 */		
+		return "business/businessReadView";
+		
+	}
+	
 	@RequestMapping(value = "/businessplan/bpReadView", method = RequestMethod.GET)
 	public String bpReadView(BoardVO boardVO, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		logger.info("bpReadView");
