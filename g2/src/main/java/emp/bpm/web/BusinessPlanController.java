@@ -25,7 +25,7 @@ import a.b.vo.Criteria;
 import a.b.vo.PageMaker;
 import a.b.vo.ReplyVO;
 import a.b.vo.SearchCriteria;
-import emp.bam.service.BoardService;
+import a.b.service.BoardService;
 
 @Controller
 @RequestMapping("/bpm/*")
@@ -60,7 +60,7 @@ public class BusinessPlanController {
 	public String businessPlanApplyList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 		logger.info("businessPlanApplyList");
 
-		model.addAttribute("list", service.list(scri));
+		model.addAttribute("list", service.receipList(scri));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
