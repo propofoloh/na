@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import a.b.service.MemberService;
-import a.b.vo.MemberVO;
+import emp.cmm.service.MemberService;
+import emp.cmm.vo.MemberVO;
 
 @Controller
 @RequestMapping("/cmm/*")
@@ -41,23 +41,23 @@ public class MemberController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
 		logger.info("post register");
+		System.out.println("!");
 		int result = service.idChk(vo);
+		System.out.println("@");
 		try {
 			if(result == 1) {
 				return "/cmm/register";
 			}else if(result == 0) {
-				String inputPass = vo.getUserPass();
+				String inputPass = vo.getUserPwd();
 				String pwd = pwdEncoder.encode(inputPass);
-				vo.setUserPass(pwd);
+				vo.setUserPwd(pwd);
 				
 				service.register(vo);
 			}
-			// �슂湲곗뿉�꽌~ �엯�젰�맂 �븘�씠�뵒媛� 議댁옱�븳�떎硫� -> �떎�떆 �쉶�썝媛��엯 �럹�씠吏�濡� �룎�븘媛�湲� 
-			// 議댁옱�븯吏� �븡�뒗�떎硫� -> register
 		} catch (Exception e) {
 			throw new RuntimeException();
 		}
-		return "redirect:/cmm/login";
+				return "redirect:/";
 	}
 	
 	// 濡쒓렇�씤 post
@@ -67,7 +67,7 @@ public class MemberController {
 	
 		session.getAttribute("member");
 		MemberVO login = service.login(vo);
-		boolean pwdMatch = pwdEncoder.matches(vo.getUserPass(), login.getUserPass());
+		boolean pwdMatch = pwdEncoder.matches(vo.getUserPwd(), login.getUserPwd());
 
 		if(login != null && pwdMatch == true) {
 			session.setAttribute("member", login);
@@ -101,7 +101,7 @@ public class MemberController {
 		
 		MemberVO login = service.login(vo);
 		
-		boolean pwdMatch = pwdEncoder.matches(vo.getUserPass(), login.getUserPass());
+		boolean pwdMatch = pwdEncoder.matches(vo.getUserPwd(), login.getUserPwd());
 		if(pwdMatch) {
 			service.memberUpdate(vo);
 			session.invalidate();
@@ -135,7 +135,7 @@ public class MemberController {
 	public boolean passChk(MemberVO vo) throws Exception {
 
 		MemberVO login = service.login(vo);
-		boolean pwdChk = pwdEncoder.matches(vo.getUserPass(), login.getUserPass());
+		boolean pwdChk = pwdEncoder.matches(vo.getUserPwd(), login.getUserPwd());
 		return pwdChk;
 	}
 	

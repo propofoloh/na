@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import a.b.service.BoardService;
-import a.b.vo.BoardVO;
-import a.b.vo.PageMaker;
-import a.b.vo.SearchCriteria;
+import emp.bam.service.BusinessAnnouncementService;
+import emp.bam.vo.BusinessAnnouncementVO;
+import emp.bam.util.PageMaker;
+import emp.bam.util.SearchCriteria;
 
 @Controller
 @RequestMapping("/bam")
@@ -31,14 +31,14 @@ public class BusinessAnnouncementController {
 	private static final Logger logger = LoggerFactory.getLogger(BusinessAnnouncementController.class);
 
 	@Inject
-	BoardService service;
+	BusinessAnnouncementService service;
 
 	//사업 공고 조회
 	@RequestMapping(value = "/businessAnnouncementList", method = RequestMethod.GET)
 	public String businessAnnouncementList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		logger.info("receipList");
 
-		model.addAttribute("list", service.receipList(scri));
+		model.addAttribute("list", service.businessAnnouncementList(scri));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -52,10 +52,10 @@ public class BusinessAnnouncementController {
 
 	//사업공고 상세보기
 	@RequestMapping(value = "/businessAnnouncementDetail", method = RequestMethod.GET)
-	public String businessAnnouncementDetail(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
+	public String businessAnnouncementDetail(BusinessAnnouncementVO businessAnnouncementVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 		logger.info("read");
 
-		model.addAttribute("read", service.read(boardVO.getBno()));
+		model.addAttribute("read", service.read(businessAnnouncementVO.getBamAncIdx()));
 		model.addAttribute("scri", scri);
 
 		/*
@@ -68,37 +68,37 @@ public class BusinessAnnouncementController {
 
 	//사업 공고 등록
 	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
-	public String write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception{
+	public String write(BusinessAnnouncementVO businessAnnouncementVO, MultipartHttpServletRequest mpRequest) throws Exception{
 		logger.info("receipList");
-		service.write(boardVO, mpRequest);
+		service.write(businessAnnouncementVO, mpRequest);
 
 		return "redirect:/bam/businessAnnouncementList";
 	}
 
 	//사업 공고 수정 페이지 조회
 	@RequestMapping(value = "/businessAnnouncementUpdate", method = RequestMethod.GET)
-	public String businessAnnouncementUpdate(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model)
+	public String businessAnnouncementUpdate(BusinessAnnouncementVO businessAnnouncementVO, @ModelAttribute("scri") SearchCriteria scri, Model model)
 			throws Exception {
 		logger.info("updateView");
 
-		model.addAttribute("update", service.read(boardVO.getBno()));
+		model.addAttribute("update", service.read(businessAnnouncementVO.getBamAncIdx()));
 		model.addAttribute("scri", scri);
 
-		List<Map<String, Object>> fileList = service.selectFileList(boardVO.getBno());
+		List<Map<String, Object>> fileList = service.selectFileList(businessAnnouncementVO.getBamAncIdx());
 		model.addAttribute("file", fileList);
 		return "bam/businessAnnouncementUpdate";
 	}
 
 	//사업 공고 수정
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(BoardVO boardVO, 
+	public String update(BusinessAnnouncementVO businessAnnouncementVO, 
 			@ModelAttribute("scri") SearchCriteria scri, 
 			RedirectAttributes rttr,
 			@RequestParam(value="fileNoDel[]") String[] files,
 			@RequestParam(value="fileNameDel[]") String[] fileNames,
 			MultipartHttpServletRequest mpRequest) throws Exception {
 		logger.info("update");
-		service.update(boardVO, files, fileNames, mpRequest);
+		service.update(businessAnnouncementVO, files, fileNames, mpRequest);
 
 		rttr.addAttribute("page", scri.getPage());
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());

@@ -41,7 +41,9 @@ public class MemberController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
 		logger.info("post register");
+		System.out.println("!1");
 		int result = service.idChk(vo);
+		System.out.println("@2");
 		try {
 			if(result == 1) {
 				return "/member/register";
@@ -49,9 +51,9 @@ public class MemberController {
 				String inputPass = vo.getUserPass();
 				String pwd = pwdEncoder.encode(inputPass);
 				vo.setUserPass(pwd);
-				
+
 				service.register(vo);
-			}
+			}                              
 			// �슂湲곗뿉�꽌~ �엯�젰�맂 �븘�씠�뵒媛� 議댁옱�븳�떎硫� -> �떎�떆 �쉶�썝媛��엯 �럹�씠吏�濡� �룎�븘媛�湲� 
 			// 議댁옱�븯吏� �븡�뒗�떎硫� -> register
 		} catch (Exception e) {
@@ -77,7 +79,7 @@ public class MemberController {
 		}
 		
 		
-		return "redirect:/business/receipList";
+		return "redirect:/bam/businessAnnouncementList";
 	}
 	
 	// 濡쒓렇�븘�썐 post

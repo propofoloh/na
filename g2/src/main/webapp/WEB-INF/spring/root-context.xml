@@ -32,11 +32,32 @@
     </bean>
 		
 		   <!-- scan -->
-    <context:component-scan base-package="a.b"></context:component-scan>
-    <context:component-scan base-package="a.b.controller"></context:component-scan>
-    <context:component-scan base-package="a.b.service"></context:component-scan>
-    <context:component-scan base-package="a.b.dao"></context:component-scan>
-    <context:component-scan base-package="a.b.vo"></context:component-scan>
-    <context:component-scan base-package="a.b.util"></context:component-scan>
+    <context:component-scan base-package="emp.bam"></context:component-scan>
+    <context:component-scan base-package="emp.bam.controller"></context:component-scan>
+    <context:component-scan base-package="emp.bam.service"></context:component-scan>
+    <context:component-scan base-package="emp.bam.dao"></context:component-scan>
+    <context:component-scan base-package="emp.bam.vo"></context:component-scan>
+    <context:component-scan base-package="emp.bam.util"></context:component-scan>
+    
+<!--     <context:component-scan base-package="emp.bpm"></context:component-scan>
+    <context:component-scan base-package="emp.bpm.controller"></context:component-scan>
+    <context:component-scan base-package="emp.bpm.service"></context:component-scan>
+    <context:component-scan base-package="emp.bpm.dao"></context:component-scan>
+    <context:component-scan base-package="emp.bpm.vo"></context:component-scan>
+    <context:component-scan base-package="emp.bpm.util"></context:component-scan>
+    
+    <context:component-scan base-package="emp.bem"></context:component-scan>
+    <context:component-scan base-package="emp.bem.controller"></context:component-scan>
+    <context:component-scan base-package="emp.bem.service"></context:component-scan>
+    <context:component-scan base-package="emp.bem.dao"></context:component-scan>
+    <context:component-scan base-package="emp.bem.vo"></context:component-scan>
+    <context:component-scan base-package="emp.bem.util"></context:component-scan> -->
+    
+    <context:component-scan base-package="emp.cmm"></context:component-scan>
+    <context:component-scan base-package="emp.cmm.controller"></context:component-scan>
+    <context:component-scan base-package="emp.cmm.service"></context:component-scan>
+    <context:component-scan base-package="emp.cmm.dao"></context:component-scan>
+    <context:component-scan base-package="emp.cmm.vo"></context:component-scan>
+    <context:component-scan base-package="emp.cmm.util"></context:component-scan>
     
 </beans>

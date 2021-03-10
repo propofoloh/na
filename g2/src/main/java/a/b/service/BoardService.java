@@ -5,10 +5,8 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import a.b.vo.SearchCriteria;
 import a.b.vo.BoardVO;
-import a.b.vo.Criteria;
-import a.b.vo.ReplyVO;
+import a.b.vo.SearchCriteria;
 
 public interface BoardService {
 

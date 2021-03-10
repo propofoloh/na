@@ -19,16 +19,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import a.b.service.BoardService;
 import a.b.service.ReplyService;
 import a.b.vo.BoardVO;
-import a.b.vo.Criteria;
 import a.b.vo.PageMaker;
 import a.b.vo.ReplyVO;
 import a.b.vo.SearchCriteria;
-import a.b.service.BoardService;
 
 @Controller
-@RequestMapping("/bpm/*")
+@RequestMapping("/bpm")
 public class BusinessPlanController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BusinessPlanController.class);

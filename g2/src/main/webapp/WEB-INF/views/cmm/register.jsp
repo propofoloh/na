@@ -35,17 +35,17 @@
 					return false;
 				}
 				var idChkVal = $("#idChk").val();
+				var registerForm = $("#regForm");
 				if(idChkVal == "N"){
 					alert("중복확인 버튼을 눌러주세요.");
-				}else if(idChkVal == "Y"){
-					$("#regForm").submit();
 				}
+	
 			});
 		})
 		
 		function fn_idChk(){
 			$.ajax({
-				url : "/member/idChk",
+				url : "/cmm/idChk",
 				type : "post",
 				dataType : "json",
 				data : {"userId" : $("#userId").val()},
@@ -104,20 +104,20 @@
 	
 	<body>
 	<div class ="registerText">회원가입</div>
-			<form action="/member/register" method="post" id="regForm" >
+			<form action="/cmm/register" method="POST" id="regForm" >
 				<div>
 					<label class="control-label" for="userId">아이디</label><br>
 					<input type="text" id="userId" name="userId" />
-					<button class =""id="idChk" onclick="fn_idChk();" value="중복확인">중복확인</button>
+					<button id="idChk" onclick="fn_idChk(); return false;" value="중복확인">중복확인</button>
 				</div>
 				<div>
-					<label class="control-label" for="userPass">비밀번호</label><br>
-					<input type="password" id="userPass" name="userPass" />
+					<label class="control-label" for="userPwd">비밀번호</label><br>
+					<input type="password" id="userPwd" name="userPwd" />
 				</div>
 				
 				<div>
-					<label class="control-label" for="userPass">비밀번호 재확인</label><br>
-					<input type="password" id="userPasscheck" name="userPasscheck" />
+					<label class="control-label" for="userPwd2">비밀번호 재확인</label><br>
+					<input type="password" id="userPwd2" name="userPwd2" />
 				</div>
 				
 				<div>
@@ -126,18 +126,22 @@
 				</div>
 				
 				<div >
-					<label class="control-label" for="userName">생년월일</label><br>
-					<input type="date" id="date" name="date" />
+					<label class="control-label" for="userBirthday">생년월일</label><br>
+					<input type="date" id="userBirthday" name="userBirthday" />
 				</div>
 				<div>
-					<label class="control-label" for="userName">휴대폰 번호</label><br>
-					<input type="text" id="userPhone" name="userPhone" placeholder="전화번호 입력" />
+					<label class="control-label" for="hpNum">휴대폰 번호</label><br>
+					<input type="text" id="hpNum" name="hpNum" placeholder="전화번호 입력" />
 				</div>
-				
+				<div>
+					<label class="control-label" for="userEmail">이메일 주소</label><br>
+					<input type="text" id="userEmail" name="userEmail" placeholder="이메일 주소 입력" />
+				</div>		
+				<div>
+					<button class="register-Btn" type="submit" id="submit">회원가입</button>
+				</div>
 			</form>
-				<div>
-					<button class="register-Btn"  type="button" id="submit">회원가입</button>
-				</div>
+				
 	</body>
 	
 </html>

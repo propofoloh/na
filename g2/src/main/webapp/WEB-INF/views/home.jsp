@@ -19,18 +19,18 @@
  <script type="text/javascript">
 	$(document).ready(function(){
 		$("#logoutBtn").on("click", function(){
-			location.href="member/logout";
+			location.href="cmm/logout";
 		})
 		$("#registerBtn").on("click", function(){
-			location.href="member/Agreement";
+			location.href="cmm/agreement";
 		})
 		$("#memberDeleteBtn").on("click", function(){
-			location.href="member/memberDeleteView";
+			location.href="cmm/memberDeleteView";
 		})
 		
 		
 		$("#memberUpdateBtn").on("click", function(){
-			location.href="member/memberUpdateView";
+			location.href="cmm/memberUpdateView";
 		})
 		
 	})
@@ -97,7 +97,7 @@ body {
 <body>
 	<div class="login-text">LOGIN</div>
 		
-	<form name='loginForm' method="post" action="/member/login">
+	<form name='loginForm' method="post" action="/cmm/login">
 		<c:if test="${member == null}">
 			 <div class="loginForm">
 				<input type="text"  placeholder="아이디" id="userId" name="userId" maxlength="20">
