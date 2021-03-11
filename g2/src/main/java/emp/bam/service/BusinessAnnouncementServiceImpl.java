@@ -53,9 +53,9 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 	// 寃뚯떆臾� 議고쉶
 	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
-	public BusinessAnnouncementVO read(int bno) throws Exception {
-			dao.boardHit(bno);
-		return dao.read(bno);
+	public BusinessAnnouncementVO businessAnnouncementDetail(int BAM_ANC_IDX) throws Exception {
+		/* dao.boardHit(bno); */
+		return dao.businessAnnouncementDetail(BAM_ANC_IDX);
 	}
 	
 	@Override

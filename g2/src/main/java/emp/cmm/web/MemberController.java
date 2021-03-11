@@ -1,18 +1,17 @@
 package emp.cmm.web;
 
 
-import java.lang.reflect.Member;
-
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -38,10 +37,10 @@ public class MemberController {
 	}
 	
 	// �쉶�썝媛��엯 post
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String postRegister(MemberVO vo) throws Exception {
+	@RequestMapping(value = "/postregister", method = RequestMethod.POST)
+	public String postRegister(MemberVO vo )throws Exception {
 		logger.info("post register");
-		System.out.println("!");
+		System.out.println(vo.getUserId());
 		int result = service.idChk(vo);
 		System.out.println("@");
 		try {
@@ -51,7 +50,6 @@ public class MemberController {
 				String inputPass = vo.getUserPwd();
 				String pwd = pwdEncoder.encode(inputPass);
 				vo.setUserPwd(pwd);
-				
 				service.register(vo);
 			}
 		} catch (Exception e) {

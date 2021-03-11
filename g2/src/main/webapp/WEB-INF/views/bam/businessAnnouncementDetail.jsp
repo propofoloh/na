@@ -52,25 +52,6 @@
 				formObj.submit();
 			});
 			
-			//댓글 수정 View
-			$(".replyUpdateBtn").on("click", function(){
-				location.href = "/board/replyUpdateView?bno=${read.bno}"
-								+ "&page=${scri.page}"
-								+ "&perPageNum=${scri.perPageNum}"
-								+ "&searchType=${scri.searchType}"
-								+ "&keyword=${scri.keyword}"
-								+ "&rno="+$(this).attr("data-rno");
-			});
-			
-			//댓글 삭제 View
-			$(".replyDeleteBtn").on("click", function(){
-				location.href = "/board/replyDeleteView?bno=${read.bno}"
-					+ "&page=${scri.page}"
-					+ "&perPageNum=${scri.perPageNum}"
-					+ "&searchType=${scri.searchType}"
-					+ "&keyword=${scri.keyword}"
-					+ "&rno="+$(this).attr("data-rno");
-			});
 		})
 		function fn_fileDown(fileNo){
 			var formObj = $("form[name='readForm']");
@@ -93,7 +74,7 @@
 			
 			<section id="container">
 				<form name="readForm" role="form" method="post">
-					<input type="hidden" id="bno" name="bno" value="${read.bno}" />
+					<input type="hidden" id="bno" name="bno" value="${businessAnnouncementDetail.BAM_ANC_IDX}" />
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
@@ -103,27 +84,32 @@
 				
 				<div class="form-group">
 					<label for="title" class="col-sm-2 control-label">제목</label>
-					<input type="text" id="title" name="title" class="form-control" value="${read.title}" readonly="readonly" />
+					<input type="text" id="title" name="title" class="form-control" value="${read.ANC_TITLE}" readonly="readonly" />
 				</div>
 				<div class="form-group">
 					<label for="content" class="col-sm-2 control-label">내용</label>
-					<input type="text" id="content" name="content" class="form-control" readonly="readonly"/><c:out value="${read.content}" />
+					<input type="text" id="content" name="content" class="form-control" readonly="readonly" value="<c:out value="${read.ANC_REMARK}" />"/>
 				</div>
 				<div class="form-group">
 					<label for="writer" class="col-sm-2 control-label">작성자</label>
 					<input type="text" id="writer" name="writer" class="form-control" value="${read.writer}"  readonly="readonly"/>
 				</div>
 				<div class="form-group">
-					<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
-					<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" />	
+					<label for="regdate" class="col-sm-2 control-label">공고 시작일자</label>
+					<fmt:formatDate value="${read.ANC_BEGIN_DT}" pattern="yyyy-MM-dd" />	
+				</div>
+				
+				<div class="form-group">
+					<label for="regdate" class="col-sm-2 control-label">공고 종료일자</label>
+					<fmt:formatDate value="${read.ANC_END_DT}" pattern="yyyy-MM-dd" />	
 				</div>
 				<hr>
-				<span>파일 목록</span>
+				<%-- <span>파일 목록</span>
 				<div class="form-group" style="border: 1px solid #dbdbdb;">
 					<c:forEach var="file" items="${file}">
 						<a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE})<br>
 					</c:forEach>
-				</div>
+				</div> --%>
 				<hr>
 				<div>
 					<button type="button" class="update_btn btn btn-warning">수정</button>

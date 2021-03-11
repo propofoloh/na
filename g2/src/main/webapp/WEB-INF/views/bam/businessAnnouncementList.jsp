@@ -106,24 +106,24 @@
 								<th style="width: 60px; text-align: center;">번호</th>
 								<th style="width: 650px; text-align: center;">사업명</th>
 								<th style="width: 100px; text-align: center;">작성자</th>
-								<th style="width: 120px; text-align: center;">공고일자</th>
-								<th style="width: 80px; text-align: center;">조회수</th>
+								<th style="width: 120px; text-align: center;">공고시작일자</th>
+								<th style="width: 120px; text-align: center;">공고종료일자</th>
 							</tr>
 						</thead>
 						
 						<c:forEach items="${list}" var = "list">
 							<tr>
-								<td style="text-align: center;"><c:out value="${list.bno}" /></td>
+								<td style="text-align: center;"><c:out value="${list.BAM_ANC_IDX}" /></td>
 								<td style="text-align: center;">
-									<a href="/business/businessReadView?bno=${list.bno}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.title}" /></a>
+									<a href="/bam/businessAnnouncementDetail?BAM_ANC_IDX=${list.BAM_ANC_IDX}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.ANC_TITLE}" /></a>
 								</td>
 								<td style="text-align: center;"><c:out value="${list.writer}" /></td>
-								<td style="text-align: center;"><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
-								<td style="text-align: center;"><c:out value="${list.hit}" /></td>
+								<td style="text-align: center;"><fmt:formatDate value="${list.ANC_BEGIN_DT}" pattern="yyyy-MM-dd"/></td>
+								<td style="text-align: center;"><fmt:formatDate value="${list.ANC_END_DT}" pattern="yyyy-MM-dd"/>
 							</tr>
 						</c:forEach>
 					</table>
-					<button type="button" class="writebtn"  onclick="location.href='businessWriteView'">사업등록</button>
+					<button type="button" class="writebtn"  onclick="location.href='businessAnnouncementInput'">사업등록</button>
 
 					<div class="pasingDiv" style="width:100%; text-align: center">
 						<ul class="pagination">

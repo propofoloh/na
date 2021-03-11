@@ -21,7 +21,7 @@ public interface BusinessAnnouncementDAO {
 	public int listCount(SearchCriteria scri) throws Exception;
 
 	// 사업공고 상세보기
-	public BusinessAnnouncementVO read(int BAM_ANC_IDX) throws Exception;
+	public BusinessAnnouncementVO businessAnnouncementDetail(int BAM_ANC_IDX) throws Exception;
 	
 	// 사업공고 수정
 	public void update(BusinessAnnouncementVO VO) throws Exception;

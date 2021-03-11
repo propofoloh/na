@@ -31,56 +31,56 @@ public class BusinessAnnouncementDAOImpl implements BusinessAnnouncementDAO {
 	// 사업공고등록
 	@Override
 	public void write(BusinessAnnouncementVO VO,MultipartHttpServletRequest mpRequest) throws Exception {
-		sqlSession.insert("boardMapper.insert", VO);
+		sqlSession.insert("businessAnnouncementMapper.insert", VO);
 		
 	}
 	
 	// 사업리스트 카운트
 	@Override
 	public int listCount(SearchCriteria scri) throws Exception{
-		return sqlSession.selectOne("boardMapper.listCount", scri);
+		return sqlSession.selectOne("businessAnnouncementMapper.listCount", scri);
 	}
 
 	// 사업공고 상세보기
 	@Override
-	public BusinessAnnouncementVO read(int bno) throws Exception {
+	public BusinessAnnouncementVO businessAnnouncementDetail(int BAM_ANC_IDX) throws Exception {
 			
-		return sqlSession.selectOne("boardMapper.read", bno);
+		return sqlSession.selectOne("businessAnnouncementMapper.read", BAM_ANC_IDX);
 	}
 	
 	// 사업공고 수정
 	@Override
 	public void update(BusinessAnnouncementVO businessAnnouncementVO) throws Exception {
 		
-		sqlSession.update("boardMapper.update", businessAnnouncementVO);
+		sqlSession.update("businessAnnouncementMapper.update", businessAnnouncementVO);
 	}
 
 	// 사업공고 삭제
 	@Override
 	public void delete(int bno) throws Exception {
 		
-		sqlSession.delete("boardMapper.delete", bno);
+		sqlSession.delete("businessAnnouncementMapper.delete", bno);
 	}
 	
 	// 첨부파일 등록
 	@Override
 	public void insertFile(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSession.insert("boardMapper.insertFile", map);
+		sqlSession.insert("businessAnnouncementMapper.insertFile", map);
 	}
 	
    	// 파일선택리스트
 	@Override
 	public List<Map<String, Object>> selectFileList(int bno) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("boardMapper.selectFileList", bno);
+		return sqlSession.selectList("businessAnnouncementMapper.selectFileList", bno);
 	}
 	
 	// 선택파일정보
 	@Override
 	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("boardMapper.selectFileInfo", map);
+		return sqlSession.selectOne("businessAnnouncementMapper.selectFileInfo", map);
 	}
 	
 	// 첨부파일 수정
@@ -88,14 +88,14 @@ public class BusinessAnnouncementDAOImpl implements BusinessAnnouncementDAO {
 	public void updateFile(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		
-		sqlSession.update("boardMapper.updateFile", map);
+		sqlSession.update("businessAnnouncementMapper.updateFile", map);
 	}
 	
 	// 사업공고 조회수
 	@Override
 	public void boardHit(int bno) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSession.update("boardMapper.boardHit", bno);
+		sqlSession.update("businessAnnouncementMapper.boardHit", bno);
 	}
 	
 	

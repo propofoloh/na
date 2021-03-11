@@ -116,10 +116,7 @@ $(function() {
 			<form name="writeForm" method="post" action="/board/write" enctype="multipart/form-data">
 				<table>
 					<tbody>
-						<c:if test="${member.userId != null}">
-							<c:if test="${member.userId == null}">
-								<p>로그인 후에 작성하실 수 있습니다.</p>
-							</c:if>
+						
 							<div class="from-group" style="margin-top: 30px;">
 								<label for="title">
 								<h3>사업명</h3>
@@ -158,7 +155,7 @@ $(function() {
 								</div>
 
 
-						</c:if>
+					
 					</tbody>
 				</table>
 			</form>

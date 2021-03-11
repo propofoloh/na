@@ -4,39 +4,38 @@ import java.util.Date;
 
 public class BusinessAnnouncementVO {
 
-	private int bamAncIdx;
-	private int boardIdx;
-	private String ancTitle;
-	private String ancRemark;
+	private int BAM_ANC_IDX;
+	private int BOARD_IDX;
+	private String ANC_TITLE;
+	private String ANC_REMARK;
 	private String writer;
-	private Date ancBeginDt;
-	private Date ancEndDt;
-	private Date regDate;
-	private Date modDate;
-	private String DelYN;
-	public int getBamAncIdx() {
-		return bamAncIdx;
+	private Date ANC_BEGIN_DT;
+	private Date ANC_END_DT;
+	private Date REGDATE;
+	private Date MODDATE;
+	public int getBAM_ANC_IDX() {
+		return BAM_ANC_IDX;
 	}
-	public void setBamAncIdx(int bamAncIdx) {
-		this.bamAncIdx = bamAncIdx;
+	public void setBAM_ANC_IDX(int bAM_ANC_IDX) {
+		BAM_ANC_IDX = bAM_ANC_IDX;
 	}
-	public int getBoardIdx() {
-		return boardIdx;
+	public int getBOARD_IDX() {
+		return BOARD_IDX;
 	}
-	public void setBoardIdx(int boardIdx) {
-		this.boardIdx = boardIdx;
+	public void setBOARD_IDX(int bOARD_IDX) {
+		BOARD_IDX = bOARD_IDX;
 	}
-	public String getAncTitle() {
-		return ancTitle;
+	public String getANC_TITLE() {
+		return ANC_TITLE;
 	}
-	public void setAncTitle(String ancTitle) {
-		this.ancTitle = ancTitle;
+	public void setANC_TITLE(String aNC_TITLE) {
+		ANC_TITLE = aNC_TITLE;
 	}
-	public String getAncRemark() {
-		return ancRemark;
+	public String getANC_REMARK() {
+		return ANC_REMARK;
 	}
-	public void setAncRemark(String ancRemark) {
-		this.ancRemark = ancRemark;
+	public void setANC_REMARK(String aNC_REMARK) {
+		ANC_REMARK = aNC_REMARK;
 	}
 	public String getWriter() {
 		return writer;
@@ -44,36 +43,32 @@ public class BusinessAnnouncementVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public Date getAncBeginDt() {
-		return ancBeginDt;
+	public Date getANC_BEGIN_DT() {
+		return ANC_BEGIN_DT;
 	}
-	public void setAncBeginDt(Date ancBeginDt) {
-		this.ancBeginDt = ancBeginDt;
+	public void setANC_BEGIN_DT(Date aNC_BEGIN_DT) {
+		ANC_BEGIN_DT = aNC_BEGIN_DT;
 	}
-	public Date getAncEndDt() {
-		return ancEndDt;
+	public Date getANC_END_DT() {
+		return ANC_END_DT;
 	}
-	public void setAncEndDt(Date ancEndDt) {
-		this.ancEndDt = ancEndDt;
+	public void setANC_END_DT(Date aNC_END_DT) {
+		ANC_END_DT = aNC_END_DT;
 	}
-	public Date getRegDate() {
-		return regDate;
+	public Date getREGDATE() {
+		return REGDATE;
 	}
-	public void setRegDate(Date regDate) {
-		regDate = regDate;
+	public void setREGDATE(Date rEGDATE) {
+		REGDATE = rEGDATE;
 	}
-	public Date getModDate() {
-		return modDate;
+	public Date getMODDATE() {
+		return MODDATE;
 	}
-	public void setModDate(Date modDate) {
-		modDate = modDate;
+	public void setMODDATE(Date mODDATE) {
+		MODDATE = mODDATE;
 	}
-	public String getDelYN() {
-		return DelYN;
-	}
-	public void setDelYN(String delYN) {
-		DelYN = delYN;
-	}
+
+	
 	
 	
 	

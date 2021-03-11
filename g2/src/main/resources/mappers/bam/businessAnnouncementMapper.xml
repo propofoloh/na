@@ -5,7 +5,7 @@
 <mapper namespace="businessAnnouncementMapper">
    
       <!-- 게시판 글 작성 -->
-   <insert id="insert">
+   <insert id="insert" >
 	   INSERT INTO EMP_BAM_ANC( BAM_ANC_IDX 
 	   					      , BOARD_IDX 
 	   					      , ANC_TITLE 
@@ -50,38 +50,41 @@
 	   					      , WRITER
 	   					      , REG_DATE
 	   					      , MOD_DATE
-		               ROW_NUMBER() OVER(ORDER BY BAM_ANC_IDX DESC) AS RNUM
+		               ,ROW_NUMBER() OVER(ORDER BY BAM_ANC_IDX DESC) AS RNUM
 		         FROM EMP_BAM_ANC
 		         WHERE 1=1 
 		         AND DEL_YN = 'N'
 		         	<include refid="search"></include>
 		                       ) MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-		ORDER BY BNO DESC
+		ORDER BY BAM_ANC_IDX DESC
 	</select>
-	
 		<select id="read" parameterType="int" resultType="emp.bam.vo.BusinessAnnouncementVO">
-		SELECT	BNO
-			  , TITLE
-			  , CONTENT
-			  , WRITER
-			  , REGDATE
-		 FROM MP_BOARD
-		 WHERE BNO = #{bno}
+		SELECT	BAM_ANC_IDX 
+	   					      , BOARD_IDX 
+	   					      , ANC_TITLE 
+	   					      , ANC_REMARK
+	   					      , ANC_BEGIN_DT
+	   					      , ANC_END_DT
+	   					      , WRITER
+	   					      , REG_DATE
+	   					      , MOD_DATE
+		 FROM EMP_BAM_ANC
+		 WHERE BAM_ANC_IDX = #{BAM_ANC_IDX}
 	</select>
 	
-	    <update id="update" parameterType="emp.bam.vo.BusinessAnnouncementVO">
+	<!--     <update id="update" parameterType="emp.bam.vo.BusinessAnnouncementVO">
 		UPDATE MP_BOARD
 		   SET TITLE    =   #{title},
 		   	   CONTENT  =   #{content}
 		 WHERE BNO = #{bno} 
-	</update>
+	</update> -->
 	
-	<delete id="delete" parameterType="int">
+	<!-- <delete id="delete" parameterType="int">
 		DELETE 
 		  FROM MP_BOARD
 		 WHERE BNO = #{bno}
-	</delete>
+	</delete> -->
 	
 	<select id="listCount" parameterType="emp.bam.util.SearchCriteria" resultType="int">
 		SELECT COUNT(BAM_ANC_IDX)
@@ -102,7 +105,7 @@
 	</sql>
 	
 
-	    <insert id="insertFile" parameterType="hashMap">
+	    <!-- <insert id="insertFile" parameterType="hashMap">
 		INSERT INTO MP_FILE(
 			FILE_NO,
 			BNO,
@@ -116,10 +119,10 @@
 			#{STORED_FILE_NAME},
 			#{FILE_SIZE}
 		)
-    </insert>
+    </insert> -->
 
 
-<select id="selectFileList" parameterType="int" resultType="hashMap">
+<!-- <select id="selectFileList" parameterType="int" resultType="hashMap">
 	SELECT FILE_NO,
 		   ORG_FILE_NAME,
 		   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
@@ -127,10 +130,10 @@
 	 WHERE BNO = #{BNO}
 	   AND DEL_GB = 'N'
 	   ORDER BY FILE_NO ASC
-</select>
+</select> -->
 
 
-<select id="selectFileInfo" parameterType="hashMap" resultType="hashMap">
+<!-- <select id="selectFileInfo" parameterType="hashMap" resultType="hashMap">
 	SELECT 
 		STORED_FILE_NAME,
 		ORG_FILE_NAME
@@ -142,7 +145,7 @@
     	UPDATE MP_FILE SET
     	DEL_GB = 'Y'
     	WHERE FILE_NO = #{FILE_NO}
-    </update>
+    </update> -->
    
     
 </mapper>

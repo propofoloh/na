@@ -55,7 +55,7 @@ public class BusinessAnnouncementController {
 	public String businessAnnouncementDetail(BusinessAnnouncementVO businessAnnouncementVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 		logger.info("read");
 
-		model.addAttribute("read", service.read(businessAnnouncementVO.getBamAncIdx()));
+		model.addAttribute("read", service.businessAnnouncementDetail(businessAnnouncementVO.getBAM_ANC_IDX()));
 		model.addAttribute("scri", scri);
 
 		/*
@@ -67,7 +67,12 @@ public class BusinessAnnouncementController {
 	}
 
 	//사업 공고 등록
-	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
+	@RequestMapping(value = "/businessAnnouncementInput", method = RequestMethod.GET)
+	public void businessAnnouncementInput() throws Exception{
+		logger.info("businessAnnouncementInput");
+	}
+	
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(BusinessAnnouncementVO businessAnnouncementVO, MultipartHttpServletRequest mpRequest) throws Exception{
 		logger.info("receipList");
 		service.write(businessAnnouncementVO, mpRequest);
@@ -81,10 +86,10 @@ public class BusinessAnnouncementController {
 			throws Exception {
 		logger.info("updateView");
 
-		model.addAttribute("update", service.read(businessAnnouncementVO.getBamAncIdx()));
+		model.addAttribute("update", service.businessAnnouncementDetail(businessAnnouncementVO.getBAM_ANC_IDX()));
 		model.addAttribute("scri", scri);
 
-		List<Map<String, Object>> fileList = service.selectFileList(businessAnnouncementVO.getBamAncIdx());
+		List<Map<String, Object>> fileList = service.selectFileList(businessAnnouncementVO.getBAM_ANC_IDX());
 		model.addAttribute("file", fileList);
 		return "bam/businessAnnouncementUpdate";
 	}

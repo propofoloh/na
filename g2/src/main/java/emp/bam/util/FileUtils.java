@@ -37,7 +37,7 @@ public class FileUtils {
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null;
 		
-		int bno = BusinessAnnouncementVO.getBamAncIdx();
+		int bno = BusinessAnnouncementVO.getBAM_ANC_IDX();
 		
 		File file = new File(filePath);
 		if(file.exists() == false) {
@@ -71,7 +71,7 @@ public class FileUtils {
 		String storedFileName = null; 
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null; 
-		int bno = VO.getBamAncIdx();
+		int bno = VO.getBAM_ANC_IDX();
 		while(iterator.hasNext()){ 
 			multipartFile = mpRequest.getFile(iterator.next()); 
 			if(multipartFile.isEmpty() == false){ 

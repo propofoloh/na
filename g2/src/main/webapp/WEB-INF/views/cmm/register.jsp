@@ -38,6 +38,9 @@
 				var registerForm = $("#regForm");
 				if(idChkVal == "N"){
 					alert("중복확인 버튼을 눌러주세요.");
+				}else{
+					
+					return true;
 				}
 	
 			});
@@ -101,10 +104,9 @@
 	}
 	
 </style>
-	
 	<body>
 	<div class ="registerText">회원가입</div>
-			<form action="/cmm/register" method="POST" id="regForm" >
+			<form action="/cmm/postregister" method="POST" id="regForm" name="regForm" >
 				<div>
 					<label class="control-label" for="userId">아이디</label><br>
 					<input type="text" id="userId" name="userId" />
@@ -113,11 +115,6 @@
 				<div>
 					<label class="control-label" for="userPwd">비밀번호</label><br>
 					<input type="password" id="userPwd" name="userPwd" />
-				</div>
-				
-				<div>
-					<label class="control-label" for="userPwd2">비밀번호 재확인</label><br>
-					<input type="password" id="userPwd2" name="userPwd2" />
 				</div>
 				
 				<div>
@@ -141,6 +138,8 @@
 					<button class="register-Btn" type="submit" id="submit">회원가입</button>
 				</div>
 			</form>
+			
+				
 				
 	</body>
 	

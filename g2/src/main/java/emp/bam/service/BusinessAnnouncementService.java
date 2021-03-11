@@ -20,7 +20,7 @@ public interface BusinessAnnouncementService {
 		public int listCount(SearchCriteria scri) throws Exception;
 
 		// 사업공고 상세보기
-		public BusinessAnnouncementVO read(int bno) throws Exception;
+		public BusinessAnnouncementVO businessAnnouncementDetail(int BAM_ANC_IDX) throws Exception;
 		
 		// 사업공고 수정
 		public void update(BusinessAnnouncementVO VO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception;		
