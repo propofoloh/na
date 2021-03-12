@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +37,7 @@ public class BusinessAnnouncementController {
 	//사업 공고 조회
 	@RequestMapping(value = "/businessAnnouncementList", method = RequestMethod.GET)
 	public String businessAnnouncementList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
-		logger.info("receipList");
+		logger.info("businessAnnouncementList");
 
 		model.addAttribute("list", service.businessAnnouncementList(scri));
 
@@ -55,7 +56,7 @@ public class BusinessAnnouncementController {
 	public String businessAnnouncementDetail(BusinessAnnouncementVO businessAnnouncementVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 		logger.info("read");
 
-		model.addAttribute("read", service.businessAnnouncementDetail(businessAnnouncementVO.getBAM_ANC_IDX()));
+		model.addAttribute("read", service.businessAnnouncementDetail(businessAnnouncementVO.getBam_anc_idx()));
 		model.addAttribute("scri", scri);
 
 		/*
@@ -72,9 +73,11 @@ public class BusinessAnnouncementController {
 		logger.info("businessAnnouncementInput");
 	}
 	
-	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	@RequestMapping(value = "/businessAnnouncementInputWrite", method = RequestMethod.POST)
 	public String write(BusinessAnnouncementVO businessAnnouncementVO, MultipartHttpServletRequest mpRequest) throws Exception{
-		logger.info("receipList");
+		logger.info("businessAnnouncementInputWrite");
+
+		System.out.println("123123123123123"+businessAnnouncementVO.getAnc_title());
 		service.write(businessAnnouncementVO, mpRequest);
 
 		return "redirect:/bam/businessAnnouncementList";
@@ -86,10 +89,10 @@ public class BusinessAnnouncementController {
 			throws Exception {
 		logger.info("updateView");
 
-		model.addAttribute("update", service.businessAnnouncementDetail(businessAnnouncementVO.getBAM_ANC_IDX()));
+		model.addAttribute("update", service.businessAnnouncementDetail(businessAnnouncementVO.getBam_anc_idx()));
 		model.addAttribute("scri", scri);
 
-		List<Map<String, Object>> fileList = service.selectFileList(businessAnnouncementVO.getBAM_ANC_IDX());
+		List<Map<String, Object>> fileList = service.selectFileList(businessAnnouncementVO.getBam_anc_idx());
 		model.addAttribute("file", fileList);
 		return "bam/businessAnnouncementUpdate";
 	}

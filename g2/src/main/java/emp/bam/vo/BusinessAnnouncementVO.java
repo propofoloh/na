@@ -2,40 +2,49 @@ package emp.bam.vo;
 
 import java.util.Date;
 
-public class BusinessAnnouncementVO {
+import org.springframework.format.annotation.DateTimeFormat;
 
-	private int BAM_ANC_IDX;
-	private int BOARD_IDX;
-	private String ANC_TITLE;
-	private String ANC_REMARK;
+public class BusinessAnnouncementVO {
+	
+	private int bam_anc_idx = 0;
+	private int board_idx = 1;
+	private String anc_title;
+	private String anc_remark;
 	private String writer;
-	private Date ANC_BEGIN_DT;
-	private Date ANC_END_DT;
-	private Date REGDATE;
-	private Date MODDATE;
-	public int getBAM_ANC_IDX() {
-		return BAM_ANC_IDX;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date anc_begin_dt;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date anc_end_dt;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date reg_date;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date mod_date;
+	
+	
+	public int getBam_anc_idx() {
+		return bam_anc_idx;
 	}
-	public void setBAM_ANC_IDX(int bAM_ANC_IDX) {
-		BAM_ANC_IDX = bAM_ANC_IDX;
+	public void setBam_anc_idx(int bam_anc_idx) {
+		this.bam_anc_idx = bam_anc_idx;
 	}
-	public int getBOARD_IDX() {
-		return BOARD_IDX;
+	public int getBoard_idx() {
+		return board_idx;
 	}
-	public void setBOARD_IDX(int bOARD_IDX) {
-		BOARD_IDX = bOARD_IDX;
+	public void setBoard_idx(int board_idx) {
+		this.board_idx = board_idx;
 	}
-	public String getANC_TITLE() {
-		return ANC_TITLE;
+	public String getAnc_title() {
+		return anc_title;
 	}
-	public void setANC_TITLE(String aNC_TITLE) {
-		ANC_TITLE = aNC_TITLE;
+	public void setAnc_title(String anc_title) {
+		this.anc_title = anc_title;
 	}
-	public String getANC_REMARK() {
-		return ANC_REMARK;
+	public String getAnc_remark() {
+		return anc_remark;
 	}
-	public void setANC_REMARK(String aNC_REMARK) {
-		ANC_REMARK = aNC_REMARK;
+	public void setAnc_remark(String anc_remark) {
+		this.anc_remark = anc_remark;
 	}
 	public String getWriter() {
 		return writer;
@@ -43,30 +52,35 @@ public class BusinessAnnouncementVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public Date getANC_BEGIN_DT() {
-		return ANC_BEGIN_DT;
+	public Date getAnc_begin_dt() {
+		return anc_begin_dt;
 	}
-	public void setANC_BEGIN_DT(Date aNC_BEGIN_DT) {
-		ANC_BEGIN_DT = aNC_BEGIN_DT;
+	public void setAnc_begin_dt(Date anc_begin_dt) {
+		this.anc_begin_dt = anc_begin_dt;
 	}
-	public Date getANC_END_DT() {
-		return ANC_END_DT;
+	public Date getAnc_end_dt() {
+		return anc_end_dt;
 	}
-	public void setANC_END_DT(Date aNC_END_DT) {
-		ANC_END_DT = aNC_END_DT;
+	public void setAnc_end_dt(Date anc_end_dt) {
+		this.anc_end_dt = anc_end_dt;
 	}
-	public Date getREGDATE() {
-		return REGDATE;
+	public Date getReg_date() {
+		return reg_date;
 	}
-	public void setREGDATE(Date rEGDATE) {
-		REGDATE = rEGDATE;
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
 	}
-	public Date getMODDATE() {
-		return MODDATE;
+	public Date getMod_date() {
+		return mod_date;
 	}
-	public void setMODDATE(Date mODDATE) {
-		MODDATE = mODDATE;
+	public void setMod_date(Date mod_date) {
+		this.mod_date = mod_date;
 	}
+
+	
+	
+
+	
 
 	
 	

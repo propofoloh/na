@@ -13,18 +13,14 @@
 	   					      , ANC_BEGIN_DT
 	   					      , ANC_END_DT
 	   					      , WRITER
-	   					      , REG_DATE
-	   					      , MOD_DATE
 	   					       )
 	                 VALUES(   SEQ_BAM_ANC_IDX.NEXTVAL
 	                 		  , 1 
-	                 		  , #{ANC_TITLE}
-	                 		  , #{ANC_REMARK}
-	                 		  , #{ANC_BEGIN_DT}
-	                 		  , #{ANC_END_DT}
-	                 		  , #{WRITER}
-	                 		  , #{REG_DATE}
-	                 		  , #{MOD_DATE}
+	                 		  , #{anc_title}
+	                 		  , #{anc_remark}
+	                 		  , #{anc_begin_dt}
+	                 		  , #{anc_end_dt}
+	                 		  , #{writer}
 	                 		    )
    
    </insert>
@@ -70,7 +66,7 @@
 	   					      , REG_DATE
 	   					      , MOD_DATE
 		 FROM EMP_BAM_ANC
-		 WHERE BAM_ANC_IDX = #{BAM_ANC_IDX}
+		 WHERE BAM_ANC_IDX = #{bam_anc_idx}
 	</select>
 	
 	<!--     <update id="update" parameterType="emp.bam.vo.BusinessAnnouncementVO">
@@ -97,10 +93,10 @@
 	
 	<sql id="search">
 		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">AND TITLE LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND CONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 't'.toString()">AND ANC_TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND ANC_REMARK LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">AND (TITLE LIKE '%' || #{keyword} || '%') or (CONTENT LIKE '%' || #{keyword} || '%')</if>
+			<if test="searchType == 'tc'.toString()">AND (ANC_TITLE LIKE '%' || #{keyword} || '%') or (ANC_REMARK LIKE '%' || #{keyword} || '%')</if>
 		</if>
 	</sql>
 	

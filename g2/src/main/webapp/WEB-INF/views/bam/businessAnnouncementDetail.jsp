@@ -13,6 +13,68 @@
 	 	<title>게시판</title>
 	</head>
 	
+<style type="text/css">
+	.writebtn {
+		float: right;
+		border: 0px;
+		background-color: #dd4132;
+		color: #ffffff;
+		width: 10%;
+		height: 5%;
+		border-radius: 5px;
+		margin-top: 10px;
+	}
+	
+	.filebtn {
+		border: 0px;
+		background-color: #dd4132;
+		color: #ffffff;
+		width: 10%;
+		height: 5%;
+		border-radius: 5px;
+		margin-top: 10px;
+	}
+	
+	.evaluator-check {
+		border: 0px;
+		background-color: #dd4132;
+		color: #ffffff;
+		width: 10%;
+		height: 4%;
+		margin-left: 5px;
+		border-radius: 5px;
+	}
+	
+	#anc_remark{
+		height: 30%;
+	}
+	
+	 .manageBtn{
+		
+		border : 0px;
+		background-color: #86E57F;
+		text-align : center;
+		color : #ffffff;
+		width : 5%;
+		height : 30px;
+		margin-right : 5px;
+		border-radius: 5px;
+		float: left;
+	}
+	.functionBtn{
+	
+		border : 0px;
+		background-color: #dd4132;
+		text-align : center;
+		color : #ffffff;
+		width : 10%;
+		height : 30px;
+		margin-right : 5px;
+		border-radius: 5px;
+		float: right;
+	}
+</style>
+	
 	<script type="text/javascript">
 		
 		$(document).ready(function(){
@@ -74,7 +136,7 @@
 			
 			<section id="container">
 				<form name="readForm" role="form" method="post">
-					<input type="hidden" id="bno" name="bno" value="${businessAnnouncementDetail.BAM_ANC_IDX}" />
+					<input type="hidden" id="bno" name="bno" value="${businessAnnouncementDetail.bam_anc_idx}" />
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
@@ -83,64 +145,46 @@
 				</form>
 				
 				<div class="form-group">
-					<label for="title" class="col-sm-2 control-label">제목</label>
-					<input type="text" id="title" name="title" class="form-control" value="${read.ANC_TITLE}" readonly="readonly" />
-				</div>
-				<div class="form-group">
-					<label for="content" class="col-sm-2 control-label">내용</label>
-					<input type="text" id="content" name="content" class="form-control" readonly="readonly" value="<c:out value="${read.ANC_REMARK}" />"/>
+					<label for="title" class="col-sm-2 control-label">사업 명</label>
+					<input type="text" id="anc_title" name="anc_title" class="form-control" value="${read.anc_title}" readonly="readonly" />
 				</div>
 				<div class="form-group">
 					<label for="writer" class="col-sm-2 control-label">작성자</label>
 					<input type="text" id="writer" name="writer" class="form-control" value="${read.writer}"  readonly="readonly"/>
 				</div>
 				<div class="form-group">
+					<label for="content" class="col-sm-2 control-label">사업 내용</label>
+					<input type="text" id="anc_remark" name="anc_remark" class="form-control" readonly="readonly" value="<c:out value="${read.anc_remark}" />"/>
+				</div>
+				
+				<div class="form-group">
 					<label for="regdate" class="col-sm-2 control-label">공고 시작일자</label>
-					<fmt:formatDate value="${read.ANC_BEGIN_DT}" pattern="yyyy-MM-dd" />	
+					<fmt:formatDate value="${read.anc_begin_dt}" pattern="yyyy-MM-dd" />	
 				</div>
 				
 				<div class="form-group">
 					<label for="regdate" class="col-sm-2 control-label">공고 종료일자</label>
-					<fmt:formatDate value="${read.ANC_END_DT}" pattern="yyyy-MM-dd" />	
+					<fmt:formatDate value="${read.anc_end_dt}" pattern="yyyy-MM-dd" />	
 				</div>
-				<hr>
-				<%-- <span>파일 목록</span>
+
+				 <span>파일 목록</span>
 				<div class="form-group" style="border: 1px solid #dbdbdb;">
+					
 					<c:forEach var="file" items="${file}">
 						<a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE})<br>
 					</c:forEach>
-				</div> --%>
-				<hr>
-				<div>
-					<button type="button" class="update_btn btn btn-warning">수정</button>
-					<button type="button" class="delete_btn btn btn-danger">삭제</button>
-					<button type="button" class="list_btn btn btn-primary">목록</button>	
-					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='../businessplan/bpWriteView'">접수하기</button>
-					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='../businessplan/bpList'">사업자 별 평가</button>
-					<button type="button" class="receipt_btn btn btn-info" style="float:right;" onclick="location.href='../evaluation/opinion'">종합의견</button>
-			</div>
-				
-				<!-- 댓글 -->
-				<div id="reply">
-					<ol class="replyList">
-						<c:forEach items="${replyList}" var="replyList">
-							<li>
-								<p>
-								작성자 : ${replyList.writer}<br />
-								작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
-								</p>
-								  
-								<p>${replyList.content}</p>
-								<div>
-									<button type="button" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.rno}">수정</button>
-									<button type="button" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.rno}">삭제</button>
-								</div>
-							</li>
-						</c:forEach>   
-					</ol>
 				</div>
+				<hr/>
+				<div>
+					<button type="button" class="manageBtn">수정</button>
+					<button type="button" class="manageBtn">삭제</button>
+					<button type="button" class="manageBtn">목록</button>	
+					<button type="button" class="functionBtn" onclick="location.href='../businessplan/bpWriteView'">사업계획서 제출</button>
+					<button type="button" class="functionBtn" onclick="location.href='../businessplan/bpList'">사업자 별 평가</button>
+					<button type="button" class="functionBtn" onclick="location.href='../evaluation/opinion'">종합의견</button>
+				</div>
+				
 			</section>
-			<hr />
 		</div>
 	</body>
 </html>

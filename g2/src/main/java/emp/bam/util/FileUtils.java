@@ -37,7 +37,7 @@ public class FileUtils {
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null;
 		
-		int bno = BusinessAnnouncementVO.getBAM_ANC_IDX();
+		int bam_anc_idx = BusinessAnnouncementVO.getBam_anc_idx();
 		
 		File file = new File(filePath);
 		if(file.exists() == false) {
@@ -53,7 +53,7 @@ public class FileUtils {
 				file = new File(filePath + storedFileName);
 				multipartFile.transferTo(file);
 				listMap = new HashMap<String, Object>();
-				listMap.put("BNO", bno);
+				listMap.put("bam_anc_idx", bam_anc_idx);
 				listMap.put("ORG_FILE_NAME", originalFileName);
 				listMap.put("STORED_FILE_NAME", storedFileName);
 				listMap.put("FILE_SIZE", multipartFile.getSize());
@@ -63,7 +63,7 @@ public class FileUtils {
 		return list;
 	}
 	
-	public List<Map<String, Object>> parseUpdateFileInfo(BusinessAnnouncementVO VO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception{ 
+	public List<Map<String, Object>> parseUpdateFileInfo(BusinessAnnouncementVO businessAnnouncementVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception{ 
 		Iterator<String> iterator = mpRequest.getFileNames();
 		MultipartFile multipartFile = null; 
 		String originalFileName = null; 
@@ -71,7 +71,7 @@ public class FileUtils {
 		String storedFileName = null; 
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null; 
-		int bno = VO.getBAM_ANC_IDX();
+		int bno = businessAnnouncementVO.getBam_anc_idx();
 		while(iterator.hasNext()){ 
 			multipartFile = mpRequest.getFile(iterator.next()); 
 			if(multipartFile.isEmpty() == false){ 

@@ -94,7 +94,7 @@
 					<script>
 						 $(function(){
 							 $('#searchBtn').click(function() {
-								 self.location = "list2" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+								 self.location = "businessAnnouncementList" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 							 });
 						 });   
 					</script>
@@ -113,13 +113,13 @@
 						
 						<c:forEach items="${list}" var = "list">
 							<tr>
-								<td style="text-align: center;"><c:out value="${list.BAM_ANC_IDX}" /></td>
+								<td style="text-align: center;"><c:out value="${list.bam_anc_idx}" /></td>
 								<td style="text-align: center;">
-									<a href="/bam/businessAnnouncementDetail?BAM_ANC_IDX=${list.BAM_ANC_IDX}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.ANC_TITLE}" /></a>
+									<a href="/bam/businessAnnouncementDetail?bam_anc_idx=${list.bam_anc_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.anc_title}" /></a>
 								</td>
 								<td style="text-align: center;"><c:out value="${list.writer}" /></td>
-								<td style="text-align: center;"><fmt:formatDate value="${list.ANC_BEGIN_DT}" pattern="yyyy-MM-dd"/></td>
-								<td style="text-align: center;"><fmt:formatDate value="${list.ANC_END_DT}" pattern="yyyy-MM-dd"/>
+								<td style="text-align: center;"><fmt:formatDate value="${list.anc_begin_dt}" pattern="yyyy-MM-dd"/></td>
+								<td style="text-align: center;"><fmt:formatDate value="${list.anc_end_dt}" pattern="yyyy-MM-dd"/>
 							</tr>
 						</c:forEach>
 					</table>
