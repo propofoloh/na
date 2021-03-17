@@ -29,7 +29,7 @@ li {
 	</c:if>
 
 	<li><c:if test="${member != null}">
-			<p>${member.userId}님안녕하세요.</p>
+			<p>${member.user_id}님안녕하세요.</p>
 		</c:if></li>
 
 </ul>

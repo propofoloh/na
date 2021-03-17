@@ -40,20 +40,20 @@ public class MemberController {
 	@RequestMapping(value = "/postregister", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo )throws Exception {
 		logger.info("post register");
-		System.out.println(vo.getUserId());
+		System.out.println(vo.getUser_id());
 		int result = service.idChk(vo);
-		System.out.println("@");
+		System.out.println("@"+result);
 		try {
 			if(result == 1) {
 				return "/cmm/register";
 			}else if(result == 0) {
-				String inputPass = vo.getUserPwd();
+				String inputPass = vo.getUser_pwd();
 				String pwd = pwdEncoder.encode(inputPass);
-				vo.setUserPwd(pwd);
+				vo.setUser_pwd(pwd);
 				service.register(vo);
 			}
 		} catch (Exception e) {
-			throw new RuntimeException();
+			System.out.println(e.toString());
 		}
 				return "redirect:/";
 	}
@@ -65,7 +65,7 @@ public class MemberController {
 	
 		session.getAttribute("member");
 		MemberVO login = service.login(vo);
-		boolean pwdMatch = pwdEncoder.matches(vo.getUserPwd(), login.getUserPwd());
+		boolean pwdMatch = pwdEncoder.matches(vo.getUser_pwd() ,login.getUser_pwd());
 
 		if(login != null && pwdMatch == true) {
 			session.setAttribute("member", login);
@@ -99,7 +99,7 @@ public class MemberController {
 		
 		MemberVO login = service.login(vo);
 		
-		boolean pwdMatch = pwdEncoder.matches(vo.getUserPwd(), login.getUserPwd());
+		boolean pwdMatch = pwdEncoder.matches(vo.getUser_pwd(), login.getUser_pwd());
 		if(pwdMatch) {
 			service.memberUpdate(vo);
 			session.invalidate();
@@ -133,7 +133,7 @@ public class MemberController {
 	public boolean passChk(MemberVO vo) throws Exception {
 
 		MemberVO login = service.login(vo);
-		boolean pwdChk = pwdEncoder.matches(vo.getUserPwd(), login.getUserPwd());
+		boolean pwdChk = pwdEncoder.matches(vo.getUser_pwd(), login.getUser_pwd());
 		return pwdChk;
 	}
 	

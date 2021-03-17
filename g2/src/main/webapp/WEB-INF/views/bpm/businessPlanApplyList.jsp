@@ -54,6 +54,7 @@
 
 			<section id="container">
 				<form role="form" method="get">
+				<input type="hidden" value="${param.bam_anc_idx}">
 				<div class="searchrow">
 					<div id="searchbox"class="col-sm-3">
 						<select name="searchType" class="form-control">
@@ -83,94 +84,29 @@
 					</script>
 				</div>
 
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th style="width: 60px; text-align: center;">번호</th>
-							<th style="width: 650px; text-align: center;">사업명</th>
-							<th style="width: 100px; text-align: center;">작성자</th>
-							<th style="width: 120px; text-align: center;">공고일자</th>
-							<th style="width: 80px; text-align: center;">조회수</th>
-						</tr>
-					</thead>
+		
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th style="width: 60px; text-align: center;">번호</th>
+								<th style="width: 650px; text-align: center;">연구목표</th>
+								<th style="width: 650px; text-align: center;">사업자</th>
+								<th style="width: 120px; text-align: center;">작성일자</th>
 
-					<tr>
-						<td style="text-align: center;">10</td>
-						<td style="text-align: center;">사업 계획서 접수10</td>
-						<td style="text-align: center;">기업10</td>
-						<td style="text-align: center;">2021-02-22</td>
-						<td style="text-align: center;">12</td>
-					</tr>
-					
-					<tr>
-						<td style="text-align: center;">9</td>
-						<td style="text-align: center;">사업 계획서 접수9</td>
-						<td style="text-align: center;">기업9</td>
-						<td style="text-align: center;">2021-02-22</td>
-						<td style="text-align: center;">161</td>
-					</tr>
-					
-					<tr>
-						<td style="text-align: center;">8</td>
-						<td style="text-align: center;">사업 계획서 접수8</td>
-						<td style="text-align: center;">기업8</td>
-						<td style="text-align: center;">2021-02-22</td>
-						<td style="text-align: center;">101</td>
-					</tr>
-					
-					<tr>
-						<td style="text-align: center;">7</td>
-						<td style="text-align: center;">사업 계획서 접수7</td>
-						<td style="text-align: center;">기업7</td>
-						<td style="text-align: center;">2021-02-22</td>
-						<td style="text-align: center;">110</td>
-					</tr>
-					
-					<tr>
-						<td style="text-align: center;">6</td>
-						<td style="text-align: center;">사업 계획서 접수6</td>
-						<td style="text-align: center;">기업6</td>
-						<td style="text-align: center;">2021-02-22</td>
-						<td style="text-align: center;">141</td>
-					</tr>
-					
-					<tr>
-						<td style="text-align: center;">5</td>
-						<td style="text-align: center;">사업 계획서 접수5</td>
-						<td style="text-align: center;">기업5</td>
-						<td style="text-align: center;">2021-02-22</td>
-						<td style="text-align: center;">80</td>
-					</tr>
-					
-					<tr>
-						<td style="text-align: center;">4</td>
-						<td style="text-align: center;">사업 계획서 접수4</td>
-						<td style="text-align: center;">기업4</td>
-						<td style="text-align: center;">2021-02-22</td>
-						<td style="text-align: center;">141</td>
-					</tr>			
-					
-					<tr>
-						<td style="text-align: center;">3</td>
-						<td style="text-align: center;"><a href="../board/readView?bno=${list.bno}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.title}" />사업 계획서 접수3</a></td>
-						<td style="text-align: center;">기업3</td>
-						<td style="text-align: center;">2021-01-01</td>
-						<td style="text-align: center;">100</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">2</td>
-						<td style="text-align: center;">사업 계획서 접수2</td>
-						<td style="text-align: center;">기업2</td>
-						<td style="text-align: center;">2021-02-22</td>
-						<td style="text-align: center;">105</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">1</td>
-						<td style="text-align: center;">사업 계획서 접수1</td>
-						<td style="text-align: center;">기업1</td>
-						<td style="text-align: center;">2021-02-22</td>
-						<td style="text-align: center;">141</td>
-					</tr>
+							</tr>
+						</thead>
+						
+						<c:forEach items="${list}" var = "list">
+							<tr>
+								<td style="text-align: center;"><c:out value="${list.bpm_bplan_idx}" /></td>
+								<td style="text-align: center;">
+									<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.research_obj}"/></a>
+								</td>
+								<td style="text-align: center;"><c:out value="${list.writer}" /></td>
+								<td style="text-align: center;"><fmt:formatDate value="${list.reg_date}" pattern="yyyy-MM-dd"/></td>
+							</tr>
+						</c:forEach>
+					</table>
 																						
 
 					<%-- <c:forEach items="${list}" var = "list2">

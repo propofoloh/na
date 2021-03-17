@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <html>
@@ -59,45 +59,44 @@
 			<h1>사업계획서 접수</h1>
 		</header>
 		<hr />
-
-
 		<section id="container">
-			<form name="writeForm" method="post" action="/board/write"
+			<form name="writeForm" method="post" action="/bpm/businessPlanApply"
 				enctype="multipart/form-data">
 				<table>
 					<tbody>
-						<c:if test="${member.userId != null}">
-							<c:if test="${member.userId == null}">
+						<c:if test="${member.user_id != null}">
+							<c:if test="${member.user_id == null}">
 								<p>로그인 후에 작성하실 수 있습니다.</p>
 							</c:if>
+							<input type="hidden" name="bam_anc_idx" value ="${param.bam_anc_idx}">
 							<div class="from-group">
 								<label for="title" class="colsm-2 control-Label">연구목표</label>
-								<textarea id="title" name="title" class="form-control"
+								<textarea id="research_obj" name="research_obj" class="form-control"
 									title="연구목표를 입력하세요."></textarea>
 							</div>
 
 							<div class="from-group" style="margin-top: 30px;">
 								<label for="content">연구내용</label>
-								<textarea id="content" name="content" class="form-control"
+								<textarea id="research_remark" name="research_remark" class="form-control"
 									title="연구내용을 입력하세요."></textarea>
 							</div>
 
 							<div class="from-group" style="margin-top: 30px;">
 								<label for="content">기대효과</label>
-								<textarea id="content2" name="content2" class="form-control"
+								<textarea id="benefit" name="benefit" class="form-control"
 									title="기대효과를 입력하세요."></textarea>
 							</div>
 
 							<div class="from-group" style="margin-top: 30px;">
 								<label for="content">연구 개발비 총괄</label>
-								<textarea id="content3" name="content3" class="form-control"
+								<textarea id="research_cost" name="research_cost" class="form-control"
 									title="연구 개발비 총괄을 입력하세요."></textarea>
 							</div>
 
 							
 				<div class="form-group" style="margin-top: 30px;">
 					<label for="writer" class="col-sm-2 control-label" style="width: 80px">작성자</label>
-					<input type="text" id="writer" name="writer" class="form-control" value="${member.userId}"  readonly="readonly" style="width: 100px"/>
+					<input type="text" id="writer" name="writer" class="form-control" value="${member.user_id}"  readonly="readonly" style="width: 100px"/>
 				</div>
 				
 							<tr>

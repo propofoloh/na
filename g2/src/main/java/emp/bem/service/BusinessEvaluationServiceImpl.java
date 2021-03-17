@@ -1,4 +1,4 @@
-package emp.bam.service;
+package emp.bem.service;
 
 import java.util.List;
 import java.util.Map;
@@ -11,35 +11,42 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import emp.bam.dao.BusinessAnnouncementDAO;
-import emp.bam.util.FileUtils;
-import emp.bam.util.SearchCriteria;
-import emp.bam.vo.BusinessAnnouncementVO;
+import emp.bem.dao.BusinessEvaluationDAO;
+import emp.bem.util.FileUtils;
+import emp.bem.util.SearchCriteria;
+import emp.bem.vo.BusinessEvaluationVO;
+
+
+
+
+
+
+
 
 
 
 @Service
-public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementService {
+public class BusinessEvaluationServiceImpl implements BusinessEvaluationService {
 	
 	
-	@Resource(name="bamfileUtils")
-	private FileUtils FileUtils;
+	@Resource(name="bemFileUtils")
+	private FileUtils fileUtils;
 
 	@Inject
-	private BusinessAnnouncementDAO dao;
+	private BusinessEvaluationDAO dao;
 	
 	// 寃뚯떆湲� �옉�꽦
 	@Override
-	public void write(BusinessAnnouncementVO businessAnnouncementVO,MultipartHttpServletRequest mpRequest) throws Exception {
+	public void businessEvaluation(BusinessEvaluationVO businessEvaluationVO,MultipartHttpServletRequest mpRequest) throws Exception {
 		// TODO Auto-generated method stub
-		dao.write(businessAnnouncementVO,mpRequest);
+		dao.businessEvaluation(businessEvaluationVO,mpRequest);
 	}
 	
 	// 寃뚯떆臾� 紐⑸줉 議고쉶
 	@Override
-	public List<BusinessAnnouncementVO> businessAnnouncementList(SearchCriteria scri) throws Exception {
+	public List<BusinessEvaluationVO> businessEvaluationList(SearchCriteria scri) throws Exception {
 
-		return dao.businessAnnouncementList(scri);
+		return dao.businessEvaluationList(scri);
 	}
 	
 	
@@ -53,30 +60,30 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 	// 寃뚯떆臾� 議고쉶
 	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
-	public BusinessAnnouncementVO businessAnnouncementDetail(int BAM_ANC_IDX) throws Exception {
+	public BusinessEvaluationVO businessEvaluationDetail(int bem_beval_idx) throws Exception {
 		/* dao.boardHit(bno); */
-		return dao.businessAnnouncementDetail(BAM_ANC_IDX);
+		return dao.businessEvaluationDetail(bem_beval_idx);
 	}
 	
 	@Override
-	public void update(BusinessAnnouncementVO businessAnnouncementVO) throws Exception {
+	public void update(BusinessEvaluationVO businessEvaluationVO) throws Exception {
 		// TODO Auto-generated method stub
-		dao.update(businessAnnouncementVO);
+		dao.update(businessEvaluationVO);
 	}
 	
 	@Override
-	public void delete(int bno) throws Exception {
+	public void delete(int bem_beval_idx) throws Exception {
 		// TODO Auto-generated method stub
 		
-		dao.delete(bno);
+		dao.delete(bem_beval_idx);
 		
 	}
 
 	// 泥⑤��뙆�씪 議고쉶
 	@Override
-	public List<Map<String, Object>> selectFileList(int bno) throws Exception {
+	public List<Map<String, Object>> selectFileList(int bem_beval_idx) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.selectFileList(bno);
+		return dao.selectFileList(bem_beval_idx);
 	}
 
 	// 泥⑤��뙆�씪 �떎�슫濡쒕뱶
@@ -89,11 +96,11 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 	
 	
 	@Override
-	public void update(BusinessAnnouncementVO businessAnnouncementVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
+	public void update(BusinessEvaluationVO businessEvaluationVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
 		
-		dao.update(businessAnnouncementVO);
+		dao.update(businessEvaluationVO);
 		
-		List<Map<String, Object>> list = FileUtils.parseUpdateFileInfo(businessAnnouncementVO, files, fileNames, mpRequest);
+		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(businessEvaluationVO, files, fileNames, mpRequest);
 		Map<String, Object> tempMap = null;
 		int size = list.size();
 		for(int i = 0; i<size; i++) {

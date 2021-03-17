@@ -18,13 +18,16 @@
 
 <style>
 	.evaluationbtn{
+	
 		float: right;
 		border : 0px;
 		background-color: #dd4132;
 		color : #ffffff;
 		width :  8%;
 		height : 5%;
+		border-radius: 5px;
 		margin-top : 10px;
+		margin-left : 5px;
 	}
 	
 	.opinionbtn{
@@ -36,6 +39,8 @@
 		height : 5%;
 		border-radius: 5px;
 		margin-top : 10px;
+		margin-left : 5px;
+		
 	}
 
 	.scorebtn{
@@ -50,27 +55,7 @@
 		margin-right: 5px;
 	}
 	
-	.ybtn{
-		float: right;
-		border : 0px;
-		background-color: #dd4132;
-		color : #ffffff;
-		width :  8%;
-		height : 5%;
-		border-radius: 5px;
-		margin-top : 10px;
-	}
-	.nbtn{
-		float: right;
-		border : 0px;
-		background-color: #dd4132;
-		color : #ffffff;
-		width :  8%;
-		height : 5%;
-		border-radius: 5px;
-		margin-top : 10px;
-		margin-left: 5px;
-	}
+
 </style>
 <script type="text/javascript">
 		$(document).ready(function(){
@@ -123,44 +108,41 @@
 				enctype="multipart/form-data">
 				<table>
 					<tbody>
-						<c:if test="${member.userId != null}">
-							<c:if test="${member.userId == null}">
+						<c:if test="${member.user_id != null}">
+							<c:if test="${member.user_id == null}">
 								<p>로그인 후에 작성하실 수 있습니다.</p>
 							</c:if>
 							<div class="from-group">
-								<label for="title" class="colsm-2 control-Label">연구목표</label>
-								<input type="text" id="title" name="title" class="form-control"
-									title="연구목표를 입력하세요." readonly="readonly" value="<c:out value="1"/>">
+								<label for="research_obj" class="colsm-2 control-Label">연구목표</label>
+								<input type="text" id="research_obj" name="research_obj" class="form-control"
+									title="연구목표를 입력하세요." readonly="readonly" value="<c:out value="${read.research_obj}"/>">
 							</div>
 
 							<div class="from-group" style="margin-top: 30px;">
-								<label for="content">연구내용</label>
-								<input type="text" id="content" name="content" class="form-control"
-									title="연구내용을 입력하세요." readonly="readonly" value="<c:out value="1"/>">
+								<label for="research_remark">연구내용</label>
+								<input type="text" id="research_remark" name="research_remark" class="form-control"
+									title="연구내용을 입력하세요." readonly="readonly" value="<c:out value="${read.research_remark}"/>">
 							</div>
 
 							<div class="from-group" style="margin-top: 30px;">
-								<label for="content">기대효과</label>
-								<input type="text" id="content2" name="content2" class="form-control"
-									title="기대효과를 입력하세요." readonly="readonly" value="<c:out value="1"/>">
+								<label for="benefit">기대효과</label>
+								<input type="text" id="benefit" name="benefit" class="form-control"
+									title="기대효과를 입력하세요." readonly="readonly" value="<c:out value="${read.benefit}"/>">
 							</div>
 
 							<div class="from-group" style="margin-top: 30px;">
-								<label for="content">연구 개발비 총괄</label>
-								<input type="text" id="content3" name="content3" class="form-control"
-									title="연구 개발비 총괄을 입력하세요." readonly="readonly" value="<c:out value="1"/>">
+								<label for="research_cost">연구 개발비 총괄</label>
+								<input type="text" id="research_cost" name="research_cost" class="form-control"
+									title="연구 개발비 총괄을 입력하세요." readonly="readonly" value="<c:out value="${read.research_cost}"/>">
 							</div>
 
 							
 				<div class="form-group" style="margin-top: 30px;">
 					<label for="writer" class="col-sm-2 control-label" style="width: 80px">작성자</label>
-					<input type="text" id="writer" name="writer" class="form-control" value="${member.userId}"  readonly="readonly" style="width: 100px"/>
+					<input type="text" id="writer" name="writer" class="form-control" value="${member.user_id}"  readonly="readonly" style="width: 100px"/>
 				</div>
 			
-			<div>
-				<button type="button" class="opinionbtn" onclick="location.href='../evaluation/opinion'">종합의견</button>
-				<button type="button" class="scorebtn" onclick="location.href='../evaluation/evaluationScore'">평가하기</button>
-			</div>
+			
 
 						</c:if>
 					</tbody>
@@ -169,8 +151,9 @@
 		</section>
 		<hr />
 			<div class="from-group">
-				<button type="button" class="nbtn" onclick="location.href='../evaluation/evaluationScore'">탈락</button>
-				<button type="button" class="ybtn" onclick="location.href='../evaluation/evaluationScore'">선정</button>
+				<input type="hidden" value="${read.bpm_bplan_idx}"/>
+				<button type="button" class="opinionbtn" onclick="location.href='../bem/businessEvaluationOpinion'">종합의견</button>
+				<button type="button" class="evaluationbtn" onclick="location.href='../bem/businessEvaluation'">평가하기</button>
 			</div>
 	</div>
 </body>

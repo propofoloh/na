@@ -22,8 +22,8 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="emp.bam.web" />
-	<!-- <context:component-scan base-package="emp.bem.web" />
-	<context:component-scan base-package="emp.bpm.web" /> -->
+	<context:component-scan base-package="emp.bem.web" /> 
+	<context:component-scan base-package="emp.bpm.web" /> 
 	<context:component-scan base-package="emp.cmm.web" />
 	
 	

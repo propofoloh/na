@@ -1,4 +1,4 @@
-package emp.bam.service;
+package emp.bpm.service;
 
 import java.util.List;
 import java.util.Map;
@@ -11,35 +11,38 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import emp.bam.dao.BusinessAnnouncementDAO;
-import emp.bam.util.FileUtils;
-import emp.bam.util.SearchCriteria;
-import emp.bam.vo.BusinessAnnouncementVO;
+
+import emp.bpm.dao.BusinessPlanDAO;
+import emp.bpm.util.FileUtils;
+import emp.bpm.util.SearchCriteria;
+import emp.bpm.vo.BusinessPlanVO;
+
+
 
 
 
 @Service
-public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementService {
+public class BusinessPlanServiceImpl implements BusinessPlanService {
 	
 	
-	@Resource(name="bamfileUtils")
-	private FileUtils FileUtils;
+	@Resource(name="bpmFileUtils")
+	private FileUtils fileUtils;
 
 	@Inject
-	private BusinessAnnouncementDAO dao;
+	private BusinessPlanDAO dao;
 	
 	// 寃뚯떆湲� �옉�꽦
 	@Override
-	public void write(BusinessAnnouncementVO businessAnnouncementVO,MultipartHttpServletRequest mpRequest) throws Exception {
+	public void write(BusinessPlanVO businessPlanVO,MultipartHttpServletRequest mpRequest) throws Exception {
 		// TODO Auto-generated method stub
-		dao.write(businessAnnouncementVO,mpRequest);
+		dao.write(businessPlanVO,mpRequest);
 	}
 	
 	// 寃뚯떆臾� 紐⑸줉 議고쉶
 	@Override
-	public List<BusinessAnnouncementVO> businessAnnouncementList(SearchCriteria scri) throws Exception {
+	public List<BusinessPlanVO> businessPlanApplyList(Map<String,Integer> paramMap) throws Exception {
 
-		return dao.businessAnnouncementList(scri);
+		return dao.businessPlanApplyList(paramMap);
 	}
 	
 	
@@ -53,15 +56,15 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 	// 寃뚯떆臾� 議고쉶
 	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
-	public BusinessAnnouncementVO businessAnnouncementDetail(int BAM_ANC_IDX) throws Exception {
+	public BusinessPlanVO businessPlanApplyDetail(int bpm_bplan_idx) throws Exception {
 		/* dao.boardHit(bno); */
-		return dao.businessAnnouncementDetail(BAM_ANC_IDX);
+		return dao.businessPlanApplyDetail(bpm_bplan_idx);
 	}
 	
 	@Override
-	public void update(BusinessAnnouncementVO businessAnnouncementVO) throws Exception {
+	public void update(BusinessPlanVO BusinessPlanVO) throws Exception {
 		// TODO Auto-generated method stub
-		dao.update(businessAnnouncementVO);
+		dao.update(BusinessPlanVO);
 	}
 	
 	@Override
@@ -89,11 +92,11 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 	
 	
 	@Override
-	public void update(BusinessAnnouncementVO businessAnnouncementVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
+	public void update(BusinessPlanVO businessPlanVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
 		
-		dao.update(businessAnnouncementVO);
+		dao.update(businessPlanVO);
 		
-		List<Map<String, Object>> list = FileUtils.parseUpdateFileInfo(businessAnnouncementVO, files, fileNames, mpRequest);
+		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(businessPlanVO, files, fileNames, mpRequest);
 		Map<String, Object> tempMap = null;
 		int size = list.size();
 		for(int i = 0; i<size; i++) {

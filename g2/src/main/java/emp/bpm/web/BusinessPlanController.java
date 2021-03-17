@@ -2,6 +2,7 @@ package emp.bpm.web;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,12 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import a.b.service.BoardService;
-import a.b.service.ReplyService;
-import a.b.vo.BoardVO;
-import a.b.vo.PageMaker;
-import a.b.vo.ReplyVO;
-import a.b.vo.SearchCriteria;
+import emp.bpm.service.BusinessPlanService;
+import emp.bpm.util.PageMaker;
+import emp.bpm.util.SearchCriteria;
+import emp.bpm.vo.BusinessPlanVO;
 
 @Controller
 @RequestMapping("/bpm")
@@ -33,12 +32,10 @@ public class BusinessPlanController {
 	private static final Logger logger = LoggerFactory.getLogger(BusinessPlanController.class);
 	
 	@Inject
-	BoardService service;
+	BusinessPlanService service;
 
-	@Inject
-	ReplyService replyService;
 
-	// 
+
 	@RequestMapping(value = "/businessPlanApply", method = RequestMethod.GET)
 	public void businessPlanApply() throws Exception {
 		logger.info("businessPlanApply");
@@ -46,118 +43,60 @@ public class BusinessPlanController {
 	}
 
 	// 
-	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception {
-		logger.info("write");
-		service.write(boardVO, mpRequest);
-
+	@RequestMapping(value = "/businessPlanApply", method = RequestMethod.POST)
+	public String write(BusinessPlanVO businessPlanVO, MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception {
+		logger.info("businessPlanApply");
+		
+		service.write(businessPlanVO, mpRequest);
+		int bam_anc_idx = businessPlanVO.getBam_anc_idx();
+		redirect.addAttribute("bam_anc_idx",bam_anc_idx);
 		return "redirect:/bpm/businessPlanApplyList";
 	}
 
 	// 
 	@RequestMapping(value = "/businessPlanApplyList", method = RequestMethod.GET)
-	public String businessPlanApplyList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+	public String businessPlanApplyList(Model model,@RequestParam("bam_anc_idx") int bam_anc_idx, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 		logger.info("businessPlanApplyList");
 
-		model.addAttribute("list", service.receipList(scri));
-
+	
+		Map<String, Integer> paramMap = new HashMap<String, Integer>();
+		paramMap.put("rowStart", scri.getRowStart());
+		paramMap.put("rowEnd", scri.getRowEnd());
+		paramMap.put("bam_anc_idx",bam_anc_idx);
+		model.addAttribute("list", service.businessPlanApplyList(paramMap));
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.listCount(scri));
 
 		model.addAttribute("pageMaker", pageMaker);
 
-		return "board/businessPlanApplyList";
+		return "bpm/businessPlanApplyList";
 
 	}
 
 	//
 	@RequestMapping(value = "/businessPlanApplyDetail", method = RequestMethod.GET)
-	public String businessPlanApplyDetail(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
+	public String businessPlanApplyDetail(BusinessPlanVO businessPlanVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
 		logger.info("businessPlanApplyDetail");
 
-		model.addAttribute("read", service.read(boardVO.getBno()));
+		model.addAttribute("read", service.businessPlanApplyDetail(businessPlanVO.getBpm_bplan_idx()));
 		model.addAttribute("scri", scri);
 
-		List<ReplyVO> replyList = replyService.readReply(boardVO.getBno());
-		model.addAttribute("replyList", replyList);
+		/*
+		 * List<ReplyVO> replyList =
+		 * replyService.readReply(businessPlanVO.getBpm_bplan_idx());
+		 * model.addAttribute("replyList", replyList);
+		 */
 
-		List<Map<String, Object>> fileList = service.selectFileList(boardVO.getBno());
-		model.addAttribute("file", fileList);
-		return "cmm/businessPlanApplyDetail";
+		/*
+		 * List<Map<String, Object>> fileList =
+		 * service.selectFileList(businessPlanVO.getBpm_bplan_idx());
+		 * model.addAttribute("file", fileList);
+		 */
+		return "bpm/businessPlanApplyDetail";
 	}
 
-	
-	@RequestMapping(value = "/replyWrite", method = RequestMethod.POST)
-	public String replyWrite(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
-		logger.info("reply Write");
-
-		replyService.writeReply(vo);
-
-		rttr.addAttribute("bno", vo.getBno());
-		rttr.addAttribute("page", scri.getPage());
-		rttr.addAttribute("perPageNum", scri.getPerPageNum());
-		rttr.addAttribute("searchType", scri.getSearchType());
-		rttr.addAttribute("keyword", scri.getKeyword());
-
-		return "redirect:/board/readView";
-	}
-
-	// GET
-	@RequestMapping(value = "/replyUpdateView", method = RequestMethod.GET)
-	public String replyUpdateView(ReplyVO vo, SearchCriteria scri, Model model) throws Exception {
-		logger.info("reply Write");
-
-		model.addAttribute("replyUpdate", replyService.selectReply(vo.getRno()));
-		model.addAttribute("scri", scri);
-
-		return "board/replyUpdateView";
-	}
-
-	// POST
-	@RequestMapping(value = "/replyUpdate", method = RequestMethod.POST)
-	public String replyUpdate(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
-		logger.info("reply Write");
-
-		replyService.updateReply(vo);
-
-		rttr.addAttribute("bno", vo.getBno());
-		rttr.addAttribute("page", scri.getPage());
-		rttr.addAttribute("perPageNum", scri.getPerPageNum());
-		rttr.addAttribute("searchType", scri.getSearchType());
-		rttr.addAttribute("keyword", scri.getKeyword());
-
-		return "redirect:/board/readView";
-	}
-
-	// GET
-	@RequestMapping(value = "/replyDeleteView", method = RequestMethod.GET)
-	public String replyDeleteView(ReplyVO vo, SearchCriteria scri, Model model) throws Exception {
-		logger.info("reply Write");
-
-		model.addAttribute("replyDelete", replyService.selectReply(vo.getRno()));
-		model.addAttribute("scri", scri);
-
-		return "board/replyDeleteView";
-	}
-
-	// 
-	@RequestMapping(value = "/replyDelete", method = RequestMethod.POST)
-	public String replyDelete(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
-		logger.info("reply Write");
-
-		replyService.deleteReply(vo);
-
-		rttr.addAttribute("bno", vo.getBno());
-		rttr.addAttribute("page", scri.getPage());
-		rttr.addAttribute("perPageNum", scri.getPerPageNum());
-		rttr.addAttribute("searchType", scri.getSearchType());
-		rttr.addAttribute("keyword", scri.getKeyword());
-
-		return "redirect:/board/readView";
-	}
-
-	
 	@RequestMapping(value = "/fileDown")
 	public void fileDown(@RequestParam Map<String, Object> map, HttpServletResponse response) throws Exception {
 		Map<String, Object> resultMap = service.selectFileInfo(map);

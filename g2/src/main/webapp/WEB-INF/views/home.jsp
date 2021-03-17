@@ -100,8 +100,8 @@ body {
 	<form name='loginForm' method="post" action="/cmm/login">
 		<c:if test="${member == null}">
 			 <div class="loginForm">
-				<input type="text"  placeholder="아이디" id="userId" name="userId" maxlength="20">
-				<input type="password" placeholder="비밀번호" id="userPass" name="userPass" maxlength="20">
+				<input type="text"  placeholder="아이디" id="user_id" name="user_id" maxlength="20">
+				<input type="password" placeholder="비밀번호" id="user_pwd" name="user_pwd" maxlength="20">
 				 <div class="loginform-checkbox">
 				 	<input type="checkbox" id="login-checkbox" />
 				 	<span> 로그인 상태 유지 </span>

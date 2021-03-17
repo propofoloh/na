@@ -51,7 +51,7 @@
 				url : "/cmm/idChk",
 				type : "post",
 				dataType : "json",
-				data : {"userId" : $("#userId").val()},
+				data : {"user_id" : $("#user_id").val()},
 				success : function(data){
 					if(data == 1){
 						alert("중복된 아이디입니다.");
@@ -108,31 +108,31 @@
 	<div class ="registerText">회원가입</div>
 			<form action="/cmm/postregister" method="POST" id="regForm" name="regForm" >
 				<div>
-					<label class="control-label" for="userId">아이디</label><br>
-					<input type="text" id="userId" name="userId" />
+					<label class="control-label" for="user_id">아이디</label><br>
+					<input type="text" id="user_id" name="user_id" />
 					<button id="idChk" onclick="fn_idChk(); return false;" value="중복확인">중복확인</button>
 				</div>
 				<div>
-					<label class="control-label" for="userPwd">비밀번호</label><br>
-					<input type="password" id="userPwd" name="userPwd" />
+					<label class="control-label" for="user_pwd">비밀번호</label><br>
+					<input type="password" id="user_pwd" name="user_pwd" />
 				</div>
 				
 				<div>
-					<label class="control-label" for="userName">이름</label><br>
-					<input type="text" id="userName" name="userName" />
+					<label class="control-label" for="user_name">이름</label><br>
+					<input type="text" id="user_name" name="user_name" />
 				</div>
 				
 				<div >
-					<label class="control-label" for="userBirthday">생년월일</label><br>
-					<input type="date" id="userBirthday" name="userBirthday" />
+					<label class="control-label" for="user_birthday">생년월일</label><br>
+					<input type="date" id="user_birthday" name="user_birthday" />
 				</div>
 				<div>
-					<label class="control-label" for="hpNum">휴대폰 번호</label><br>
-					<input type="text" id="hpNum" name="hpNum" placeholder="전화번호 입력" />
+					<label class="control-label" for="hp_num">휴대폰 번호</label><br>
+					<input type="text" id="hp_num" name="hp_num" placeholder="전화번호 입력" />
 				</div>
 				<div>
-					<label class="control-label" for="userEmail">이메일 주소</label><br>
-					<input type="text" id="userEmail" name="userEmail" placeholder="이메일 주소 입력" />
+					<label class="control-label" for="user_email">이메일 주소</label><br>
+					<input type="text" id="user_email" name="user_email" placeholder="이메일 주소 입력" />
 				</div>		
 				<div>
 					<button class="register-Btn" type="submit" id="submit">회원가입</button>

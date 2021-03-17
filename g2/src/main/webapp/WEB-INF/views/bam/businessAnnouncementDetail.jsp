@@ -108,11 +108,14 @@
 						      +"&searchType=${scri.searchType}&keyword=${scri.keyword}";
 			})
 			
-			$(".replyWriteBtn").on("click", function(){
-				var formObj = $("form[name='replyForm']");
-				formObj.attr("action", "/board/replyWrite");
-				formObj.submit();
-			});
+			$("#businessPlanApplyBtn").on("click", function(){
+				
+				var form = $("form[name='readForm']");
+				formObj.attr("action", "/bpm/businessPlanApply");
+				form.attr("method","get");
+				form.submit();
+				alert("데이터전닳")
+			})
 			
 		})
 		function fn_fileDown(fileNo){
@@ -136,7 +139,7 @@
 			
 			<section id="container">
 				<form name="readForm" role="form" method="post">
-					<input type="hidden" id="bno" name="bno" value="${businessAnnouncementDetail.bam_anc_idx}" />
+					<input type="hidden" id="bam_anc_idx" name="bam_anc_idx" value="${read.bam_anc_idx}" />
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
@@ -179,8 +182,8 @@
 					<button type="button" class="manageBtn">수정</button>
 					<button type="button" class="manageBtn">삭제</button>
 					<button type="button" class="manageBtn">목록</button>	
-					<button type="button" class="functionBtn" onclick="location.href='../businessplan/bpWriteView'">사업계획서 제출</button>
-					<button type="button" class="functionBtn" onclick="location.href='../businessplan/bpList'">사업자 별 평가</button>
+					<button type="button" id="businessPlanApplyBtn" class="functionBtn" onclick="location.href='../bpm/businessPlanApply'">사업계획서 제출</button>
+					<button type="button" class="functionBtn" onclick="location.href='../bem/businessEvaluationList'">사업자 별 평가</button>
 					<button type="button" class="functionBtn" onclick="location.href='../evaluation/opinion'">종합의견</button>
 				</div>
 				

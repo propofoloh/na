@@ -9,11 +9,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import a.b.service.BoardService;
-import a.b.service.ReplyService;
-import a.b.vo.PageMaker;
-import a.b.vo.SearchCriteria;
+import emp.bem.service.BusinessEvaluationService;
+import emp.bem.util.PageMaker;
+import emp.bem.util.SearchCriteria;
+import emp.bem.vo.BusinessEvaluationVO;
+import emp.bpm.vo.BusinessPlanVO;
+
+
 
 @Controller
 @RequestMapping("/bem")
@@ -22,17 +27,15 @@ public class BusinessEvaluationController {
 	private static final Logger logger = LoggerFactory.getLogger(BusinessEvaluationController.class);
 
 	@Inject
-	BoardService service;
+	BusinessEvaluationService service;
 
-	@Inject
-	ReplyService replyService;
 
 	//사업계획서 평가지표 목록 조회
 	@RequestMapping(value = "/businessEvaluationList", method = RequestMethod.GET)
 	public String evaluationList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		logger.info("businessEvaluationList");
 
-		model.addAttribute("evaluationList", service.receipList(scri));
+		model.addAttribute("businessEvaluationList", service.businessEvaluationList(scri));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -40,39 +43,41 @@ public class BusinessEvaluationController {
 
 		model.addAttribute("pageMaker", pageMaker);
 
-		return "bam/businessEvaluationList";
+		return "bem/businessEvaluationList";
 
 	}
 
 	//사업계획서 평가지표 등록
 	@RequestMapping(value = "/businessEvaluation", method = RequestMethod.GET)
-	public String evaluationScore() throws Exception{
+	public String businessEvaluationview() throws Exception{
 		logger.info("businessEvaluation");
 
-		return "bam/businessEvaluation";
+		return "bem/businessEvaluation";
 	}
 	
 	//사업계획서 등록 서비스실행
-	@RequestMapping(value = "/businessEvaluationWrite", method = RequestMethod.GET)
-	public String wrigt() throws Exception{
-		logger.info("evaluationScore");
-
-		return "bam/businessEvaluationWrite";
+	@RequestMapping(value = "/businessEvaluation", method = RequestMethod.POST)
+	public String businessEvaluation(BusinessEvaluationVO businessEvaluationVO, MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception {
+		logger.info("businessEvaluation");
+		
+		service.businessEvaluation(businessEvaluationVO, mpRequest);
+		
+		return "redirect:/bem/businessEvaluationList";
 	}
 	
 	//사업계획서 평가지표 상세 조회
 		@RequestMapping(value = "/businessEvaluationDetail", method = RequestMethod.GET)
 		public void evaluationRaitingView() throws Exception{
-			logger.info("evaluationRaitingView");
+			logger.info("businessEvaluationDetail");
 		}
 
 
 	//사업계획서 종합의견 조회
 	@RequestMapping(value = "/businessEvaluationOpinion", method = RequestMethod.GET)
 	public String opinion() throws Exception{
-		logger.info("opinion");
+		logger.info("businessEvaluationOpinion");
 
-		return "bam/businessEvaluationOpinion";
+		return "bem/businessEvaluationOpinion";
 	}
 
 

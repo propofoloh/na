@@ -1,4 +1,4 @@
-package emp.bam.util;
+package emp.bpm.util;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -12,13 +12,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import emp.bam.vo.BusinessAnnouncementVO;
+import emp.bpm.vo.BusinessPlanVO;
 
-@Component("bamfileUtils")
+@Component("bpmFileUtils")
 public class FileUtils {
 	private static final String filePath = "C:\\mp\\file\\"; // 파일이 저장될 위치
 	
-	public List<Map<String, Object>> parseInsertFileInfo(BusinessAnnouncementVO BusinessAnnouncementVO, 
+	public List<Map<String, Object>> parseInsertFileInfo(BusinessPlanVO businessPlanVO, 
 			MultipartHttpServletRequest mpRequest) throws Exception{
 		
 		/*
@@ -37,7 +37,7 @@ public class FileUtils {
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null;
 		
-		int bam_anc_idx = BusinessAnnouncementVO.getBam_anc_idx();
+		int bpm_bplan_idx = businessPlanVO.getBpm_bplan_idx();
 		
 		File file = new File(filePath);
 		if(file.exists() == false) {
@@ -53,7 +53,7 @@ public class FileUtils {
 				file = new File(filePath + storedFileName);
 				multipartFile.transferTo(file);
 				listMap = new HashMap<String, Object>();
-				listMap.put("bam_anc_idx", bam_anc_idx);
+				listMap.put("bpm_bplan_idx", bpm_bplan_idx);
 				listMap.put("ORG_FILE_NAME", originalFileName);
 				listMap.put("STORED_FILE_NAME", storedFileName);
 				listMap.put("FILE_SIZE", multipartFile.getSize());
@@ -63,7 +63,7 @@ public class FileUtils {
 		return list;
 	}
 	
-	public List<Map<String, Object>> parseUpdateFileInfo(BusinessAnnouncementVO businessAnnouncementVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception{ 
+	public List<Map<String, Object>> parseUpdateFileInfo(BusinessPlanVO businessPlanVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception{ 
 		Iterator<String> iterator = mpRequest.getFileNames();
 		MultipartFile multipartFile = null; 
 		String originalFileName = null; 
@@ -71,7 +71,7 @@ public class FileUtils {
 		String storedFileName = null; 
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null; 
-		int bam_anc_idx = businessAnnouncementVO.getBam_anc_idx();
+		int bpm_bplan_idx = businessPlanVO.getBpm_bplan_idx();
 		while(iterator.hasNext()){ 
 			multipartFile = mpRequest.getFile(iterator.next()); 
 			if(multipartFile.isEmpty() == false){ 
@@ -81,7 +81,7 @@ public class FileUtils {
 				multipartFile.transferTo(new File(filePath + storedFileName)); 
 				listMap = new HashMap<String,Object>();
 				listMap.put("IS_NEW", "Y");
-				listMap.put("bam_anc_idx", bam_anc_idx); 
+				listMap.put("bpm_bplan_idx", bpm_bplan_idx); 
 				listMap.put("ORG_FILE_NAME", originalFileName);
 				listMap.put("STORED_FILE_NAME", storedFileName); 
 				listMap.put("FILE_SIZE", multipartFile.getSize()); 
