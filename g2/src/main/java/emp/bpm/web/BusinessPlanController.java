@@ -83,17 +83,13 @@ public class BusinessPlanController {
 		model.addAttribute("read", service.businessPlanApplyDetail(businessPlanVO.getBpm_bplan_idx()));
 		model.addAttribute("scri", scri);
 
-		/*
-		 * List<ReplyVO> replyList =
-		 * replyService.readReply(businessPlanVO.getBpm_bplan_idx());
-		 * model.addAttribute("replyList", replyList);
-		 */
+	
 
-		/*
-		 * List<Map<String, Object>> fileList =
-		 * service.selectFileList(businessPlanVO.getBpm_bplan_idx());
-		 * model.addAttribute("file", fileList);
-		 */
+		
+		  List<Map<String, Object>> fileList =
+		  service.selectFileList(businessPlanVO.getBpm_bplan_idx());
+		  model.addAttribute("file", fileList);
+		 
 		return "bpm/businessPlanApplyDetail";
 	}
 

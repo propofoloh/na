@@ -15,6 +15,32 @@
 
 <title>게시판</title>
 </head>
+<style>
+
+	.applyBtn{
+		
+		float: right;
+		border : 0px;
+		background-color: #dd4132;
+		color : #ffffff;
+		width :  8%;
+		height : 5%;
+		border-radius: 5px;
+		margin-left : 5px;
+	}
+	
+	#uploadBtn{
+		display : block;
+		width :  8%;
+		height : 5%;
+		margin-top: 10px;
+		
+	}
+	
+	
+	
+	
+</style>
 <script type="text/javascript">
 		$(document).ready(function(){
 			var formObj = $("form[name='writeForm']");
@@ -41,7 +67,7 @@
 			var fileIndex = 1;
 			//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
 			$(".fileAdd_btn").on("click", function(){
-				$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
+				$("#fileIndex").append("<div><input type='file' value='첨부파일' style='float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
 			});
 			$(document).on("click","#fileDelBtn", function(){
 				$(this).parent().remove();
@@ -64,10 +90,10 @@
 				enctype="multipart/form-data">
 				<table>
 					<tbody>
-						<c:if test="${member.user_id != null}">
-							<c:if test="${member.user_id == null}">
+						<c:if test="${member.user_id == null}">
 								<p>로그인 후에 작성하실 수 있습니다.</p>
 							</c:if>
+						<c:if test="${member.user_id != null}">	
 							<input type="hidden" name="bam_anc_idx" value ="${param.bam_anc_idx}">
 							<div class="from-group">
 								<label for="title" class="colsm-2 control-Label">연구목표</label>
@@ -92,30 +118,34 @@
 								<textarea id="research_cost" name="research_cost" class="form-control"
 									title="연구 개발비 총괄을 입력하세요."></textarea>
 							</div>
-
+<img src="./icon.png">
 							
 				<div class="form-group" style="margin-top: 30px;">
 					<label for="writer" class="col-sm-2 control-label" style="width: 80px">작성자</label>
 					<input type="text" id="writer" name="writer" class="form-control" value="${member.user_id}"  readonly="readonly" style="width: 100px"/>
 				</div>
-				
 							<tr>
-								<td>
-									<button style="margin-top: 10px;" class="btn btn-success"
-										type="submit">접수</button>
-							<label classNam=="input-file-button" for="input-file"
-								style="margin-top: 10px;" class="btn btn-success"> 첨부파일 </label>
-							<input type="file" id="input-file" style="display: none" />
-							
-							<button class="fileAdd_btn" type="button">파일추가</button>	
+			                    <td id="fileIndex"></td>
+			                </tr>           
+							<tr>
+								<td>			
+									<label className="input-file-button" for="input-file" id="uploadBtn">
+									
+										<input type="file" id="input-file" style="display: none" />
+									</label>
+									<button class="fileAdd_btn" type="button">파일추가</button>	
 								</td>
 							</tr>
 						</c:if>
 					</tbody>
 				</table>
+				<hr />
+					<div>
+						<button class="applyBtn" type="submit">접수</button>
+					</div>
 			</form>
 		</section>
-		<hr />
+		
 	</div>
 </body>
 </html>
