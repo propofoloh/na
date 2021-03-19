@@ -29,7 +29,7 @@ public interface BusinessPlanService {
 		public void delete(int bno) throws Exception;
 		
 	    // 파일선택
-		public List<Map<String, Object>> selectFileList(int bno) throws Exception;
+		public List<Map<String, Object>> selectFileList(int bpm_bplan_idx) throws Exception;
 		
 		// 선택파일정보
 		public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;

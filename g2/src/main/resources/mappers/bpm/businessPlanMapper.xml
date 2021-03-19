@@ -124,31 +124,31 @@
 
 
 	 <select id="selectFileList" parameterType="int" resultType="hashMap">
-	SELECT  FILE_NO,
-			ORG_FILE_NAME,
+	SELECT  FILE_IDX,
+			FILE_FNAME,
 			ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
 		
 		FROM EMP_FILE
-		WHERE BNO = #{BNO}
-		AND DEL_GB = 'N'
-		ORDER BY FILE_NO ASC
+		WHERE BOARD_LIST_IDX = #{bpm_bplan_idx}
+		AND DEL_YN = 'N'
+		ORDER BY FILE_IDX ASC
 </select>
 
 
 	<select id="selectFileInfo" parameterType="hashMap"
 		resultType="hashMap">
 		SELECT
-		STORED_FILE_NAME,
-		ORG_FILE_NAME
+		FILE_SNAME,
+		FILE_FNAME
 		FROM EMP_FILE
-		WHERE FILE_NO = #{FILE_NO}
+		WHERE FILE_IDX = #{file_idx}
 	</select>
 
-	<update id="updateFile" parameterType="hashMap">
+<!-- 	<update id="updateFile" parameterType="hashMap">
 		UPDATE EMP_FILE SET
 		DEL_GB = 'Y'
-		WHERE FILE_NO = #{FILE_NO}
-	</update> 
+		WHERE FILE_NO = #{file_idx}
+	</update>  -->
    
     
 </mapper>

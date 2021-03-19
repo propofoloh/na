@@ -46,7 +46,7 @@ public class BusinessPlanController {
 	@RequestMapping(value = "/businessPlanApply", method = RequestMethod.POST)
 	public String write(BusinessPlanVO businessPlanVO, MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception {
 		logger.info("businessPlanApply");
-		
+		System.out.println(mpRequest.getContentLength());
 		service.write(businessPlanVO, mpRequest);
 		int bam_anc_idx = businessPlanVO.getBam_anc_idx();
 		redirect.addAttribute("bam_anc_idx",bam_anc_idx);
@@ -88,6 +88,7 @@ public class BusinessPlanController {
 		
 		  List<Map<String, Object>> fileList =
 		  service.selectFileList(businessPlanVO.getBpm_bplan_idx());
+		  System.out.println(fileList.size());
 		  model.addAttribute("file", fileList);
 		 
 		return "bpm/businessPlanApplyDetail";

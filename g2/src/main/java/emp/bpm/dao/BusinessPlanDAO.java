@@ -15,7 +15,7 @@ public interface BusinessPlanDAO {
 	public List<BusinessPlanVO> businessPlanApplyList(Map<String,Integer> paramMap) throws Exception;
 	
 	// 사업공고등록
-	public void write(BusinessPlanVO businessPlanVO,MultipartHttpServletRequest mpRequest) throws Exception;
+	public void write(BusinessPlanVO businessPlanVO) throws Exception;
 	
 	// 사업공고 갯수
 	public int listCount(SearchCriteria scri) throws Exception;
@@ -33,7 +33,7 @@ public interface BusinessPlanDAO {
 	public void insertFile(Map<String, Object> map) throws Exception;
 	
     // 파일선택
-	public List<Map<String, Object>> selectFileList(int bno) throws Exception;
+	public List<Map<String, Object>> selectFileList(int bpm_bplan_idx) throws Exception;
 	
 	// 선택파일정보
 	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;

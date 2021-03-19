@@ -35,7 +35,13 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 	@Override
 	public void write(BusinessPlanVO businessPlanVO,MultipartHttpServletRequest mpRequest) throws Exception {
 		// TODO Auto-generated method stub
-		dao.write(businessPlanVO,mpRequest);
+		dao.write(businessPlanVO);
+		
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(businessPlanVO, mpRequest); 
+		int size = list.size();
+		for(int i=0; i<size; i++){ 
+			dao.insertFile(list.get(i)); 
+					}
 	}
 	
 	// 寃뚯떆臾� 紐⑸줉 議고쉶
@@ -77,9 +83,9 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 
 	// 泥⑤��뙆�씪 議고쉶
 	@Override
-	public List<Map<String, Object>> selectFileList(int bno) throws Exception {
+	public List<Map<String, Object>> selectFileList(int bpm_bplan_idx) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.selectFileList(bno);
+		return dao.selectFileList(bpm_bplan_idx);
 	}
 
 	// 泥⑤��뙆�씪 �떎�슫濡쒕뱶

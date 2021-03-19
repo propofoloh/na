@@ -31,7 +31,7 @@ public class BusinessPlanDAOImpl implements BusinessPlanDAO {
 	
 	// 사업공고등록
 	@Override
-	public void write(BusinessPlanVO businessPlanVO,MultipartHttpServletRequest mpRequest) throws Exception {
+	public void write(BusinessPlanVO businessPlanVO) throws Exception {
 		sqlSession.insert("businessPlanMapper.insert", businessPlanVO);
 		
 	}
@@ -72,9 +72,9 @@ public class BusinessPlanDAOImpl implements BusinessPlanDAO {
 	
    	// 파일선택리스트
 	@Override
-	public List<Map<String, Object>> selectFileList(int bno) throws Exception {
+	public List<Map<String, Object>> selectFileList(int bpm_bplan_idx) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("businessPlanMapper.selectFileList", bno);
+		return sqlSession.selectList("businessPlanMapper.selectFileList", bpm_bplan_idx);
 	}
 	
 	// 선택파일정보

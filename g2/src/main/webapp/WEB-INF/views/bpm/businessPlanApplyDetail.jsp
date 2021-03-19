@@ -141,7 +141,14 @@
 					<label for="writer" class="col-sm-2 control-label" style="width: 80px">작성자</label>
 					<input type="text" id="writer" name="writer" class="form-control" value="${member.user_id}"  readonly="readonly" style="width: 100px"/>
 				</div>
-			
+			 	<span>파일 목록</span>
+				<div class="form-group" style="border: 1px solid #dbdbdb;">
+					
+					<c:forEach var="file" items="${file}">
+						<a href="#" onclick="fn_fileDown('${file.file_idx}'); return false;">${file.file_sname}</a>(${file.FILE_SIZE})<br>
+					</c:forEach>
+				</div>
+				<hr/>
 			
 
 						</c:if>

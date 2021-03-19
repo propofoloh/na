@@ -174,7 +174,7 @@
 				<div class="form-group" style="border: 1px solid #dbdbdb;">
 					
 					<c:forEach var="file" items="${file}">
-						<a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE})<br>
+						<a href="#" onclick="fn_fileDown('${file.file_idx}'); return false;">${file.file_sname}</a>(${file.FILE_SIZE})<br>
 					</c:forEach>
 				</div>
 				<hr/>
