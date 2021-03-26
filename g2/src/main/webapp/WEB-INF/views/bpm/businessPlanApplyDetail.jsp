@@ -59,17 +59,30 @@
 </style>
 <script type="text/javascript">
 		$(document).ready(function(){
-			var formObj = $("form[name='writeForm']");
-			$(".write_btn").on("click", function(){
-				if(fn_valiChk()){
-					return false;
-				}
-				formObj.attr("action", "/board/write");
-				formObj.attr("method", "post");
-				formObj.submit();
-			});
-			fn_addFile();
+			
+			$(".evaluationbtn").on("click", function(){
+				alert($("#bam_anc_idx").val())
+				var form = $("form[name='readForm']");
+				form.attr("action", "/bem/businessEvaluation");
+				form.attr("method","get");
+				form.submit();
+				alert("데이터전닳1")
+			})
+	
 		})
+		
+		function fn_fileDownload(fileidx){
+			var formObj = $("form[name='readForm']");
+			alert(formObj)
+			$("#FILE_IDX").attr("value", fileidx);
+			alert($("#FILE_IDX").val())
+			formObj.attr("action", "/bpm/fileDown");
+			formObj.submit();
+		}
+		
+		
+		
+		
 		function fn_valiChk(){
 			var regForm = $("form[name='writeForm'] .chk").length;
 			for(var i = 0; i<regForm; i++){
@@ -90,6 +103,7 @@
 				
 			});
 		}
+		
 	</script>
 <body>
 
@@ -104,8 +118,14 @@
 
 
 		<section id="container">
-			<form name="writeForm" method="post" action="/board/write"
-				enctype="multipart/form-data">
+			<form name="readForm" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="bpm_bplan_idx" value="${read.bpm_bplan_idx}" readonly="readonly"/>
+					<input type="hidden" id="page" name="page" value="${scri.page}"> 
+					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
+					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
+					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+					<input type="hidden" id="FILE_IDX" name="FILE_IDX" value=""> 
+					<input type="hidden" id="bam_anc_idx" name="bam_anc_idx" value="${param.bam_anc_idx}"> 
 				<table>
 					<tbody>
 						<c:if test="${member.user_id != null}">
@@ -145,12 +165,9 @@
 				<div class="form-group" style="border: 1px solid #dbdbdb;">
 					
 					<c:forEach var="file" items="${file}">
-						<a href="#" onclick="fn_fileDown('${file.file_idx}'); return false;">${file.file_sname}</a>(${file.FILE_SIZE})<br>
+						첨부파일 :<a href="#" onclick="fn_fileDownload('${file.FILE_IDX}');">${file.FILE_FNAME}</a>(${file.FILE_SIZE}kb)<br>
 					</c:forEach>
 				</div>
-				<hr/>
-			
-
 						</c:if>
 					</tbody>
 				</table>
@@ -158,9 +175,8 @@
 		</section>
 		<hr />
 			<div class="from-group">
-				<input type="hidden" value="${read.bpm_bplan_idx}"/>
 				<button type="button" class="opinionbtn" onclick="location.href='../bem/businessEvaluationOpinion'">종합의견</button>
-				<button type="button" class="evaluationbtn" onclick="location.href='../bem/businessEvaluation'">평가하기</button>
+				<button type="button" class="evaluationbtn">평가하기</button>
 			</div>
 	</div>
 </body>

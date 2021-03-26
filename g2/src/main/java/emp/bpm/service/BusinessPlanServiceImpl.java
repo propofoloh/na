@@ -36,7 +36,6 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 	public void write(BusinessPlanVO businessPlanVO,MultipartHttpServletRequest mpRequest) throws Exception {
 		// TODO Auto-generated method stub
 		dao.write(businessPlanVO);
-		
 		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(businessPlanVO, mpRequest); 
 		int size = list.size();
 		for(int i=0; i<size; i++){ 

@@ -9,14 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import emp.bam.service.BusinessAnnouncementService;
 import emp.bem.service.BusinessEvaluationService;
 import emp.bem.util.PageMaker;
 import emp.bem.util.SearchCriteria;
 import emp.bem.vo.BusinessEvaluationVO;
-import emp.bpm.vo.BusinessPlanVO;
 
 
 
@@ -28,6 +29,9 @@ public class BusinessEvaluationController {
 
 	@Inject
 	BusinessEvaluationService service;
+	
+	@Inject
+	BusinessAnnouncementService ancService;
 
 
 	//사업계획서 평가지표 목록 조회
@@ -49,9 +53,10 @@ public class BusinessEvaluationController {
 
 	//사업계획서 평가지표 등록
 	@RequestMapping(value = "/businessEvaluation", method = RequestMethod.GET)
-	public String businessEvaluationview() throws Exception{
+	public String businessEvaluationview(Model model, @RequestParam("bam_anc_idx") int bam_anc_idx ) throws Exception{
 		logger.info("businessEvaluation");
-
+		System.out.println("bamidx"+bam_anc_idx);
+		model.addAttribute("ancInfo",ancService.businessAnnouncementDetail(bam_anc_idx));
 		return "bem/businessEvaluation";
 	}
 	

@@ -100,7 +100,7 @@
 							<tr>
 								<td style="text-align: center;"><c:out value="${list.bpm_bplan_idx}" /></td>
 								<td style="text-align: center;">
-									<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.research_obj}"/></a>
+									<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${param.bam_anc_idx}"><c:out value="${list.research_obj}"/></a>
 								</td>
 								<td style="text-align: center;"><c:out value="${list.writer}" /></td>
 								<td style="text-align: center;"><fmt:formatDate value="${list.reg_date}" pattern="yyyy-MM-dd"/></td>

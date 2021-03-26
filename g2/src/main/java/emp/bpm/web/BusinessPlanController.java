@@ -46,7 +46,7 @@ public class BusinessPlanController {
 	@RequestMapping(value = "/businessPlanApply", method = RequestMethod.POST)
 	public String write(BusinessPlanVO businessPlanVO, MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception {
 		logger.info("businessPlanApply");
-		System.out.println(mpRequest.getContentLength());
+
 		service.write(businessPlanVO, mpRequest);
 		int bam_anc_idx = businessPlanVO.getBam_anc_idx();
 		redirect.addAttribute("bam_anc_idx",bam_anc_idx);
@@ -82,13 +82,9 @@ public class BusinessPlanController {
 
 		model.addAttribute("read", service.businessPlanApplyDetail(businessPlanVO.getBpm_bplan_idx()));
 		model.addAttribute("scri", scri);
-
-	
-
 		
 		  List<Map<String, Object>> fileList =
 		  service.selectFileList(businessPlanVO.getBpm_bplan_idx());
-		  System.out.println(fileList.size());
 		  model.addAttribute("file", fileList);
 		 
 		return "bpm/businessPlanApplyDetail";
@@ -96,9 +92,13 @@ public class BusinessPlanController {
 
 	@RequestMapping(value = "/fileDown")
 	public void fileDown(@RequestParam Map<String, Object> map, HttpServletResponse response) throws Exception {
+		
 		Map<String, Object> resultMap = service.selectFileInfo(map);
-		String storedFileName = (String) resultMap.get("STORED_FILE_NAME");
-		String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
+		String storedFileName = (String) resultMap.get("FILE_SNAME");
+		String originalFileName = (String) resultMap.get("FILE_FNAME");
+		
+		System.out.println("sname"+storedFileName);
+		System.out.println("fname"+originalFileName);
 
 		// byte[]
 		byte fileByte[] = org.apache.commons.io.FileUtils

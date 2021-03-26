@@ -9,7 +9,7 @@ import emp.bpm.util.Criteria;
 public class BusinessPlanVO extends Criteria{
 	
 
-	private int bpm_bplan_idx = 0;
+	private int bpm_bplan_idx;
 	private int board_idx = 2;
 	private int bam_anc_idx;
 	private String research_obj;

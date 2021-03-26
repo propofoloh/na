@@ -124,7 +124,7 @@
 						</c:forEach>
 					</table>
 					<button type="button" class="writebtn"  onclick="location.href='businessAnnouncementInput'">사업등록</button>
-					<img src="../bpm/icon.png">
+					<img src="/g2/icon.png">
 					<div class="pasingDiv" style="width:100%; text-align: center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev}">

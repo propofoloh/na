@@ -99,6 +99,7 @@
   <body>
   	
   <form action="#">
+  	<input type="text"value="${param.bam_anc_idx}"/>
     <table class="subjecttable">
     	<p>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</p>
     	<colgroup>

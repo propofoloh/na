@@ -77,7 +77,6 @@ public class BusinessAnnouncementController {
 	public String write(BusinessAnnouncementVO businessAnnouncementVO, MultipartHttpServletRequest mpRequest) throws Exception{
 		logger.info("businessAnnouncementInputWrite");
 
-		System.out.println("123123123123123"+businessAnnouncementVO.getAnc_title());
 		service.write(businessAnnouncementVO, mpRequest);
 
 		return "redirect:/bam/businessAnnouncementList";

@@ -114,7 +114,6 @@
 				formObj.attr("action", "/bpm/businessPlanApply");
 				form.attr("method","get");
 				form.submit();
-				alert("데이터전닳")
 			})
 			
 		})

@@ -5,7 +5,10 @@
 <mapper namespace="businessPlanMapper">
    
       <!-- 게시판 글 작성 -->
-   <insert id="insert" >
+   <insert id="insert" parameterType="emp.bpm.vo.BusinessPlanVO" useGeneratedKeys="true" keyProperty="bpm_bplan_idx">
+	    <selectKey keyProperty="bpm_bplan_idx" resultType="int" order="BEFORE">
+	    	SELECT SEQ_BPM_BPLAN_IDX.NEXTVAL FROM DUAL
+	    </selectKey>
 	   INSERT INTO EMP_BPM_BPLAN( BPM_BPLAN_IDX 
 	   					      , BOARD_IDX 
 	   					      , RESEARCH_OBJ 
@@ -16,7 +19,7 @@
 	   					      , BAM_ANC_IDX
 	   					   
 	   					       )
-	                 VALUES(   SEQ_BPM_BPLAN_IDX.NEXTVAL
+	                 VALUES(   #{bpm_bplan_idx}
 	                 		  , 1 
 	                 		  , #{research_obj}
 	                 		  , #{research_remark}
@@ -113,7 +116,7 @@
 			FILE_SNAME,
 			FILE_SIZE
 		)VALUES(
-			SEQ_EMP_FILE_NO.NEXTVAL,
+			SEQ_FILE_IDX.NEXTVAL,
 			2,
 			#{bpm_bplan_idx},
 			#{file_fname},
@@ -141,7 +144,7 @@
 		FILE_SNAME,
 		FILE_FNAME
 		FROM EMP_FILE
-		WHERE FILE_IDX = #{file_idx}
+		WHERE FILE_IDX = #{FILE_IDX}
 	</select>
 
 <!-- 	<update id="updateFile" parameterType="hashMap">
