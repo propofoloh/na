@@ -100,30 +100,45 @@
 </style>
   <script type="text/javascript">
  	 $(document).ready(function(){
-  		
+ 		
  		
  		 $('.score').on('keyup',function(){
- 			
- 			var inputData = $(this).val();
-            var Sum = 0;
-           
+ 			 var Sum = 0;
             $('.score').each(function(idx,value){ 
                 if(!isNaN(this.value)&&this.value.length!=0){
-                	if(Sum <= 100 ){
 	                	Sum+=Number($(value).val());
-	                    $('#scoreSum').text(Sum);
-                	}else{
-                		$(this).val()
-                		Sum = Sum - Number($(value).val());
-                		alert("배점이 100점을 넘을수 없습니다.")
-                		return false;
-                		}	
-           
-                }	
-           
+	                	if(Sum <= 100)
+	                    	$('#scoreSum').text(Sum);
+	                	else if(Sum > 100){
+            				$('#scoreSum').text(Sum-Number($(value).val()));
+            				this.value=null;
+            				this.focus();
+            				return ;
+	                	}
+            			
+            		}	
             });
- 			
+            if(Sum > 100) alert("배점이 100점을 넘을수 없습니다.")
          });
+ 		 
+ 		$('.maxScore').on('keyup',function(){
+			 var Sum = 0;
+           $('.maxScore').each(function(idx,value){ 
+               if(!isNaN(this.value)&&this.value.length!=0){
+            	   
+	                	Sum+=Number($(value).val());
+	                	if(Sum <= 100)
+	                    	$('#MaxScoreSum').text(Sum);
+	                	else if(Sum > 100){
+	           				$('#MaxScoreSum').text(Sum-Number($(value).val()));
+	           				this.value=null;
+	           				
+	                	}
+           			
+           		}	
+           });
+           if(Sum > 100) alert("총점이 100점을 넘을수 없습니다.")
+        });
  		
  		
   	})
@@ -174,56 +189,56 @@
 	        <th rowspan="6" scope="col">신청기업</th>
 	          <th rowspan="2" scope="col"><textarea></textarea></th>
 	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>	
+	          <th scope="col"><input class="maxScore" type="number"></th>	
 	          <th scope="col"><input class="score" type="number"></th>
 	        </tr>
 	        <tr>
 	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
+	          <th scope="col"><input class="maxScore"type="number"></th>
 	          <th  scope="col"><input class="score" type="number"></th>
 	        </tr>
 	        <tr>
 	          
 	          <th rowspan="2" scope="col"><textarea></textarea></th>
 	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
+	          <th scope="col"><input class="maxScore" type="number"></th>
 	          <th scope="col"><input class="score" type="number"></th>
 	        </tr>
 	         <tr>
 	         
 	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
+	          <th scope="col"><input class="maxScore" type="number"></th>
 	          <th id="score4" scope="col"><input class="score" type="number"></th>
 	        </tr>
 	         <tr>
 	          
 	          <th rowspan="2" scope="col"><textarea></textarea></th>
 	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
+	          <th scope="col"><input class="maxScore" type="number"></th>
 	          <th id="score5" scope="col"><input class="score" type="number"></th>
 	        </tr>
 	         <tr>
 
 	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
+	          <th scope="col"><input class="maxScore" type="number"></th>
 	          <th id="score6" scope="col"><input class="score"type="number"></th>
 	        </tr>
 	         <tr>
 	          <th rowspan="2" scope="col">수행기관</th>
 	          <th rowspan="2" scope="col"><textarea></textarea></th>
 	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
+	          <th scope="col"><input class="maxScore" type="number"></th>
 	          <th id="score7" scope="col"><input class="score" type="number"></th>
 	        </tr>
 	         <tr>
 	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input type="number"></th>
+	          <th scope="col"><input class="maxScore" type="number"></th>
 	          <th id="score8" scope="col"><input class="score" type="number"></th>
 	        </tr>
 	        <tr class="evaluationTableSum">
 	 			<!-- 합계 -->
 	        	<th  colspan="3">합계</th>
-		        <th>100</th>
+		        <th id="MaxScoreSum">0</th>
 		        <th id="scoreSum">0</th>
 		    </tr>
 	  </tbody>  
