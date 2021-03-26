@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.util.Calendar" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,7 @@
   	border: 0px;
   	resize: none;
   	outline: none;
-  	vertical-align : top;
+	display : flex;
   	margin-right: 5px;
   }
   p{
@@ -146,7 +147,7 @@
   </script>
   </head>
   <body>
-  	
+  	<% Calendar cal = Calendar.getInstance(); %>
   <form action="#">
     <table>
     	<p>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</p>
@@ -187,58 +188,52 @@
 	  <tbody>
 	        <tr>
 	        <th rowspan="6" scope="col">신청기업</th>
-	          <th rowspan="2" scope="col"><textarea></textarea></th>
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input class="maxScore" type="number"></th>	
-	          <th scope="col"><input class="score" type="number"></th>
+	          <th rowspan="2" scope="col"><textarea>추진계획타당성</textarea></th>
+	          <th scope="col"><textarea>사전준비도 및 사업목표의 명확성</textarea></th>
+	          <th rowspan="2" scope="col"><input class="maxScore" type="number" value="20"></th>	
+	          <th rowspan="2" scope="col"><input class="score" type="number"></th>
 	        </tr>
 	        <tr>
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input class="maxScore"type="number"></th>
+	          <th scope="col"><textarea>사업 추진방안의 타당성</textarea></th>
+	        </tr>
+	        <tr>
+	          <th rowspan="2" scope="col"><textarea>지원 필요성 및 추진역량</textarea></th>
+	          <th scope="col"><textarea>지원의 필요성 및 신청지원 분야의 적합성</textarea></th>
+	          <th rowspan="2" scope="col"><input class="maxScore" type="number" value="20"></th>
+	          <th rowspan="2" scope="col"><input class="score" type="number"></th>
+	        </tr>
+	         <tr>
+	          <th scope="col"><textarea>사업추진역량 및 의지</textarea></th>
+	        </tr>
+	         <tr>
+	          
+	          <th rowspan="2" scope="col"><textarea>지원 효과성 및 사업비 적정성</textarea></th>
+	          <th scope="col"><textarea>사업지원의 기대효과</textarea></th>
+	          <th  scope="col"><input class="maxScore" type="number" value="15"></th>
 	          <th  scope="col"><input class="score" type="number"></th>
-	        </tr>
-	        <tr>
-	          
-	          <th rowspan="2" scope="col"><textarea></textarea></th>
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input class="maxScore" type="number"></th>
-	          <th scope="col"><input class="score" type="number"></th>
-	        </tr>
-	         <tr>
-	         
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input class="maxScore" type="number"></th>
-	          <th id="score4" scope="col"><input class="score" type="number"></th>
-	        </tr>
-	         <tr>
-	          
-	          <th rowspan="2" scope="col"><textarea></textarea></th>
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input class="maxScore" type="number"></th>
-	          <th id="score5" scope="col"><input class="score" type="number"></th>
 	        </tr>
 	         <tr>
 
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input class="maxScore" type="number"></th>
-	          <th id="score6" scope="col"><input class="score"type="number"></th>
+	          <th scope="col"><textarea>사업비 구성의 적정성 및 합리성</textarea></th>
+	          <th scope="col"><input class="maxScore" type="number" value="15"></th>
+	          <th scope="col"><input class="score"type="number"></th>
 	        </tr>
 	         <tr>
 	          <th rowspan="2" scope="col">수행기관</th>
-	          <th rowspan="2" scope="col"><textarea></textarea></th>
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input class="maxScore" type="number"></th>
+	          <th rowspan="2" scope="col"><textarea>관련 분야 전문성 및 역량</textarea></th>
+	          <th scope="col"><textarea>지원분야의 수행기관 매칭 적합성 및 관련 실적</textarea></th>
+	          <th scope="col"><input class="maxScore" type="number" value="15"></th>
 	          <th id="score7" scope="col"><input class="score" type="number"></th>
 	        </tr>
 	         <tr>
-	          <th scope="col"><textarea></textarea></th>
-	          <th scope="col"><input class="maxScore" type="number"></th>
+	          <th scope="col"><textarea>참여인력의 업무수행 능력 및 역량</textarea></th>
+	          <th scope="col"><input class="maxScore" type="number" value="15"></th>
 	          <th id="score8" scope="col"><input class="score" type="number"></th>
 	        </tr>
 	        <tr class="evaluationTableSum">
 	 			<!-- 합계 -->
 	        	<th  colspan="3">합계</th>
-		        <th id="MaxScoreSum">0</th>
+		        <th id="MaxScoreSum">100</th>
 		        <th id="scoreSum">0</th>
 		    </tr>
 	  </tbody>  
@@ -252,7 +247,10 @@
 		    </tr>
 		    <tr style="height: 50px;">
 				<th style="width: 20%;">일자</div></th>
-				<th>2021.03.02</th>
+				
+				<th><%= cal.get(Calendar.YEAR) %>.
+					<%= cal.get(Calendar.MONTH)+1 %>.
+					<%= cal.get(Calendar.DATE) %>.</th>
 				<th>평가위원 성명</th>
 				<th style="text-align: right"><input type="text" value ="  　     　(서명)"></th>
 		    </tr>
