@@ -1,5 +1,8 @@
 package emp.bem.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -36,10 +39,14 @@ public class BusinessEvaluationController {
 
 	//사업계획서 평가지표 목록 조회
 	@RequestMapping(value = "/businessEvaluationList", method = RequestMethod.GET)
-	public String evaluationList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+	public String evaluationList(Model model, @RequestParam("bpm_bplan_idx") int bpm_bplan_idx, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		logger.info("businessEvaluationList");
 
-		model.addAttribute("businessEvaluationList", service.businessEvaluationList(scri));
+		Map<String, Integer> paramMap = new HashMap<String, Integer>();
+		paramMap.put("rowStart", scri.getRowStart());
+		paramMap.put("rowEnd", scri.getRowEnd());
+		paramMap.put("bpm_bplan_idx",bpm_bplan_idx);
+		model.addAttribute("businessEvaluationList", service.businessEvaluationList(paramMap));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -66,9 +73,9 @@ public class BusinessEvaluationController {
 	public String businessEvaluation(BusinessEvaluationVO businessEvaluationVO ,RedirectAttributes redirect) throws Exception {
 		logger.info("businessEvaluation");
 		
-		System.out.println(businessEvaluationVO.getEval_totalscore().toString());
+		int bpm_bplan_idx = businessEvaluationVO.getBpm_bplan_idx();
 		service.businessEvaluation(businessEvaluationVO);
-		
+		redirect.addAttribute("bpm_bplan_idx", bpm_bplan_idx);
 		return "redirect:/bem/businessEvaluationList";
 	}
 	

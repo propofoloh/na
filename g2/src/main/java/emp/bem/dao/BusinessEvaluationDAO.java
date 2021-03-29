@@ -3,8 +3,6 @@ package emp.bem.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import emp.bem.util.SearchCriteria;
 import emp.bem.vo.BusinessEvaluationVO;
 
@@ -15,7 +13,7 @@ public interface BusinessEvaluationDAO {
 	
 
 	// 사업공고 리스트조회
-	public List<BusinessEvaluationVO> businessEvaluationList(SearchCriteria scri) throws Exception;
+	public List<BusinessEvaluationVO> businessEvaluationList(Map<String,Integer> paramMap) throws Exception;
 	
 	// 사업공고등록
 	public void businessEvaluation(BusinessEvaluationVO businessEvaluationVO ) throws Exception;

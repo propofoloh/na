@@ -7,7 +7,6 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import emp.bem.util.SearchCriteria;
 import emp.bem.vo.BusinessEvaluationVO;
@@ -24,9 +23,9 @@ public class BusinessEvaluationDAOImpl implements BusinessEvaluationDAO {
 	
 	// 사업공고리스트 조회
 	@Override
-	public List<BusinessEvaluationVO> businessEvaluationList (SearchCriteria scri) throws Exception {
+	public List<BusinessEvaluationVO> businessEvaluationList (Map<String,Integer> paramMap) throws Exception {
 	
-		return sqlSession.selectList("businessEvaluationMapper.businessEvaluationList", scri);
+		return sqlSession.selectList("businessEvaluationMapper.businessEvaluationList", paramMap);
 
 	}
 	

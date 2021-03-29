@@ -12,7 +12,7 @@ import emp.bem.vo.BusinessEvaluationVO;
 public interface BusinessEvaluationService {
 	
 		// 사업공고 리스트조회
-		public List<BusinessEvaluationVO> businessEvaluationList(SearchCriteria scri) throws Exception;
+		public List<BusinessEvaluationVO> businessEvaluationList(Map<String,Integer> paramMap) throws Exception;
 		
 		// 사업공고등록
 		public void businessEvaluation(BusinessEvaluationVO businessEvaluationVO) throws Exception;

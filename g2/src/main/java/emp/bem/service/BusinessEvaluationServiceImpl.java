@@ -42,13 +42,11 @@ public class BusinessEvaluationServiceImpl implements BusinessEvaluationService 
 		dao.businessEvaluation(businessEvaluationVO);
 	}
 	
-	// 寃뚯떆臾� 紐⑸줉 議고쉶
 	@Override
-	public List<BusinessEvaluationVO> businessEvaluationList(SearchCriteria scri) throws Exception {
-
-		return dao.businessEvaluationList(scri);
+	public List<BusinessEvaluationVO> businessEvaluationList(Map<String, Integer> paramMap) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.businessEvaluationList(paramMap);
 	}
-	
 	
 	// 媛쒖떆臾� 珥� 媛��닔
 	@Override
