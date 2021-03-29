@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="businessEvaluationMapper">
+   
+      <!-- 게시판 글 작성 -->
+   <insert id="insert" parameterType="emp.bem.vo.BusinessEvaluationVO">
+	   INSERT INTO EMP_BEM_BEVAL( 
+	   							BEM_BEVAL_IDX 
+	   					      , BOARD_IDX 
+	   					      , EVAL_OPINION
+	   					      , EVAL_SCORE1
+	   					      , EVAL_SCORE2
+	   					      , EVAL_SCORE3
+	   					      , EVAL_SCORE4
+	   					      , EVAL_SCORE5
+	   					      , EVAL_SCORE6
+	   					      , EVAL_TOTALSCORE	
+	   					      , EVAL_WRITER
+	   					      , BPM_BPLAN_IDX
+	   					   
+	   					       )
+	                 VALUES(   SEQ_BEM_BEVAL_IDX.NEXTVAL
+	                 		  , 3 
+	                 		  , #{eval_opinion}
+	                 		  , #{eval_score1}
+	                 		  , #{eval_score2}
+	                 		  , #{eval_score3}
+	                 		  , #{eval_score4}
+	                 		  , #{eval_score5}
+	                 		  , #{eval_score6}
+	                 		  , #{eval_totalscore}
+	                 		  , #{eval_writer}
+	                 		  , #{bpm_bplan_idx}
+	                 		    )
+   
+   </insert>
+   
+   
+<select id="businessPlanApplyList" resultType="emp.bem.vo.BusinessEvaluationVO" parameterType="hashMap">
+		SELECT  BPM_BPLAN_IDX 
+	   					      , BOARD_IDX 
+	   					      , RESEARCH_OBJ
+	   					      , RESEARCH_REMARK
+	   					      , BENEFIT
+							  , RESEARCH_COST	
+	   					      , WRITER
+	   					      , REG_DATE
+	   					      , MOD_DATE
+		 FROM ( 
+		        SELECT BPM_BPLAN_IDX 
+	   					      , BOARD_IDX 
+	   					      , RESEARCH_OBJ
+	   					      , RESEARCH_REMARK
+	   					      , BENEFIT
+							  , RESEARCH_COST	
+	   					      , WRITER
+	   					      , REG_DATE
+	   					      , MOD_DATE
+		               ,ROW_NUMBER() OVER(ORDER BY BPM_BPLAN_IDX DESC) AS RNUM
+		         FROM EMP_BPM_BPLAN
+		         WHERE 1=1 
+		         AND BAM_ANC_IDX = #{bam_anc_idx}
+		         AND DEL_YN = 'N'
+		         	<include refid="search"></include>
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY BPM_BPLAN_IDX DESC
+	</select>
+		<select id="businessPlanApplyDetail" parameterType="int" resultType="emp.bem.vo.BusinessEvaluationVO">
+		SELECT	BPM_BPLAN_IDX 
+	   					      , BOARD_IDX 
+	   					      , RESEARCH_OBJ
+	   					      , RESEARCH_REMARK
+	   					      , BENEFIT
+							  , RESEARCH_COST	
+	   					      , WRITER
+	   					      , REG_DATE
+	   					      , MOD_DATE
+		 FROM EMP_BPM_BPLAN
+		 WHERE BPM_BPLAN_IDX = #{bem_bplan_idx}
+	</select>
+	
+	<!--     <update id="update" parameterType="emp.bam.vo.BusinessAnnouncementVO">
+		UPDATE MP_BOARD
+		   SET TITLE    =   #{title},
+		   	   CONTENT  =   #{content}
+		 WHERE BNO = #{bno} 
+	</update> -->
+	
+	<!-- <delete id="delete" parameterType="int">
+		DELETE 
+		  FROM MP_BOARD
+		 WHERE BNO = #{bno}
+	</delete> -->
+	
+	<select id="listCount" parameterType="emp.bem.util.SearchCriteria" resultType="int">
+		SELECT COUNT(BPM_BPLAN_IDX)
+		   FROM EMP_BPM_BPLAN
+		   WHERE 1=1
+		   AND DEL_YN = 'N'
+		<include refid="search"></include>	
+		   AND BPM_BPLAN_IDX > 0
+	</select>
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND RESEARCH_OBJ LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND RESEARCH_REMARK LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (RESEARCH_OBJ LIKE '%' || #{keyword} || '%') or (RESEARCH_REMARK LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+	
+
+	   <insert id="insertFile" parameterType="hashMap">
+		INSERT INTO EMP_FILE(
+			FILE_IDX,
+			BOARD_IDX,
+			BOARD_LIST_IDX,
+			FILE_FNAME,
+			FILE_SNAME,
+			FILE_SIZE
+		)VALUES(
+			SEQ_FILE_IDX.NEXTVAL,
+			2,
+			#{bem_bplan_idx},
+			#{file_fname},
+			#{file_sname},
+			#{file_size}
+		)
+    </insert> 
+
+
+	 <select id="selectFileList" parameterType="int" resultType="hashMap">
+	SELECT  FILE_IDX,
+			FILE_FNAME,
+			ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+		
+		FROM EMP_FILE
+		WHERE BOARD_LIST_IDX = #{bem_bplan_idx}
+		AND DEL_YN = 'N'
+		ORDER BY FILE_IDX ASC
+</select>
+
+
+	<select id="selectFileInfo" parameterType="hashMap"
+		resultType="hashMap">
+		SELECT
+		FILE_SNAME,
+		FILE_FNAME
+		FROM EMP_FILE
+		WHERE FILE_IDX = #{FILE_IDX}
+	</select>
+
+<!-- 	<update id="updateFile" parameterType="hashMap">
+		UPDATE EMP_FILE SET
+		DEL_GB = 'Y'
+		WHERE FILE_NO = #{file_idx}
+	</update>  -->
+   
+    
+</mapper>
+	

@@ -32,7 +32,7 @@ public class BusinessEvaluationDAOImpl implements BusinessEvaluationDAO {
 	
 	// 사업공고등록
 	@Override
-	public void businessEvaluation(BusinessEvaluationVO businessEvaluationVO,MultipartHttpServletRequest mpRequest) throws Exception {
+	public void businessEvaluation(BusinessEvaluationVO businessEvaluationVO) throws Exception {
 		sqlSession.insert("businessEvaluationMapper.insert", businessEvaluationVO);
 		
 	}

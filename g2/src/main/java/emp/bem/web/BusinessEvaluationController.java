@@ -53,19 +53,21 @@ public class BusinessEvaluationController {
 
 	//사업계획서 평가지표 등록
 	@RequestMapping(value = "/businessEvaluation", method = RequestMethod.GET)
-	public String businessEvaluationview(Model model, @RequestParam("bam_anc_idx") int bam_anc_idx ) throws Exception{
+	public String businessEvaluationview(Model model, @RequestParam("bam_anc_idx") int bam_anc_idx,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx ) throws Exception{
 		logger.info("businessEvaluation");
 		System.out.println("bamidx"+bam_anc_idx);
+		System.out.println("bpm_bplan_idx"+bpm_bplan_idx);
 		model.addAttribute("ancInfo",ancService.businessAnnouncementDetail(bam_anc_idx));
 		return "bem/businessEvaluation";
 	}
 	
 	//사업계획서 등록 서비스실행
 	@RequestMapping(value = "/businessEvaluation", method = RequestMethod.POST)
-	public String businessEvaluation(BusinessEvaluationVO businessEvaluationVO, MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception {
+	public String businessEvaluation(BusinessEvaluationVO businessEvaluationVO ,RedirectAttributes redirect) throws Exception {
 		logger.info("businessEvaluation");
 		
-		service.businessEvaluation(businessEvaluationVO, mpRequest);
+		System.out.println(businessEvaluationVO.getEval_totalscore().toString());
+		service.businessEvaluation(businessEvaluationVO);
 		
 		return "redirect:/bem/businessEvaluationList";
 	}

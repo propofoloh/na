@@ -8,21 +8,19 @@ import emp.bpm.util.Criteria;
 
 public class BusinessEvaluationVO extends Criteria{
 	
+	
 	private int bpm_bplan_idx;
 	private int board_idx;
 	private int bem_beval_idx;
-	private String eval_title;
-	private String eval_column1;
-	private String eval_column2;
-	private String eval_column3;
-	private String eval_column4;
-	private String eval_column5;
-	private String eval_column6;
-	private String eval_column7;
-	private String eval_column8;
+	private String eval_score1;
+	private String eval_score2;
+	private String eval_score3;
+	private String eval_score4;
+	private String eval_score5;
+	private String eval_score6;
+	private String eval_totalscore;
 	private String eval_opinion;
 	private String eval_writer;
-	private String writer;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date reg_date;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -46,59 +44,41 @@ public class BusinessEvaluationVO extends Criteria{
 	public void setBem_beval_idx(int bem_beval_idx) {
 		this.bem_beval_idx = bem_beval_idx;
 	}
-	public String getEval_title() {
-		return eval_title;
+	public String getEval_score1() {
+		return eval_score1;
 	}
-	public void setEval_title(String eval_title) {
-		this.eval_title = eval_title;
+	public void setEval_score1(String eval_score1) {
+		this.eval_score1 = eval_score1;
 	}
-	public String getEval_column1() {
-		return eval_column1;
+	public String getEval_score2() {
+		return eval_score2;
 	}
-	public void setEval_column1(String eval_column1) {
-		this.eval_column1 = eval_column1;
+	public void setEval_score2(String eval_score2) {
+		this.eval_score2 = eval_score2;
 	}
-	public String getEval_column2() {
-		return eval_column2;
+	public String getEval_score3() {
+		return eval_score3;
 	}
-	public void setEval_column2(String eval_column2) {
-		this.eval_column2 = eval_column2;
+	public void setEval_score3(String eval_score3) {
+		this.eval_score3 = eval_score3;
 	}
-	public String getEval_column3() {
-		return eval_column3;
+	public String getEval_score4() {
+		return eval_score4;
 	}
-	public void setEval_column3(String eval_column3) {
-		this.eval_column3 = eval_column3;
+	public void setEval_score4(String eval_score4) {
+		this.eval_score4 = eval_score4;
 	}
-	public String getEval_column4() {
-		return eval_column4;
+	public String getEval_score5() {
+		return eval_score5;
 	}
-	public void setEval_column4(String eval_column4) {
-		this.eval_column4 = eval_column4;
+	public void setEval_score5(String eval_score5) {
+		this.eval_score5 = eval_score5;
 	}
-	public String getEval_column5() {
-		return eval_column5;
+	public String getEval_score6() {
+		return eval_score6;
 	}
-	public void setEval_column5(String eval_column5) {
-		this.eval_column5 = eval_column5;
-	}
-	public String getEval_column6() {
-		return eval_column6;
-	}
-	public void setEval_column6(String eval_column6) {
-		this.eval_column6 = eval_column6;
-	}
-	public String getEval_column7() {
-		return eval_column7;
-	}
-	public void setEval_column7(String eval_column7) {
-		this.eval_column7 = eval_column7;
-	}
-	public String getEval_column8() {
-		return eval_column8;
-	}
-	public void setEval_column8(String eval_column8) {
-		this.eval_column8 = eval_column8;
+	public void setEval_score6(String eval_score6) {
+		this.eval_score6 = eval_score6;
 	}
 	public String getEval_opinion() {
 		return eval_opinion;
@@ -112,12 +92,6 @@ public class BusinessEvaluationVO extends Criteria{
 	public void setEval_writer(String eval_writer) {
 		this.eval_writer = eval_writer;
 	}
-	public String getWriter() {
-		return writer;
-	}
-	public void setWriter(String writer) {
-		this.writer = writer;
-	}
 	public Date getReg_date() {
 		return reg_date;
 	}
@@ -130,7 +104,11 @@ public class BusinessEvaluationVO extends Criteria{
 	public void setMod_date(Date mod_date) {
 		this.mod_date = mod_date;
 	}
-	
-	
+	public String getEval_totalscore() {
+		return eval_totalscore;
+	}
+	public void setEval_totalscore(String eval_totalscore) {
+		this.eval_totalscore = eval_totalscore;
+	}
 	
 }

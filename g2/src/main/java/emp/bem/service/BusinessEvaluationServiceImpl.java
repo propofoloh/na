@@ -37,9 +37,9 @@ public class BusinessEvaluationServiceImpl implements BusinessEvaluationService 
 	
 	// 寃뚯떆湲� �옉�꽦
 	@Override
-	public void businessEvaluation(BusinessEvaluationVO businessEvaluationVO,MultipartHttpServletRequest mpRequest) throws Exception {
+	public void businessEvaluation(BusinessEvaluationVO businessEvaluationVO) throws Exception {
 		// TODO Auto-generated method stub
-		dao.businessEvaluation(businessEvaluationVO,mpRequest);
+		dao.businessEvaluation(businessEvaluationVO);
 	}
 	
 	// 寃뚯떆臾� 紐⑸줉 議고쉶

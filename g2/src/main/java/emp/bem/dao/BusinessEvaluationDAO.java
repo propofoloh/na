@@ -18,7 +18,7 @@ public interface BusinessEvaluationDAO {
 	public List<BusinessEvaluationVO> businessEvaluationList(SearchCriteria scri) throws Exception;
 	
 	// 사업공고등록
-	public void businessEvaluation(BusinessEvaluationVO businessEvaluationVO,MultipartHttpServletRequest mpRequest) throws Exception;
+	public void businessEvaluation(BusinessEvaluationVO businessEvaluationVO ) throws Exception;
 	
 	// 사업공고 갯수
 	public int listCount(SearchCriteria scri) throws Exception;

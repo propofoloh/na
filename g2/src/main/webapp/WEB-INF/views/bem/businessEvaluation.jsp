@@ -89,7 +89,7 @@
 		
 	}
 	
-  .succesbtn{
+  .write_btn{
   	border : 0px;
 	background-color: #dd4132;
 	color : #ffffff;
@@ -98,10 +98,23 @@
   	font-size: 15px;
   }
   
+  .scoreSum{
+  	clear: both;
+  }
+  
+  
+  
 </style>
   <script type="text/javascript">
+  
  	 $(document).ready(function(){
  		
+ 		 var formObj = $("form[name='writeForm']");
+ 		$(".write_btn").on("click", function(){
+ 			formObj.attr("action", "/bem/businessEvaluation");
+ 			formObj.attr("method", "post");
+ 			formObj.submit();
+ 		});
  		
  		 $('.score').on('keyup',function(){
  			 var Sum = 0;
@@ -109,9 +122,9 @@
                 if(!isNaN(this.value)&&this.value.length!=0){
 	                	Sum+=Number($(value).val());
 	                	if(Sum <= 100)
-	                    	$('#scoreSum').text(Sum);
+	                    	$('#eval_totalscore').val(Sum);
 	                	else if(Sum > 100){
-            				$('#scoreSum').text(Sum-Number($(value).val()));
+            				$('#eval_totalscore').val(Sum-Number($(value).val()));
             				this.value=null;
             				this.focus();
             				return ;
@@ -119,7 +132,8 @@
             			
             		}	
             });
-            if(Sum > 100) alert("배점이 100점을 넘을수 없습니다.")
+            if(Sum > 100) 
+            	alert("배점이 100점을 넘을수 없습니다.")
          });
  		 
  		$('.maxScore').on('keyup',function(){
@@ -143,15 +157,18 @@
  		
  		
   	})
+  	
+  	
   
   </script>
   </head>
   <body>
   	<% Calendar cal = Calendar.getInstance(); %>
-  <form action="#">
+  <form name="writeForm" action="#">
     <table>
     	<p>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</p>
     	<input type="hidden" value="${param.bam_anc_idx}"/>
+    	<input type="text" name="bpm_bplan_idx"value="${param.bpm_bplan_idx}"/>
     	<colgroup>
     		<col style="width:15%">
  			<col style="width:75%">
@@ -188,53 +205,58 @@
 	  <tbody>
 	        <tr>
 	        <th rowspan="6" scope="col">신청기업</th>
-	          <th rowspan="2" scope="col"><textarea>추진계획타당성</textarea></th>
+	          <th rowspan="2" scope="col"><textarea >추진계획타당성</textarea></th>
 	          <th scope="col"><textarea>사전준비도 및 사업목표의 명확성</textarea></th>
 	          <th rowspan="2" scope="col"><input class="maxScore" type="number" value="20"></th>	
-	          <th rowspan="2" scope="col"><input class="score" type="number"></th>
+	          <th rowspan="2" scope="col"><input name="eval_score1" class="score" type="number"></th>
 	        </tr>
 	        <tr>
 	          <th scope="col"><textarea>사업 추진방안의 타당성</textarea></th>
 	        </tr>
+	        
+	        
 	        <tr>
 	          <th rowspan="2" scope="col"><textarea>지원 필요성 및 추진역량</textarea></th>
 	          <th scope="col"><textarea>지원의 필요성 및 신청지원 분야의 적합성</textarea></th>
 	          <th rowspan="2" scope="col"><input class="maxScore" type="number" value="20"></th>
-	          <th rowspan="2" scope="col"><input class="score" type="number"></th>
+	          <th rowspan="2" scope="col"><input name="eval_score2" class="score" type="number"></th>
 	        </tr>
 	         <tr>
 	          <th scope="col"><textarea>사업추진역량 및 의지</textarea></th>
 	        </tr>
+	        
+	        
 	         <tr>
-	          
 	          <th rowspan="2" scope="col"><textarea>지원 효과성 및 사업비 적정성</textarea></th>
 	          <th scope="col"><textarea>사업지원의 기대효과</textarea></th>
 	          <th  scope="col"><input class="maxScore" type="number" value="15"></th>
-	          <th  scope="col"><input class="score" type="number"></th>
+	          <th  scope="col"><input name="eval_score3" class="score" type="number"></th>
 	        </tr>
 	         <tr>
-
 	          <th scope="col"><textarea>사업비 구성의 적정성 및 합리성</textarea></th>
 	          <th scope="col"><input class="maxScore" type="number" value="15"></th>
-	          <th scope="col"><input class="score"type="number"></th>
+	          <th scope="col"><input name="eval_score4" class="score"type="number"></th>
 	        </tr>
+	        
+	        
 	         <tr>
 	          <th rowspan="2" scope="col">수행기관</th>
-	          <th rowspan="2" scope="col"><textarea>관련 분야 전문성 및 역량</textarea></th>
+	          <th rowspan="2" scope="col"><textarea name="EVAL_TITLE4">관련 분야 전문성 및 역량</textarea></th>
 	          <th scope="col"><textarea>지원분야의 수행기관 매칭 적합성 및 관련 실적</textarea></th>
 	          <th scope="col"><input class="maxScore" type="number" value="15"></th>
-	          <th id="score7" scope="col"><input class="score" type="number"></th>
+	          <th scope="col"><input name="eval_score5" class="score" type="number"></th>
 	        </tr>
 	         <tr>
 	          <th scope="col"><textarea>참여인력의 업무수행 능력 및 역량</textarea></th>
 	          <th scope="col"><input class="maxScore" type="number" value="15"></th>
-	          <th id="score8" scope="col"><input class="score" type="number"></th>
+	          <th scope="col"><input name="eval_score6" class="score" type="number"></th>
 	        </tr>
+	        
 	        <tr class="evaluationTableSum">
 	 			<!-- 합계 -->
 	        	<th  colspan="3">합계</th>
 		        <th id="MaxScoreSum">100</th>
-		        <th id="scoreSum">0</th>
+		        <th><input type="text" name="eval_totalscore" id="eval_totalscore" /></th>
 		    </tr>
 	  </tbody>  
 	 </table>
@@ -243,7 +265,7 @@
 	  	<tbody>
 	   		<tr style="height: 300px;">
 				<th style="width: 20%;">평가의견</th>
-				<th colspan="3"><textarea class="remark"></textarea></th>
+				<th colspan="3"><textarea name="eval_opinion" class="remark"></textarea></th>
 		    </tr>
 		    <tr style="height: 50px;">
 				<th style="width: 20%;">일자</div></th>
@@ -252,14 +274,14 @@
 					<%= cal.get(Calendar.MONTH)+1 %>.
 					<%= cal.get(Calendar.DATE) %>.</th>
 				<th>평가위원 성명</th>
-				<th style="text-align: right"><input type="text" value ="  　     　(서명)"></th>
+				<th style="text-align: right"><input type="text" name="eval_writer" value ="  　     　(서명)"></th>
 		    </tr>
 	 	 </tbody>
 	  </table>
 		 
 		 <div class="submitForm">
 			    <input class ="canclebtn" type="button" value="취소"> 
-			    <input class ="succesbtn" type="button" onclick="location.href='/evaluation/evaluationList'" value="평가완료">
+			    <input class ="write_btn" type="button" value="평가완료">
 		</div>
     </form>
     </table>
