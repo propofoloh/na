@@ -1,6 +1,7 @@
 package emp.bem.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -81,8 +82,11 @@ public class BusinessEvaluationController {
 	
 	//사업계획서 평가지표 상세 조회
 		@RequestMapping(value = "/businessEvaluationDetail", method = RequestMethod.GET)
-		public void evaluationRaitingView() throws Exception{
-			logger.info("businessEvaluationDetail");
+		public void evaluationRaitingView(BusinessEvaluationVO businessEvaluationVO, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+			
+			model.addAttribute("read", service.businessEvaluationDetail(businessEvaluationVO.getBem_beval_idx()));
+			model.addAttribute("scri", scri);
+			
 		}
 
 

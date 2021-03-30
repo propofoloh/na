@@ -49,6 +49,21 @@
 		 <!--  AND USER_PWD = #{userPwd} -->
 	</select>
 	
+	<!-- 회원 리스트 조회 -->
+	<select id="memberList" resultType="emp.cmm.vo.MemberVO" >
+		SELECT  				 
+	   					         USER_ID 
+	   					       , USER_PWD
+	   					       , USER_NAME
+	   					       , USER_BIRTHDAY
+	   					       , HP_NUM
+	   					       , USER_EMAIL
+	   					       , USER_AUTH
+	   					       , REG_DATE
+	   					       , MOD_DATE
+		  FROM EMP_MEMBER
+		  WHERE USER_AUTH = 1
+	</select>
 	
 	<!-- 회원정보 수정 -->
 	<update id="memberUpdate">

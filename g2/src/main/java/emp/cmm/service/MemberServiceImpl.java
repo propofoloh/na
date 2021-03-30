@@ -1,5 +1,8 @@
 package emp.cmm.service;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -27,30 +30,33 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void memberUpdate(MemberVO vo) throws Exception{
 		
-		//받은 vo를 DAO 로 보내줍니다.
+		
 		dao.memberUpdate(vo);
 	}
 	
-	// 업데이트에서 처리한 내용과 같습니다.
-@Override
-public void memberDelete(MemberVO vo) throws Exception {
-	dao.memberDelete(vo);
+	@Override
+	public void memberDelete(MemberVO vo) throws Exception {
+		dao.memberDelete(vo);
+		}
+	
+	//패스워드 체크
+	@Override
+	public int passChk(MemberVO vo) throws Exception {
+		int result = dao.passChk(vo);
+		return result;
 	}
-
-//패스워드 체크
-
-@Override
-public int passChk(MemberVO vo) throws Exception {
-	int result = dao.passChk(vo);
-	return result;
-}
-
-//아이디 중복 체크
-@Override
-public int idChk(MemberVO vo) throws Exception {
-	int result = dao.idChk(vo);
-	return result;
-}
-
+	
+	//아이디 중복 체크
+	@Override
+	public int idChk(MemberVO vo) throws Exception {
+		int result = dao.idChk(vo);
+		return result;
+	}
+	//멤버리스트 조회
+	@Override
+	public List<Map<String, Object>> memberList() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.memberList();
+	}
 
 }

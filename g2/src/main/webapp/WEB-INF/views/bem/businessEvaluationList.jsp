@@ -62,13 +62,7 @@
 							<option value="n"
 								<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
 							<option value="t"
-								<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>사업명</option>
-							<option value="c"
-								<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
-							<option value="w"
-								<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-							<option value="tc"
-								<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>사업명+내용</option>
+								<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>평가 작성자</option>
 						</select>
 					</div>
 					<div id="searchdiv" class="col-xs-7 col-sm-7">
@@ -79,37 +73,35 @@
 					<script>
 						 $(function(){
 							 $('#searchBtn').click(function() {
-								 self.location = "list2" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+								 self.location = "businessEvaluationList" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 							 });
 						 });   
 					</script>
 				</div>
-
+				
 				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th style="text-align: center">평가 작성자</th>
 							<th style="text-align: center">총점</th>
-							<th style="text-align: center">평균</th>
-							<th style="text-align: center">평가현황</th>
 							<th style="text-align: center">작성일자</th>
+							<th style="text-align: center">평가상태</th>
 						</tr>
 					</thead>
 					 <c:forEach items="${businessEvaluationList}" var = "businessEvaluationList">
 							<tr>
 								<td style="text-align: center">
-									<a href="/bem/businessEvaluationDetail.jsp?bem_beval_idx=${businessEvaluationList.bem_beval_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${businessEvaluationList.eval_writer}" /></a>
+									<a href="/bem/businessEvaluationDetail?bem_beval_idx=${businessEvaluationList.bem_beval_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${businessEvaluationList.eval_writer}" /></a>
 								</td>
-								<td style="text-align: center">52</td>
-								<td style="text-align: center">47</td>
-								<td style="text-align: center">점수등록 완료</td>
+								<td style="text-align: center">${businessEvaluationList.eval_totalscore}</td>
 								<td style="text-align: center"><fmt:formatDate value="${businessEvaluationList.reg_date}" pattern="yyyy-MM-dd"/></td>
+								<td style="text-align: center">점수등록 완료</td>
 							</tr>
 						</c:forEach> 
 
 				</table>
-
-				<div class="col-md-offset-3"
+	
+				<%-- <div class="col-md-offset-3"
 					style="text-align: center; margin-left: 0px;">
 					<ul class="pagination">
 						<c:if test="${pageMaker.prev}">
@@ -130,7 +122,7 @@
 								href="list2${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 						</c:if>
 					</ul>
-				</div>
+				</div> --%>
 			</form>
 		</section>
 		</div>

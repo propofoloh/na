@@ -20,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 import emp.bam.service.BusinessAnnouncementService;
 import emp.bam.vo.BusinessAnnouncementVO;
+import emp.cmm.service.MemberService;
 import emp.bam.util.PageMaker;
 import emp.bam.util.SearchCriteria;
 
@@ -33,6 +36,8 @@ public class BusinessAnnouncementController {
 
 	@Inject
 	BusinessAnnouncementService service;
+	@Inject
+	MemberService memberService;
 
 	//사업 공고 조회
 	@RequestMapping(value = "/businessAnnouncementList", method = RequestMethod.GET)
@@ -69,8 +74,11 @@ public class BusinessAnnouncementController {
 
 	//사업 공고 등록
 	@RequestMapping(value = "/businessAnnouncementInput", method = RequestMethod.GET)
-	public void businessAnnouncementInput() throws Exception{
+	public void businessAnnouncementInput(Model model) throws Exception{
 		logger.info("businessAnnouncementInput");
+		
+		model.addAttribute("memberList", memberService.memberList()); 
+	
 	}
 	
 	@RequestMapping(value = "/businessAnnouncementInputWrite", method = RequestMethod.POST)

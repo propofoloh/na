@@ -178,11 +178,11 @@
 				</div>
 				<hr/>
 				<div>
-					<button type="button" class="manageBtn">수정</button>
+					<!-- <button type="button" class="manageBtn">수정</button>
 					<button type="button" class="manageBtn">삭제</button>
-					<button type="button" class="manageBtn">목록</button>	
+					<button type="button" class="manageBtn">목록</button>	 -->
 					<button type="button" id="businessPlanApplyBtn" class="functionBtn" onclick="location.href='../bpm/businessPlanApply'">사업계획서 제출</button>
-					<button type="button" class="functionBtn" onclick="location.href='../bem/businessEvaluationList'">사업자 별 평가</button>
+					<button type="button" class="functionBtn" onclick="location.href='../bpm/businessPlanApplyList?bam_anc_idx=${read.bam_anc_idx}'">사업계획서 목록</button>
 					<button type="button" class="functionBtn" onclick="location.href='../evaluation/opinion'">종합의견</button>
 				</div>
 				

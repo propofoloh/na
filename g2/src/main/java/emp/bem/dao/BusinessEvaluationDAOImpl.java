@@ -44,9 +44,9 @@ public class BusinessEvaluationDAOImpl implements BusinessEvaluationDAO {
 
 	// 사업공고 상세보기
 	@Override
-	public BusinessEvaluationVO businessEvaluationDetail(int bpm_bplan_idx) throws Exception {
+	public BusinessEvaluationVO businessEvaluationDetail(int bem_beval_idx) throws Exception {
 			
-		return sqlSession.selectOne("businessEvaluationMapper.businessPlanApplyDetail", bpm_bplan_idx);
+		return sqlSession.selectOne("businessEvaluationMapper.businessEvaluationDetail", bem_beval_idx);
 	}
 	
 	// 사업공고 수정

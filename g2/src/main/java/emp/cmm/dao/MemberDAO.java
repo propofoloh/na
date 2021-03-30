@@ -1,5 +1,8 @@
 package emp.cmm.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import emp.cmm.vo.MemberVO;
 
 public interface MemberDAO {
@@ -21,6 +24,9 @@ public interface MemberDAO {
 	
 	// 아이디 중복체크
 	public int idChk(MemberVO vo) throws Exception;
+	
+	//멤버리스트 조회 
+	public List<Map<String,Object>> memberList() throws Exception;
 
 	
 	

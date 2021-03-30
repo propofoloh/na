@@ -270,11 +270,11 @@
 		    <tr style="height: 50px;">
 				<th style="width: 20%;">일자</div></th>
 				
-				<th><%= cal.get(Calendar.YEAR) %>.
+				<th name="reg_date"><%= cal.get(Calendar.YEAR) %>.
 					<%= cal.get(Calendar.MONTH)+1 %>.
 					<%= cal.get(Calendar.DATE) %>.</th>
 				<th>평가위원 성명</th>
-				<th style="text-align: right"><input type="text" name="eval_writer" value ="  　     　(서명)"></th>
+				<th style="text-align: right;"><input type="text" name="eval_writer" value ="">(서명)</th>
 		    </tr>
 	 	 </tbody>
 	  </table>

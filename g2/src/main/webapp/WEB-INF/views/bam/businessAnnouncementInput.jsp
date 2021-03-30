@@ -28,6 +28,30 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <style type="text/css">
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 30%; /* Could be more or less, depending on screen size */
+}
+
 .writebtn {
 	float: right;
 	border: 0px;
@@ -64,6 +88,7 @@
 </head>
 <script type="text/javascript">
 		$(document).ready(function(){
+			
 			var formObj = $("form[name='writeForm']");
 			$(".write_btn").on("click", function(){
 				if(fn_valiChk()){
@@ -74,6 +99,10 @@
 				formObj.submit();
 			});
 			fn_addFile();
+			
+			
+		
+   
 		})
 		function fn_valiChk(){
 			var regForm = $("form[name='writeForm'] .chk").length;
@@ -94,7 +123,15 @@
 				$(this).parent().remove();
 				
 			});
+			
+			
 		}
+		function open_pop(flag){
+			$('#selectEvaluator').show();
+		};
+		function close_pop(flag) {
+            $('#selectEvaluator').hide();
+       };
 	</script>
 
 <script>
@@ -130,7 +167,7 @@ $(function() {
 
 					 	<div class="from-group" style="margin-top: 30px;"><label for="date"><h3>공고일자</h3></label> 
 							<input type="text" name="anc_begin_dt"id="anc_begin_dt" style="margin-left: 30px; width: 20%; height: 4%;"> ~ <input type="text" name ="anc_end_dt" id="anc_end_dt" style="width: 20%; height: 4%;">
-							<!--   <button class="evaluator-check" type="button" id="submit">평가원선택</button> -->
+							<button class="evaluator-check" type="button" onclick="open_pop()">평가원선택</button>
 						</div>
 
 						<div class="from-group" style="margin-top: 30px;">
@@ -152,6 +189,39 @@ $(function() {
 				</table>
 			</form>
 		</section>
+		 <!-- The Modal -->
+    <div id="selectEvaluator" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+                <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">평가원 선택</span></b></span></p>
+               	<table class="table table-hover">
+						<thead>
+							<tr>
+								<th style="width: 60px; text-align: center;">선택</th>
+								<th style="width: 60px; text-align: center;">평가원 서명</th>
+								<th style="width: 60px; text-align: center;">아이디</th>
+							</tr>
+						</thead>
+						
+						<c:forEach items="${memberList}" var = "memberList">
+							<tr>
+								<td style="text-align: center;"><input type="checkbox" name="checkedUserId"/></td>
+								<td style="text-align: center;"><c:out value="${memberList.user_name}" /></td>
+								<td style="text-align: center;"><c:out value="${memberList.user_id}" /> </td>
+							</tr>
+						</c:forEach>
+					</table>
+                <p><br /></p>
+            <div style="color:#ffffff; pointer;background-color:#dd4132;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
+                <span class="pop_bt" style="font-size: 13pt;" >
+                     닫기
+                </span>
+            </div>
+      </div>
+ 
+    </div>
+        <!--End Modal-->
 		<hr />
 	</div>
 </body>

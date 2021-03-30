@@ -18,6 +18,7 @@
 	   					      , EVAL_SCORE6
 	   					      , EVAL_TOTALSCORE	
 	   					      , EVAL_WRITER
+	   					      , REG_DATE
 	   					      , BPM_BPLAN_IDX
 	   					   
 	   					       )
@@ -32,6 +33,7 @@
 	                 		  , #{eval_score6}
 	                 		  , #{eval_totalscore}
 	                 		  , #{eval_writer}
+	                 		  , SYSDATE
 	                 		  , #{bpm_bplan_idx}
 	                 		    )
    
@@ -39,8 +41,7 @@
    
    
 <select id="businessEvaluationList" resultType="emp.bem.vo.BusinessEvaluationVO" parameterType="hashMap">
-		SELECT  BPM_BPLAN_IDX 
-	   					      BEM_BEVAL_IDX 
+		SELECT 		      BEM_BEVAL_IDX 
 	   					      , BOARD_IDX 
 	   					      , EVAL_OPINION
 	   					      , EVAL_SCORE1
@@ -79,18 +80,21 @@
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY BEM_BEVAL_IDX DESC
 	</select>
-		<select id="businessPlanApplyDetail" parameterType="int" resultType="emp.bem.vo.BusinessEvaluationVO">
-		SELECT	BPM_BPLAN_IDX 
-	   					      , BOARD_IDX 
-	   					      , RESEARCH_OBJ
-	   					      , RESEARCH_REMARK
-	   					      , BENEFIT
-							  , RESEARCH_COST	
-	   					      , WRITER
-	   					      , REG_DATE
-	   					      , MOD_DATE
-		 FROM EMP_BPM_BPLAN
-		 WHERE BPM_BPLAN_IDX = #{bem_bplan_idx}
+		<select id="businessEvaluationDetail" parameterType="int" resultType="emp.bem.vo.BusinessEvaluationVO">
+		SELECT	BEM_BEVAL_IDX 
+	   					      , EVAL_OPINION
+	   					      , EVAL_SCORE1
+	   					      , EVAL_SCORE2
+	   					      , EVAL_SCORE3
+	   					      , EVAL_SCORE4
+	   					      , EVAL_SCORE5
+	   					      , EVAL_SCORE6
+	   					      , EVAL_TOTALSCORE
+	   					      , TO_CHAR(REG_DATE,'YYYY.MM.DD')
+		 FROM EMP_BEM_BEVAL
+		 WHERE 1=1
+		 AND BEM_BEVAL_IDX = #{bem_beval.idx}
+		 AND DEL_YN ='N'
 	</select>
 	
 	<!--     <update id="update" parameterType="emp.bam.vo.BusinessAnnouncementVO">
@@ -116,10 +120,7 @@
 	</select>
 	<sql id="search">
 		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">AND RESEARCH_OBJ LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND RESEARCH_REMARK LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">AND (RESEARCH_OBJ LIKE '%' || #{keyword} || '%') or (RESEARCH_REMARK LIKE '%' || #{keyword} || '%')</if>
+			<if test="searchType == 't'.toString()">AND EVAL_WRITER LIKE '%' || #{keyword} || '%'</if>
 		</if>
 	</sql>
 	

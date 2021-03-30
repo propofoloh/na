@@ -1,5 +1,8 @@
 package emp.cmm.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -54,6 +57,12 @@ public int passChk(MemberVO vo) throws Exception {
 public int idChk(MemberVO vo) throws Exception {
 	int result = sql.selectOne("memberMapper.idChk", vo);
 	return result;
+}
+//회원정보 조회
+@Override
+public List<Map<String, Object>> memberList() throws Exception {
+	// TODO Auto-generated method stub
+	return sql.selectList("memberMapper.memberList");
 }
 
 
