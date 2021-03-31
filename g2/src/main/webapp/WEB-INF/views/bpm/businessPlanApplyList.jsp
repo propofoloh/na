@@ -60,14 +60,10 @@
 						<select name="searchType" class="form-control">
 							<option value="n"
 								<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
-							<option value="t"
-								<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>사업명</option>
-							<option value="c"
-								<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+							
 							<option value="w"
 								<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-							<option value="tc"
-								<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>사업명+내용</option>
+					
 						</select>
 					</div>
 					<div id="searchdiv" class="col-xs-7 col-sm-7">
@@ -96,9 +92,9 @@
 							</tr>
 						</thead>
 						
-						<c:forEach items="${list}" var = "list">
+						<c:forEach items="${list}" var = "list" varStatus="status">
 							<tr>
-								<td style="text-align: center;"><c:out value="${list.bpm_bplan_idx}" /></td>
+								<td style="text-align: center;"><c:out value="${status.index+1}" /></td>
 								<td style="text-align: center;">
 									<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${param.bam_anc_idx}"><c:out value="${list.research_obj}"/></a>
 								</td>

@@ -176,7 +176,7 @@
 		<hr />
 			<div class="from-group">
 				<button type="button" class="evaluationbtn">평가하기</button>
-				<button type="button" class="opinionbtn" onclick="location.href='../bem/businessEvaluationOpinion'">종합의견</button>
+				<button type="button" class="opinionbtn" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}'">종합의견</button>
 				<button type="button" class="opinionbtn" onclick="location.href='../bem/businessEvaluationList?bpm_bplan_idx=${read.bpm_bplan_idx}'">평가리스트</button>
 			</div>
 	</div>

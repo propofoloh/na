@@ -77,15 +77,15 @@ public class BusinessPlanController {
 
 	//
 	@RequestMapping(value = "/businessPlanApplyDetail", method = RequestMethod.GET)
-	public String businessPlanApplyDetail(BusinessPlanVO businessPlanVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
+	public String businessPlanApplyDetail(BusinessPlanVO businessPlanVO, @ModelAttribute("scri") SearchCriteria scri, Model model,RedirectAttributes redirect) throws Exception {
 		logger.info("businessPlanApplyDetail");
 
 		model.addAttribute("read", service.businessPlanApplyDetail(businessPlanVO.getBpm_bplan_idx()));
 		model.addAttribute("scri", scri);
-		
-		  List<Map<String, Object>> fileList =
-		  service.selectFileList(businessPlanVO.getBpm_bplan_idx());
-		  model.addAttribute("file", fileList);
+			
+		redirect.addAttribute("bam_anc_idx",businessPlanVO.getBpm_bplan_idx());
+		List<Map<String, Object>> fileList = service.selectFileList(businessPlanVO.getBpm_bplan_idx());
+		 model.addAttribute("file", fileList);
 		 
 		return "bpm/businessPlanApplyDetail";
 	}

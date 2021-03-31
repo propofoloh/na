@@ -38,8 +38,16 @@
 		margin-right: -52px;
 		border-radius: 5px;
 	}
-
-	y
+	
+	.opinionBtn{
+  	border : 0px;
+	background-color: #dd4132;
+	color : #ffffff;
+	width : 100px;
+	height: 50px;
+	margin-right: 10px;
+	font-size: 15px;
+  }
 </style>
 
 <title>평가가위원 화면</title>
@@ -91,15 +99,16 @@
 					 <c:forEach items="${businessEvaluationList}" var = "businessEvaluationList">
 							<tr>
 								<td style="text-align: center">
-									<a href="/bem/businessEvaluationDetail?bem_beval_idx=${businessEvaluationList.bem_beval_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${businessEvaluationList.eval_writer}" /></a>
+									<a href="/bem/businessEvaluationDetail?bem_beval_idx=${businessEvaluationList.bem_beval_idx}"><c:out value="${businessEvaluationList.eval_writer}" /></a>
 								</td>
 								<td style="text-align: center">${businessEvaluationList.eval_totalscore}</td>
 								<td style="text-align: center"><fmt:formatDate value="${businessEvaluationList.reg_date}" pattern="yyyy-MM-dd"/></td>
 								<td style="text-align: center">점수등록 완료</td>
 							</tr>
 						</c:forEach> 
-
+	
 				</table>
+					<input class ="opinionBtn" type="button" value="종합의견" onclick="location.href='/bem/businessEvaluationOpinion?bpm_bplan_idx=${param.bpm_bplan_idx}'">
 	
 				<%-- <div class="col-md-offset-3"
 					style="text-align: center; margin-left: 0px;">

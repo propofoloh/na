@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +63,7 @@ tfoot tr {
 	background-color: #EAEAEA;
 }
 
-td input {
+.opinion {
 	border: 0px;
 	background-color: #dd4132;
 	color: #ffffff;
@@ -106,7 +108,7 @@ td input {
 	height: 40px;
 	border-radius: 5px;
 	margin-top: 10px;
-	margin-left : 5px;
+	margin-left: 5px;
 }
 
 .nbtn {
@@ -118,7 +120,30 @@ td input {
 	height: 40px;
 	border-radius: 5px;
 	margin-top: 10px;
-	margin-left : 5px;
+	margin-left: 5px;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 30%; /* Could be more or less, depending on screen size */
 }
 </style>
 <script type="text/javascript">
@@ -133,7 +158,7 @@ $("span[name='toggle-control']").click(function() {
 <script>
 $(document).ready(function() { 
 	
-	$("input").on("click",function(){
+	/* $("input").on("click",function(){
 		var value = $(".opiniondiv").children().length;
 		alert(value)
 			
@@ -145,7 +170,7 @@ $(document).ready(function() {
 		setData();
 		
 	});
-});
+}); */
    
    	/* function idchk(this){
    		
@@ -157,7 +182,7 @@ $(document).ready(function() {
     		$(this).find("input").css('background-color','black');
 		setData();
    	} */
-    function setData(){
+ /*    function setData(){
     	
     	var value = $(".opiniondiv").children().length;
     	if(value <= 0)
@@ -167,9 +192,18 @@ $(document).ready(function() {
     		$(".opiniondiv").append("<p>테스트입니다2</p>");
     		}
     	
-    }
+    } */
     
+   	
+    });
     
+    function open_pop(context){
+    	$('#opinionText').text(context);
+		$('#opinionmodal').show();
+	};
+	function close_pop(flag) {
+        $('#opinionmodal').hide();
+   };
 </script>
 
 </head>
@@ -188,15 +222,13 @@ $(document).ready(function() {
 				<col style="width: 200px;">
 				<col style="width: 200px;">
 				<col style="width: 100px;">
-				<col style="width: 100px;">
 				<col style="width: 200px;">
 			</colgroup>
 			<thead>
 				<tr class="toptable">
 					<td class="backslash"></td>
 					<td colspan="6" scope="col">평가 항목별 점수</td>
-					<td colspan="2" scope="col">합계</td>
-					<th></th>
+					<td colspan="2" scope="col">종합</td>
 				</tr>
 
 				<tr class="middletable">
@@ -207,144 +239,24 @@ $(document).ready(function() {
 					<td>사업비 구성의 적정성 및 합리성</td>
 					<td>지원 분야의 수행기관 매칭 적합성 및 관련 실적</td>
 					<td>참여 인력의 업무수행 능력 및 역량</td>
-					<td>총합</td>
 					<td>평균</td>
 					<td>평가의견</td>
 				</tr>
 			</thead>
-			<tbody>
+			<c:forEach items="${businessEvaluationList}"
+				var="businessEvaluationList">
 				<tr class="user">
-					<td>평가위원1</td>
-					<td>10</td>
-					<td>12</td>
-					<td>15</td>
-					<td>16</td>
-					<td>11</td>
-					<td>19</td>
-					<td>70</td>
-					<td>50</td>
-					<td><input type="button" value="평가의견"></td>
+					<td style="text-align: center">${businessEvaluationList.eval_writer}</td>
+					<td style="text-align: center">${businessEvaluationList.eval_score1}</td>
+					<td style="text-align: center">${businessEvaluationList.eval_score2}</td>
+					<td style="text-align: center">${businessEvaluationList.eval_score3}</td>
+					<td style="text-align: center">${businessEvaluationList.eval_score4}</td>
+					<td style="text-align: center">${businessEvaluationList.eval_score5}</td>
+					<td style="text-align: center">${businessEvaluationList.eval_score6}</td>
+					<td style="text-align: center">${businessEvaluationList.eval_totalscore}</td>
+					<td><button class="opinion" type="button" onclick="open_pop('${businessEvaluationList.eval_opinion}')">종합의견</button></td>
 				</tr>
-
-				<tr class="user">
-					<td>평가위원2</td>
-					<td>10</td>
-					<td>12</td>
-					<td>15</td>
-					<td>16</td>
-					<td>11</td>
-					<td>19</td>
-					<td>80</td>
-					<td>60</td>
-					<td><input type="button" value="평가의견"></td>
-				</tr>
-
-				<tr class="user">
-					<td>평가위원3</td>
-					<td>10</td>
-					<td>12</td>
-					<td>15</td>
-					<td>16</td>
-					<td>11</td>
-					<td>19</td>
-					<td>75</td>
-					<td>60</td>
-					<td><input type="button" value="평가의견"></td>
-				</tr>
-
-				<tr class="user">
-					<td>평가위원4</td>
-					<td>10</td>
-					<td>12</td>
-					<td>15</td>
-					<td>16</td>
-					<td>11</td>
-					<td>19</td>
-					<td>90</td>
-					<td>85</td>
-					<td><input type="button" value="평가의견"></td>
-				</tr>
-
-				<tr class="user">
-					<td>평가위원5</td>
-					<td>10</td>
-					<td>12</td>
-					<td>15</td>
-					<td>16</td>
-					<td>11</td>
-					<td>19</td>
-					<td>총합</td>
-					<td>평균</td>
-					<td><input type="button" value="평가의견"></td>
-				</tr>
-
-
-
-				<tr class="user">
-					<td>평가위원6</td>
-					<td>10</td>
-					<td>12</td>
-					<td>15</td>
-					<td>16</td>
-					<td>11</td>
-					<td>19</td>
-					<td>총합</td>
-					<td>평균</td>
-					<td><input type="button" value="평가의견"></td>
-				</tr>
-
-				<tr class="user">
-					<td>평가위원7</td>
-					<td>10</td>
-					<td>12</td>
-					<td>15</td>
-					<td>16</td>
-					<td>11</td>
-					<td>19</td>
-					<td>총합</td>
-					<td>평균</td>
-					<td><input type="button" value="평가의견"></td>
-				</tr>
-
-				<tr class="user">
-					<td>평가위원8</td>
-					<td>10</td>
-					<td>12</td>
-					<td>15</td>
-					<td>16</td>
-					<td>11</td>
-					<td>19</td>
-					<td>총합</td>
-					<td>평균</td>
-					<td><input type="button" value="평가의견"></td>
-				</tr>
-
-				<tr class="user">
-					<td>평가위원9</td>
-					<td>10</td>
-					<td>12</td>
-					<td>15</td>
-					<td>16</td>
-					<td>11</td>
-					<td>19</td>
-					<td>총합</td>
-					<td>평균</td>
-					<td><input type="button" value="평가의견"></td>
-				</tr>
-
-				<tr class="user">
-					<td>평가위원10</td>
-					<td>10</td>
-					<td>12</td>
-					<td>15</td>
-					<td>16</td>
-					<td>11</td>
-					<td>19</td>
-					<td>총합</td>
-					<td>평균</td>
-					<td><input type="button" value="평가의견"></td>
-				</tr>
-			</tbody>
+			</c:forEach>
 			<tfoot>
 				<tr>
 					<td colspan="7">합계</td>
@@ -353,9 +265,29 @@ $(document).ready(function() {
 				</tr>
 			</tfoot>
 		</table>
-		<div class="opiniondiv"></div>
+			<!-- The Modal -->
+			<div id="opinionmodal" class="modal">
+
+				<!-- Modal content -->
+				<div class="modal-content">
+					<p style="text-align: center;">
+						<span style="font-size: 14pt;"><b><span
+								style="font-size: 24pt;">종합의견</span></b></span>
+					</p>
+					<p id="opinionText"></p>
+						<br />
+					</p>
+					<div
+						style="color: #ffffff; pointer; background-color: #dd4132; text-align: center; padding-bottom: 10px; padding-top: 10px;"
+						onClick="close_pop();">
+						<span class="pop_bt" style="font-size: 13pt;"> 닫기 </span>
+					</div>
+				</div>
+			<!--End Modal-->
+		</div>
 		<div class="btnDiv">
-			<button type="button" class="listbtn"onclick="location.href='/businessplan/bpList'">목록</button>
+			<button type="button" class="listbtn"
+				onclick="location.href='/businessplan/bpList'">목록</button>
 			<button type="button" class="nbtn" onclick="location.href=''">탈락</button>
 			<button type="button" class="ybtn" onclick="location.href=''">선정</button>
 		</div>

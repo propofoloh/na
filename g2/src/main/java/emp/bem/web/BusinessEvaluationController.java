@@ -40,7 +40,7 @@ public class BusinessEvaluationController {
 
 	//사업계획서 평가지표 목록 조회
 	@RequestMapping(value = "/businessEvaluationList", method = RequestMethod.GET)
-	public String evaluationList(Model model, @RequestParam("bpm_bplan_idx") int bpm_bplan_idx, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+	public String evaluationList(Model model, @RequestParam("bpm_bplan_idx") int bpm_bplan_idx, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes redirect) throws Exception{
 		logger.info("businessEvaluationList");
 
 		Map<String, Integer> paramMap = new HashMap<String, Integer>();
@@ -48,7 +48,8 @@ public class BusinessEvaluationController {
 		paramMap.put("rowEnd", scri.getRowEnd());
 		paramMap.put("bpm_bplan_idx",bpm_bplan_idx);
 		model.addAttribute("businessEvaluationList", service.businessEvaluationList(paramMap));
-
+		redirect.addAttribute("bpm_bplan_idx",bpm_bplan_idx);
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.listCount(scri));
@@ -92,9 +93,15 @@ public class BusinessEvaluationController {
 
 	//사업계획서 종합의견 조회
 	@RequestMapping(value = "/businessEvaluationOpinion", method = RequestMethod.GET)
-	public String opinion() throws Exception{
+	public String opinion(Model model, @ModelAttribute("scri") SearchCriteria scri,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx) throws Exception{
 		logger.info("businessEvaluationOpinion");
-
+		
+		Map<String, Integer> paramMap = new HashMap<String, Integer>();
+		paramMap.put("rowStart", scri.getRowStart());
+		paramMap.put("rowEnd", scri.getRowEnd());
+		paramMap.put("bpm_bplan_idx",bpm_bplan_idx);
+		model.addAttribute("businessEvaluationList", service.businessEvaluationList(paramMap));
+		
 		return "bem/businessEvaluationOpinion";
 	}
 
