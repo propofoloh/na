@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <title>CSS</title>
+
     <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
@@ -78,7 +78,7 @@
   	float: right;
   }
   
-  .canclebtn{
+  .cancle_btn{
  	border : 0px;
 	background-color: #B4B4B4;
 	color : #ffffff;
@@ -102,6 +102,16 @@
   	clear: both;
   }
   
+  #eval_totalscore{
+  	margin-right : 10px;
+  	width : 50%;
+  	background-color: #EAEAEA;
+  	text-align: center;
+  	color : #FA5858;
+  	font-weight: bold;
+  	font-size: 15px;
+  }
+  
   
   
 </style>
@@ -111,10 +121,17 @@
  		
  		 var formObj = $("form[name='writeForm']");
  		$(".write_btn").on("click", function(){
- 			formObj.attr("action", "/bem/businessEvaluation");
- 			formObj.attr("method", "post");
- 			formObj.submit();
+ 			 $('.score').each(function(idx,value){ 
+ 				if(isNaN(this.value)&&this.value.length==0){
+ 					alert("평점은 필수 입력 입니다.")
+ 				}else 
+ 					alert(idx+"번 셀 검증 완료")
+ 				/* formObj.attr("action", "/bem/businessEvaluation");
+		 			formObj.attr("method", "post");
+		 			formObj.submit(); */
+ 			 });
  		});
+ 		
  		
  		 $('.score').on('keyup',function(){
  			 var Sum = 0;
@@ -161,6 +178,7 @@
   	
   
   </script>
+      <title>사업계획서 평가</title>
   </head>
   <body>
   	<% Calendar cal = Calendar.getInstance(); %>
@@ -168,7 +186,7 @@
     <table>
     	<p>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</p>
     	<input type="hidden" value="${param.bam_anc_idx}"/>
-    	<input type="text" name="bpm_bplan_idx"value="${param.bpm_bplan_idx}"/>
+    	<input type="hidden" name="bpm_bplan_idx"value="${param.bpm_bplan_idx}"/>
     	<colgroup>
     		<col style="width:15%">
  			<col style="width:75%">
@@ -256,7 +274,7 @@
 	 			<!-- 합계 -->
 	        	<th  colspan="3">합계</th>
 		        <th id="MaxScoreSum">100</th>
-		        <th><input type="text" name="eval_totalscore" id="eval_totalscore" /></th>
+		        <th><input type="text" name="eval_totalscore" id="eval_totalscore" readonly="readonly" /></th>
 		    </tr>
 	  </tbody>  
 	 </table>
@@ -280,7 +298,7 @@
 	  </table>
 		 
 		 <div class="submitForm">
-			    <input class ="canclebtn" type="button" value="취소"> 
+			    <input class ="cancle_btn" type="button" onclick="location.href='/bpm/businessPlanApplyList?bam_anc_idx=${param.bam_anc_idx}'" value="취소"> 
 			    <input class ="write_btn" type="button" value="평가완료">
 		</div>
     </form>

@@ -10,10 +10,15 @@
 	 	
 	 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	 	
-	 	<title>게시판</title>
+	 	<title>사업공고</title>
 	</head>
 	
 <style type="text/css">
+
+	body{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+			margin :0 20%;
+	}
 	.writebtn {
 		float: right;
 		border: 0px;
@@ -56,7 +61,7 @@
 		text-align : center;
 		color : #ffffff;
 		width : 5%;
-		height : 30px;
+		height : 50px;
 		margin-right : 5px;
 		border-radius: 5px;
 		float: left;
@@ -68,7 +73,7 @@
 		text-align : center;
 		color : #ffffff;
 		width : 10%;
-		height : 30px;
+		height : 50px;
 		margin-right : 5px;
 		border-radius: 5px;
 		float: right;
@@ -126,16 +131,11 @@
 	</script>
 	
 	<body>
-		<div class="container">
+			<div style ="float: right"><%@include file="../board/nav.jsp" %></div>
 			<header>
-				<h1> 게시판</h1>
+				<h1>사업공고</h1>
 			</header>
 			<hr />
-			 
-			<div>
-				<%@include file="../board/nav.jsp" %>
-			</div>
-			
 			<section id="container">
 				<form name="readForm" role="form" method="post">
 					<input type="hidden" id="bam_anc_idx" name="bam_anc_idx" value="${read.bam_anc_idx}" />
@@ -181,12 +181,10 @@
 					<!-- <button type="button" class="manageBtn">수정</button>
 					<button type="button" class="manageBtn">삭제</button>
 					<button type="button" class="manageBtn">목록</button>	 -->
-					<button type="button" id="businessPlanApplyBtn" class="functionBtn" onclick="location.href='../bpm/businessPlanApply'">사업계획서 제출</button>
+					<button type="button" id="businessPlanApplyBtn" class="functionBtn" onclick="location.href='../bpm/businessPlanApply'">사업계획서 작성</button>
 					<button type="button" class="functionBtn" onclick="location.href='../bpm/businessPlanApplyList?bam_anc_idx=${read.bam_anc_idx}'">사업계획서 목록</button>
-					<button type="button" class="functionBtn" onclick="location.href='../evaluation/opinion'">종합의견</button>
 				</div>
 				
 			</section>
-		</div>
 	</body>
 </html>

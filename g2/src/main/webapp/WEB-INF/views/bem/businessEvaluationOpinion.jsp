@@ -15,7 +15,7 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>CSS</title>
+<title>종합의견</title>
 <style>
 table {
 	width: 100%;
@@ -254,7 +254,7 @@ $(document).ready(function() {
 					<td style="text-align: center">${businessEvaluationList.eval_score5}</td>
 					<td style="text-align: center">${businessEvaluationList.eval_score6}</td>
 					<td style="text-align: center">${businessEvaluationList.eval_totalscore}</td>
-					<td><button class="opinion" type="button" onclick="open_pop('${businessEvaluationList.eval_opinion}')">종합의견</button></td>
+					<td><button class="opinion" type="button" onclick="open_pop('${businessEvaluationList.eval_opinion}')">평가의견</button></td>
 				</tr>
 			</c:forEach>
 			<tfoot>
@@ -272,7 +272,7 @@ $(document).ready(function() {
 				<div class="modal-content">
 					<p style="text-align: center;">
 						<span style="font-size: 14pt;"><b><span
-								style="font-size: 24pt;">종합의견</span></b></span>
+								style="font-size: 24pt;">평가의견</span></b></span>
 					</p>
 					<p id="opinionText"></p>
 						<br />
@@ -287,7 +287,7 @@ $(document).ready(function() {
 		</div>
 		<div class="btnDiv">
 			<button type="button" class="listbtn"
-				onclick="location.href='/businessplan/bpList'">목록</button>
+				onclick="location.href='/bem/businessEvaluationList?bpm_bplan_idx=${param.bpm_bplan_idx}'">목록</button>
 			<button type="button" class="nbtn" onclick="location.href=''">탈락</button>
 			<button type="button" class="ybtn" onclick="location.href=''">선정</button>
 		</div>

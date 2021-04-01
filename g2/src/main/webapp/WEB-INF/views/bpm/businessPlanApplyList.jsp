@@ -40,7 +40,7 @@
 	}
 </style>
 
-<title>게시판</title>
+<title>사업 계획서 리스트</title>
 </head>
 <body>
 	<div style="float: right;">
@@ -71,7 +71,7 @@
 						<button id="searchBtn" type="button" class="searchBtn">검색</button>
 					</div>
 
-					<script>
+					<script>	
 						 $(function(){
 							 $('#searchBtn').click(function() {
 								 self.location = "list2" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
@@ -105,42 +105,6 @@
 					</table>
 																						
 
-					<%-- <c:forEach items="${list}" var = "list2">
-							<tr>
-								<td><c:out value="${list.bno2}" /></td>
-								<td>
-									<a href="/board/readView?bno2=${list.bno2}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.title2}" /></a>
-								</td>
-								<td><c:out value="${list.writer2}" /></td>
-								<td><fmt:formatDate value="${list.regdate2}" pattern="yyyy-MM-dd"/></td>
-								<td><c:out value="${list.hit2}" /></td>
-							</tr>
-						</c:forEach> --%>
-
-				</table>
-
-				<div class="col-md-offset-3"
-					style="text-align: center; margin-left: 0px;">
-					<ul class="pagination">
-						<c:if test="${pageMaker.prev}">
-							<li><a
-								href="list2${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
-						</c:if>
-
-						<c:forEach begin="${pageMaker.startPage}"
-							end="${pageMaker.endPage}" var="idx">
-							<li
-								<c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
-								<a href="list2${pageMaker.makeSearch(idx)}">${idx}</a>
-							</li>
-						</c:forEach>
-
-						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-							<li><a
-								href="list2${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
-						</c:if>
-					</ul>
-				</div>
 			</form>
 		</section>
 		</div>

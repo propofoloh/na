@@ -12,68 +12,20 @@
 
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<title>게시판</title>
-</head>
-
-<style>
-	.evaluationbtn{
-	
-		float: right;
-		border : 0px;
-		background-color: #dd4132;
-		color : #ffffff;
-		width :  8%;
-		height : 5%;
-		border-radius: 5px;
-		margin-top : 10px;
-		margin-left : 5px;
-	}
-	
-	.opinionbtn{
-		float: right;
-		border : 0px;
-		background-color: #dd4132;
-		color : #ffffff;
-		width :  8%;
-		height : 5%;
-		border-radius: 5px;
-		margin-top : 10px;
-		margin-left : 5px;
-		
-	}
-
-	.scorebtn{
-		float: right;
-		border : 0px;
-		background-color: #dd4132;
-		color : #ffffff;
-		width :  8%;
-		height : 5%;
-		border-radius: 5px;
-		margin-top : 10px;
-		margin-right: 5px;
-	}
-	
-
-</style>
 <script type="text/javascript">
 		$(document).ready(function(){
 			
 			$(".evaluationbtn").on("click", function(){
-				alert($("#bam_anc_idx").val())
 				var form = $("form[name='readForm']");
 				form.attr("action", "/bem/businessEvaluation");
 				form.attr("method","get");
 				form.submit();
-				alert("데이터전닳1")
 			})
 	
 		})
 		
 		function fn_fileDownload(fileidx){
 			var formObj = $("form[name='readForm']");
-			alert(formObj)
 			$("#FILE_IDX").attr("value", fileidx);
 			alert($("#FILE_IDX").val())
 			formObj.attr("action", "/bpm/fileDown");
@@ -105,6 +57,65 @@
 		}
 		
 	</script>
+<style>
+	.evaluationbtn{
+	
+		float: right;
+		border : 0px;
+		background-color: #dd4132;
+		color : #ffffff;
+		width :  8%;
+		height : 5%;
+		border-radius: 5px;
+		margin-top : 10px;
+		margin-left : 5px;
+	}
+	
+	.opinionbtn{
+		float: right;
+		border : 0px;
+		background-color: #dd4132;
+		color : #ffffff;
+		width :  8%;
+		height : 5%;
+		border-radius: 5px;
+		margin-top : 10px;
+		margin-left : 5px;
+		
+	}
+	
+	.opinionlistbtn{
+		float: right;
+		border : 0px;
+		background-color: #dd4132;
+		color : #ffffff;
+		width :  8%;
+		height : 5%;
+		border-radius: 5px;
+		margin-top : 10px;
+		margin-left : 5px;
+		
+	}
+
+	.scorebtn{
+		float: right;
+		border : 0px;
+		background-color: #dd4132;
+		color : #ffffff;
+		width :  8%;
+		height : 5%;
+		border-radius: 5px;
+		margin-top : 10px;
+		margin-right: 5px;
+	}
+	
+
+</style>
+<title>사업계획서 작성</title>
+</head>
+
+
+
 <body>
 
 	<div class="container" id="root" style="margin-bottom:10px;">
@@ -112,7 +123,7 @@
 			<%@include file="../board/nav.jsp"%>
 		</div>
 		<header>
-			<h1>사업계획서 접수</h1>
+			<h1>사업계획서 작성</h1>
 		</header>
 		<hr />
 
@@ -177,7 +188,7 @@
 			<div class="from-group">
 				<button type="button" class="evaluationbtn">평가하기</button>
 				<button type="button" class="opinionbtn" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}'">종합의견</button>
-				<button type="button" class="opinionbtn" onclick="location.href='../bem/businessEvaluationList?bpm_bplan_idx=${read.bpm_bplan_idx}'">평가리스트</button>
+				<button type="button" class="opinionlistbtn" onclick="location.href='../bem/businessEvaluationList?bpm_bplan_idx=${read.bpm_bplan_idx}'">평가리스트</button>
 			</div>
 	</div>
 </body>
