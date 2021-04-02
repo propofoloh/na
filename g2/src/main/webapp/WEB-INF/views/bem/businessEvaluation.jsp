@@ -118,18 +118,26 @@
   <script type="text/javascript">
   
  	 $(document).ready(function(){
- 		
+ 		 var checkData = "";
  		 var formObj = $("form[name='writeForm']");
  		$(".write_btn").on("click", function(){
  			 $('.score').each(function(idx,value){ 
- 				if(isNaN(this.value)&&this.value.length==0){
- 					alert("평점은 필수 입력 입니다.")
- 				}else 
- 					alert(idx+"번 셀 검증 완료")
- 				/* formObj.attr("action", "/bem/businessEvaluation");
-		 			formObj.attr("method", "post");
-		 			formObj.submit(); */
+ 				if(!this.value){
+ 					if(checkData != '')
+ 						checkData = checkData+','+Number(idx+1);
+ 					else
+ 						checkData = idx+1;
+ 				}
+ 				
  			 });
+ 			 if(checkData != ""){
+ 			 	alert(checkData+'번째 입력값이 입력되지 않았습니다.')
+ 			 	checkData = "";
+ 			 }else{
+ 				formObj.attr("action", "/bem/businessEvaluation");
+	 			formObj.attr("method", "post");
+	 			formObj.submit(); 
+ 				}
  		});
  		
  		
