@@ -123,7 +123,9 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<button type="button" class="writebtn"  onclick="location.href='businessAnnouncementInput'">사업등록</button>
+					<c:if test="${member.user_auth == '1'}">
+						<button type="button" class="writebtn"  onclick="location.href='businessAnnouncementInput'">사업등록</button>
+						</c:if>
 					<div class="pasingDiv" style="width:100%; text-align: center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev}">

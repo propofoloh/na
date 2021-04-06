@@ -80,7 +80,6 @@
 					</script>
 				</div>
 
-		
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -91,16 +90,18 @@
 
 							</tr>
 						</thead>
-						
 						<c:forEach items="${list}" var = "list" varStatus="status">
-							<tr>
-								<td style="text-align: center;"><c:out value="${status.index+1}" /></td>
-								<td style="text-align: center;">
-									<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${param.bam_anc_idx}"><c:out value="${list.research_obj}"/></a>
-								</td>
-								<td style="text-align: center;"><c:out value="${list.writer}" /></td>
-								<td style="text-align: center;"><fmt:formatDate value="${list.reg_date}" pattern="yyyy-MM-dd"/></td>
-							</tr>
+								
+								<c:if test = "${list.writer == member.user_id}">
+									<tr>
+										<td style="text-align: center;"><c:out value="${status.index+1}" /></td>
+										<td style="text-align: center;">
+											<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${param.bam_anc_idx}"><c:out value="${list.research_obj}"/></a>
+										</td>
+										<td style="text-align: center;"><c:out value="${list.writer}" /></td>
+										<td style="text-align: center;"><fmt:formatDate value="${list.reg_date}" pattern="yyyy-MM-dd"/></td>
+									</tr>
+								</c:if>	
 						</c:forEach>
 					</table>
 																						

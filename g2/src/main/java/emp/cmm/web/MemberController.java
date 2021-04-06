@@ -38,9 +38,7 @@ public class MemberController {
 	@RequestMapping(value = "/postregister", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo )throws Exception {
 		logger.info("post register");
-		System.out.println(vo.getUser_id());
 		int result = service.idChk(vo);
-		System.out.println("@"+result);
 		try {
 			if(result == 1) {
 				return "/cmm/register";
@@ -67,13 +65,12 @@ public class MemberController {
 
 		if(login != null && pwdMatch == true) {
 			session.setAttribute("member", login);
-		} else {
+			return "redirect:/bam/businessAnnouncementList";
+		}else {
 			session.setAttribute("member", null); 
 			rttr.addFlashAttribute("msg", false);
+			return "redirect:/";
 		}
-		
-		
-		return "redirect:/bam/businessAnnouncementList";
 	}
 	
 	
@@ -83,7 +80,7 @@ public class MemberController {
 		
 		session.invalidate();
 		
-		return "redirect:/cmm/login";
+		return "redirect:/";
 	}
 	
 	// �쉶�썝�젙蹂� �닔�젙 get

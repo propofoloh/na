@@ -131,6 +131,7 @@
 	</script>
 	
 	<body>
+		<c:if test="${member != null }">
 			<div style ="float: right"><%@include file="../board/nav.jsp" %></div>
 			<header>
 				<h1>사업공고</h1>
@@ -181,10 +182,12 @@
 					<!-- <button type="button" class="manageBtn">수정</button>
 					<button type="button" class="manageBtn">삭제</button>
 					<button type="button" class="manageBtn">목록</button>	 -->
-					<button type="button" id="businessPlanApplyBtn" class="functionBtn" onclick="location.href='../bpm/businessPlanApply'">사업계획서 작성</button>
-					<button type="button" class="functionBtn" onclick="location.href='../bpm/businessPlanApplyList?bam_anc_idx=${read.bam_anc_idx}'">사업계획서 목록</button>
+						<button type="button" class="functionBtn" onclick="location.href='../bpm/businessPlanApplyList?bam_anc_idx=${read.bam_anc_idx}'">사업계획서 목록</button>
+					</c:if>
+					<c:if test="${member.user_auth == '0'}">
+						<button type="button" id="businessPlanApplyBtn" class="functionBtn" onclick="location.href='../bpm/businessPlanApply'">사업계획서 작성</button>
+					</c:if>
 				</div>
-				
 			</section>
 	</body>
 </html>

@@ -103,8 +103,7 @@ body {
 				<input type="text"  placeholder="아이디" id="userId" name="userId" maxlength="20">
 				<input type="password" placeholder="비밀번호" id="userPass" name="userPass" maxlength="20">
 				 <div class="loginform-checkbox">
-				 	<input type="checkbox" id="login-checkbox" />
-				 	<span> 로그인 상태 유지 </span>
+				 	
 			 </div>
 			 	<input id="login" type="submit" value="로그인">	 
 			
@@ -124,8 +123,8 @@ body {
 	
 	<div class ="register">
 			<a id="registerBtn"href ="#" type="submit" value="회원가입">회원가입 &nbsp&nbsp&nbsp</a>
-			 | 
-			<a href ="#" type="button" value="ID/PW 찾기">&nbsp&nbsp&nbsp ID/PW 찾기</a>
+			 <!-- | 
+			<a href ="#" type="button" value="ID/PW 찾기">&nbsp&nbsp&nbsp ID/PW 찾기</a> -->
 	</div>
 
 </body> 

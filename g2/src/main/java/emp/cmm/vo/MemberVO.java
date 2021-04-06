@@ -7,6 +7,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class MemberVO {
 
 
+	public String getUser_auth() {
+		return user_auth;
+	}
+	public void setUser_auth(String user_auth) {
+		this.user_auth = user_auth;
+	}
 	private String user_id;
 	private String user_pwd;
 	private String user_name;
@@ -14,6 +20,7 @@ public class MemberVO {
 	private Date user_birthday;
 	private String hp_num;
 	private String user_email;
+	private String user_auth;
 	
 	public String getUser_id() {
 		return user_id;

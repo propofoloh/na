@@ -102,14 +102,14 @@ body {
 			 <div class="loginForm">
 				<input type="text"  placeholder="아이디" id="user_id" name="user_id" maxlength="20">
 				<input type="password" placeholder="비밀번호" id="user_pwd" name="user_pwd" maxlength="20">
-				 <div class="loginform-checkbox">
+				<!--  <div class="loginform-checkbox">
 				 	<input type="checkbox" id="login-checkbox" />
 				 	<span> 로그인 상태 유지 </span>
-			 </div>
+			 </div> -->
 			 	<input id="login" type="submit" value="로그인">	 
 			
 		</c:if>
-		<%-- <c:if test="${member != null }">
+		 <c:if test="${member != null }">
 			<div>
 				<p>${member.userId}님 환영 합니다.</p>
 				<button id="memberUpdateBtn" type="button">회원정보수정</button>
@@ -119,13 +119,13 @@ body {
 		</c:if>
 		<c:if test="${msg == false}">
 			<p style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</p>
-		</c:if> --%>
+		</c:if>
 	</form>
 	
 	<div class ="register">
-			<a id="registerBtn"href ="#" type="submit" value="회원가입">회원가입 &nbsp&nbsp&nbsp</a>
-			 | 
-			<a href ="#" type="button" value="ID/PW 찾기">&nbsp&nbsp&nbsp ID/PW 찾기</a>
+			<a id="registerBtn"href ="#" type="submit" value="회원가입">회원가입</a>
+			<!--  | 
+			<a href ="#" type="button" value="ID/PW 찾기">&nbsp&nbsp&nbsp ID/PW 찾기</a> -->
 	</div>
 
 </body> 

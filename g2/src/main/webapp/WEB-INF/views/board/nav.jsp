@@ -13,7 +13,7 @@ li {
 	<c:if test="${member != null}">
 
 		<li>
-			<a href="/member/logout">로그아웃</a>
+			<a href="/cmm/logout">로그아웃</a>
 		</li>
 
 <%-- 	<c:if test="${member.verify == 9}">

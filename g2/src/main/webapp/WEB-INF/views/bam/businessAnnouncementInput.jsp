@@ -174,8 +174,9 @@ $(function() {
 							<label for="content"><h3>내용</h3></label>
 							<textarea id="anc_remark" name="anc_remark" class="form-control" title="내용"style="height: 100px;"></textarea>
 						</div>
-						<div>
-							<label for="input-file">파일</label> <input type="file" id="input-file" />
+						<div id="fileIndex">	
+								<input type="file" id="input-file" style="display: none" />	
+								<button class="fileAdd_btn" type="button">파일추가</button>
 						</div>
 						<div>
 							<button class="writebtn" type="submit">등록</button>
@@ -184,10 +185,10 @@ $(function() {
 							<label for="writer" class="col-sm-2 control-label"style="width: 380px;">작성자</label>
 							<input type="text" id="writer"name="writer" class="form-control" value="" style="width: 100px" />
 						</div>
-						
 					</tbody>
 				</table>
 			</form>
+			
 		</section>
 		 <!-- The Modal -->
     <div id="selectEvaluator" class="modal">

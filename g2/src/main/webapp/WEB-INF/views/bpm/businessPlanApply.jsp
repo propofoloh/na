@@ -78,12 +78,13 @@
 			var fileIndex = 1;
 			//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
 			$(".fileAdd_btn").on("click", function(){
-				$("#fileIndex").append("<div><input type='file' value='첨부파일' style='margin-top : 10px; float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' id='fileDelBtn'>"+"삭제"+"</button></div>");
+				$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
 			});
 			$(document).on("click","#fileDelBtn", function(){
 				$(this).parent().remove();
 				
 			});
+					
 		}
 	</script>
 <body>
@@ -129,19 +130,15 @@
 								<textarea id="research_cost" name="research_cost" class="form-control"
 									title="연구 개발비 총괄을 입력하세요."></textarea>
 							</div>
-
 							
-				<div class="form-group" style="margin-top: 30px;">
-					<label for="writer" class="col-sm-2 control-label" style="width: 80px">작성자</label>
-					<input type="text" id="writer" name="writer" class="form-control" value="${member.user_id}"  readonly="readonly" style="width: 100px"/>
-				</div>
-							<tr>
-			                    <td id="fileIndex"></td>
-			                </tr>           
-							<tr>
-									<button class="fileAdd_btn" type="button">파일추가</button>
-							</tr>
-						</c:if>
+							<div>
+								<label for="input-file">파일</label> <input type="file" id="input-file" />
+							</div>
+								
+							<div class="form-group" style="margin-top: 30px;">
+								<label for="writer" class="col-sm-2 control-label" style="width: 80px">작성자</label>
+								<input type="text" id="writer" name="writer" class="form-control" value="${member.user_id}"  readonly="readonly" style="width: 100px"/>
+							</div>
 					</tbody>
 				</table>
 				<hr />
@@ -150,7 +147,7 @@
 					</div>
 			</form>
 		</section>
-		
+		</c:if>
 	</div>
 </body>
 </html>
