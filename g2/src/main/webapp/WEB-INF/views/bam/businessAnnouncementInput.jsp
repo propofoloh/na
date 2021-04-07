@@ -4,8 +4,7 @@
 <html>
 <head>
 <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -28,7 +27,10 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <style type="text/css">
-
+body{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+			margin :0 20%;
+	}
 /* The Modal (background) */
 .modal {
 	display: none; /* Hidden by default */
@@ -82,6 +84,32 @@
 	margin-left: 5px;
 	border-radius: 5px;
 }
+
+.fileAdd_btn{
+	border: 0px;
+	background-color: #dd4132;
+	color: #ffffff;
+	width: 10%;
+	height: 5%;
+	border-radius: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+}
+
+#fileAddDiv{
+	margin-bottom: 10px; 
+	
+}
+
+#fileDelBtn{
+	border: 0px;
+	background-color: #dd4132;
+	color: #ffffff;
+	border-radius: 5px;
+	margin-bottom: 10px;	
+	margin-right: 50%;
+}
 </style>
 
 <title>게시판</title>
@@ -94,7 +122,7 @@
 				if(fn_valiChk()){
 					return false;
 				}
-				formObj.attr("action", "/board/write");
+				formObj.attr("action", "/bam/businessAnnouncementInputWrite");
 				formObj.attr("method", "post");
 				formObj.submit();
 			});
@@ -117,7 +145,7 @@
 			var fileIndex = 1;
 			//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
 			$(".fileAdd_btn").on("click", function(){
-				$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
+				$("#fileIndex").append("<div id='fileAddDiv'><input type='file' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
 			});
 			$(document).on("click","#fileDelBtn", function(){
 				$(this).parent().remove();
@@ -135,14 +163,6 @@
 	</script>
 
 <script>
-$(function() {
-  $( "#anc_begin_dt" ).datepicker({
-    dateFormat: 'yy-mm-dd'
-  });
-  $( "#anc_end_dt" ).datepicker({
-	    dateFormat: 'yy-mm-dd'
-	  });
-});
 </script>
 
 <body>
@@ -161,32 +181,34 @@ $(function() {
 				<table>
 					<tbody>
 						<div class="from-group" style="margin-top: 30px;">
-							<label for="title"><h3>사업명</h3></label> 
+							<label for="title">사업명</label> 
 							<input type="text" id="anc_title" name="anc_title" style="margin-left: 47px; padding: 10px; width: 41%; height: 4%;" />
 						</div>
 
-					 	<div class="from-group" style="margin-top: 30px;"><label for="date"><h3>공고일자</h3></label> 
-							<input type="text" name="anc_begin_dt"id="anc_begin_dt" style="margin-left: 30px; width: 20%; height: 4%;"> ~ <input type="text" name ="anc_end_dt" id="anc_end_dt" style="width: 20%; height: 4%;">
+					 	<div class="from-group" style="margin-top: 30px;"><label for="date">공고일자</label> 
+							<input type="date" name="anc_begin_dt"id="anc_begin_dt" style="margin-left: 30px; width: 20%; height: 4%;"> ~ <input type="date" name ="anc_end_dt" id="anc_end_dt" style="width: 20%; height: 4%;">
 							<button class="evaluator-check" type="button" onclick="open_pop()">평가원선택</button>
 						</div>
 
 						<div class="from-group" style="margin-top: 30px;">
-							<label for="content"><h3>내용</h3></label>
+							<label for="content">내용</label>
 							<textarea id="anc_remark" name="anc_remark" class="form-control" title="내용"style="height: 100px;"></textarea>
 						</div>
 						<div id="fileIndex">	
 								<input type="file" id="input-file" style="display: none" />	
 								<button class="fileAdd_btn" type="button">파일추가</button>
 						</div>
+						
+						<div class="form-group" style="margin-top: 30px; width: 100%">
+							<label for="writer"  style="width: 380px;">작성자</label>
+							<input type="text" id="writer"name="writer" class="form-control" value="" style="width: 100px" />
+						</div>
+						<hr />
+					</tbody>
+				</table>
 						<div>
 							<button class="writebtn" type="submit">등록</button>
 						</div>
-						<div class="form-group" style="margin-top: 30px; width: 100%">
-							<label for="writer" class="col-sm-2 control-label"style="width: 380px;">작성자</label>
-							<input type="text" id="writer"name="writer" class="form-control" value="" style="width: 100px" />
-						</div>
-					</tbody>
-				</table>
 			</form>
 			
 		</section>
@@ -223,7 +245,7 @@ $(function() {
  
     </div>
         <!--End Modal-->
-		<hr />
+		
 	</div>
 </body>
 </html>
