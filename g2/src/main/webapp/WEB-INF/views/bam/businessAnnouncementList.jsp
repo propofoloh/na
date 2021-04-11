@@ -105,7 +105,7 @@ body {
 		<%@include file="../board/nav.jsp"%>
 	</div>
 	<header>
-		<h1>사업공지</h1>
+		<h1  style="text-align: center;">사업공지</h1>
 	</header>
 	<hr />
 

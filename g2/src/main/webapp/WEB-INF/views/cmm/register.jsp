@@ -102,11 +102,21 @@
 		height: 8%;
 		
 	}
+	.user_auth{
+		width : 20%;
+		height: 20px;
+	}
+	
 	
 </style>
 	<body>
 	<div class ="registerText">회원가입</div>
 			<form action="/cmm/postregister" method="POST" id="regForm" name="regForm" >
+				<div>
+					<label class="control-label" for="user_auth">회원가입 유형</label><br>
+					<input type="radio" class="user_auth" name="user_auth">평가위원
+					<input type="radio" class="user_auth" name="user_auth">사업자
+				</div>
 				<div>
 					<label class="control-label" for="user_id">아이디</label><br>
 					<input type="text" id="user_id" name="user_id" />

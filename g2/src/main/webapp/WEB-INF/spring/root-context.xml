@@ -34,7 +34,7 @@
 		   <!-- scan -->
     <context:component-scan base-package="emp.bam"></context:component-scan>
     <context:component-scan base-package="emp.bam.controller"></context:component-scan>
-    <context:component-scan base-package="emp.bam.service"></context:component-scan>
+    <context:component-scan base-package="emp.bam.service"></context:component-scan>	
     <context:component-scan base-package="emp.bam.dao"></context:component-scan>
     <context:component-scan base-package="emp.bam.vo"></context:component-scan>
     <context:component-scan base-package="emp.bam.util"></context:component-scan>
