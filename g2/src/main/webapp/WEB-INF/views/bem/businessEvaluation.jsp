@@ -91,7 +91,7 @@
 	
   .write_btn{
   	border : 0px;
-	background-color: #dd4132;
+	background-color: #862640;
 	color : #ffffff;
 	width : 100px;
 	height: 50px;

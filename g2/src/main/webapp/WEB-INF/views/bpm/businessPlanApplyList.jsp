@@ -84,9 +84,9 @@
 						<thead>
 							<tr>
 								<th style="width: 60px; text-align: center;">번호</th>
-								<th style="width: 650px; text-align: center;">연구목표</th>
-								<th style="width: 650px; text-align: center;">사업자</th>
-								<th style="width: 120px; text-align: center;">작성일자</th>
+								<th style="width: 350px; text-align: center;">연구목표</th>
+								<th style="width: 350px; text-align: center;">사업자</th>
+								<th style="width: 320px; text-align: center;">접수완료일자</th>
 
 							</tr>
 						</thead>
@@ -99,7 +99,7 @@
 											<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${param.bam_anc_idx}"><c:out value="${list.research_obj}"/></a>
 										</td>
 										<td style="text-align: center;"><c:out value="${list.writer}" /></td>
-										<td style="text-align: center;"><fmt:formatDate value="${list.reg_date}" pattern="yyyy-MM-dd"/></td>
+										<td style="text-align: center;"><fmt:formatDate value="${list.reg_date}" pattern="MM/dd H시mm분"/></td>
 									</tr>
 								</c:if>	
 						</c:forEach>

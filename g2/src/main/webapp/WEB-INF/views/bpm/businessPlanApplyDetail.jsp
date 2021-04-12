@@ -15,12 +15,7 @@
 <script type="text/javascript">
 		$(document).ready(function(){
 			
-			$(".evaluationbtn").on("click", function(){
-				var form = $("form[name='readForm']");
-				form.attr("action", "/bem/businessEvaluation");
-				form.attr("method","get");
-				form.submit();
-			})
+		
 	
 		})
 		
@@ -186,7 +181,7 @@
 		</section>
 		<hr />
 			<div class="from-group">
-				<button type="button" class="evaluationbtn">평가하기</button>
+				<button type="button" class="evaluationbtn" onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">평가하기</button>
 				<button type="button" class="opinionbtn" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}'">종합의견</button>
 				<button type="button" class="opinionlistbtn" onclick="location.href='../bem/businessEvaluationList?bpm_bplan_idx=${read.bpm_bplan_idx}'">평가리스트</button>
 			</div>

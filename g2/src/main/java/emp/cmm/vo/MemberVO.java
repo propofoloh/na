@@ -1,23 +1,11 @@
 package emp.cmm.vo;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class MemberVO {
-
-
-	public String getUser_auth() {
-		return user_auth;
-	}
-	public void setUser_auth(String user_auth) {
-		this.user_auth = user_auth;
-	}
 	private String user_id;
 	private String user_pwd;
 	private String user_name;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date user_birthday;
+	private String user_bname;
+	private String user_crcode;
 	private String hp_num;
 	private String user_email;
 	private String user_auth;
@@ -40,12 +28,7 @@ public class MemberVO {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	public Date getUser_birthday() {
-		return user_birthday;
-	}
-	public void setUser_birthday(Date user_birthday) {
-		this.user_birthday = user_birthday;
-	}
+
 	public String getHp_num() {
 		return hp_num;
 	}
@@ -59,5 +42,22 @@ public class MemberVO {
 		this.user_email = user_email;
 	}
 
-	
+	public String getUser_bname() {
+		return user_bname;
+	}
+	public void setUser_bname(String user_bname) {
+		this.user_bname = user_bname;
+	}
+	public String getUser_crcode() {
+		return user_crcode;
+	}
+	public void setUser_crcode(String user_crcode) {
+		this.user_crcode = user_crcode;
+	}
+	public String getUser_auth() {
+		return user_auth;
+	}
+	public void setUser_auth(String user_auth) {
+		this.user_auth = user_auth;
+	}
 }

@@ -18,13 +18,6 @@ import emp.bem.vo.BusinessEvaluationVO;
 
 
 
-
-
-
-
-
-
-
 @Service
 public class BusinessEvaluationServiceImpl implements BusinessEvaluationService {
 	
@@ -64,9 +57,9 @@ public class BusinessEvaluationServiceImpl implements BusinessEvaluationService 
 	}
 	
 	@Override
-	public void update(BusinessEvaluationVO businessEvaluationVO) throws Exception {
+	public void businessEvaluationUpdate(BusinessEvaluationVO businessEvaluationVO) throws Exception {
 		// TODO Auto-generated method stub
-		dao.update(businessEvaluationVO);
+		dao.businessEvaluationUpdate(businessEvaluationVO);
 	}
 	
 	@Override
@@ -77,40 +70,6 @@ public class BusinessEvaluationServiceImpl implements BusinessEvaluationService 
 		
 	}
 
-	// 泥⑤��뙆�씪 議고쉶
-	@Override
-	public List<Map<String, Object>> selectFileList(int bem_beval_idx) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.selectFileList(bem_beval_idx);
-	}
-
-	// 泥⑤��뙆�씪 �떎�슫濡쒕뱶
-	@Override
-	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.selectFileInfo(map);
-	}
-	
-	
-	
-	@Override
-	public void update(BusinessEvaluationVO businessEvaluationVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
-		
-		dao.update(businessEvaluationVO);
-		
-		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(businessEvaluationVO, files, fileNames, mpRequest);
-		Map<String, Object> tempMap = null;
-		int size = list.size();
-		for(int i = 0; i<size; i++) {
-			tempMap = list.get(i);
-			if(tempMap.get("IS_NEW").equals("Y")) {
-				dao.insertFile(tempMap);
-			}else {
-				dao.updateFile(tempMap);
-			}
-		}
-	}
-	
 
 
 }

@@ -95,14 +95,20 @@
 		 WHERE 1=1
 		 AND BEM_BEVAL_IDX = #{bem_beval.idx}
 		 AND DEL_YN ='N'
-	</select>
+	</select> 
 	
-	<!--     <update id="update" parameterType="emp.bam.vo.BusinessAnnouncementVO">
-		UPDATE MP_BOARD
-		   SET TITLE    =   #{title},
-		   	   CONTENT  =   #{content}
-		 WHERE BNO = #{bno} 
-	</update> -->
+ <update id="businessEvaluationUpdate" parameterType="emp.bem.vo.BusinessEvaluationVO">
+		UPDATE EMP_BEM_BEVAL
+		   SET EVAL_SCORE1   =   #{eval_score1},
+			   EVAL_SCORE2   =   #{eval_score2},
+			   EVAL_SCORE3   =   #{eval_score3},
+			   EVAL_SCORE4   =   #{eval_score4},
+			   EVAL_SCORE5   =   #{eval_score5},
+			   EVAL_SCORE6   =   #{eval_score6},
+			   EVAL_TOTALSCORE = #{eval_totalscore},
+		   	   EVAL_OPINION  =   #{eval_opinion}
+		 WHERE BEM_BEVAL_IDX = #{bem_beval_idx} 
+	</update> 
 	
 	<!-- <delete id="delete" parameterType="int">
 		DELETE 

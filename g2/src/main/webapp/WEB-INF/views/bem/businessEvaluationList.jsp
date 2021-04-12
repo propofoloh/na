@@ -32,7 +32,7 @@
 	.searchBtn{
 	
 		border : 0px;
-		background-color: #dd4132;
+		background-color: #862640;
 		color : #ffffff;
 		width : 25%;
 		margin-right: -52px;
@@ -41,7 +41,7 @@
 	
 	.opinionBtn{
   	border : 0px;
-	background-color: #dd4132;
+	background-color: #862640;
 	color : #ffffff;
 	width : 100px;
 	height: 50px;
@@ -65,6 +65,7 @@
 
 			<section id="container">
 				<form role="form" method="get">
+				<input type="hidden"value="${param.bpm_bplan_idx}"/>
 				<div class="searchrow">
 					<div id="searchbox"class="col-sm-3">
 						<select name="searchType" class="form-control">
@@ -100,7 +101,7 @@
 					 <c:forEach items="${businessEvaluationList}" var = "businessEvaluationList">
 							<tr>
 								<td style="text-align: center">
-									<a href="/bem/businessEvaluationDetail?bem_beval_idx=${businessEvaluationList.bem_beval_idx}"><c:out value="${businessEvaluationList.eval_writer}" /></a>
+									<a href="/bem/businessEvaluationDetail?bem_beval_idx=${businessEvaluationList.bem_beval_idx}&bpm_bplan_idx=${param.bpm_bplan_idx}"><c:out value="${businessEvaluationList.eval_writer}" /></a>
 								</td>
 								<td style="text-align: center">${businessEvaluationList.eval_totalscore}</td>
 								<td style="text-align: center"><fmt:formatDate value="${businessEvaluationList.reg_date}" pattern="yyyy-MM-dd"/></td>

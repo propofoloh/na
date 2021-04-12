@@ -44,6 +44,20 @@
 				}
 	
 			});
+			$("input:radio[name=user_auth]").click(function(){
+				
+		        if($("input:radio[name=user_auth]:checked").val() == "1"){
+		        	 alert("1")
+		           	$('#businessMemberDiv').css('display','none')
+		            // radio 버튼의 value 값이 1이라면 활성화
+		 
+		        }else if($("input:radio[name=user_auth]:checked").val() == "0"){
+		        	 alert("2")
+		            $('#businessMemberDiv').css('display','block')
+		            // radio 버튼의 value 값이 0이라면 비활성화
+		        }
+		    });
+
 		})
 		
 		function fn_idChk(){
@@ -114,8 +128,8 @@
 			<form action="/cmm/postregister" method="POST" id="regForm" name="regForm" >
 				<div>
 					<label class="control-label" for="user_auth">회원가입 유형</label><br>
-					<input type="radio" class="user_auth" name="user_auth">평가위원
-					<input type="radio" class="user_auth" name="user_auth">사업자
+					<input type="radio" class="user_auth" name="user_auth" value ="1">평가위원
+					<input type="radio" class="user_auth" name="user_auth" value ="0">사업자
 				</div>
 				<div>
 					<label class="control-label" for="user_id">아이디</label><br>
@@ -126,15 +140,19 @@
 					<label class="control-label" for="user_pwd">비밀번호</label><br>
 					<input type="password" id="user_pwd" name="user_pwd" />
 				</div>
-				
 				<div>
 					<label class="control-label" for="user_name">이름</label><br>
 					<input type="text" id="user_name" name="user_name" />
 				</div>
-				
-				<div >
-					<label class="control-label" for="user_birthday">생년월일</label><br>
-					<input type="date" id="user_birthday" name="user_birthday" />
+				<div id="businessMemberDiv" style="display: none">
+					<div>
+						<label class="control-label" for="user_name">이름(사업담당자)</label><br>
+						<input type="text" id="" name="user_Bname" />
+					</div>
+					<div>
+						<label class="control-label" for="user_name">사업자등록번호</label><br>
+						<input type="text" id="" name="user_crcode" />
+					</div>
 				</div>
 				<div>
 					<label class="control-label" for="hp_num">휴대폰 번호</label><br>
@@ -148,6 +166,7 @@
 					<button class="register-Btn" type="submit" id="submit">회원가입</button>
 				</div>
 			</form>
+			
 			
 				
 				

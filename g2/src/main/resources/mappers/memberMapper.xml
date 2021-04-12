@@ -9,7 +9,6 @@
 	   					       , USER_ID 
 	   					       , USER_PWD
 	   					       , USER_NAME
-	   					       , USER_BIRTHDAY
 	   					       , HP_NUM
 	   					       , USER_EMAIL
 	   					       , USER_AUTH
@@ -38,7 +37,6 @@
 	   					         USER_ID 
 	   					       , USER_PWD
 	   					       , USER_NAME
-	   					       , USER_BIRTHDAY
 	   					       , HP_NUM
 	   					       , USER_EMAIL
 	   					       , USER_AUTH
@@ -55,7 +53,6 @@
 	   					         USER_ID 
 	   					       , USER_PWD
 	   					       , USER_NAME
-	   					       , USER_BIRTHDAY
 	   					       , HP_NUM
 	   					       , USER_EMAIL
 	   					       , USER_AUTH

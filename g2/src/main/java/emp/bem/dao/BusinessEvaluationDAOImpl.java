@@ -51,9 +51,9 @@ public class BusinessEvaluationDAOImpl implements BusinessEvaluationDAO {
 	
 	// 사업공고 수정
 	@Override
-	public void update(BusinessEvaluationVO businessEvaluationVO) throws Exception {
+	public void businessEvaluationUpdate(BusinessEvaluationVO businessEvaluationVO) throws Exception {
 		
-		sqlSession.update("businessEvaluationMapper.update", businessEvaluationVO);
+		sqlSession.update("businessEvaluationMapper.businessEvaluationUpdate", businessEvaluationVO);
 	}
 
 	// 사업공고 삭제
@@ -61,35 +61,6 @@ public class BusinessEvaluationDAOImpl implements BusinessEvaluationDAO {
 	public void delete(int bem_beval_idx) throws Exception {
 		
 		sqlSession.delete("businessEvaluationMapper.delete", bem_beval_idx);
-	}
-	
-	// 첨부파일 등록
-	@Override
-	public void insertFile(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		sqlSession.insert("businessEvaluationMapper.insertFile", map);
-	}
-	
-   	// 파일선택리스트
-	@Override
-	public List<Map<String, Object>> selectFileList(int bem_beval_idx) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("businessEvaluationMapper.selectFileList", bem_beval_idx);
-	}
-	
-	// 선택파일정보
-	@Override
-	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("businessEvaluationMapper.selectFileInfo", map);
-	}
-	
-	// 첨부파일 수정
-	@Override
-	public void updateFile(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
-		sqlSession.update("businessEvaluationMapper.updateFile", map);
 	}
 	
 	// 사업공고 조회수

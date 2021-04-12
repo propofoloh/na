@@ -11,36 +11,24 @@ import emp.bem.vo.BusinessEvaluationVO;
 
 public interface BusinessEvaluationService {
 	
-		// 사업공고 리스트조회
+		// 평가지표 리스트조회
 		public List<BusinessEvaluationVO> businessEvaluationList(Map<String,Integer> paramMap) throws Exception;
 		
-		// 사업공고등록
+		// 평가지표등록
 		public void businessEvaluation(BusinessEvaluationVO businessEvaluationVO) throws Exception;
 		
-		// 사업공고 갯수
+		// 평가지표 갯수
 		public int listCount(SearchCriteria scri) throws Exception;
 
-		// 사업공고 상세보기
+		// 평가지표 상세보기
 		public BusinessEvaluationVO businessEvaluationDetail(int bem_beval_idx) throws Exception;
 		
-		// 사업공고 수정
-		public void update(BusinessEvaluationVO businessEvaluationVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception;		
+		// 평가지표 수정
+		public void businessEvaluationUpdate(BusinessEvaluationVO businessEvaluationVO) throws Exception;		
 		
-		// 사업공고 삭제
+		// 평가지표 삭제
 		public void delete(int bem_beval_idx) throws Exception;
 		
-	    // 파일선택
-		public List<Map<String, Object>> selectFileList(int bem_beval_idx) throws Exception;
-		
-		// 선택파일정보
-		public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
-		
-		// 파일첨부 수정
-		public void update(BusinessEvaluationVO businessEvaluationVO) throws Exception;
-		
-	    
-
-		    
 		
 	}    
  

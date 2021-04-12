@@ -29,6 +29,18 @@
 		margin-left : 5px;
 	}
 	
+	.listBtn{
+		
+		float: left;
+		border : 0px;
+		background-color: #eaeaea;
+		color : #000000;
+		width :  8%;
+		height : 5%;
+		border-radius: 5px;
+		margin-left : 5px;
+	}
+	
 	.fileAdd_btn{
 		text-align : center;
 		border : 0px;
@@ -143,6 +155,7 @@
 				</table>
 				<hr />
 					<div>
+						<button class="listBtn" type="button" onclick="location.href='../bam/businessAnnouncementList'">목록</button>
 						<button class="applyBtn" type="submit">접수</button>
 					</div>
 			</form>

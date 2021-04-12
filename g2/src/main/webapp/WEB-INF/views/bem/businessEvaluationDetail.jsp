@@ -44,6 +44,8 @@
   <form action="#">
   <div id=printArea>
   	<input type="hidden"value="${param.bam_anc_idx}"/>
+  	<input type="hidden"value="${param.bem_beval_idx}"/>
+  	<input type="hidden"value="${param.bpm_bplan_idx}"/>
     <table class="subjecttable">
     	<p>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</p>
     	<colgroup>
@@ -150,8 +152,8 @@
 	  </div>
 		 
 		 <div class="submitForm">
-			    <input class ="succesbtn" type="button" value="선정" onclick="location.href='/evaluation/evaluationList'">
-			    <input class ="canclebtn" type="button" value="탈락" onclick="location.href='/evaluation/evaluationList'">
+			    <input class ="listbtn" type="button" value="목록" onclick="location.href='/bem/businessEvaluationList?bpm_bplan_idx=${param.bpm_bplan_idx}&bpm_bplan_idx=${param.bpm_bplan_idx}'">
+			    <input class ="printbtn" type="button" value="수정" onclick="location.href='/bem/businessEvaluationUpdate?bem_beval_idx=${read.bem_beval_idx}&bpm_bplan_idx=${param.bpm_bplan_idx}'">
 			    <input class ="printbtn" type="button" value="인쇄" onclick="printFn(print)">  
 		</div>
     </form>

@@ -83,10 +83,26 @@ public class BusinessEvaluationController {
 	
 	//사업계획서 평가지표 상세 조회
 		@RequestMapping(value = "/businessEvaluationDetail", method = RequestMethod.GET)
-		public void evaluationRaitingView(BusinessEvaluationVO businessEvaluationVO, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		public void businessEvaluationDetail(BusinessEvaluationVO businessEvaluationVO, Model model,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx) throws Exception{
 			
 			model.addAttribute("read", service.businessEvaluationDetail(businessEvaluationVO.getBem_beval_idx()));
-			model.addAttribute("scri", scri);
+
+			
+		}
+		//사업계획서 평가지표 수정 뷰
+		@RequestMapping(value = "/businessEvaluationUpdate", method = RequestMethod.GET)
+		public void businessEvaluationUpdateView(BusinessEvaluationVO businessEvaluationVO, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+			
+			model.addAttribute("read", service.businessEvaluationDetail(businessEvaluationVO.getBem_beval_idx()));
+			
+		}
+		//사업계획서 평가지표 수정
+		@RequestMapping(value = "/businessEvaluationUpdate", method = RequestMethod.POST)
+		public String businessEvaluationUpdate(@RequestParam("bpm_bplan_idx") int bpm_bplan_idx,@RequestParam("bem_beval_idx") int bem_beval_idx,BusinessEvaluationVO businessEvaluationVO,Model model) throws Exception{
+			
+			service.businessEvaluationUpdate(businessEvaluationVO);
+			
+			return "redirect:/bem/businessEvaluationList?bpm_bplan_idx="+bpm_bplan_idx;
 			
 		}
 

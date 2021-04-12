@@ -139,10 +139,11 @@ body {
 				<thead>
 					<tr>
 						<th style="width: 60px; text-align: center;">번호</th>
-						<th style="width: 650px; text-align: center;">사업명</th>
+						<th style="width: 430px; text-align: center;">사업명</th>
 						<th style="width: 100px; text-align: center;">작성자</th>
 						<th style="width: 120px; text-align: center;">공고시작일자</th>
 						<th style="width: 120px; text-align: center;">공고종료일자</th>
+						<th style="width: 120px; text-align: center;">바로가기</th>
 					</tr>
 				</thead>
 
@@ -158,7 +159,15 @@ body {
 								value="${list.anc_begin_dt}" pattern="yyyy-MM-dd" /></td>
 						<td style="text-align: center;"><fmt:formatDate
 								value="${list.anc_end_dt}" pattern="yyyy-MM-dd" />
-					</tr>
+					<c:choose>
+						<c:when test="${member.user_auth == '1'}">
+							<td style="text-align: center;"><a href="/bpm/businessPlanApplyList?bam_anc_idx=${list.bam_anc_idx}">접수목록보기</a></td>
+						</c:when>
+						<c:otherwise>
+							<td style="text-align: center;"><a href="/bpm/businessPlanApply?bam_anc_idx=${list.bam_anc_idx}">접수하기</a></td>
+						</c:otherwise>
+					</c:choose>	
+						</tr>
 				</c:forEach>
 			</table>
 			<c:if test="${member.user_auth == '1'}">
