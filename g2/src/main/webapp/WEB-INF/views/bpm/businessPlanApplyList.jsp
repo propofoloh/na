@@ -87,7 +87,7 @@
 								<th style="width: 350px; text-align: center;">연구목표</th>
 								<th style="width: 350px; text-align: center;">사업자</th>
 								<th style="width: 320px; text-align: center;">접수완료일자</th>
-
+								<th style="width: 200px; text-align: center;">접수상태</th>
 							</tr>
 						</thead>
 						<c:forEach items="${list}" var = "list" varStatus="status">
@@ -100,6 +100,7 @@
 										</td>
 										<td style="text-align: center;"><c:out value="${list.writer}" /></td>
 										<td style="text-align: center;"><fmt:formatDate value="${list.reg_date}" pattern="MM/dd H시mm분"/></td>
+										<td style="text-align: center;"><c:out value="${list.status}" /></td>
 									</tr>
 								</c:if>	
 						</c:forEach>

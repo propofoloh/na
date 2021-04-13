@@ -42,6 +42,7 @@
 	   					      , WRITER
 	   					      , REG_DATE
 	   					      , MOD_DATE
+	   					      , STATUS
 		 FROM ( 
 		        SELECT BPM_BPLAN_IDX 
 	   					      , BOARD_IDX 
@@ -52,6 +53,7 @@
 	   					      , WRITER
 	   					      , REG_DATE
 	   					      , MOD_DATE
+	   					      , STATUS	
 		               ,ROW_NUMBER() OVER(ORDER BY BPM_BPLAN_IDX DESC) AS RNUM
 		         FROM EMP_BPM_BPLAN
 		         WHERE 1=1 

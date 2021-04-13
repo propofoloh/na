@@ -9,6 +9,12 @@ import emp.bpm.util.Criteria;
 public class BusinessPlanVO extends Criteria{
 	
 
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	private int bpm_bplan_idx;
 	private int board_idx = 2;
 	private int bam_anc_idx;
@@ -21,6 +27,7 @@ public class BusinessPlanVO extends Criteria{
 	private Date reg_date;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date mod_date;
+	private String status;
 	
 	public int getBam_anc_idx() {
 		return bam_anc_idx;
