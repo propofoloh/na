@@ -28,7 +28,7 @@ header{-ms-display: flexbox;display:flex;display: -moz-box;display: -ms-flexbox;
 .cont{width:calc(100% - 220px);margin-left:20px;padding-top:30px;padding-right:20px;box-sizing:border-box;}
 .cont h2{padding-left:15px;margin-bottom:30px;font-size:22px;font-weight:bold;}
 .cont h3 {margin-bottom:30px;font-size:22px;font-weight:bold;}
-.cont > .inner{overflow:hidden;padding:15px;box-sizing:border-box;}
+.cont > .inner{overflow:hidden;padding:15px;box-sizing:border-box; margin : 0 5%;}
 .cont > .inner.box{padding:35px 15px;border:1px solid #ccc;}
 
 /* margin */

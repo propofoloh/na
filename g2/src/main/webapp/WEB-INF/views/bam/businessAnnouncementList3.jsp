@@ -116,8 +116,7 @@ body {
 					<select id="searchSel" name="searchType" class="form-control">
 						<option value="n"
 							<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
-						<option value="t"
-							<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>사업명</option>
+						<option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>사업명</option>
 						<option value="c"
 							<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 						<option value="w"
