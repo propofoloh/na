@@ -5,7 +5,7 @@
 <mapper namespace="businessAnnouncementMapper">
    
       <!-- 게시판 글 작성 -->
-   <insert id="insert" >
+   <insert id="insert" useGeneratedKeys="false">
 	   INSERT INTO EMP_BAM_ANC( BAM_ANC_IDX 
 	   					      , BOARD_IDX 
 	   					      , ANC_TITLE 
@@ -22,6 +22,11 @@
 	                 		  , #{anc_end_dt}
 	                 		  , #{writer}
 	                 		    )
+	            <selectKey keyProperty="bam_anc_idx" resultType="int" order="AFTER">
+
+        			SELECT SEQ_BAM_ANC_IDX.currval FROM dual
+
+     			 </selectKey>
    
    </insert>
    
@@ -143,16 +148,18 @@
     	WHERE FILE_NO = #{FILE_NO}
     </update> -->
       <insert id="businessEvaluationEdit" parameterType="hashMap" >
-	   INSERT INTO EMP_BEM_BEVAL_FORM( BAM_ANC_IDX 
+	   INSERT INTO EMP_BEM_BEVAL_FORM( BAM_ANC_IDX
+	   						  , BEM_BEVAL_FORM_IDX
 	   					      , BOARD_IDX 
 	   					      , EVAL_FORM_TITLE 
-	   					      , EVAL_FORM_item 
-	   					      , EVAL_FORM_score 
+	   					      , EVAL_FORM_ITEM
+	   					      , EVAL_FORM_SCORE 
 	   					      , REG_DATE
 	   					      , MOD_DATE
 	   					      
 	   					       )
-	                 VALUES(   #{bam_anc_title}
+	                 VALUES(   #{bam_anc_idx}
+	                 		  , SEQ_BEVAL_FORM_IDX.NEXTVAL
 	                 		  , 1 
 	                 		  , #{eval_form_title}
 	                 		  , #{eval_form_item}
@@ -160,6 +167,7 @@
 	                 		  , SYSDATE
 	                 		  , SYSDATE
 	                 		    )
+	              
    
    </insert>
 </mapper>

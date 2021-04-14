@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class BusinessAnnouncementVO {
 	
-	private int bam_anc_idx = 0;
+	private int bam_anc_idx;
 	private int board_idx = 1;
 	private String anc_title;
 	private String anc_remark;

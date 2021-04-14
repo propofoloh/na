@@ -7,12 +7,14 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.RespectBinding;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -142,15 +144,23 @@ public class BusinessAnnouncementController {
 
 	}
 	//사업평가지표 양식등록
-	@RequestMapping(value="/businessEvaluationEdit",method = RequestMethod.POST)
-	public @ResponseBody void businessEvaluationEdit(@RequestParam(value = "arrEval_form_title[]") List<String> arrEval_form_title,
+	 @RequestMapping(value="/businessEvaluationEdit",method = RequestMethod.POST)
+	public @ResponseBody void businessEvaluationEdit (
+			@RequestParam(value = "arrEval_form_title[]") List<String> arrEval_form_title,
 			@RequestParam(value = "arrEval_form_item[]") List<String> arrEval_form_item,
 			@RequestParam(value = "arrEval_form_score[]") List<String> arrEval_form_score,
-			@RequestParam(value = "bam_anc_idx") int bam_anc_idx,
+			@RequestParam(value = "Sbam_anc_idx") String Sbam_anc_idx,
 			Model model,HttpServletResponse response) throws Exception{
+		try {
+			int bam_anc_idx=Integer.parseInt(Sbam_anc_idx);
+			service.businessEvaluationEdit(arrEval_form_title,arrEval_form_item,arrEval_form_score,bam_anc_idx);
+			
+		}catch (Exception e) {
+			
+		}
+		 
 		
-		service.businessEvaluationEdit(arrEval_form_title,arrEval_form_item,arrEval_form_score,bam_anc_idx);
-		
+	
 	}
 	@RequestMapping(value="/businessEvaluationEdit",method = RequestMethod.GET)
 	public void businessEvaluationEditView(@RequestParam(value = "bam_anc_idx") int bam_anc_idx,RedirectAttributes redirect) throws Exception{;

@@ -114,7 +114,7 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 			for(int i=0; i <arrEval_form_title.size();i++) {
 				String eval_form_title = arrEval_form_title.get(i);
 				String eval_form_item = arrEval_form_item.get(i);
-				String eval_form_score = arrEval_form_item.get(i);
+				String eval_form_score = arrEval_form_score.get(i);
 				
 				Map<String,Object> paramMap = new HashMap();
 				paramMap.put("eval_form_title",eval_form_title);

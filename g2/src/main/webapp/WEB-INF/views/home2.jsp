@@ -19,141 +19,97 @@
  <script type="text/javascript">
 	$(document).ready(function(){
 		$("#logoutBtn").on("click", function(){
-			location.href="member/logout";
+			location.href="cmm/logout";
 		})
 		$("#registerBtn").on("click", function(){
-			location.href="member/Agreement";
+			location.href="cmm/agreement";
 		})
 		$("#memberDeleteBtn").on("click", function(){
-			location.href="member/memberDeleteView";
+			location.href="cmm/memberDeleteView";
 		})
 		
 		
 		$("#memberUpdateBtn").on("click", function(){
-			location.href="member/memberUpdateView";
+			location.href="cmm/memberUpdateView";
 		})
 		
 	})
 </script>
-<!--
-<body>
+<style>
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+		
+		margin :0 35%;
+}
 
-	<nav class="navbar navbar-default">
+.login-text {
+	margin: 90px 0px 50px 0px;
+	text-align: center;
+	font-size: 35px;
+	font-weight: 5px;
+	
+}
 
-		<div class="navbar-header">
+.loginForm {
+	display: flex;
+	flex-direction: column;
+	margin: 0px 30px;
+}
 
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
+.loginForm input {
+	border: none;
+	padding: 10px 0px;
+	font-size: 18px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	transition: border-color 0.3s ease-in-out;
+	margin-bottom: 25px;
 
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
+	
+}
+#login{
+	color : #ffffff;
+	background-color: #dd4132;
+}
+	
+.loginForm input::placeholder {
+	color: rgba(0, 0, 0, 0.4);
+}
 
-			</button>
+.loginForm input:focus {
+	border-color: #11b20d;
+}
 
-		</div>
+.loginform-checkbox{
+	text-align : right;
+}
 
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-
-			<ul class="nav navbar-nav">
-
-				<li><a href="/board/list">게시판</a></li>
-				<li><a href="/board/list2">게시판2</a></li>
-
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">접속하기<span class="caret"></span></a>
-
-					<ul class="dropdown-menu">
-
-						<li class="active"><a href="login.jsp">로그인</a></li>
-
-					</ul></li>
-			</ul>
-
-		</div>
-
-	</nav>
-
-	<div class="container">
-
-		<div class="col-lg-4"></div>
-
-		<div class="col-lg-4">
-
-			<div class="jumbotron" styles="padding-top:20px;">
-
-				<form method="post" action="/member/login">
-
-					<h3 style="text-align: center;">로그인화면</h3>
-
-					<div class="form-group">
-
-						<input type="text" class="form-control" placeholder="아이디"
-							name="userID" maxlength="20">
-
-					</div>
-
-					<div class="form-group">
-
-						<input type="password" class="form-control" placeholder="비밀번호"
-							name="userPassword" maxlength="20">
-
-					</div>
-					<input style="width: 100%" type="submit" class="btn btn-primary form-control"value="로그인">	
-
-				</form>
-				<div style=" width: 230px; float: left">
-					<input id="registerBtn" style="width: 49%" type="submit" class="btn btn-primary form-control" value="회원가입"> 
-					<input style="width: 49%" type="button" class="btn btn-primary form-control" value="ID/PW 찾기">
-				</div>
-			</div>
-
-		</div>
-
-	</div>
-
-	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-	<script src=js/bootstrap.js></script>
-
-</body>
-
-</html>
- -->
+.register{
+	text-align : center; 
+}
+.register input{
+	 width : 49%;
+	 background-color: #dd4132;
+	 color : #ffffff;
+}
+</style>
 
 <body>
-	<div class="container">
-
-		<div class="col-lg-4"></div>
-
-		<div class="col-lg-4">
-
-			<div class="jumbotron" styles="padding-top:20px;">
-			
-	<form name='homeForm' method="post" action="/member/login">
+	<div class="login-text">LOGIN</div>
+		
+	<form name='loginForm' method="post" action="/cmm/login">
 		<c:if test="${member == null}">
+			 <div class="loginForm">
+				<input type="text"  placeholder="아이디" id="user_id" name="user_id" maxlength="20">
+				<input type="password" placeholder="비밀번호" id="user_pwd" name="user_pwd" maxlength="20">
+				<!--  <div class="loginform-checkbox">
+				 	<input type="checkbox" id="login-checkbox" />
+				 	<span> 로그인 상태 유지 </span>
+			 </div> -->
+			 	<input id="login" type="submit" value="로그인">	 
 			
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="아이디"
-							id="userId" name="userId" maxlength="20">
-					</div>
-					
-			<div>
-				<label for="userPass"></label>
-				<input type="password" class="form-control" placeholder="비밀번호" id="userPass" name="userPass" maxlength="20">
-			</div>
-			
-			<div>
-				<input style="width: 100%; margin: 10px;" type="submit" class="btn btn-primary form-control"value="로그인">
-			</div>
 		</c:if>
-		<c:if test="${member != null }">
+		 <c:if test="${member != null }">
 			<div>
 				<p>${member.userId}님 환영 합니다.</p>
 				<button id="memberUpdateBtn" type="button">회원정보수정</button>
@@ -166,13 +122,11 @@
 		</c:if>
 	</form>
 	
-	<div style=" width: 230px; float: left">
-			<input id="registerBtn" style="width: 49%" type="submit" class="btn btn-primary form-control" value="회원가입"> 
-			<input style="width: 49%" type="button" class="btn btn-primary form-control" value="ID/PW 찾기">
+	<div class ="register">
+			<a id="registerBtn"href ="#" type="submit" value="회원가입">회원가입</a>
+			<!--  | 
+			<a href ="#" type="button" value="ID/PW 찾기">&nbsp&nbsp&nbsp ID/PW 찾기</a> -->
 	</div>
-		</div>
-	</div>
-</div>
 
 </body> 
 </html>
