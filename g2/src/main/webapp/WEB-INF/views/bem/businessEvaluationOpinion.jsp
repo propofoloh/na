@@ -198,7 +198,7 @@ $("span[name='toggle-control']").click(function() {
 </head>
 
 <body>
-
+	<c:out value="${Bplan.writer}"></c:out>
 	<form style="margin-bottom: 30px;">
 		<table border="3">
 			<p>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</p>

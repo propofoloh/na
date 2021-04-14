@@ -100,7 +100,19 @@
 										</td>
 										<td style="text-align: center;"><c:out value="${list.writer}" /></td>
 										<td style="text-align: center;"><fmt:formatDate value="${list.reg_date}" pattern="MM/dd H시mm분"/></td>
-										<td style="text-align: center;"><c:out value="${list.status}" /></td>
+										<td style="text-align: center;">
+										<c:choose>
+											<c:when test="${list.status == 0}">
+												평가 진행중
+											</c:when>
+											<c:when test="${list.status == 1}">
+												평가 완료
+											</c:when>
+											<c:when test="${list.status == 2}">
+												선정 완료
+											</c:when>
+										</c:choose>
+										</td>
 									</tr>
 								</c:if>	
 						</c:forEach>

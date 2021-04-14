@@ -37,6 +37,8 @@ public interface BusinessAnnouncementService {
 		// 파일첨부 수정
 		public void update(BusinessAnnouncementVO VO) throws Exception;
 		
+		//사업 평가지표 양식 등록 
+		public void businessEvaluationEdit(List<String> arrEval_form_title, List<String> arrEval_form_item, List<String> arrEval_form_score,int bam_anc_idx) throws Exception;
 	    
 
 		    

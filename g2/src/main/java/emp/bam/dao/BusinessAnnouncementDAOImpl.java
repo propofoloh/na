@@ -98,5 +98,9 @@ public class BusinessAnnouncementDAOImpl implements BusinessAnnouncementDAO {
 		sqlSession.update("businessAnnouncementMapper.boardHit", bno);
 	}
 	
-	
+	@Override
+	public void businessEvaluationEdit(Map<String,Object> paramMap) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert("businessAnnouncementMapper.businessEvaluationEdit",paramMap);
+	}
 }

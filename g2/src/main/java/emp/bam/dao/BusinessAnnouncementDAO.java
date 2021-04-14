@@ -44,5 +44,7 @@ public interface BusinessAnnouncementDAO {
 	// 사업공고 조회수
 	public void boardHit(int bno) throws Exception;
 	    
+	// 사업 평가지표 양식등록
+	public void businessEvaluationEdit(Map<String,Object> paramMap) throws Exception;
 	
 }

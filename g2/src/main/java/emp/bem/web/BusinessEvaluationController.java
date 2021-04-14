@@ -22,6 +22,7 @@ import emp.bem.service.BusinessEvaluationService;
 import emp.bem.util.PageMaker;
 import emp.bem.util.SearchCriteria;
 import emp.bem.vo.BusinessEvaluationVO;
+import emp.bpm.service.BusinessPlanService;
 
 
 
@@ -33,6 +34,9 @@ public class BusinessEvaluationController {
 
 	@Inject
 	BusinessEvaluationService service;
+	
+	@Inject
+	BusinessPlanService planService;
 	
 	@Inject
 	BusinessAnnouncementService ancService;
@@ -86,7 +90,7 @@ public class BusinessEvaluationController {
 		public void businessEvaluationDetail(BusinessEvaluationVO businessEvaluationVO, Model model,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx) throws Exception{
 			
 			model.addAttribute("read", service.businessEvaluationDetail(businessEvaluationVO.getBem_beval_idx()));
-
+			model.addAttribute("Bplan", planService.businessPlanApplyDetail(bpm_bplan_idx));
 			
 		}
 		//사업계획서 평가지표 수정 뷰

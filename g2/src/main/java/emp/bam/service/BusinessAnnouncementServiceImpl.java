@@ -1,5 +1,6 @@
 package emp.bam.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import emp.bam.dao.BusinessAnnouncementDAO;
 import emp.bam.util.FileUtils;
 import emp.bam.util.SearchCriteria;
 import emp.bam.vo.BusinessAnnouncementVO;
+import oracle.net.aso.o;
 
 
 
@@ -105,7 +107,24 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 			}
 		}
 	}
-	
+	@Override
+	public void businessEvaluationEdit(List<String> arrEval_form_title, List<String> arrEval_form_item,
+			List<String> arrEval_form_score,int bam_anc_idx) throws Exception {
+		// TODO Auto-generated method stub
+			for(int i=0; i <arrEval_form_title.size();i++) {
+				String eval_form_title = arrEval_form_title.get(i);
+				String eval_form_item = arrEval_form_item.get(i);
+				String eval_form_score = arrEval_form_item.get(i);
+				
+				Map<String,Object> paramMap = new HashMap();
+				paramMap.put("eval_form_title",eval_form_title);
+				paramMap.put("eval_form_item",eval_form_item);
+				paramMap.put("eval_form_score",eval_form_score);
+				paramMap.put("bam_anc_idx",bam_anc_idx);
+				dao.businessEvaluationEdit(paramMap);
+			}
+		
+	}
 
 
 }

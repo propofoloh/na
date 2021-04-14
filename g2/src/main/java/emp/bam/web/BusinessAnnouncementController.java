@@ -13,20 +13,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-
 import emp.bam.service.BusinessAnnouncementService;
-import emp.bam.vo.BusinessAnnouncementVO;
-import emp.cmm.service.MemberService;
 import emp.bam.util.PageMaker;
 import emp.bam.util.SearchCriteria;
+import emp.bam.vo.BusinessAnnouncementVO;
+import emp.cmm.service.MemberService;
 
 @Controller
 @RequestMapping("/bam")
@@ -82,12 +80,14 @@ public class BusinessAnnouncementController {
 	}
 	
 	@RequestMapping(value = "/businessAnnouncementInputWrite", method = RequestMethod.POST)
-	public String write(BusinessAnnouncementVO businessAnnouncementVO, MultipartHttpServletRequest mpRequest) throws Exception{
+	public String write(BusinessAnnouncementVO businessAnnouncementVO, MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception{
 		logger.info("businessAnnouncementInputWrite");
 
 		service.write(businessAnnouncementVO, mpRequest);
-
-		return "redirect:/bam/businessAnnouncementList";
+		int bam_anc_idx = businessAnnouncementVO.getBam_anc_idx();
+		System.out.println(bam_anc_idx);
+		redirect.addAttribute("bam_anc_idx",bam_anc_idx);
+		return "redirect:/bam/businessEvaluationEdit";
 	}
 
 	//사업 공고 수정 페이지 조회
@@ -141,5 +141,24 @@ public class BusinessAnnouncementController {
 		response.getOutputStream().close();
 
 	}
+	//사업평가지표 양식등록
+	@RequestMapping(value="/businessEvaluationEdit",method = RequestMethod.POST)
+	public @ResponseBody void businessEvaluationEdit(@RequestParam(value = "arrEval_form_title[]") List<String> arrEval_form_title,
+			@RequestParam(value = "arrEval_form_item[]") List<String> arrEval_form_item,
+			@RequestParam(value = "arrEval_form_score[]") List<String> arrEval_form_score,
+			@RequestParam(value = "bam_anc_idx") int bam_anc_idx,
+			Model model,HttpServletResponse response) throws Exception{
+		
+		service.businessEvaluationEdit(arrEval_form_title,arrEval_form_item,arrEval_form_score,bam_anc_idx);
+		
+	}
+	@RequestMapping(value="/businessEvaluationEdit",method = RequestMethod.GET)
+	public void businessEvaluationEditView(@RequestParam(value = "bam_anc_idx") int bam_anc_idx,RedirectAttributes redirect) throws Exception{;
+			logger.info("businessEvaluationEdit");
+			redirect.addAttribute(bam_anc_idx);
+		
+			
+	}
+	
 
 }
