@@ -91,6 +91,7 @@
 	   					      , EVAL_SCORE6
 	   					      , EVAL_TOTALSCORE
 	   					      , TO_CHAR(REG_DATE,'YYYY.MM.DD')
+	   					      , EVAL_WRITER
 		 FROM EMP_BEM_BEVAL
 		 WHERE 1=1
 		 AND BEM_BEVAL_IDX = #{bem_beval.idx}

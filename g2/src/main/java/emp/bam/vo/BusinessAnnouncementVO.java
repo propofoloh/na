@@ -12,9 +12,9 @@ public class BusinessAnnouncementVO {
 	private String anc_remark;
 	private String writer;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date anc_begin_dt;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date anc_end_dt;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date reg_date;

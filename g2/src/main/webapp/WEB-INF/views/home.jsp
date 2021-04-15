@@ -29,29 +29,22 @@
             </dd>
         </dl>
         <header>
-            <h1 class="logo">
-                <img src="../../resource/image/logo.jpg" alt="충북대학교">
-                <span>평가관리프로그램</span>
-            </h1>
-            <c:if test="${member != null}">
-				<div class="log row">
-	                <p>[<span>${member.userId}</span>]님, 안녕하세요!</p>
-	                <p><img src="" alt=""></p>
-	                <a href="cmm/logout">로그아웃</a>
-           		</div>	
-			</c:if>
-            
+          	<%@include file="cmm/topmenu.jsp"%>
         </header>
         <c:if test="${member == null}">
         <div class="content">
             <span id="contents"></span>
             <div class="row content_outer">
-                <ul class="location row">
+                 <section class="location sect1">
+                    <ul class="insideArea row">
                     <li>사용자</li>
                     <li>로그인</li>
                 </ul>
-                <div class="lnb">
-                    <p class="tit">사용자</p>
+                </section>
+                <section class="sect2">
+                    <div  class="insideArea row">
+                		<div class="lnb">
+                    	<p class="tit">사용자</p>
                     <ul>
                         <li>
                             <a href="">로그인</a>
@@ -84,7 +77,7 @@
                                 <li><a href="#">아이디/비밀번호 찾기(사업자)</a></li>
                             </ul>
                         </div>
-                       
+                      
                     </div>
                     <div class="box_login">
                         <div class="method">
@@ -97,6 +90,8 @@
                     </div>    
                 </div>
             </div>
+        </div>
+        </section>
         </div>
         </c:if>
         <footer></footer>

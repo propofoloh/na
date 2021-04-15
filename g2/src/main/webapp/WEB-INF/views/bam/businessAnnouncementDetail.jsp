@@ -1,193 +1,122 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<html>
-	<head>
-		<!-- 합쳐지고 최소화된 최신 CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<!-- 부가적인 테마 -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	 	
-	 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	 	
-	 	<title>사업공고</title>
-	</head>
-	
-<style type="text/css">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width,user-scalable=no,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" name="Viewport" />
+    <link rel="stylesheet" href="../../resource/css/reset.css">
+    <link rel="stylesheet" href="../../resource/css/common.css">
+    <link rel="stylesheet" href="../../resource/css/sub.css">
+    <link rel="stylesheet" href="../../resource/css/board.css">
+	<link rel="stylesheet" href="../../resource/css/hj.css">
 
-	body{
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-			margin :0 20%;
-	}
-	.writebtn {
-		float: right;
-		border: 0px;
-		background-color: #dd4132;
-		color: #ffffff;
-		width: 10%;
-		height: 5%;
-		border-radius: 5px;
-		margin-top: 10px;
-	}
-	
-	.filebtn {
-		border: 0px;
-		background-color: #dd4132;
-		color: #ffffff;
-		width: 10%;
-		height: 5%;
-		border-radius: 5px;
-		margin-top: 10px;
-	}
-	
-	.evaluator-check {
-		border: 0px;
-		background-color: #dd4132;
-		color: #ffffff;
-		width: 10%;
-		height: 4%;
-		margin-left: 5px;
-		border-radius: 5px;
-	}
-	
-	#anc_remark{
-		height: 30%;
-	}
-	
-	 .manageBtn{
-		
-		border : 0px;
-		background-color: #86E57F;
-		text-align : center;
-		color : #ffffff;
-		width : 5%;
-		height : 50px;
-		margin-right : 5px;
-		border-radius: 5px;
-		float: left;
-	}
-	.functionBtn{
-	
-		border : 0px;
-		background-color: #dd4132;
-		text-align : center;
-		color : #ffffff;
-		width : 10%;
-		height : 50px;
-		margin-right : 5px;
-		border-radius: 5px;
-		float: right;
-	}
-</style>
-	
-	<script type="text/javascript">
-		
-		$(document).ready(function(){
-			var formObj = $("form[name='readForm']");
-			
-			// 수정 
-			$(".update_btn").on("click", function(){
-				formObj.attr("action", "/board/updateView");
-				formObj.attr("method", "get");
-				formObj.submit();				
-			})
-			
-			// 삭제
-			$(".delete_btn").on("click", function(){
-				
-				var deleteYN = confirm("삭제하시겠습니까?");
-				if(deleteYN == true){
-					
-				formObj.attr("action", "/board/delete");
-				formObj.attr("method", "post");
-				formObj.submit();
-					
-				}
-			})
-			
-			// 목록
-			$(".list_btn").on("click", function(){
-				
-				location.href = "/board/list?page=${scri.page}"
-						      +"&perPageNum=${scri.perPageNum}"
-						      +"&searchType=${scri.searchType}&keyword=${scri.keyword}";
-			})
-			
-			$("#businessPlanApplyBtn").on("click", function(){
-				
-				var form = $("form[name='readForm']");
-				formObj.attr("action", "/bpm/businessPlanApply");
-				form.attr("method","get");
-				form.submit();
-			})
-			
-		})
-		function fn_fileDown(fileNo){
-			var formObj = $("form[name='readForm']");
-			$("#FILE_NO").attr("value", fileNo);
-			formObj.attr("action", "/board/fileDown");
-			formObj.submit();
-		}
-	</script>
-	
-	<body>
-		<c:if test="${member != null }">
-			<div style ="float: right"><%@include file="../board/nav.jsp" %></div>
-			<header>
-				<h1>사업공고</h1>
-			</header>
-			<hr />
-			<section id="container">
-				<form name="readForm" role="form" method="post">
-					<input type="hidden" id="bam_anc_idx" name="bam_anc_idx" value="${read.bam_anc_idx}" />
-					<input type="hidden" id="page" name="page" value="${scri.page}"> 
-					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
-					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
-					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
-					<input type="hidden" id="FILE_NO" name="FILE_NO" value=""> 
-				</form>
-				
-				<div class="form-group">
-					<label for="title" class="col-sm-2 control-label">사업 명</label>
-					<input type="text" id="anc_title" name="anc_title" class="form-control" value="${read.anc_title}" readonly="readonly" />
-				</div>
-				<div class="form-group">
-					<label for="writer" class="col-sm-2 control-label">작성자</label>
-					<input type="text" id="writer" name="writer" class="form-control" value="${read.writer}"  readonly="readonly"/>
-				</div>
-				<div class="form-group">
-					<label for="content" class="col-sm-2 control-label">사업 내용</label>
-					<input type="text" id="anc_remark" name="anc_remark" class="form-control" readonly="readonly" value="<c:out value="${read.anc_remark}" />"/>
-				</div>
-				
-				<div class="form-group">
-					<label for="regdate" class="col-sm-2 control-label">공고 시작일자</label>
-					<fmt:formatDate value="${read.anc_begin_dt}" pattern="yyyy-MM-dd" />	
-				</div>
-				
-				<div class="form-group">
-					<label for="regdate" class="col-sm-2 control-label">공고 종료일자</label>
-					<fmt:formatDate value="${read.anc_end_dt}" pattern="yyyy-MM-dd" />	
-				</div>
+	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../resource/js/sub.js"></script>
+    <title>충북대 평가관리프로그램</title>
+</head>
+<body>
+    <div class="wrap">
+        <dl id="skip_nav">
+            <dt>메뉴 건너띄기</dt>
+            <dd>
+                <a href="#contents">본문 바로가기</a>
+                <a href="#gnb">대메뉴 바로가기</a>
+            </dd>
+        </dl>
+        <header>
+              <%@include file="../cmm/topmenu.jsp"%>
+        </header>
+        <div class="content">
+            <span id="contents"></span>
+            <div class="row content_outer">
+                <section class="location sect1">
+                    <ul class="insideArea row">
+                    <li>사용자</li>
+                    <li>사업공고</li>
+                </ul>
+                </section>
+                <section class="sect2">
+                    <div  class="insideArea row">
+                <div class="lnb">
+                    <p class="tit">사용자</p>
+                    <ul>
+                        <li>
+                            <a href="#">사업분류</a>
+                        </li>
+                        <li class="on">
+                            <a href="#">사업공고</a>
+                            <ul class="second_menu">
+                                <li>· 사업공고일정</li>
+                                <li class="on">· 사업공지</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">사업질의응답</a>
+                        </li>
+                        <li>
+                            <a href="#">사업자료실</a>
+                        </li>
+                        <li>
+                            <a href="#">정보서비스</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cont">
+                    <div class="inner">
+                        <div class="board-wrap respon notscroll manage mt_0 view">			
+                            <div class="m-board" id="printDiv">
+                                <div class="view">
+                                    <div class="view-head">
+                                        <div class="title">
+                                            <div class="txt">2021년도 한-캐나다 산학연 공동연구사업 신규과제 공모</div>
+                                        </div>
+                                        <div class="infos">
+                                            <div class="info"><span class="title">담당자</span> <span class="content">${read.writer}</span></div>
+                                            <div class="info"><span class="title">등록일</span> <span class="content">${read.reg_date}</span></div>
+                                            <div class="info">
+                                                <span class="title">조회수</span> <span class="content">0</span>
+                                            </div>
+                                        </div>
+                                        <div class="attach">
+                                            <div class="title">첨부파일</div>
+                                            <div class="contents">
+                                                <form name="download" method="post" action="/file/boardDownload">
+                                                    <input type="hidden" name="fileType" value="">
+                                                    <input type="hidden" name="no" value="">
+                                                    <input type="hidden" name="sno" value="">
+                                                </form>
+                                               <c:forEach var="file" items="${file}">
+													<a class="file" href="#" onclick="fn_fileDown('${file.file_idx}'); return false;">${file.file_sname}</a>(${file.FILE_SIZE})<br>
+												</c:forEach>
+                                                </div>
+                                        </div>
+                                        <button type="button" class="print" id="printBtn">게시물 프린트</button>
+                                    </div>
+                    
+                                    <div class="view-body"><p>${read.anc_remark} </p>
+                    <p>&nbsp;</p></div>
+                                </div>
+                    
+                                <div class="btn_wrap same mt_20 ta_c">
+									<button type="button" class="normal" onclick="window.location.href='/bam/businessAnnouncementList'">목록</button>
+								</div>
 
-				 <span>파일 목록</span>
-				<div class="form-group" style="border: 1px solid #dbdbdb;">
-					
-					<c:forEach var="file" items="${file}">
-						<a href="#" onclick="fn_fileDown('${file.file_idx}'); return false;">${file.file_sname}</a>(${file.FILE_SIZE})<br>
-					</c:forEach>
-				</div>
-				<hr/>
-				<div>
-					<!-- <button type="button" class="manageBtn">수정</button>
-					<button type="button" class="manageBtn">삭제</button>
-					<button type="button" class="manageBtn">목록</button>	 -->
-						<button type="button" class="functionBtn" onclick="location.href='../bpm/businessPlanApplyList?bam_anc_idx=${read.bam_anc_idx}'">접수(사업) 목록</button>
-					</c:if>
-					<c:if test="${member.user_auth == '0'}">
-						<button type="button" id="businessPlanApplyBtn" class="functionBtn" onclick="location.href='../bpm/businessPlanApply'">사업계획서 접수</button>
-					</c:if>
-				</div>
-			</section>
-	</body>
+
+
+
+		                        	</div>
+		                    	</div>    
+		                	</div>
+		            	</div>
+		        	</div>
+        		</section>
+        	</div>
+        </div>  
+        <footer></footer>
+    </div>
+</body>
 </html>

@@ -238,7 +238,7 @@ body{
                 <p><br /></p>
             <div style="color:#ffffff; pointer;background-color:#dd4132;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
                 <span class="pop_bt" style="font-size: 13pt;" >
-                     닫기
+                   	 닫기
                 </span>
             </div>
       </div>

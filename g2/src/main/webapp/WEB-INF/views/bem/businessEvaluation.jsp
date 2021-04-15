@@ -1,120 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.Calendar" %>
-<!DOCTYPE html>
-<html>
+ <!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width,user-scalable=no,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" name="Viewport" />
+    <title>충북대 평가관리프로그램</title>
+    <link rel="stylesheet" href="../../resource/css/reset.css">
+    <link rel="stylesheet" href="../../resource/css/common.css">
+    <link rel="stylesheet" href="../../resource/css/sub.css">
+    <link rel="stylesheet" href="../../resource/css/hj.css">
+    <link rel="stylesheet" href="../../resource/css/board.css">
 
-    <script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<style>
+	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../resource/js/sub.js"></script>
+</head>
 
-  body{
-  		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-		margin :0 30%;
-  }
-  
-  table {
-    width: 100%;
-    border: 1px solid #444444;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    border: 1px solid #444444;
-  }
-  textarea{
-  	
-  	width: 97%;
-  	height: 90%;
-  	border: 0px;
-  	resize: none;
-  	outline: none;
-	display : flex;
-  	margin-right: 5px;
-  }
-  p{
-  	font-size: 1.5rem;
-  	text-align: center;
-  }
-  tr th input {
-  	border : 0px;
-  	width : 75%;
-  	min-height: 30px;
-  	text-align: center;
-  	margin-left: 13px;
-  }
-  
-  .evaluationTableHeader{
-  	background-color: #EAEAEA;
-  }
-  
-  .evaluationTableSum{
-  	background-color: #EAEAEA;
-  }
-  
-  .rating{
- 	clear: both;
- 	color: #FA5858;
-  }
-  
-  .subjecttable{
-  	margin-bottom: 10px;
-  }
-  
-  
-  .remark{
-  	height: 300px;
-  }
-  
-  .sign{
-  	width: 70%;
-  }
-  
-  .submitForm{
-  	display : flex;
-  	margin-top : 30px;
-  	float: right;
-  }
-  
-  .cancle_btn{
- 	border : 0px;
-	background-color: #B4B4B4;
-	color : #ffffff;
-	width : 100px;
-	height: 50px;
-	margin-right: 10px;
-	font-size: 15px;
-		
-	}
-	
-  .write_btn{
-  	border : 0px;
-	background-color: #862640;
-	color : #ffffff;
-	width : 100px;
-	height: 50px;
-  	font-size: 15px;
-  }
-  
-  .scoreSum{
-  	clear: both;
-  }
-  
-  #eval_totalscore{
-  	margin-right : 10px;
-  	width : 50%;
-  	background-color: #EAEAEA;
-  	text-align: center;
-  	color : #FA5858;
-  	font-weight: bold;
-  	font-size: 15px;
-  }
-  
-  
-  
-</style>
   <script type="text/javascript">
   
  	 $(document).ready(function(){
@@ -147,9 +51,9 @@
                 if(!isNaN(this.value)&&this.value.length!=0){
 	                	Sum+=Number($(value).val());
 	                	if(Sum <= 100)
-	                    	$('#eval_totalscore').val(Sum);
+	                    	$('#eval_totalscore').text(Sum);
 	                	else if(Sum > 100){
-            				$('#eval_totalscore').val(Sum-Number($(value).val()));
+            				$('#eval_totalscore').text(Sum-Number($(value).val()));
             				this.value=null;
             				this.focus();
             				return ;
@@ -182,134 +86,186 @@
  		
  		
   	})
+  	</script>
   	
-  	
-  
-  </script>
-      <title>사업계획서 평가</title>
-  </head>
-  <body>
-  	<% Calendar cal = Calendar.getInstance(); %>
-  <form name="writeForm" action="#">
-    <table>
-    	<p>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</p>
-    	<input type="hidden" value="${param.bam_anc_idx}"/>
-    	<input type="hidden" name="bpm_bplan_idx"value="${param.bpm_bplan_idx}"/>
-    	<colgroup>
-    		<col style="width:15%">
- 			<col style="width:75%">
-    	</colgroup>
-      <thead>
-        <tr>
-          <th scope="col">구분</th>
-          <th scope="col">${ancInfo.anc_title}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style ="text-align : center; height: 50px;">
-          <td>사업명</td><td>${ancInfo.anc_title}</td>
-        </tr>
-      </tbody>
-    </table>
-    <table class="evaluationboard">
-    	  <colgroup>
-    		<col style="width:10%">
- 			<col style="width:15%">
- 			<col style="width:55%">
- 			<col style="width:10%">
- 			<col style="width:10%">
-    	  </colgroup>
-      <thead>
-	        <tr class="evaluationTableHeader">
-	          <th rowspan="6" scope="col">분류</th>
-	          <th scope="col">구분</th>
-	          <th scope="col">평가항목</th>
-	          <th scope="col">배점</th>
-	          <th scope="col">평점</th>
-	        </tr>
-	  </thead>
-	  <tbody>
-	        <tr>
-	        <th rowspan="6" scope="col">신청기업</th>
-	          <th rowspan="2" scope="col"><textarea >추진계획타당성</textarea></th>
-	          <th scope="col"><textarea>사전준비도 및 사업목표의 명확성</textarea></th>
-	          <th rowspan="2" scope="col"><input class="maxScore" type="number" value="20"></th>	
-	          <th rowspan="2" scope="col"><input name="eval_score1" class="score" type="number"></th>
-	        </tr>
-	        <tr>
-	          <th scope="col"><textarea>사업 추진방안의 타당성</textarea></th>
-	        </tr>
-	        
-	        
-	        <tr>
-	          <th rowspan="2" scope="col"><textarea>지원 필요성 및 추진역량</textarea></th>
-	          <th scope="col"><textarea>지원의 필요성 및 신청지원 분야의 적합성</textarea></th>
-	          <th rowspan="2" scope="col"><input class="maxScore" type="number" value="20"></th>
-	          <th rowspan="2" scope="col"><input name="eval_score2" class="score" type="number"></th>
-	        </tr>
-	         <tr>
-	          <th scope="col"><textarea>사업추진역량 및 의지</textarea></th>
-	        </tr>
-	        
-	        
-	         <tr>
-	          <th rowspan="2" scope="col"><textarea>지원 효과성 및 사업비 적정성</textarea></th>
-	          <th scope="col"><textarea>사업지원의 기대효과</textarea></th>
-	          <th  scope="col"><input class="maxScore" type="number" value="15"></th>
-	          <th  scope="col"><input name="eval_score3" class="score" type="number"></th>
-	        </tr>
-	         <tr>
-	          <th scope="col"><textarea>사업비 구성의 적정성 및 합리성</textarea></th>
-	          <th scope="col"><input class="maxScore" type="number" value="15"></th>
-	          <th scope="col"><input name="eval_score4" class="score"type="number"></th>
-	        </tr>
-	        
-	        
-	         <tr>
-	          <th rowspan="2" scope="col">수행기관</th>
-	          <th rowspan="2" scope="col"><textarea name="EVAL_TITLE4">관련 분야 전문성 및 역량</textarea></th>
-	          <th scope="col"><textarea>지원분야의 수행기관 매칭 적합성 및 관련 실적</textarea></th>
-	          <th scope="col"><input class="maxScore" type="number" value="15"></th>
-	          <th scope="col"><input name="eval_score5" class="score" type="number"></th>
-	        </tr>
-	         <tr>
-	          <th scope="col"><textarea>참여인력의 업무수행 능력 및 역량</textarea></th>
-	          <th scope="col"><input class="maxScore" type="number" value="15"></th>
-	          <th scope="col"><input name="eval_score6" class="score" type="number"></th>
-	        </tr>
-	        
-	        <tr class="evaluationTableSum">
-	 			<!-- 합계 -->
-	        	<th  colspan="3">합계</th>
-		        <th id="MaxScoreSum">100</th>
-		        <th><input type="text" name="eval_totalscore" id="eval_totalscore" readonly="readonly" /></th>
-		    </tr>
-	  </tbody>  
-	 </table>
-	 
-	  <table>
-	  	<tbody>
-	   		<tr style="height: 300px;">
-				<th style="width: 20%;">평가의견</th>
-				<th colspan="3"><textarea name="eval_opinion" class="remark"></textarea></th>
-		    </tr>
-		    <tr style="height: 50px;">
-				<th style="width: 20%;">일자</div></th>
-				
-				<th name="reg_date"><%= cal.get(Calendar.YEAR) %>.
-					<%= cal.get(Calendar.MONTH)+1 %>.
-					<%= cal.get(Calendar.DATE) %>.</th>
-				<th>평가위원 성명</th>
-				<th style="text-align: right;"><input type="text" name="eval_writer" value ="">(서명)</th>
-		    </tr>
-	 	 </tbody>
-	  </table>
-		 
-		 <div class="submitForm">
-			    <input class ="cancle_btn" type="button" onclick="location.href='/bpm/businessPlanApplyList?bam_anc_idx=${param.bam_anc_idx}'" value="취소"> 
-			    <input class ="write_btn" type="button" value="평가완료">
-		</div>
-    </form>
-    </table>
-  </body>
+<body>
+	<% Calendar cal = Calendar.getInstance(); %>
+    <div class="wrap">
+        <dl id="skip_nav">
+            <dt>메뉴 건너띄기</dt>
+            <dd>
+                <a href="#contents">본문 바로가기</a>
+                <a href="#gnb">대메뉴 바로가기</a>
+            </dd>
+        </dl>
+        <header>
+           <%@include file="../cmm/topmenu.jsp"%>
+        </header>
+        <div class="content">
+            <span id="contents"></span>
+            <div class="row content_outer">
+                <section class="location sect1">
+                    <ul class="insideArea row">
+                        <li>사용자</li>
+                        <li>사업공고</li>
+                    </ul>
+                </section>
+                <section class="sect2">
+                    <div  class="insideArea row">
+                        <div class="lnb">
+                            <p class="tit">사업안내</p>
+                            <ul>
+                                <li>
+                                    <a href="#">사업분류</a>
+                                </li>
+                                <li class="on">
+                                    <a href="#">사업공고</a>
+                                    <ul class="second_menu">
+                                        <li>· 사업공고일정</li>
+                                        <li class="on">· 사업공지</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">사업질의응답</a>
+                                </li>
+                                <li>
+                                    <a href="#">사업자료실</a>
+                                </li>
+                                <li>
+                                    <a href="#">정보서비스</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="cont">
+                            <h2>사업 평가</h2>
+                            <h3>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</h3>
+                            <div class="table_wrap">
+                                <table>
+                                    <colgroup>
+                                        <col style="width:10%">
+                                        <col style="width:auto">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">구분</th>
+                                            <th scope="col">테스트2</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="ta_c">사업명</td>
+                                            <td class="ta_c">테스트2</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="thead_gray">
+                                    <colgroup>
+                                        <col style="width:7%">
+                                        <col style="width:11%">
+                                        <col style="width:auto">
+                                        <col style="width:7%">
+                                        <col style="width:7%">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">분류</th>
+                                            <th scope="col">구분</th>
+                                            <th scope="col">평가항목</th>
+                                            <th scope="col">배점</th>
+                                            <th scope="col">평점</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th rowspan="6" class="f_bold">신청기업</th>
+                                            <td rowspan="2" class="type">추진계획타당성</td>
+                                            <td>사전준비도 및 사업목표의 명확성</td>
+                                            <td rowspan="2" class="score" >20</td>	
+                                            <td rowspan="2"><input name="eval_score1" class="score" type="number"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>사업 추진방안의 타당성</td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2" class="type">지원 필요성 및 추진역량</td>
+                                            <td>지원의 필요성 및 신청지원 분야의 적합성</td>
+                                            <td rowspan="2" class="score">20</td>
+                                            <td rowspan="2"><input name="eval_score1" class="score" type="number"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>사업추진역량 및 의지</td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2" class="type">지원 효과성 및 사업비 적정성</td>
+                                            <td>사업지원의 기대효과</td>
+                                            <td rowspan="" class="score">15</td>
+                                            <td rowspan=""><input name="eval_score1" class="score" type="number"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>사업비 구성의 적정성 및 합리성</td>
+                                            <td class="score">15</td>
+                                            <td><input name="eval_score1" class="score" type="number"></td>
+                                        </tr>
+                                        <tr>
+                                            <th rowspan="2" class="f_bold">수행기관</th>
+                                            <td rowspan="2" class="type">관련 분야 전문성 및 역향</td>
+                                            <td>지원분야의 수행기관 매칭 적합성 및 관련 실적</td>
+                                            <td rowspan="" class="score">15</td>
+                                            <td rowspan=""><input name="eval_score1" class="score" type="number"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>참여인력의 업무수행 능력 및 역량</td>
+                                            <td class="score" >15</td>
+                                            <td><input name="eval_score1" class="score" type="number"></td>
+                                        </tr>
+                                        <tr class="total">
+                                            <td colspan="3">합계</td>
+                                            <td class="score">100</td>
+                                            <td name="eval_totalscore" id="eval_totalscore" readonly="readonly"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table>
+                                    <colgroup>
+                                        <col style="width:12%">
+                                        <col style="width:auto">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>평가의견</th>
+                                            <td colspan="3">
+                                                <div class="opi">
+                                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                                    
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>일자</th>
+                                            <td class="ta_c f_bold" name="reg_date"><%= cal.get(Calendar.YEAR) %>.<%= cal.get(Calendar.MONTH)+1 %>.<%= cal.get(Calendar.DATE) %>.</th>
+											<td class="ta_c f_bold">평가위원 성명</th>
+											<td class="ta_c f_bold" style="text-align: right;"><input type="text" name="eval_writer" value ="${member.user_name}">(서명)</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="btn_wrap text-right same mt_20">
+                                <button type="button" class="cancel">취소</button>
+                                <button type="button" class="normal">평가완료</button>
+                            </div>
+                            
+
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+
+	
+</body>
 </html>

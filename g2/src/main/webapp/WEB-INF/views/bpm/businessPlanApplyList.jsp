@@ -2,125 +2,174 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width,user-scalable=no,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" name="Viewport" />
+    <link rel="stylesheet" href="../../resource/css/reset.css">
+    <link rel="stylesheet" href="../../resource/css/common.css">
+    <link rel="stylesheet" href="../../resource/css/sub.css">
+    <link rel="stylesheet" href="../../resource/css/board.css">
 
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../resource/js/sub.js"></script>
 
-<style type="text/css">
-	.searchrow{
-		float : right;
-		margin-bottom: 20px;
-		
-	}
-	
-	#searchdiv{
-		width : 350px;
-		display: flex;
-	}
-	#searchbox{
-	
-		margin-right: -30px;
-	}
-	.searchBtn{
-	
-		border : 0px;
-		background-color: #dd4132;
-		color : #ffffff;
-		width : 25%;
-		margin-right: -52px;
-		border-radius: 5px;
-	}
-</style>
-
-<title>사업 계획서 리스트</title>
+    <title>충북대 평가관리프로그램</title>
 </head>
 <body>
-	<div style="float: right;">
-		<%@include file="../board/nav.jsp"%>
-	</div>
-	<div class="container">
-		<header>
-			<h1>사업 계획서 리스트</h1>
-		</header>
-		<hr />
+    <div class="wrap">
+        <dl id="skip_nav">
+            <dt>메뉴 건너띄기</dt>
+            <dd>
+                <a href="#contents">본문 바로가기</a>
+                <a href="#gnb">대메뉴 바로가기</a>
+            </dd>
+        </dl>
+        <header>
+            <%@include file="../cmm/topmenu.jsp"%>
+        </header>
+        <div class="content">
+            <span id="contents"></span>
+            <div class="row content_outer">
+                <section class="location sect1">
+                    <ul class="insideArea row">
+                    <li>사용자</li>
+                    <li>사업공고</li>
+                </ul>
+                </section>
+                 <section class="sect2">
+                    <div  class="insideArea row">
+                <div class="lnb">
+                    <p class="tit">사용자</p>
+                    <ul>
+                        <li>
+                            <a href="#">사업분류</a>
+                        </li>
+                        <li class="on">
+                            <a href="#">사업공고</a>
+                            <ul class="second_menu">
+                                <li>· 사업공고일정</li>
+                                <li class="on">· 사업공지</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">사업질의응답</a>
+                        </li>
+                        <li>
+                            <a href="#">사업자료실</a>
+                        </li>
+                        <li>
+                            <a href="#">정보서비스</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cont">
+                    <h2>사업계획서</h2>
+                    <div class="inner box search_box">
+                        <form method="get" action="?">
+                            <div class="board_search row">
+                                <div class="search_box">
+                                    <div class="search2">
+                                        <div class="s_select">
+                                            <label for="srSearchKey">검색분류</label>
+            
+                                            <select for="" name="srSearchKey" id="srSearchKey" title="분류값 제목, 내용, 연구책임자 선택">
+                                                <option value="">전체</option>
+                                                <option value="article_title">제목</option>
+                                                <option value="article_text">내용</option>
+                                            </select>
+            
+                                        </div>
+                                        <div class="s_search">
+                                            <input type="text" class="form-control" title="검색어 입력" id="search_val" name="srSearchVal" value="" placeholder="검색어를 입력해 주세요" aria-label="" aria-describedby="basic-addon1">
+                                            <input type="submit" title="검색" value="" class="btn_finder_s search_btn" onclick="javascript: document.search_form.submit();">
+                                        </div>
+            
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //board_search -->
+                        </form>
+                    </div>
+                    <div class="inner box mt15">
+                        게시판 설명 영역
+                    </div>
 
-			<section id="container">
-				<form role="form" method="get">
-				<input type="hidden" value="${param.bam_anc_idx}">
-				<div class="searchrow">
-					<div id="searchbox"class="col-sm-3">
-						<select name="searchType" class="form-control">
-							<option value="n"
-								<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
-							
-							<option value="w"
-								<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-					
-						</select>
-					</div>
-					<div id="searchdiv" class="col-xs-7 col-sm-7">
-						<input type="text" name="keyword" id="keywordInput"value="${scri.keyword}" class="form-control"> 
-						<button id="searchBtn" type="button" class="searchBtn">검색</button>
-					</div>
-
-					<script>	
-						 $(function(){
-							 $('#searchBtn').click(function() {
-								 self.location = "list2" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-							 });
-						 });   
-					</script>
-				</div>
-
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th style="width: 60px; text-align: center;">번호</th>
-								<th style="width: 350px; text-align: center;">연구목표</th>
-								<th style="width: 350px; text-align: center;">사업자</th>
-								<th style="width: 320px; text-align: center;">접수완료일자</th>
-								<th style="width: 200px; text-align: center;">접수상태</th>
-							</tr>
-						</thead>
-						<c:forEach items="${list}" var = "list" varStatus="status">
-								
-								<c:if test = "${list.writer == member.user_id}">
-									<tr>
-										<td style="text-align: center;"><c:out value="${status.index+1}" /></td>
-										<td style="text-align: center;">
-											<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${param.bam_anc_idx}"><c:out value="${list.research_obj}"/></a>
-										</td>
-										<td style="text-align: center;"><c:out value="${list.writer}" /></td>
-										<td style="text-align: center;"><fmt:formatDate value="${list.reg_date}" pattern="MM/dd H시mm분"/></td>
-										<td style="text-align: center;">
-										<c:choose>
-											<c:when test="${list.status == 0}">
-												평가 진행중
-											</c:when>
-											<c:when test="${list.status == 1}">
-												평가 완료
-											</c:when>
-											<c:when test="${list.status == 2}">
-												선정 완료
-											</c:when>
-										</c:choose>
-										</td>
-									</tr>
-								</c:if>	
+                    <div class="inner">
+                        <div class="total">총 12570건</div>
+                        <div class="board-wrap respon notscroll manage">			
+					    
+                            <table summary="사업안내 | 사업공고 | 사업공지" class="board-basic horizon notice list dataroom notscroll ">
+                                    
+                                    <caption>사업안내 | 사업공고 | 사업공지에 순번, 사업명, 작성자, 등록일을 나타낸  테이블</caption>				
+                                    <colgroup>
+                                        <col style="width:10%" >
+                                        <col style="width:30%">
+                                        <col style="width:10%">
+                                        <col style="width:20%">
+                                        <col style="width:20%">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">순번</th>
+                                            <th scope="col">사업명</th>
+                                            <th scope="col">작성자</th>
+                                            <th scope="col">등록일</th>
+                                            <th scopr="col">진행상태</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                            			<c:forEach items="${list}" var = "list" varStatus="status">
+											<c:if test = "${list.writer == member.user_id}">
+												<tr class="  ">
+													<td ><c:out value="${status.index+1}" /></td>
+													<td>
+															<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${param.bam_anc_idx}">
+															<span>${list.research_obj}</span>
+															</a>
+													</td>
+													<td ><c:out value="${list.writer}" /></td>
+													<td ><fmt:formatDate value="${list.reg_date}" pattern="MM/dd H시mm분"/></td>
+													<td >
+													<c:choose>
+														<c:when test="${list.status == 0}">
+															평가 진행중
+														</c:when>
+														<c:when test="${list.status == 1}">
+															평가 완료
+														</c:when>
+														<c:when test="${list.status == 2}">
+															선정 완료
+														</c:when>
+													</c:choose>
+													</td>
+												</tr>
+											</c:if>	
 						</c:forEach>
-					</table>
-																						
-
-			</form>
-		</section>
-		</div>
+                                        <!-- <tr class="  ">
+                                            <td>
+                                               <div align="center">12570</div>
+                                            </td>
+                                            <td class="al">
+                                                <a href="javascript:void(0)"> <span>신산업분야 특화 선도전문대학 지원사업 사업계획서 작성 서식 관련 추가 FAQ 안내</span></a>
+                                            </td>
+                                            <td>윤용준</td>
+                                            <td>2021.04.09</td>
+                                        </tr> -->
+                                       
+                                     </tbody>
+                            </table>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+        </div>
+        </section>
+        <footer></footer>
+    </div>
 </body>
 </html>

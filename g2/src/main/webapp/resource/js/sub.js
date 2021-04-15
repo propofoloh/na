@@ -6,6 +6,13 @@ $(function(){
 		$(this).addClass('on');
 		$('#' + activeTab).addClass('current');
 	});
+	$('ul.tab li').click(function () {
+		var activeTab = $(this).attr('data-tab');
+		$('ul.tab li').removeClass('on');
+		$('.tabcontent').removeClass('current');
+		$(this).addClass('on');
+		$('#' + activeTab).addClass('current');
+	});
 
 	var fileTarget = $('.filebox .upload-hidden');
 	fileTarget.on('change', function(){

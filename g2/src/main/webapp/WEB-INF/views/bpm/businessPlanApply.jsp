@@ -1,166 +1,121 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width,user-scalable=no,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" name="Viewport" />
+    <title>충북대 평가관리프로그램</title>
+    <link rel="stylesheet" href="../../resource/css/reset.css">
+    <link rel="stylesheet" href="../../resource/css/common.css">
+    <link rel="stylesheet" href="../../resource/css/sub.css">
+    <link rel="stylesheet" href="../../resource/css/hj.css">
+    <link rel="stylesheet" href="../../resource/css/board.css">
 
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<title>게시판</title>
+	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../resource/js/sub.js"></script>
 </head>
-<style>
-
-	.applyBtn{
-		
-		float: right;
-		border : 0px;
-		background-color: #dd4132;
-		color : #ffffff;
-		width :  8%;
-		height : 5%;
-		border-radius: 5px;
-		margin-left : 5px;
-	}
-	
-	.listBtn{
-		
-		float: left;
-		border : 0px;
-		background-color: #eaeaea;
-		color : #000000;
-		width :  8%;
-		height : 5%;
-		border-radius: 5px;
-		margin-left : 5px;
-	}
-	
-	.fileAdd_btn{
-		text-align : center;
-		border : 0px;
-		background-color: #dd4132;
-		color : #ffffff;
-		width :  8%;
-		height : 5%;
-		border-radius: 5px;
-		
-	}
-	
-	#fileDelBtn{
-		margin-top: 10px;
-		float: right;
-		background-color: #dd4132;
-		color : #ffffff;
-		border : 0px;
-		border-radius: 3px;
-	}
-	
-	
-	
-</style>
-<script type="text/javascript">
-		$(document).ready(function(){
-			var formObj = $("form[name='writeForm']");
-			$(".write_btn").on("click", function(){
-				if(fn_valiChk()){
-					return false;
-				}
-				formObj.attr("action", "/board/write");
-				formObj.attr("method", "post");
-				formObj.submit();
-			});
-			fn_addFile();
-		})
-		function fn_valiChk(){
-			var regForm = $("form[name='writeForm'] .chk").length;
-			for(var i = 0; i<regForm; i++){
-				if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
-					alert($(".chk").eq(i).attr("title"));
-					return true;
-				}
-			}
-		}
-		function fn_addFile(){
-			var fileIndex = 1;
-			//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
-			$(".fileAdd_btn").on("click", function(){
-				$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
-			});
-			$(document).on("click","#fileDelBtn", function(){
-				$(this).parent().remove();
-				
-			});
-					
-		}
-	</script>
 <body>
-
-	<div class="container" id="root">
-		<div style="float:right;">
-			<%@include file="../board/nav.jsp"%>
-		</div>
-		<header>
-			<h1>사업계획서 접수</h1>
-		</header>
-		<hr />
-		<section id="container">
-			<form name="writeForm" method="post" action="/bpm/businessPlanApply"
-				enctype="multipart/form-data">
-				<table>
-					<tbody>
-						<c:if test="${member.user_id == null}">
-								<p>로그인 후에 작성하실 수 있습니다.</p>
-							</c:if>
-						<c:if test="${member.user_id != null}">	
-							<input type="hidden" name="bam_anc_idx" value ="${param.bam_anc_idx}">
-							<div class="from-group">
-								<label for="title" class="colsm-2 control-Label">연구목표</label>
-								<textarea id="research_obj" name="research_obj" class="form-control"
-									title="연구목표를 입력하세요."></textarea>
-							</div>
-
-							<div class="from-group" style="margin-top: 30px;">
-								<label for="content">연구내용</label>
-								<textarea id="research_remark" name="research_remark" class="form-control"
-									title="연구내용을 입력하세요."></textarea>
-							</div>
-
-							<div class="from-group" style="margin-top: 30px;">
-								<label for="content">기대효과</label>
-								<textarea id="benefit" name="benefit" class="form-control"
-									title="기대효과를 입력하세요."></textarea>
-							</div>
-
-							<div class="from-group" style="margin-top: 30px;">
-								<label for="content">연구 개발비 총괄</label>
-								<textarea id="research_cost" name="research_cost" class="form-control"
-									title="연구 개발비 총괄을 입력하세요."></textarea>
-							</div>
-							
-							<div>
-								<label for="input-file">파일</label> <input type="file" id="input-file" />
-							</div>
-								
-							<div class="form-group" style="margin-top: 30px;">
-								<label for="writer" class="col-sm-2 control-label" style="width: 80px">작성자</label>
-								<input type="text" id="writer" name="writer" class="form-control" value="${member.user_id}"  readonly="readonly" style="width: 100px"/>
-							</div>
-					</tbody>
-				</table>
-				<hr />
-					<div>
-						<button class="listBtn" type="button" onclick="location.href='../bam/businessAnnouncementList'">목록</button>
-						<button class="applyBtn" type="submit">접수</button>
+    <div class="wrap">
+        <dl id="skip_nav">
+            <dt>메뉴 건너띄기</dt>
+            <dd>
+                <a href="#contents">본문 바로가기</a>
+                <a href="#gnb">대메뉴 바로가기</a>
+            </dd>
+        </dl>
+        <header>
+             <%@include file="../cmm/topmenu.jsp"%>
+        </header>
+        <div class="content">
+            <span id="contents"></span>
+            <div class="row content_outer">
+                <section class="location sect1">
+                    <ul class="insideArea row">
+                    <li>사용자</li>
+                    <li>사업공고</li>
+                </ul>
+                </section>
+                <section class="sect2">
+                <div  class="insideArea row">
+                <div class="lnb">
+                    <p class="tit">사업안내</p>
+                    <ul>
+                        <li>
+                            <a href="#">사업분류</a>
+                        </li>
+                        <li class="on">
+                            <a href="#">사업공고</a>
+                            <ul class="second_menu">
+                                <li>· 사업공고일정</li>
+                                <li class="on">· 사업공지</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">사업질의응답</a>
+                        </li>
+                        <li>
+                            <a href="#">사업자료실</a>
+                        </li>
+                        <li>
+                            <a href="#">정보서비스</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cont">
+                    <h2>사업평가리스트</h2>
+					<ul class="tab d-flex">
+						<li data-tab="tab1" class="on"><a href="javascript:void(0)">연구목표</a></li>
+						<li data-tab="tab2" class=""><a href="javascript:void(0)">연구내용</a></li>
+						<li data-tab="tab3" class=""><a href="javascript:void(0)">기대효과</a></li>
+						<li data-tab="tab4" ><a href="javascript:void(0)">연구개발비</a></li>
+					</ul>
+					<div class="p_15">
+						<div class="tabcontent current" id="tab1">
+							<h2>연구목표</h2>
+							<textarea name="" id="" cols="30" rows="10">
+							</textarea>
+						</div><!--//#tab1-->
+						<div class="tabcontent" id="tab2">
+							<h2>연구내용</h2>
+							<textarea name="" id="" cols="30" rows="10">
+							</textarea>
+						</div><!--//#tab1-->
+						<div class="tabcontent" id="tab3">
+							<h2>기대효과</h2>
+							<textarea name="" id="" cols="30" rows="10">
+							</textarea>					 
+						</div><!--//#tab1-->
+						<div class="tabcontent" id="tab4">
+							<h2>연구개발비</h2>
+							<textarea name="" id="" cols="30" rows="10">
+							</textarea>
+							 <div class="btn_wrap text-right">
+								<button type="button" class="normal">작성</button>
+							 </div>
+						</div><!--//#tab1-->
+					
 					</div>
-			</form>
-		</section>
-		</c:if>
-	</div>
+					<div class="filebox form-group file_hwp mb-0">
+								<div class="btn_wrap normal">
+									<button type="button" class="addFile">파일추가<span><img src="../../../resource/image/icon_plusGroup.png" alt=""></span></button>
+								</div>
+								<form>
+								  <input type="file" multiple/>
+								  <div class="btn_wrap normal"><button type="button" class="delFile">삭제</button></div>
+								</form>
+							</div>
+                </div>
+            </div>
+        </div>
+        </section>
+        </div>
+        <footer></footer>
+    </div>
+
+	
 </body>
 </html>
