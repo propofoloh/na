@@ -45,7 +45,7 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 	
 	// 寃뚯떆臾� 紐⑸줉 議고쉶
 	@Override
-	public List<BusinessPlanVO> businessPlanApplyList(Map<String,Integer> paramMap) throws Exception {
+	public List<BusinessPlanVO> businessPlanApplyList(Map<String,Object> paramMap) throws Exception {
 
 		return dao.businessPlanApplyList(paramMap);
 	}
@@ -94,7 +94,11 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 		return dao.selectFileInfo(map);
 	}
 	
-	
+	@Override
+	public List<BusinessPlanVO> businessPlanApplyMyList(Map<String, Object> paramMap) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.businessPlanApplyMyList(paramMap);
+	}
 	
 	@Override
 	public void update(BusinessPlanVO businessPlanVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
@@ -114,6 +118,10 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 		}
 	}
 	
-
+	@Override
+	public Map<String,Object> businessPlanApplyForm(int bam_anc_idx) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.businessPlanApplyForm(bam_anc_idx);
+	}
 
 }

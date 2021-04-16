@@ -3,6 +3,8 @@
 
 <!DOCTYPE html>
 <html lang="ko">
+
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +20,12 @@
     <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
     <script type="text/javascript" src="../../resource/js/sub.js"></script>
 </head>
+<script>
+
+
+
+
+</script>
 <body>
     <div class="wrap">
         <dl id="skip_nav">
@@ -67,32 +75,31 @@
                 </div>
                 <div class="cont">
                     <h2>사업평가리스트</h2>
+                    <input type="hidden" value="${member.user_name}">
 					<ul class="tab d-flex">
-						<li data-tab="tab1" class="on"><a href="javascript:void(0)">연구목표</a></li>
-						<li data-tab="tab2" class=""><a href="javascript:void(0)">연구내용</a></li>
-						<li data-tab="tab3" class=""><a href="javascript:void(0)">기대효과</a></li>
-						<li data-tab="tab4" ><a href="javascript:void(0)">연구개발비</a></li>
+						<li data-tab="tab1" class="on"><a href="javascript:void(0)">${form.BPLAN_FORM_TITLE1}</a></li>
+						<li data-tab="tab2" class=""><a href="javascript:void(0)">${form.BPLAN_FORM_TITLE2}</a></li>
+						<li data-tab="tab3" class=""><a href="javascript:void(0)">${form.BPLAN_FORM_TITLE3}</a></li>
+						<li data-tab="tab4" ><a href="javascript:void(0)">${form.BPLAN_FORM_TITLE4}</a></li>
 					</ul>
 					<div class="p_15">
 						<div class="tabcontent current" id="tab1">
-							<h2>연구목표</h2>
-							<textarea name="" id="" cols="30" rows="10">
-							</textarea>
+							<h2 id="title1">연구목표</h2>
+							<textarea name="title_remark1" id="" cols="30" rows="10"></textarea>
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab2">
-							<h2>연구내용</h2>
-							<textarea name="" id="" cols="30" rows="10">
-							</textarea>
+							<h2 id="title2" >연구내용</h2>
+							<textarea name="title_remark2" id="" cols="30" rows="10"></textarea>
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab3">
-							<h2>기대효과</h2>
-							<textarea name="" id="" cols="30" rows="10">
-							</textarea>					 
+							<h2 id="title3">기대효과</h2>
+							<textarea name="title_remark3" id="" cols="30" rows="10"></textarea>					 
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab4">
-							<h2>연구개발비</h2>
-							<textarea name="" id="" cols="30" rows="10">
-							</textarea>
+							<h2 id="title4" >연구개발비</h2>
+							<textarea name="title_remark4" id="" cols="30" rows="10"></textarea>
+							
+							
 							 <div class="btn_wrap text-right">
 								<button type="button" class="normal">작성</button>
 							 </div>

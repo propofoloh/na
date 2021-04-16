@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,6 +25,8 @@ import emp.bpm.service.BusinessPlanService;
 import emp.bpm.util.PageMaker;
 import emp.bpm.util.SearchCriteria;
 import emp.bpm.vo.BusinessPlanVO;
+
+import emp.cmm.vo.MemberVO;
 
 @Controller
 @RequestMapping("/bpm")
@@ -37,8 +40,14 @@ public class BusinessPlanController {
 
 
 	@RequestMapping(value = "/businessPlanApply", method = RequestMethod.GET)
-	public void businessPlanApply() throws Exception {
+	public void businessPlanApply(@RequestParam("bam_anc_idx") int bam_anc_idx, Model model) throws Exception {
 		logger.info("businessPlanApply");
+		
+		Map<String,Object> resultMap = service.businessPlanApplyForm(bam_anc_idx);
+		String r = resultMap.get("BPLAN_FORM_TITLE1").toString();
+		System.out.println(r);
+		model.addAttribute("form",resultMap);
+		
 
 	}
 
@@ -59,11 +68,34 @@ public class BusinessPlanController {
 		logger.info("businessPlanApplyList");
 
 	
-		Map<String, Integer> paramMap = new HashMap<String, Integer>();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("rowStart", scri.getRowStart());
 		paramMap.put("rowEnd", scri.getRowEnd());
 		paramMap.put("bam_anc_idx",bam_anc_idx);
 		model.addAttribute("list", service.businessPlanApplyList(paramMap));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.listCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "bpm/businessPlanApplyList";
+
+	}
+	
+	@RequestMapping(value = "/businessPlanApplyMyList", method = RequestMethod.GET)
+	public String businessPlanApplyMyList(Model model,@SessionAttribute("member") MemberVO member, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+		logger.info("businessPlanApplyList");
+
+		String user_id = member.getUser_id();
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+user_id);
+		Map<String, Object> paramMap = new HashMap();
+		paramMap.put("rowStart", scri.getRowStart());
+		paramMap.put("rowEnd", scri.getRowEnd());
+		paramMap.put("user_id",user_id); 
+		model.addAttribute("list", service.businessPlanApplyMyList(paramMap));
+		 
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -113,5 +145,7 @@ public class BusinessPlanController {
 		response.getOutputStream().close();
 
 	}
+	
+	
 
 }

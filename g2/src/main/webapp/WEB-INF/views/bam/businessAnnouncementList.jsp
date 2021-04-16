@@ -50,6 +50,12 @@
                             <ul class="second_menu">
                                 <li class="on"><a href="javascript:void(0)">· 사업공고</a></li>
                             </ul>
+                            
+                        <li class=" ">
+                            <a href="#">사업 계획서</a>
+                            <ul class="second_menu">
+                                <li class=""><a href="javascript:void(0)">· 접수내역 조회</a></li>
+                            </ul>
                     </ul>
                 </div>
                 <div class="cont">
@@ -112,9 +118,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                            			<c:forEach items="${list}" var="list">
+                            			<c:forEach items="${list}" var="list" varStatus="status">
 											<tr>
-												<td style="text-align: center;"><c:out value="${list.bam_anc_idx}" /></td>
+												<td style="text-align: center;"><c:out value="${status.index+1}" /></td>
 												<td>
 													<a style="width : 100%;" href="/bam/businessAnnouncementDetail?bam_anc_idx=${list.bam_anc_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.anc_title}" /></a>
 												</td>

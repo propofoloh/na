@@ -11,20 +11,22 @@
 	    </selectKey>
 	   INSERT INTO EMP_BPM_BPLAN( BPM_BPLAN_IDX 
 	   					      , BOARD_IDX 
-	   					      , RESEARCH_OBJ 
-	   					      , RESEARCH_REMARK
-	   					      , BENEFIT
-							  , RESEARCH_COST	
+	   					      , TITLE_REMARK1
+	   					      , TITLE_REMARK2
+	   					      , TITLE_REMARK3
+							  , TITLE_REMARK4
+							
 	   					      , WRITER
 	   					      , BAM_ANC_IDX
 	   					   
 	   					       )
 	                 VALUES(   #{bpm_bplan_idx}
 	                 		  , 1 
-	                 		  , #{research_obj}
-	                 		  , #{research_remark}
-	                 		  , #{benefit}
-	                 		  , #{research_cost}
+	                 		  , #{title_remark1}
+	                 		  , #{title_remark2}
+	                 		  , #{title_remark3}
+	                 		  , #{title_remark4}
+	                 		
 	                 		  , #{writer}
 	                 		  , #{bam_anc_idx}
 	                 		    )
@@ -35,10 +37,11 @@
 <select id="businessPlanApplyList" resultType="emp.bpm.vo.BusinessPlanVO" parameterType="hashMap">
 		SELECT  BPM_BPLAN_IDX 
 	   					      , BOARD_IDX 
-	   					      , RESEARCH_OBJ
-	   					      , RESEARCH_REMARK
-	   					      , BENEFIT
-							  , RESEARCH_COST	
+	   					      , TITLE_REMARK1
+	   					      , TITLE_REMARK2
+	   					      , TITLE_REMARK3
+							  , TITLE_REMARK4
+							 	
 	   					      , WRITER
 	   					      , REG_DATE
 	   					      , MOD_DATE
@@ -46,10 +49,11 @@
 		 FROM ( 
 		        SELECT BPM_BPLAN_IDX 
 	   					      , BOARD_IDX 
-	   					      , RESEARCH_OBJ
-	   					      , RESEARCH_REMARK
-	   					      , BENEFIT
-							  , RESEARCH_COST	
+	   					      , TITLE_REMARK1
+	   					      , TITLE_REMARK2
+	   					      , TITLE_REMARK3
+							  , TITLE_REMARK4
+					
 	   					      , WRITER
 	   					      , REG_DATE
 	   					      , MOD_DATE
@@ -67,10 +71,11 @@
 		<select id="businessPlanApplyDetail" parameterType="int" resultType="emp.bpm.vo.BusinessPlanVO">
 		SELECT	BPM_BPLAN_IDX 
 	   					      , BOARD_IDX 
-	   					      , RESEARCH_OBJ
-	   					      , RESEARCH_REMARK
-	   					      , BENEFIT
-							  , RESEARCH_COST	
+	   					      , TITLE_REMARK1
+	   					      , TITLE_REMARK2
+	   					      , TITLE_REMARK3
+							  , TITLE_REMARK4
+							  	
 	   					      , WRITER
 	   					      , REG_DATE
 	   					      , MOD_DATE
@@ -100,11 +105,8 @@
 		   AND BPM_BPLAN_IDX > 0
 	</select>
 	<sql id="search">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">AND RESEARCH_OBJ LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND RESEARCH_REMARK LIKE '%' || #{keyword} || '%'</if>
+		<if test="searchType != null">	
 			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">AND (RESEARCH_OBJ LIKE '%' || #{keyword} || '%') or (RESEARCH_REMARK LIKE '%' || #{keyword} || '%')</if>
 		</if>
 	</sql>
 	
@@ -155,6 +157,53 @@
 		WHERE FILE_NO = #{file_idx}
 	</update>  -->
    
-    
+    <select id="businessPlanApplyMyList" resultType="emp.bpm.vo.BusinessPlanVO" parameterType="hashMap">
+		SELECT  BPM_BPLAN_IDX 
+	   					      , BOARD_IDX 
+	   					      , TITLE_REMARK1
+	   					      , TITLE_REMARK2
+	   					      , TITLE_REMARK3
+							  , TITLE_REMARK4
+							
+	   					      , WRITER
+	   					      , REG_DATE
+	   					      , MOD_DATE
+	   					      , STATUS
+		 FROM ( 
+		        SELECT BPM_BPLAN_IDX 
+	   					      , BOARD_IDX 
+	   					      , TITLE_REMARK1
+	   					      , TITLE_REMARK2
+	   					      , TITLE_REMARK3
+							  , TITLE_REMARK4
+									
+	   					      , WRITER
+	   					      , REG_DATE
+	   					      , MOD_DATE
+	   					      , STATUS	
+		               ,ROW_NUMBER() OVER(ORDER BY BPM_BPLAN_IDX DESC) AS RNUM
+		         FROM EMP_BPM_BPLAN
+		         WHERE 1=1 
+		         AND WRITER = #{user_id}
+		         AND DEL_YN = 'N'
+		         	<include refid="search"></include>
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY BPM_BPLAN_IDX DESC
+	</select>
+	
+	<select id="businessPlanApplyForm" parameterType="int" resultType="hashMap">
+		SELECT BPM_BPLAN_FORM_IDX
+							  , BAM_ANC_IDX
+							  , BPLAN_FORM_TITLE1
+							  , BPLAN_FORM_TITLE2
+							  , BPLAN_FORM_TITLE3
+							  , BPLAN_FORM_TITLE4
+							  FROM EMP_BPM_BPLAN_FORM
+							  WHERE 1=1
+							  AND DEL_YN = 'N'
+							  AND BAM_ANC_IDX = #{bam_anc_idx}
+	
+	</select>
 </mapper>
 	

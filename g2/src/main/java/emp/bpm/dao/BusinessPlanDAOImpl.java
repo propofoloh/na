@@ -23,7 +23,7 @@ public class BusinessPlanDAOImpl implements BusinessPlanDAO {
 	
 	// 사업공고리스트 조회
 	@Override
-	public List<BusinessPlanVO> businessPlanApplyList(Map<String,Integer> paramMap) throws Exception {
+	public List<BusinessPlanVO> businessPlanApplyList(Map<String,Object> paramMap) throws Exception {
 	
 		return sqlSession.selectList("businessPlanMapper.businessPlanApplyList", paramMap);
 
@@ -99,5 +99,16 @@ public class BusinessPlanDAOImpl implements BusinessPlanDAO {
 		sqlSession.update("businessPlanMapper.boardHit", bno);
 	}
 	
+	@Override
+	public List<BusinessPlanVO> businessPlanApplyMyList(Map<String, Object> paramMap) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("businessPlanMapper.businessPlanApplyMyList", paramMap);
+	}
+	
+	@Override
+	public Map<String,Object> businessPlanApplyForm(int bam_anc_idx) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("businessPlanMapper.businessPlanApplyForm", bam_anc_idx);
+	}
 	
 }

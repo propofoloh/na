@@ -10,22 +10,22 @@ import emp.bpm.vo.BusinessPlanVO;
 
 public interface BusinessPlanService {
 
-		// 사업공고 리스트조회
-		public List<BusinessPlanVO> businessPlanApplyList(Map<String,Integer> paramMap) throws Exception;
+		// 사업계획서 리스트조회
+		public List<BusinessPlanVO> businessPlanApplyList(Map<String,Object> paramMap) throws Exception;
 		
-		// 사업공고등록
+		// 사업계획서등록
 		public void write(BusinessPlanVO VO,MultipartHttpServletRequest mpRequest) throws Exception;
 		
-		// 사업공고 갯수
+		// 사업계획서 갯수
 		public int listCount(SearchCriteria scri) throws Exception;
 
-		// 사업공고 상세보기
+		// 사업계획서 상세보기
 		public BusinessPlanVO businessPlanApplyDetail(int bpm_bplan_idx) throws Exception;
 		
-		// 사업공고 수정
+		// 사업계획서 수정
 		public void update(BusinessPlanVO VO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception;		
 		
-		// 사업공고 삭제
+		// 사업계획서 삭제
 		public void delete(int bno) throws Exception;
 		
 	    // 파일선택
@@ -37,8 +37,11 @@ public interface BusinessPlanService {
 		// 파일첨부 수정
 		public void update(BusinessPlanVO VO) throws Exception;
 		
-	    
-
+	    //사업계획서 리스트조회(My)
+		public List<BusinessPlanVO> businessPlanApplyMyList(Map<String,Object> paramMap) throws Exception;	
+		
+		// 사업계획서 상세보기
+		public Map<String,Object> businessPlanApplyForm(int bam_anc_idx) throws Exception;
 		    
 		
 	}    

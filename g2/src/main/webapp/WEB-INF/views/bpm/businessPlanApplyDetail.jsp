@@ -64,25 +64,16 @@
                 <div class="cont">
                     <h2>사업평가리스트</h2>
 					<ul class="tab d-flex">
-						<li data-tab="tab1" class="on"><a href="javascript:void(0)">연구목표</a></li>
-						<li data-tab="tab2" class=""><a href="javascript:void(0)">연구내용</a></li>
-						<li data-tab="tab3" class=""><a href="javascript:void(0)">기대효과</a></li>
-						<li data-tab="tab4" ><a href="javascript:void(0)">연구개발비</a></li>
+						<li data-tab="tab1" class="on"><a href="javascript:void(0)">${read.title_name1}</a></li>
+						<li data-tab="tab2" class=""><a href="javascript:void(0)">${read.title_name2}</a></li>
+						<li data-tab="tab3" class=""><a href="javascript:void(0)">${read.title_name3}</a></li>
+						<li data-tab="tab4" ><a href="javascript:void(0)">${read.title_name4}</a></li>
 					</ul>
 					<div class="p_15">
 						<div class="tabcontent current" id="tab1">
 							<h2>연구목표</h2>
 							<textarea name="" id="" cols="30" rows="10" readonly="readonly">
-								연구목표 텍스트 입니다.
-								연구목표 텍스트 입니다.
-								연구목표 텍스트 입니다.
-								연구목표 텍스트 입니다.
-								연구목표 텍스트 입니다.
-								연구목표 텍스트 입니다.
-								연구목표 텍스트 입니다.
-								연구목표 텍스트 입니다.
-								연구목표 텍스트 입니다.
-								연구목표 텍스트 입니다.
+									${read.title_remark1}
 							</textarea>
 
 							<div class="filelist form-group file_hwp mb-0">
@@ -100,13 +91,19 @@
 							 </div>
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab2">
-						2222
+						<textarea name="" id="" cols="30" rows="10" readonly="readonly">
+									${read.title_remark2}
+							</textarea>
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab3">
-						3333
+						<textarea name="" id="" cols="30" rows="10" readonly="readonly">
+									${read.title_remark3}
+							</textarea>
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab4">
-						4444
+						<textarea name="" id="" cols="30" rows="10" readonly="readonly">
+									${read.title_remark4}
+							</textarea>
 						</div><!--//#tab1-->
 					</div>
 

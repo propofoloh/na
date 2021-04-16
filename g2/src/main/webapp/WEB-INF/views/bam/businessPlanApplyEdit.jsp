@@ -1,5 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
+
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +13,47 @@
     <link rel="stylesheet" href="../../resource/css/reset.css">
     <link rel="stylesheet" href="../../resource/css/common.css">
     <link rel="stylesheet" href="../../resource/css/sub.css">
-    <link rel="stylesheet" href="../../resource/css/hj.css">
     <link rel="stylesheet" href="../../resource/css/board.css">
 
 	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
     <script type="text/javascript" src="../../resource/js/sub.js"></script>
 </head>
+
+<script>
+
+$(document).ready(function(){
+	
+	$('#bplan_form_title1').keyup(function(){
+		
+		$('#title1').text(this.value);
+		
+	})
+	
+	$('#bplan_form_title2').keyup(function(){
+		
+		$('#title2').text(this.value);
+		
+	})
+	
+	$('#bplan_form_title3').keyup(function(){
+		
+		$('#title3').text(this.value);
+		
+	})
+	
+	$('#bplan_form_title4').keyup(function(){
+		
+		$('#title4').text(this.value);
+		
+	})
+	
+	$('#writeBtn').click(function(){
+		alert("")
+		$('form').submit();
+	})
+})
+</script>
 <body>
     <div class="wrap">
         <dl id="skip_nav">
@@ -25,23 +64,19 @@
             </dd>
         </dl>
         <header>
-            <h1 class="logo">
-                <img src="../../resource/image/logo.jpg" alt="충북대학교">
-                <span>평가관리프로그램</span>
-            </h1>
-            <div class="log row">
-                <p>[<span>상급 관리자</span>]님, 안녕하세요!</p>
-                <p><img src="" alt=""></p>
-                <a href="#">로그아웃</a>
-            </div>
+          <%@include file="../cmm/topmenu.jsp"%>	
         </header>
         <div class="content">
             <span id="contents"></span>
             <div class="row content_outer">
-                <ul class="location row">
-                    <li>사용자</li>
-                    <li>사업공고</li>
-                </ul>
+                 <section class="location sect1">
+                    <ul class="insideArea row">
+                        <li>사용자</li>
+                        <li>사업공고</li>
+                    </ul>
+                </section>
+                <section class="sect2">
+                    <div  class="insideArea row">
                 <div class="lnb">
                     <p class="tit">사업안내</p>
                     <ul>
@@ -68,49 +103,50 @@
                 </div>
                 <div class="cont">
                     <h2>사업평가리스트</h2>
-					<ul class="tab d-flex">
-						<li data-tab="tab1" class="on"><a href="javascript:void(0)">연구목표</a></li>
-						<li data-tab="tab2" class=""><a href="javascript:void(0)">연구내용</a></li>
-						<li data-tab="tab3" class=""><a href="javascript:void(0)">기대효과</a></li>
-						<li data-tab="tab4" ><a href="javascript:void(0)">연구개발비</a></li>
-					</ul>
+                    <form name="writeForm" action="/bam/businessPlanApplyEdit" method="post">
+                    	<input type="hidden" name="Sbam_anc_idx" value="${param.bam_anc_idx}">
+						<ul class="tab d-flex">
+							<li data-tab="tab1" class="on"><a href="javascript:void(0)"><input type="text" id="bplan_form_title1" name="bplan_form_title1" value="연구목표"></a></li>
+							<li data-tab="tab2" class=""><a href="javascript:void(0)"><input type="text" id="bplan_form_title2" name="bplan_form_title2" value="연구내용"></a></li>
+							<li data-tab="tab3" class=""><a href="javascript:void(0)"><input type="text" id="bplan_form_title3" name="bplan_form_title3" value="기대효과"></a></li>
+							<li data-tab="tab4" ><a href="javascript:void(0)"><input type="text" id="bplan_form_title4" name="bplan_form_title4" value="연구개발비"></a></li>
+						</ul>
+					</form>
 					<div class="p_15">
 						<div class="tabcontent current" id="tab1">
-							<h2>연구목표</h2>
-							<textarea name="" id="" cols="30" rows="10">
-							</textarea>
+							<h2 id="title1">연구목표</h2>
+							
 							<div class="btn_wrap text-right">
-								<button type="button" class="normal">작성</button>
+							<!-- 	<button type="button" class="normal">작성</button> -->
 							</div>
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab2">
-							<h2>연구목표</h2>
-								<textarea name="" id="" cols="30" rows="10">
-								</textarea>
+							<h2 id="title2">연구내용</h2>
+								
 								<div class="btn_wrap text-right">
-									<button type="button" class="normal">작성</button>
+									<!-- <button type="button" class="normal">작성</button> -->
 								</div>
 						</div><!--//#tab2-->
 						<div class="tabcontent" id="tab3">
-							<h2>연구목표</h2>
-								<textarea name="" id="" cols="30" rows="10">
-								</textarea>
+							<h2 id="title3">기대효과</h2>
+								
 								<div class="btn_wrap text-right">
-									<button type="button" class="normal">작성</button>
+									<!-- <button type="button" class="normal">작성</button> -->
 								</div>
 						</div><!--//#tab3-->
 						<div class="tabcontent" id="tab4">
-							<h2>연구목표</h2>
-								<textarea name="" id="" cols="30" rows="10">
-								</textarea>
+							<h2 id="title3">연구 개발비</h2>
+								
 								<div class="btn_wrap text-right">
-									<button type="button" class="normal">작성</button>
+									<button id="writeBtn" type="button" class="normal">작성</button>
 								</div>
 						</div><!--//#tab4-->
 					</div>
 				
                 </div>
             </div>
+        </div>
+        </section>
         </div>
         <footer></footer>
     </div>

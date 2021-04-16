@@ -126,8 +126,7 @@ body {
 					</select>
 
 					<div id="searchdiv">
-						<input type="text" name="keyword" id="keywordInput"
-							value="${scri.keyword}" class="form-control">
+						<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control">
 						<button id="searchBtn" type="button" class="searchBtn">검색</button>
 					</div>
 				</div>

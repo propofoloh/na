@@ -2,6 +2,7 @@ package emp.bam.web;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -165,10 +166,37 @@ public class BusinessAnnouncementController {
 	@RequestMapping(value="/businessEvaluationEdit",method = RequestMethod.GET)
 	public void businessEvaluationEditView(@RequestParam(value = "bam_anc_idx") int bam_anc_idx,RedirectAttributes redirect) throws Exception{;
 			logger.info("businessEvaluationEdit");
-			redirect.addAttribute(bam_anc_idx);
-		
-			
+			redirect.addAttribute(bam_anc_idx);	
 	}
+	//사업계획서 양식등록
+		 @RequestMapping(value="/businessPlanApplyEdit",method = RequestMethod.POST)
+		public String businessPlanApplyEdit (
+				@RequestParam(value = "Sbam_anc_idx") String Sbam_anc_idx,
+				@RequestParam(value = "bplan_form_title1") String bplan_form_title1,
+				@RequestParam(value = "bplan_form_title2") String bplan_form_title2,
+				@RequestParam(value = "bplan_form_title3") String bplan_form_title3,
+				@RequestParam(value = "bplan_form_title4") String bplan_form_title4,
+				Model model,HttpServletResponse response) throws Exception{
+			
+			
+				int bam_anc_idx=Integer.parseInt(Sbam_anc_idx);
+				Map<String,Object> paramMap = new HashMap();
+				paramMap.put("bplan_form_title1",bplan_form_title1);
+				paramMap.put("bplan_form_title2",bplan_form_title2);
+				paramMap.put("bplan_form_title3",bplan_form_title3);
+				paramMap.put("bplan_form_title4",bplan_form_title4);
+				paramMap.put("bam_anc_idx",bam_anc_idx);
+				service.businessPlanApplyEdit(paramMap);
+				
+				return "redirect:/bam/businessAnnouncementList";
+			
+		
+		}
+		@RequestMapping(value="/businessPlanApplyEdit",method = RequestMethod.GET)
+		public void businessPlanApplyEditView(@RequestParam(value = "bam_anc_idx") int bam_anc_idx,RedirectAttributes redirect) throws Exception{;
+				logger.info("businessEvaluationEdit");
+				redirect.addAttribute(bam_anc_idx);	
+		}
 	
 
 }

@@ -170,5 +170,31 @@
 	              
    
    </insert>
+   
+         <insert id="businessPlanApplyEdit" parameterType="hashMap" >
+	   INSERT INTO EMP_BPM_BPLAN_FORM( BAM_ANC_IDX
+	   						  , BPM_BPLAN_FORM_IDX
+	   					      , BOARD_IDX 
+	   					      , BPLAN_FORM_TITLE1 
+	   					      , BPLAN_FORM_TITLE2 
+	   					      , BPLAN_FORM_TITLE3 
+	   					      , BPLAN_FORM_TITLE4 
+	   					      , REG_DATE
+	   					      , MOD_DATE
+	   					      
+	   					       )
+	                 VALUES(   #{bam_anc_idx}
+	                 		  , SEQ_BEVAL_FORM_IDX.NEXTVAL
+	                 		  , 1 
+	                 		  , #{bplan_form_title1}
+	                 		  , #{bplan_form_title2}
+	                 		  , #{bplan_form_title3}
+	                 		  , #{bplan_form_title4}
+	                 		  , SYSDATE
+	                 		  , SYSDATE
+	                 		    )
+	              
+   
+   </insert>
 </mapper>
 	

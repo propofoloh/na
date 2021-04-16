@@ -108,6 +108,11 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 		}
 	}
 	@Override
+	public void businessPlanApplyEdit(Map<String, Object> paramMap) throws Exception {
+		// TODO Auto-generated method stub
+		dao.businessPlanApplyEdit(paramMap);
+	}
+	@Override
 	public void businessEvaluationEdit(List<String> arrEval_form_title, List<String> arrEval_form_item,
 			List<String> arrEval_form_score,int bam_anc_idx) throws Exception {
 		// TODO Auto-generated method stub

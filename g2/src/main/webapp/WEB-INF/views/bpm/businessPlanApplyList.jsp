@@ -115,8 +115,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">순번</th>
-                                            <th scope="col">사업명</th>
-                                            <th scope="col">작성자</th>
+                                            <th scope="col">작성자(사업자)</th>
                                             <th scope="col">등록일</th>
                                             <th scopr="col">진행상태</th>
                                         </tr>
@@ -128,10 +127,9 @@
 													<td ><c:out value="${status.index+1}" /></td>
 													<td>
 															<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${param.bam_anc_idx}">
-															<span>${list.research_obj}</span>
+															<span>${list.writer}</span>
 															</a>
 													</td>
-													<td ><c:out value="${list.writer}" /></td>
 													<td ><fmt:formatDate value="${list.reg_date}" pattern="MM/dd H시mm분"/></td>
 													<td >
 													<c:choose>
