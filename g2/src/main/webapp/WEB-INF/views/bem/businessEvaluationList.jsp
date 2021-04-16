@@ -29,7 +29,7 @@
             </dd>
         </dl>
         <header>
-            %@include file="../cmm/topmenu.jsp"%>
+            <%@include file="../cmm/topmenu.jsp"%>
         </header>
         <div class="content">
             <span id="contents"></span>

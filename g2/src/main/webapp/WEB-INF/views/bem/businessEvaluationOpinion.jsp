@@ -20,6 +20,74 @@
 
     <title>충북대 평가관리프로그램</title>
 </head>
+<style>
+/* Modal*/    
+	 .modal {display: none; /* Hidden by default */position: fixed; /* Stay in place */z-index: 1; /* Sit on top */left: 0;top: 0;width: 100%; /* Full width */height: 100%; /* Full height */overflow: auto; /* Enable scroll if needed */background-color: rgb(0, 0, 0); /* Fallback color */background-color: rgba(0, 0, 0, 0); /* Black w/ opacity */}
+
+/* Modal Content/Box */
+.modal-content {background-color: #fefefe;margin: 15% auto; /* 15% from the top and centered */padding: 20px;border: 1px solid #888;width: 30%; /* Could be more or less, depending on screen size */}
+</style>
+		<script>
+	 $(document).ready(function(){
+		 var checkData = "";
+		 var Sum =0;
+		 var Max =0;
+		 var Min =0;
+		 var average = 0;
+		 var convertedaverage = 0;
+        $('.totalscore').each(function(idx,value){
+        			if(idx == 0){
+        				Max = $(value).text()
+        				Min = $(value).text()
+        			} 
+         			if($(value).text() > Max){
+         				
+         				Max = Number($(value).text())
+         			}else if($(value).text() < Min){
+         				
+         				Min = Number($(value).text())
+         			}
+                	Sum = Sum + Number($(value).text());
+                	average = (Sum/(idx+1)).toFixed(2);
+                	convertedaverage = (Sum-(Number(Max+Min))) / (idx-1)
+                	 $('#average').text(average)
+                     $('#convertedaverage').text(convertedaverage);
+                   
+        });
+        
+   
+     });
+    
+    function open_pop(context){
+    	$('#opinionText').text(context);
+		$('#opinionmodal').show();
+	};
+	function close_pop(flag) {
+        $('#opinionmodal').hide();
+   };
+	function printFn(print){
+ 		
+		 var sw=screen.width;
+	     var sh=screen.height;
+	     var w=800;//팝업창 가로길이
+	     var h=600;//세로길이
+	     var xpos=(sw-w)/2; 
+	     var ypos=(sh-h)/2; 
+	     var pHeader="<html><head><link rel='stylesheet' type='text/css' href='../../resource/css/board.css'><link rel='stylesheet' type='text/css' href='../../resource/css/reset.css'><title>" + print + "</title></head><body>";
+	     var pgetContent=document.getElementById("printArea").innerHTML + "<br>";
+	     //innerHTML을 이용하여 Div로 묶어준 부분을 가져옵니다.
+	     var pFooter="</body></html>";
+	     pContent=pHeader + pgetContent + pFooter; 
+	     alert(pHeader)
+	     pWin=window.open("","print","width=" + w +",height="+ h +",top=" + ypos + ",left="+ xpos +",status=yes,scrollbars=yes"); //동적인 새창을 띄웁니다.
+	     pWin.document.open(); //팝업창 오픈
+	     pWin.document.write(pContent); //새롭게 만든 html소스를 씁니다.
+	     pWin.document.close(); //클로즈
+	     pWin.print(); //윈도우 인쇄 창 띄우고
+	     pWin.close(); //인쇄가  되던가 취소가 되면 팝업창을 닫습니다.
+  
+	}
+</script>
 <body>
     <div class="wrap">
         <dl id="skip_nav">
@@ -30,57 +98,7 @@
             </dd>
         </dl>
         <header>
-            <div class="insideArea">
-               <h1 class="logo">
-                    <img src="../../resource/image/logo.jpg" alt="충북대학교">
-                    <span>평가관리프로그램</span>
-                </h1>
-				<div class="gnb clearfix">
-					<ul>
-						<li class="">
-							<a href="javascript:void(0)">사업분류</a>
-							<div class="sub_menu">
-								<a href="javascript:void(0)">1번 메뉴</a>
-								<a href="javascript:void(0)">2번 메뉴</a>
-							</div>
-						</li>
-						<li class="">
-							<a href="javascript:void(0)">사업공고</a>
-							<div class="sub_menu">
-								<a href="javascript:void(0)">사업공고일정</a>
-								<a href="javascript:void(0)">사업공지</a>
-							</div>
-						</li>
-						<li class="">
-							<a href="javascript:void(0)">사업질의응답</a>
-							<div class="sub_menu">
-								<a href="javascript:void(0)">1번 메뉴</a>
-								<a href="javascript:void(0)">2번 메뉴</a>
-							</div>
-						</li>
-						<li class="">
-							<a href="javascript:void(0)">사업자료실</a>
-							<div class="sub_menu">
-								<a href="javascript:void(0)">1번 메뉴</a>
-								<a href="javascript:void(0)">2번 메뉴</a>
-							</div>
-						</li>
-						<li class="">
-							<a href="javascript:void(0)">정보서비스</a>
-							<div class="sub_menu">
-								<a href="javascript:void(0)">1번 메뉴</a>
-								<a href="javascript:void(0)">2번 메뉴</a>
-							</div>
-						</li>
-						
-					</ul>
-				</div>
-                <div class="log row">
-                    <p>[<span>상급 관리자</span>]님, 안녕하세요!</p>
-                    <p><img src="" alt=""></p>
-                    <a href="#">로그아웃</a>
-                </div>
-            </div>
+           <%@include file="../cmm/topmenu.jsp"%>
         </header>
         <div class="content">
             <span id="contents"></span>
@@ -121,12 +139,11 @@
                             <h2>종합의견</h2>
 
                             <div class="inner">
+                            	<div id="printArea">
                                 <div class="opinion_tit">충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</div>
                                 <div class="board-wrap respon notscroll manage">			
                                 
                                     <table summary="종합의견" class="board-basic horizon notice list opinion">
-                                            
-                                            <caption>종합의견에 평가위원, 추진 계획타당성, 지원 필요성 및 추진 역량, 사업 지원의 기대 효과, 사업비 구성의 적정성 및 합리성, 지원 분야의 수행기관 매칭 적합성 및 관련 실적, 참여 인력의 업무수행 능력 및 역량, 평균, 평가의견을 나타낸  테이블</caption>				
                                             <colgroup>
                                                 <col style="width:12%">
                                                 <col style="width:11%">
@@ -173,29 +190,55 @@
                                           
                                                 <tr>
                                                     <th class="br_th" scope="col" colspan="7">합계</th>
-                                                    <th class="br_th" scope="col">745</th>
-                                                    <th class="br_th" scope="col">74.5</th>
+                                                    <th id="average" class="br_th" scope="col" colspan="2"></th>
                                                 </tr>
                                                 <tr>
                                                     <th class="br_th" scope="col" colspan="7">환산점수</th>
-                                                    <th class="br_th" scope="col">745</th>
-                                                    <th class="br_th" scope="col">75.6</th>
+                                                    <th id="convertedaverage" class="br_th" scope="col" colspan="2"></th>
                                                 </tr>
-                                            
+                                            	<tr>
+                                            		<th class="br_th" scope="col" colspan="7">평가위원장 </th>
+                                           		<th  class="br_th" scope="col" colspan="2"><span style="float: right;">(서명)</span></th>
+                                            	</tr>
+                                            		
                                             </tbody>
+                                    
                                     </table>
                                     <p class="sum">*환산점수 : 총점 - (최고점 + 최저점)</p>
+                                    <!-- The Modal -->
+			<div id="opinionmodal" class="modal">
+
+				<!-- Modal content -->
+				<div class="modal-content">
+					<p style="text-align: center;">
+						<span style="font-size: 14pt;"><b><span
+								style="font-size: 24pt;">평가의견</span></b></span>
+					</p>
+					<p id="opinionText"></p>
+						<br />
+					<div
+						style="color: #ffffff; pointer; background-color: #862640; text-align: center; padding-bottom: 10px; padding-top: 10px;"
+						onClick="close_pop();">
+						<span class="pop_bt" style="font-size: 13pt;"> 닫기 </span>
+					</div>
+				</div>
+			<!--End Modal-->
+		</div>
+								</div>                                    
                                     <div class="btn_wrap text-right same mt_20 d-flex justify-between">
                                         <button type="button" class="cancel">목록</button>
-                                        <button type="button" class="normal">인쇄</button>
+                                        <button type="button" class="normal" onclick="printFn()">인쇄</button>
                                     </div>
                                 </div>
+                            
                             </div>    
                         </div>
                     </div>
+
+				</div>
             </div>
         </div>
         <footer></footer>
-    </div>
+
 </body>
 </html>
