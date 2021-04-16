@@ -45,25 +45,11 @@
                 	<div class="lnb">
                    	 <p class="tit">사용자</p>
                     <ul>
-                        <li>
-                            <a href="#">사업분류</a>
-                        </li>
                         <li class="on">
                             <a href="#">사업공고</a>
                             <ul class="second_menu">
-                                <li><a href="javascript:void(0)">· 사업공고일정</a></li>
-                                <li class="on"><a href="javascript:void(0)">· 사업공지</a></li>
+                                <li class="on"><a href="javascript:void(0)">· 사업공고</a></li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#">사업질의응답</a>
-                        </li>
-                        <li>
-                            <a href="#">사업자료실</a>
-                        </li>
-                        <li>
-                            <a href="#">정보서비스</a>
-                        </li>
                     </ul>
                 </div>
                 <div class="cont">
@@ -85,7 +71,7 @@
             
                                         </div>
                                         <div class="s_search">
-                                            <input type="text" class="form-control" title="검색어 입력" id="search_val" name="srSearchVal" value="" placeholder="검색어를 입력해 주세요" aria-label="" aria-describedby="basic-addon1">
+                                        	<input type="text" class="form-control" name="keyword"  value="${scri.keyword}" title="검색어 입력" id="search_val" placeholder="검색어를 입력해 주세요" aria-describedby="basic-addon1"  >
                                             <input type="submit" title="검색" value="" class="btn_finder_s search_btn" onclick="javascript: document.search_form.submit();">
                                         </div>
             
@@ -143,12 +129,12 @@
 												</td>
 											<c:choose>
 												<c:when test="${member.user_auth == '1'}">
-													<td style="text-align: center;">
+													<td class="quickBtn" style="text-align: center;">
 														<a href="/bpm/businessPlanApplyList?bam_anc_idx=${list.bam_anc_idx}">접수목록보기</a>
 													</td>
 												</c:when>
 												<c:otherwise>
-													<td style="text-align: center;">
+													<td class="quickBtn" style="text-align: center;">
 														<a href="/bpm/businessPlanApply?bam_anc_idx=${list.bam_anc_idx}">접수하기</a>
 													</td>
 												</c:otherwise>

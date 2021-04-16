@@ -26,36 +26,15 @@
 								<a href="javascript:void(0)">2번 메뉴</a>
 							</div>
 						</li>
-						<li class="">
-							<a href="javascript:void(0)">사업계획서</a>
+				<!-- 		<li class="">
+							<a href="javascript:void(0)">결과서 관리</a>
 							<div class="sub_menu">
 								<a href="javascript:void(0)">사업공고일정</a>
 								<a href="javascript:void(0)">사업공지</a>
 							</div>
 						</li>
-						<li class="">
-							<a href="javascript:void(0)">사업평가</a>
-							<div class="sub_menu">
-								<a href="javascript:void(0)">1번 메뉴</a>
-								<a href="javascript:void(0)">2번 메뉴</a>
-							</div>
-						</li>
-						<li class="">
-							<a href="javascript:void(0)">사업자료실</a>
-							<div class="sub_menu">
-								<a href="javascript:void(0)">1번 메뉴</a>
-								<a href="javascript:void(0)">2번 메뉴</a>
-							</div>
-						</li>
-						<li class="">
-							<a href="javascript:void(0)">정보서비스</a>
-							<div class="sub_menu">
-								<a href="javascript:void(0)">1번 메뉴</a>
-								<a href="javascript:void(0)">2번 메뉴</a>
-							</div>
-						</li>
-						
-					</ul>
+	
+					</ul> -->
 				</div>
 			<div class="log row">
 				<c:if test="${member != null}">

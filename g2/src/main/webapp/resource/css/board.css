@@ -42,12 +42,14 @@
 .board-basic.horizon.dataroom td:nth-child(2) a {display: inline-block;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;width: 600px;}
 .board-basic.horizon.dataroom td.al {text-align: left;}
 .board-basic.horizon.dataroom td.al a {-ms-display: flexbox;display: flex;display: -moz-box; display: -ms-flexbox; display: -webkit-flex;justify-content: flex-start; align-items: center;width: 800px;height: auto;overflow: hidden;}
+.board-basic.horizon.dataroom td a:hover{font-weight:bold; color: #952953;}
 .board-basic.horizon.dataroom td.al a span {font-size: 17px;color: #000;font-weight: 400;display: block; max-width: calc( 90% - 20px );width: 800px; height: auto; overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;word-wrap: normal;}
 .board-basic.horizon.dataroom td.al span {font-size: 17px;color: #000;font-weight: 400;display: inline-block; max-width: calc( 90% - 20px ); height: auto; overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;word-wrap: normal;}
 .board-basic.horizon.dataroom td.al img {/* margin-top:-15px; */}
 .board-basic.horizon.dataroom td.al a img {margin-left:0px; -ms-display: flexbox; display: flex; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; width: 24px; height: 24px;}
+.board-basic.horizon.dataroom td.quickBtn a {position: relative;display: inline-block;vertical-align: middle;line-height: 1.1;color: #fff;font-weight: 500;background: #952953;padding: 8px 15px;}
 .board-basic.notice.list td a.latest:after {display: inline-block;margin-top:2px; width: 24px; height: 24px; margin-left: 10px;background: url(/_res/new/img/common/icon/icon_new.png) no-repeat 0 0;vertical-align: top;content: "";}
-
+    
 
 /* write */
 .board-basic.type-row {padding:20px 0;}
