@@ -115,28 +115,25 @@ $(document).ready(function(){
 					<div class="p_15">
 						<div class="tabcontent current" id="tab1">
 							<h2 id="title1">연구목표</h2>
-							
 							<div class="btn_wrap text-right">
 							<!-- 	<button type="button" class="normal">작성</button> -->
 							</div>
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab2">
 							<h2 id="title2">연구내용</h2>
-								
 								<div class="btn_wrap text-right">
 									<!-- <button type="button" class="normal">작성</button> -->
 								</div>
 						</div><!--//#tab2-->
 						<div class="tabcontent" id="tab3">
 							<h2 id="title3">기대효과</h2>
-								
 								<div class="btn_wrap text-right">
 									<!-- <button type="button" class="normal">작성</button> -->
 								</div>
 						</div><!--//#tab3-->
 						<div class="tabcontent" id="tab4">
 							<h2 id="title3">연구 개발비</h2>
-								
+
 								<div class="btn_wrap text-right">
 									<button id="writeBtn" type="button" class="normal">작성</button>
 								</div>
@@ -145,8 +142,9 @@ $(document).ready(function(){
 				
                 </div>
             </div>
+        </section>	
         </div>
-        </section>
+        
         </div>
         <footer></footer>
     </div>

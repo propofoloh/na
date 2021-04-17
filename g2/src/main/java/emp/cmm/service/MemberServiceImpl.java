@@ -18,6 +18,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void register(MemberVO vo) throws Exception {
 		
+		if(vo.getUser_crcode() == null) {
+			vo.setUser_crcode("");
+		}
+		if(vo.getUser_bname() == null) {
+			vo.setUser_bname("");
+		}
 		dao.register(vo);
 		
 	}

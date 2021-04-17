@@ -134,7 +134,7 @@
 													<fmt:formatDate value="${list.anc_end_dt}" pattern="yyyy-MM-dd" />
 												</td>
 											<c:choose>
-												<c:when test="${member.user_auth == '1'}">
+												<c:when test="${member.user_auth == '1' || member.user_auth == '2'}">
 													<td class="quickBtn" style="text-align: center;">
 														<a href="/bpm/businessPlanApplyList?bam_anc_idx=${list.bam_anc_idx}">접수목록보기</a>
 													</td>
@@ -149,9 +149,30 @@
 										</c:forEach>
                                      </tbody>
                             </table>
+                            <div class="pasingDiv">
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<li><a
+											href="businessAnnouncementList${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+									</c:if>
+				
+									<c:forEach begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}" var="idx">
+										<li
+											<c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
+											<a href="businessAnnouncementList${pageMaker.makeSearch(idx)}">${idx}</a>
+										</li>
+									</c:forEach>
+				
+									<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+										<li><a
+											href="businessAnnouncementList{pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+									</c:if>
+								</ul>
+							</div>
                           	  <div class="board_btn_wrap btn2 right">
                            		<div class="btn_wrap">
-                            		<c:if test="${member.user_auth == '1'}">
+                            		<c:if test="${member.user_auth == '2'}">
                             			 <button type="button" class="red" onclick="window.location.href='businessAnnouncementInput'">사업등록</button>
 									</c:if>
 								</div>

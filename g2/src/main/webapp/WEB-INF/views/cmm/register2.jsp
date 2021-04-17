@@ -141,12 +141,12 @@
 					<input type="password" id="user_pwd" name="user_pwd" />
 				</div>
 				<div>
-					<label class="control-label" for="user_name">이름</label><br>
+					<label class="control-label" for="user_name">이름(담당자)</label><br>
 					<input type="text" id="user_name" name="user_name" />
 				</div>
 				<div id="businessMemberDiv" style="display: none">
 					<div>
-						<label class="control-label" for="user_name">이름(사업담당자)</label><br>
+						<label class="control-label" for="user_name">회사명</label><br>
 						<input type="text" id="" name="user_Bname" />
 					</div>
 					<div>

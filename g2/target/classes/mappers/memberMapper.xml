@@ -9,6 +9,8 @@
 	   					       , USER_ID 
 	   					       , USER_PWD
 	   					       , USER_NAME
+	   					       , USER_BNAME
+	   					       , USER_CRCODE
 	   					       , HP_NUM
 	   					       , USER_EMAIL
 	   					       , USER_AUTH
@@ -20,10 +22,11 @@
 	                  		   , #{user_id}
 	                 		   , #{user_pwd}
 	                 		   , #{user_name}
-	                 		   , #{user_birthday}
+	                 		   , #{user_bname}
+	                 		   , #{user_crcode}
 	                 		   , #{hp_num}
 	                 		   , #{user_email}
-	                 		   , '0'
+	                 		   , #{user_auth}
 	                 		   , SYSDATE
 	                 		   , SYSDATE
 	                 		   

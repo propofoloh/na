@@ -4,20 +4,27 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
+		<!DOCTYPE html>
+		<html lang="ko">
+		<head>
+		    <meta charset="UTF-8">
+		    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		    <meta content="width=device-width,user-scalable=no,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" name="Viewport" />
+		    <link rel="stylesheet" href="../../resource/css/reset.css">
+		    <link rel="stylesheet" href="../../resource/css/common.css">
+		    <link rel="stylesheet" href="../../resource/css/sub.css">
+
+			<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
+		    <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
+		    <script type="text/javascript" src="../../resource/js/sub.js"></script>
+		    <title>충북대 평가관리프로그램</title>
+		</head>
+		<script>
         $(document).ready(function(){
             
- 			$(".registerAgreeBtn").click(function (){
+ 			$(".red").click(function (){
  				
   				if(checkForm()){
- 					alert("동의 성공")
   					location.href="register";
 	            	
  				}else{
@@ -72,101 +79,72 @@
 			
 			return true;
 		}
+		</script>
+		<body>
+		    <div class="wrap">
+		        <dl id="skip_nav">
+		            <dt>메뉴 건너띄기</dt>
+		            <dd>
+		                <a href="#contents">본문 바로가기</a>
+		                <a href="#gnb">대메뉴 바로가기</a>
+		            </dd>
+		        </dl>
+		        <header>
+					<%@include file="../cmm/topmenu.jsp"%>
+		        </header>
+		        <div class="content">
+		            <span id="contents"></span>
+		            <div class="row content_outer">
+		                <section class="location sect1">
+		                    <ul class="insideArea row">
+		                        <li>사용자</li>
+		                        <li>개인정보 수집동의</li>
+		                    </ul>
+		                </section>
+		                <section class="sect2">
+		                    <div  class="insideArea row">
+		                        <div class="lnb">
+		                            <p class="tit">사용자</p>
+		                            <ul>
+		                                <li>
+		                                    <a href="#">개인정보 수집동의</a>
+		                                </li>
+		                            </ul>
+		                        </div>
+		                        <div class="cont">
+		                            <h2>개인정보 수집동의</h2>
+		                            <div class="inner">
+		                                <div class="admit">
+		                                    <p>개인정보의 수집, 이용 목적</p>
+		                                    평가관리 시스템은 별도의 개인정보 입력 없이도 대부분의 콘텐츠에 자유롭게 접근할 수 있으나, 승선신고 서비스를 이용하고자 할 경우 별도의 정보입력절차를 거쳐야 합니다.
+		                                    <p>수집하려는 개인정보의 항목</p>
+		                                    평가관리 시스템 서비스 제공을 위해 아래와 같은 최소한의 개인정보를 필수 항목으로 수집하고 있습니다.
+		                                    (성명, 생년월일, 성별, 휴대전화번호)
+		                                    <p>개인정보의 보유 및 이용 기간</p>
+		                                    수집된 개인정보는 3개월(90일)까지 보유하며 그 이후에는 바로 삭제 처리됩니다.
+		                                    <p>개인정보 동의 거부에 따른 불이익</p>
+		                                    평가관리시스템 이용자는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있으나, 동의 거부 시 승선신고 서비스를 이용할 수 없습니다.
+		                                </div>
 
-		
-		
-</script>
-<style>
-body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-		
-		margin :0 35%;
-}
+		                                <form class="checkbox" action="/action_page.php">
+		                                    <input type="checkbox" id="info" name="u_agree" value="agree">
+		                                    <label for="info">개인정보 취급방침에 동의합니다.</label>
+		                                </form>
 
-.Agree-text{
-	margin: 90px 0px 50px 0px;
-	text-align: center;
-	font-size: 3.235rem;
-	font-weight: 5px;
-}
-.AgreeTextArea{
-	overflow: scroll;
-	border: 1px solid black;
-	width : 100%;
-}
-
-.checkbox-text{
-	font-size: 1.2375rem;
-	vertical-align: middle;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-
-
-.registerBtn input{
-
-	border : 0px;
-	width : 49%;
-	height: 8%;
-	
-}
-.registerCancelBtn{
-	
-	background-color: #EAEAEA;
-	color : #00000;
-}
-
-.registerAgreeBtn{
-	
-	background-color: #dd4132;
-	color : #ffffff;
- 
-}
-
-
-</style>
-<html>
-<body>
-	<div id="content">
-		<div class ="Agree-text">개인정보 수집동의</div>
-			<div class ="AgreeTextArea">
-				<p>
-					<strong>개인정보의 수집, 이용 목적</strong>
-				</p>
-				<p>평가관리 시스템은 별도의 개인정보 입력 없이도 대부분의 콘텐츠에 자유롭게 접근할 수 있으나, 승선신고 서비스를이용하고자 할 경우 별도의 정보입력절차를 거쳐야 합니다.</p>
-				<p class="mt15">
-				<strong>수집하려는 개인정보의 항목</strong>
-				</p>
-				<p>
-					평가관리 시스템 서비스 제공을 위해 아래와 같은 최소한의 개인정보를 필수항목으로 수집하고 있습니다.<br />(성명,
-					생년월일, 성별, 휴대전화번호)
-				</p>
-				<p class="mt15">
-					<strong>개인정보의 보유 및 이용 기간</strong>
-				</p>
-				<p class="bold_text">수집된 개인정보는 3개월(90일)까지 보유하며 그 이후에는 바로 삭제
-					처리됩니다.</p>
-				<p class="mt15">
-					<strong>개인정보 동의 거부에 따른 불이익</strong>
-				</p>
-				<p>평가관리시스템 이용자는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있으나, 동의 거부 시 승선신고
-					서비스를 이용할 수 없습니다.</p>
-			</div>
-		
-		<!--  약관동의 버튼 영역 -->
-		<div>
-			<div>
-				<label class="checkbox-text" for="u_agree">
-					<input type="checkbox" id="u_agree" name="u_agree" value="Y" /> &nbsp;
-					<strong >개인정보 취급방침에 동의합니다.</strong>
-				</label>
-			</div>
-		</div>
-		<div class ="registerBtn">
-			<input class="registerCancelBtn" type="button" value="취소">
-			<input class="registerAgreeBtn" type="button" value="확인"> 
-		</div>
-	</div>
-</body>
-</html>
+		                                <div class="board_btn_wrap btn2">
+		                                    <div class="btn_wrap">
+		                                        <button type="button" class="gray" onclick="window.location.href=''">취소</button>
+		                                        <button type="button" class="red" onclick="window.location.href=''">확인</button>
+		                                    </div>
+		                                </div>
+		                
+		                            </div>  
+		                        </div>
+		                    </div>
+		                </section>
+		            </div>
+		        </div>
+		        <footer></footer>
+		    </div>
+		</body>
+		</html>

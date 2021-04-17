@@ -18,6 +18,93 @@
 
     <title>충북대 평가관리프로그램</title>
 </head>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	// 취소
+	$(".cencle").on("click", function(){
+		location.href = "/";
+	})
+	
+	$("#submit").on("click", function(){
+		
+		if($("#userId").val()==""){
+			alert("아이디를 입력해주세요.");
+			$("#userId").focus();
+			return false;
+		}
+		if($("#userPass").val()==""){
+			alert("비밀번호를 입력해주세요.");
+			$("#userPass").focus();
+			return false;
+		}
+		if($("#userName").val()==""){
+			alert("성명을 입력해주세요.");
+			$("#userName").focus();
+			return false;
+		}
+	if($("input:radio[name=user_auth]:checked").attr("id") == "type2"){
+		if($("#userBName").val()==""){
+			alert("회사명을 입력해주세요.");
+			$("#userName").focus();
+			return false;
+		}
+		if($("#userCRcode").val()==""){
+			alert("사업자등록번호를 입력해주세요.");
+			$("#userName").focus();
+			return false;
+		}
+	}
+		
+		
+		var idChkVal = $(".id_checkbtn").val();
+		var registerForm = $("#regForm");
+		
+		if(idChkVal == "N" || !idChkVal){
+			alert("중복확인 버튼을 눌러주세요.");
+			return false;
+		}else{
+			
+			return true;
+		}
+
+	});
+	$("input:radio[name=user_auth]").click(function(){
+		
+        if($("input:radio[name=user_auth]:checked").attr("id") == "type1"){
+           	$('#businessMemberDiv').css('display','none')
+            // radio 버튼의 value 값이 1이라면 활성화
+ 
+        }else if($("input:radio[name=user_auth]:checked").attr("id") == "type2"){
+        	
+            $('#businessMemberDiv').css('display','block')
+            // radio 버튼의 value 값이 0이라면 비활성화
+        }
+    });
+
+})
+
+function fn_idChk(){
+	
+		$.ajax({
+			url : "/cmm/idChk",
+			type : "post",
+			dataType : "json",
+			data : {"user_id" : $("#userId").val()},
+			success : function(data){
+				if(data == 1){
+					alert("중복된 아이디입니다.");
+					$("#userId").val("")
+					$(".id_checkbtn").attr("value", "N");
+				}else if(data == 0){
+					$(".id_checkbtn").attr("value", "Y");
+					alert("사용가능한 아이디입니다.");
+				}
+			}
+		})
+	
+}
+</script>
 <body>
     <div class="wrap">
         <dl id="skip_nav">
@@ -55,38 +142,43 @@
                                 <div class="join_wrap "> 
                                     <p>회원가입유형</p>
 
-                                    <form class="radio">
+                                    <form action="/cmm/postregister" method="POST" id="regForm" name="regForm" >
                                         <label class="radio_container ap" for="type1">
-                                            <input type="radio" name="user_auth" id="type1" checked=""><span class="checkmark radio" title="클릭 평가위원 선택"></span>
+                                            <input type="radio" name="user_auth" id="type1" value="0"><span class="checkmark radio" title="클릭 평가위원 선택"></span>
                                             평가위원
                                         </label>
                                         <label class="radio_container ap" for="type2">
-                                            <input type="radio" name="user_auth" id="type2" ><span class="checkmark radio" title="클릭 사업자 선택"></span>
+                                            <input type="radio" name="user_auth" id="type2" value="1"><span class="checkmark radio" title="클릭 사업자 선택"></span>
                                             사업자
                                         </label>
-                                    </form>
                                     
-
+                                    
+ 
                                     <p class="mt15">아이디</p>
-                                    <input type="text" name="user_id" title="입력 아이디"> <button class="id_checkbtn" type="button">중복확인</button>
+                                    <input type="text" id="userId" name="user_id" title="입력 아이디"> <button class="id_checkbtn" type="button"onclick="fn_idChk() ">중복확인</button>
 
                                     <p class="mt15">비밀번호</p>
-                                    <input type="text"  title="입력 비밀번호">
+                                    <input type="password" id="userPass" name="user_pwd"  title="입력 비밀번호">
 
                                     <p class="mt15">이름</p>
-                                    <input type="text"  title="입력 이름">
-
-                                    <p class="mt15">생년월일</p>
-                                    <input class="birthday" type="text" id="datepicker"  title="입력 생년월일">
+                                    <input type="text" id="userName" name="user_name"title="입력 이름">
+                                    
+                                    <div id="businessMemberDiv" style="display: none">
+										<p class="mt15">회사명</p>
+											<input type="text" id="userBName" name="user_Bname" />
+										<p class="mt15">사업자등록번호</p>
+											<input type="text" id="userCRcode" name="user_crcode" />
+									</div>
 
                                     <p class="mt15">휴대폰 번호</p>
-                                    <input type="text" placeholder="전화번호 입력" title="입력 휴대폰 번호">
+                                    <input type="text" name ="hp_num"placeholder="전화번호 입력" title="입력 휴대폰 번호">
 
                                     <p class="mt15">이메일 주소</p>
-                                    <input type="text" placeholder="이메일 주소 입력" title="입력 이메일">
+                                    <input type="text" name="user_email"placeholder="이메일 주소 입력" title="입력 이메일">
 
 
-                                    <button type="button">회원가입</button>
+                                    <button type="submit" id="submit">회원가입</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -99,6 +191,7 @@
         <script>
                 $(function() {
                     $("#datepicker").datepicker({
+                    	
                     });
                 });
 

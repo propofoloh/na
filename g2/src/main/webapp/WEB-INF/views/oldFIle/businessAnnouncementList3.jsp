@@ -102,7 +102,7 @@ body {
 </style>
 <body>
 	<div style="float: right;">
-		<%@include file="../board/nav.jsp"%>
+
 	</div>
 	<header>
 		<h1  style="text-align: center;">사업공지</h1>

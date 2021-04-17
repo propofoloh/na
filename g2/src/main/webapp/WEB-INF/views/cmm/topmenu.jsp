@@ -14,9 +14,10 @@
 <body>
 	<div class="insideArea">
                 <h1 class="logo">
-                    <img src="../../resource/image/logo.jpg" alt="충북대학교">
+                    <a href="/"><img src="../../resource/image/logo.jpg" alt="충북대학교"></a>
                     <span>평가관리프로그램</span>
                 </h1>
+                <c:if test="${member != null}">
 				<div class="gnb clearfix">
 					<ul>
 						<li class="">
@@ -35,6 +36,7 @@
 						</li>
 	
 					</ul> 
+					</c:if>
 				</div>
 			<div class="log row">
 				<c:if test="${member != null}">
