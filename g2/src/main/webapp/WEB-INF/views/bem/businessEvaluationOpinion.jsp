@@ -89,6 +89,7 @@
 	}
 </script>
 <body>
+	
     <div class="wrap">
         <dl id="skip_nav">
             <dt>메뉴 건너띄기</dt>
@@ -135,6 +136,7 @@
                                 </li>
                             </ul>
                         </div>
+                        <c:if test="${member.user_auth == 2}">
                         <div class="cont">
                             <h2>종합의견</h2>
 
@@ -239,6 +241,6 @@
             </div>
         </div>
         <footer></footer>
-
+</c:if>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -76,19 +77,7 @@
 									${read.title_remark1}
 							</textarea>
 
-							<div class="filelist form-group file_hwp mb-0">
-								<p>파일 목록</p>
-								<ul>
-									<li><span>첨부파일 : </span><a href="javascript:void(0)">1.JPG</a>(33.5kb)</li>
-									<li><span>첨부파일 : </span><a href="javascript:void(0)">1.JPG</a>(33.5kb)</li>
-									<li><span>첨부파일 : </span><a href="javascript:void(0)">1.JPG</a>(33.5kb)</li>
-								</ul>
-							</div>
-							 <div class="btn_wrap text-right">
-								<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationList?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">평가리스트</button>
-								<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}'">종합의견</button>
-								<button type="button" class="normal" onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">평가하기</button>
-							 </div>
+							
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab2">
 						<textarea name="" id="" cols="30" rows="10" readonly="readonly">
@@ -239,9 +228,29 @@
                                     		<th class="boldtext" colspan="4">연구개발비 총액</th>
                                     		<th >${cost.bplan_cost_value21}</th>
                                     	</tr>
-						</div><!--//#tab1-->
+                                   	</tbody>
+                                 </table>
+                              </div>
+                                    
+						</div><!--//#tab4-->
+						<div class="filelist form-group file_hwp mb-0">
+								<p>파일 목록</p>
+								<ul>
+									<li><span>첨부파일 : </span><a href="javascript:void(0)">1.JPG</a>(33.5kb)</li>
+									<li><span>첨부파일 : </span><a href="javascript:void(0)">1.JPG</a>(33.5kb)</li>
+									<li><span>첨부파일 : </span><a href="javascript:void(0)">1.JPG</a>(33.5kb)</li>
+								</ul>
+							</div>
+							<c:if test="${member.user_auth != 0}">
+							 <div class="btn_wrap text-right">
+									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationList?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">평가리스트</button>
+								<c:if test="${member.user_auth == 2}">
+									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}'">종합의견</button>
+								</c:if>
+									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">평가하기</button>
+							 </div>
+							 </c:if>
 					</div>
-
                 </div>
             </div>
         </div>

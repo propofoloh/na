@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="../../resource/css/reset.css">
     <link rel="stylesheet" href="../../resource/css/common.css">
     <link rel="stylesheet" href="../../resource/css/sub.css">
-    <link rel="stylesheet" href="../../resource/css/hj.css">
     <link rel="stylesheet" href="../../resource/css/board.css">
 
 	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
@@ -158,7 +157,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
+							<form action="/bpm/businessEvaluation" method="post">
                                 <table class="thead_gray">
                                     <colgroup>
                                         <col style="width:7%">
@@ -177,6 +176,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    
                                         <tr>
                                             <th rowspan="6" class="f_bold">신청기업</th>
                                             <td rowspan="2" class="type">추진계획타당성</td>
@@ -191,7 +191,7 @@
                                             <td rowspan="2" class="type">지원 필요성 및 추진역량</td>
                                             <td>지원의 필요성 및 신청지원 분야의 적합성</td>
                                             <td rowspan="2" class="score">20</td>
-                                            <td rowspan="2"><input name="eval_score1" class="score" type="number"></td>
+                                            <td rowspan="2"><input name="eval_score2" class="score" type="number"></td>
                                         </tr>
                                         <tr>
                                             <td>사업추진역량 및 의지</td>
@@ -200,30 +200,31 @@
                                             <td rowspan="2" class="type">지원 효과성 및 사업비 적정성</td>
                                             <td>사업지원의 기대효과</td>
                                             <td rowspan="" class="score">15</td>
-                                            <td rowspan=""><input name="eval_score1" class="score" type="number"></td>
+                                            <td rowspan=""><input name="eval_score3" class="score" type="number"></td>
                                         </tr>
                                         <tr>
                                             <td>사업비 구성의 적정성 및 합리성</td>
                                             <td class="score">15</td>
-                                            <td><input name="eval_score1" class="score" type="number"></td>
+                                            <td><input name="eval_score4" class="score" type="number"></td>
                                         </tr>
                                         <tr>
                                             <th rowspan="2" class="f_bold">수행기관</th>
                                             <td rowspan="2" class="type">관련 분야 전문성 및 역향</td>
                                             <td>지원분야의 수행기관 매칭 적합성 및 관련 실적</td>
                                             <td rowspan="" class="score">15</td>
-                                            <td rowspan=""><input name="eval_score1" class="score" type="number"></td>
+                                            <td rowspan=""><input name="eval_score5" class="score" type="number"></td>
                                         </tr>
                                         <tr>
                                             <td>참여인력의 업무수행 능력 및 역량</td>
                                             <td class="score" >15</td>
-                                            <td><input name="eval_score1" class="score" type="number"></td>
+                                            <td><input name="eval_score6" class="score" type="number"></td>
                                         </tr>
                                         <tr class="total">
                                             <td colspan="3">합계</td>
                                             <td class="score">100</td>
                                             <td name="eval_totalscore" id="eval_totalscore" readonly="readonly"></td>
-                                        </tr>
+                                        	</tr>
+                                         
                                     </tbody>
                                 </table>
                                 <table>
@@ -236,7 +237,7 @@
                                             <th>평가의견</th>
                                             <td colspan="3">
                                                 <div class="opi">
-                                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                                    <textarea name="eval_opinion" id="" cols="30" rows="10"></textarea>
                                                     
                                                 </div>
                                             </td>
@@ -247,15 +248,17 @@
 											<td class="ta_c f_bold">평가위원 성명</th>
 											<td class="ta_c f_bold" style="text-align: right;"><input type="text" name="eval_writer" value ="${member.user_name}">(서명)</th>
                                         </tr>
+                                        
                                     </tbody>
+
                                 </table>
                             </div>
 
                             <div class="btn_wrap text-right same mt_20">
                                 <button type="button" class="cancel">취소</button>
-                                <button type="button" class="normal">평가완료</button>
+                                <button type="submit" class="normal">평가완료</button>
                             </div>
-                            
+                          </form>
 
 
                         </div>

@@ -10,6 +10,12 @@ public class BusinessPlanVO extends Criteria{
 	
 
 	
+	public String getWriter_id() {
+		return writer_id;
+	}
+	public void setWriter_id(String writer_id) {
+		this.writer_id = writer_id;
+	}
 	private int bpm_bplan_idx;
 	private int board_idx = 2;
 	private int bam_anc_idx;
@@ -17,6 +23,7 @@ public class BusinessPlanVO extends Criteria{
 	private String title_remark2;
 	private String title_remark3;
 	private String writer;
+	private String writer_id;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date reg_date;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

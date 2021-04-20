@@ -34,6 +34,13 @@
 								<a href="javascript:void(0)">사업공지</a>
 							</div>
 						</li>
+						<li class="">
+							<a href="businessEvaluationMyList">사업평가</a>
+							<div class="sub_menu">
+								<a href="javascript:void(0)">사업공고일정</a>
+								<a href="javascript:void(0)">사업공지</a>
+							</div>
+						</li>
 	
 					</ul> 
 					</c:if>

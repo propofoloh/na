@@ -126,13 +126,16 @@
 													<td >
 													<c:choose>
 														<c:when test="${list.status == 0}">
-															평가 진행중
+															접수 중
 														</c:when>
 														<c:when test="${list.status == 1}">
-															평가 완료
+															접수 완료
 														</c:when>
 														<c:when test="${list.status == 2}">
-															선정 완료
+															평가 중
+														</c:when>
+														<c:when test="${list.status == 2}">
+															평가 완료
 														</c:when>
 													</c:choose>
 													</td>

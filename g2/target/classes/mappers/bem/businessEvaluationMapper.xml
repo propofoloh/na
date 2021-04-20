@@ -178,6 +178,46 @@
 		WHERE FILE_NO = #{file_idx}
 	</update>  -->
    
+   <select id="businessEvaluationMyList" resultType="emp.bem.vo.BusinessEvaluationVO" parameterType="hashMap">
+		SELECT 		      BEM_BEVAL_IDX 
+	   					      , BOARD_IDX 
+	   					      , EVAL_OPINION
+	   					      , EVAL_SCORE1
+	   					      , EVAL_SCORE2
+	   					      , EVAL_SCORE3
+	   					      , EVAL_SCORE4
+	   					      , EVAL_SCORE5
+	   					      , EVAL_SCORE6
+	   					      , EVAL_TOTALSCORE	
+	   					      , EVAL_WRITER
+	   					      , BPM_BPLAN_IDX
+	   					      , REG_DATE
+	   					      , MOD_DATE
+		 FROM ( 
+		        SELECT BEM_BEVAL_IDX 
+	   					      , BOARD_IDX 
+	   					      , EVAL_OPINION
+	   					      , EVAL_SCORE1
+	   					      , EVAL_SCORE2
+	   					      , EVAL_SCORE3
+	   					      , EVAL_SCORE4
+	   					      , EVAL_SCORE5
+	   					      , EVAL_SCORE6
+	   					      , EVAL_TOTALSCORE	
+	   					      , EVAL_WRITER
+	   					      , BPM_BPLAN_IDX
+	   					      , REG_DATE
+	   					      , MOD_DATE
+		               ,ROW_NUMBER() OVER(ORDER BY BEM_BEVAL_IDX DESC) AS RNUM
+		         FROM EMP_BEM_BEVAL
+		         WHERE 1=1 
+		         AND WRITER_ID = #{user_id}
+		         AND DEL_YN = 'N'
+		         	<include refid="search"></include>
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY BEM_BEVAL_IDX DESC
+	</select>
     
 </mapper>
 	

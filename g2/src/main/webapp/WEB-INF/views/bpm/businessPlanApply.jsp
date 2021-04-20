@@ -1,6 +1,7 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -43,7 +44,7 @@ $(document).ready(function(){
 	            contentType: false,
 				success : function(data) {
 									
-					window.location.replace('/bam/businessAnnouncementList')	
+					window.location.replace('/bpm/businessPlanApplyMyList')	
 
 				},
 				error : function(request, status, error){
@@ -71,6 +72,7 @@ function fn_addFile(){
 
 </script>
 <body>
+ <c:if test ="${member.user_auth == 0}">
     <div class="wrap">
         <dl id="skip_nav">
             <dt>메뉴 건너띄기</dt>
@@ -274,9 +276,6 @@ function fn_addFile(){
                                     		<th class="boldtext" colspan="4">연구개발비 총액</th>
                                     		<th ><input type="number" name="bplan_cost_value21"></th>
                                     	</tr>
-
-                                    	
-                                    	
                                     
                                     </tbody>
                                   
@@ -290,10 +289,11 @@ function fn_addFile(){
 								<button id ="fileAdd_btn" class="normal" type="button">파일추가</button>
 						</div>
 						
-						 <div class="btn_wrap text-right">
+			 			 <div class="btn_wrap text-right">
 								<button id="write_btn" type="button" class="normal">작성</button>
 							 </div>
 						<input type="hidden" name="writer" value="${member.user_name}">
+						<input type="hidden" name="writer_id" value="${member.user_id}">
 						</form>
 					</div>
 					
@@ -304,7 +304,9 @@ function fn_addFile(){
         </div>
         <footer></footer>
     </div>
-
-	
+	</c:if>
+	<c:if test="${member.user_auth != 0}">
+		<p>사업자 전용 페이지 입니다. </p>
+	</c:if>
 </body>
 </html>

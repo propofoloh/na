@@ -15,6 +15,7 @@
 	   					      , TITLE_REMARK2
 	   					      , TITLE_REMARK3
 	   					      , WRITER
+	   					      , WRITER_id
 	   					      , BAM_ANC_IDX
 	   					   
 	   					       )
@@ -24,6 +25,7 @@
 	                 		  , #{title_remark2}
 	                 		  , #{title_remark3}
 	                 		  , #{writer}
+	                 		  , #{writer_id}
 	                 		  , #{bam_anc_idx}
 	                 		    )
    
@@ -158,6 +160,7 @@
 	   					      , REG_DATE
 	   					      , MOD_DATE
 	   					      , STATUS
+	   					      , WRITER_ID
 		 FROM ( 
 		        SELECT BPM_BPLAN_IDX 
 	   					      , BOARD_IDX 
@@ -167,11 +170,13 @@
 	   					      , WRITER
 	   					      , REG_DATE
 	   					      , MOD_DATE
-	   					      , STATUS	
+	   					      , STATUS
+	   					      , WRITER_ID
+	   					        
 		               ,ROW_NUMBER() OVER(ORDER BY BPM_BPLAN_IDX DESC) AS RNUM
 		         FROM EMP_BPM_BPLAN
 		         WHERE 1=1 
-		         AND WRITER = #{user_id}
+		         AND WRITER_id = #{user_id}
 		         AND DEL_YN = 'N'
 		         	<include refid="search"></include>
 		                       ) MP
