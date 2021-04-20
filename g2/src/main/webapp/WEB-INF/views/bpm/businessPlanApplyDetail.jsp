@@ -64,10 +64,10 @@
                 <div class="cont">
                     <h2>사업평가리스트</h2>
 					<ul class="tab d-flex">
-						<li data-tab="tab1" class="on"><a href="javascript:void(0)">${read.title_name1}</a></li>
-						<li data-tab="tab2" class=""><a href="javascript:void(0)">${read.title_name2}</a></li>
-						<li data-tab="tab3" class=""><a href="javascript:void(0)">${read.title_name3}</a></li>
-						<li data-tab="tab4" ><a href="javascript:void(0)">${read.title_name4}</a></li>
+						<li data-tab="tab1" class="on"><a href="javascript:void(0)">${form.BPLAN_FORM_TITLE1}</a></li>
+						<li data-tab="tab2" class=""><a href="javascript:void(0)">${form.BPLAN_FORM_TITLE2}</a></li>
+						<li data-tab="tab3" class=""><a href="javascript:void(0)">${form.BPLAN_FORM_TITLE3}</a></li>
+						<li data-tab="tab4" ><a href="javascript:void(0)">${form.BPLAN_FORM_TITLE4}</a></li>
 					</ul>
 					<div class="p_15">
 						<div class="tabcontent current" id="tab1">
@@ -101,9 +101,144 @@
 							</textarea>
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab4">
-						<textarea name="" id="" cols="30" rows="10" readonly="readonly">
-									${read.title_remark4}
-							</textarea>
+						<div class="tablebox">
+							<!-- <textarea name="title_remark4" id="" cols="30" rows="10"> -->
+							 <table class="thead_gray">
+                                    <colgroup>
+                                        <col style="width:2%">
+                                        <col style="width:3%">
+                                        <col style="width:5%">
+                                        <col style="width:5%">
+                                        <col style="width:7%">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th class="boldtext" scope="col">비목</th>
+                                            <th class="boldtext" colspan="3"scope="col">세목</th>	
+                                            <th class="boldtext" scope="col">당해</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">인건비</th>
+                                    		<th class="boldtext">내부인건비</th>
+                                    		<th class="boldtext">미지급</th>
+                                    		<th>${cost.bplan_cost_value1} </th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">현금</th>
+                                    		<th >${cost.bplan_cost_value2}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">현물</th>
+                                    		<th >${cost.bplan_cost_value3}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">외부인건비</th>
+                                    		<th class="boldtext">미지급</th>
+                                    		<th >${cost.bplan_cost_value4}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">현금</th>
+                                    		<th >${cost.bplan_cost_value5}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">현물</th>
+                                    		<th >${cost.bplan_cost_value6}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext" style="text-align: center"colspan="2">연구지원인력인건비</th>
+                                    		<th >${cost.bplan_cost_value7}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">직</th>
+                                    		<th class="boldtext" style="text-align:right"" colspan="3"_>학생인건비</th>
+                                    		<th >${cost.bplan_cost_value8}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">접</th>
+                                    		<th class="boldtext" style="text-align:right"" colspan="3"_>인건비 소계</th>
+                                    		<th >${cost.bplan_cost_value9}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">비</th>
+                                    		<th class="boldtext" colspan="2">연구시설</th>
+                                    		<th class="boldtext">현금_일반</th>
+                                    		<th >${cost.bplan_cost_value10}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">비</th>
+                                    		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">장비비</th>
+                                    		<th class="boldtext">현금통합관리</th>
+                                    		<th >${cost.bplan_cost_value11}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">현물</th>
+                                    		<th >${cost.bplan_cost_value12}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">연구활동비</th>
+                                    		<th class="boldtext">현금</th>
+                                    		<th >${cost.bplan_cost_value13}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">현물</th>
+                                    		<th>${cost.bplan_cost_value14}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">연구재료비</th>
+                                    		<th class="boldtext">현금</th>
+                                    		<th >${cost.bplan_cost_value15}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext">현물</th>
+                                    		<th >${cost.bplan_cost_value16}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext" colspan="3">연구수당</th>
+                                    		<th >${cost.bplan_cost_value17}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext" colspan="3">위탁연구개발비</th>
+                                    		<th >${cost.bplan_cost_value18}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext">　</th>
+                                    		<th class="boldtext" colspan="3">직접비 소계</th>
+                                    		<th >${cost.bplan_cost_value19}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext" colspan="4">간접비</th>
+                                    		<th >${cost.bplan_cost_value20}</th>
+                                    	</tr>
+                                    	<tr>
+                                    		<th class="boldtext" colspan="4">연구개발비 총액</th>
+                                    		<th >${cost.bplan_cost_value21}</th>
+                                    	</tr>
 						</div><!--//#tab1-->
 					</div>
 

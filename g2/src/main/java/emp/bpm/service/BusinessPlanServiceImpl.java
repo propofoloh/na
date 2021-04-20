@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import emp.bpm.dao.BusinessPlanDAO;
 import emp.bpm.util.FileUtils;
 import emp.bpm.util.SearchCriteria;
+import emp.bpm.vo.BusinessPlanCostVO;
 import emp.bpm.vo.BusinessPlanVO;
 
 
@@ -100,6 +101,18 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 		return dao.businessPlanApplyMyList(paramMap);
 	}
 	
+	@Override
+	public void businessPlanInputCost(BusinessPlanCostVO businessPlanCostVO) throws Exception {
+		// TODO Auto-generated method stub
+		dao.businessPlanInputCost(businessPlanCostVO);
+		
+	}
+	
+	@Override
+	public String businessPlanSelectCost(int bpm_bplan_idx) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.businessPlanSelectCost(bpm_bplan_idx);
+	}
 	@Override
 	public void update(BusinessPlanVO businessPlanVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
 		

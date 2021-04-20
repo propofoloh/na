@@ -24,8 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import emp.bpm.service.BusinessPlanService;
 import emp.bpm.util.PageMaker;
 import emp.bpm.util.SearchCriteria;
+import emp.bpm.vo.BusinessPlanCostVO;
 import emp.bpm.vo.BusinessPlanVO;
-
 import emp.cmm.vo.MemberVO;
 
 @Controller
@@ -44,8 +44,7 @@ public class BusinessPlanController {
 		logger.info("businessPlanApply");
 		
 		Map<String,Object> resultMap = service.businessPlanApplyForm(bam_anc_idx);
-		String r = resultMap.get("BPLAN_FORM_TITLE1").toString();
-		System.out.println(r);
+		
 		model.addAttribute("form",resultMap);
 		
 
@@ -53,12 +52,16 @@ public class BusinessPlanController {
 
 	// 
 	@RequestMapping(value = "/businessPlanApply", method = RequestMethod.POST)
-	public String write(BusinessPlanVO businessPlanVO, MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception {
+	public String write(
+			BusinessPlanVO businessPlanVO,
+						BusinessPlanCostVO businessPlanCostVO,
+			MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception {
 		logger.info("businessPlanApply");
-
+		
 		service.write(businessPlanVO, mpRequest);
-		int bam_anc_idx = businessPlanVO.getBam_anc_idx();
-		redirect.addAttribute("bam_anc_idx",bam_anc_idx);
+		businessPlanCostVO.setBpm_bplan_idx(businessPlanVO.getBpm_bplan_idx());
+		service.businessPlanInputCost(businessPlanCostVO);
+		redirect.addAttribute("bam_anc_idx",businessPlanVO.getBam_anc_idx());
 		return "redirect:/bpm/businessPlanApplyList";
 	}
 
@@ -111,10 +114,16 @@ public class BusinessPlanController {
 	@RequestMapping(value = "/businessPlanApplyDetail", method = RequestMethod.GET)
 	public String businessPlanApplyDetail(BusinessPlanVO businessPlanVO, @ModelAttribute("scri") SearchCriteria scri, Model model,RedirectAttributes redirect) throws Exception {
 		logger.info("businessPlanApplyDetail");
-
+		
+		Map<String,Object> resultMap = service.businessPlanApplyForm(businessPlanVO.getBam_anc_idx());
+		
+		model.addAttribute("form",resultMap);
 		model.addAttribute("read", service.businessPlanApplyDetail(businessPlanVO.getBpm_bplan_idx()));
 		model.addAttribute("scri", scri);
-			
+		/*
+		 * model.addAttribute("cost",service.businessPlanSelectCost(businessPlanVO.
+		 * getBpm_bplan_idx()));
+		 */	
 		redirect.addAttribute("bam_anc_idx",businessPlanVO.getBpm_bplan_idx());
 		List<Map<String, Object>> fileList = service.selectFileList(businessPlanVO.getBpm_bplan_idx());
 		 model.addAttribute("file", fileList);

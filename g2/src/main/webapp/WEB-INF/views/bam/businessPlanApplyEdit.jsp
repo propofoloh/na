@@ -49,7 +49,6 @@ $(document).ready(function(){
 	})
 	
 	$('#writeBtn').click(function(){
-		alert("")
 		$('form').submit();
 	})
 })
@@ -77,38 +76,15 @@ $(document).ready(function(){
                 </section>
                 <section class="sect2">
                     <div  class="insideArea row">
-                <div class="lnb">
-                    <p class="tit">사업안내</p>
-                    <ul>
-                        <li>
-                            <a href="#">사업분류</a>
-                        </li>
-                        <li class="on">
-                            <a href="#">사업공고</a>
-                            <ul class="second_menu">
-                                <li>· 사업공고일정</li>
-                                <li class="on">· 사업공지</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">사업질의응답</a>
-                        </li>
-                        <li>
-                            <a href="#">사업자료실</a>
-                        </li>
-                        <li>
-                            <a href="#">정보서비스</a>
-                        </li>
-                    </ul>
-                </div>
+     
                 <div class="cont">
                     <h2>사업평가리스트</h2>
                     <form name="writeForm" action="/bam/businessPlanApplyEdit" method="post">
                     	<input type="hidden" name="Sbam_anc_idx" value="${param.bam_anc_idx}">
 						<ul class="tab d-flex">
-							<li data-tab="tab1" class="on"><a href="javascript:void(0)"><input type="text" id="bplan_form_title1" name="bplan_form_title1" value="연구목표"></a></li>
-							<li data-tab="tab2" class=""><a href="javascript:void(0)"><input type="text" id="bplan_form_title2" name="bplan_form_title2" value="연구내용"></a></li>
-							<li data-tab="tab3" class=""><a href="javascript:void(0)"><input type="text" id="bplan_form_title3" name="bplan_form_title3" value="기대효과"></a></li>
+							<li data-tab="tab1" class="on"><a href="javascript:void(0)"><input type="text" id="bplan_form_title1" name="bplan_form_title1" placeholder="항목명 입력 ex)연구목표" value=""></a></li>
+							<li data-tab="tab2" class=""><a href="javascript:void(0)"><input type="text" id="bplan_form_title2" name="bplan_form_title2" placeholder="항목명 입력 " value=""></a></li>
+							<li data-tab="tab3" class=""><a href="javascript:void(0)"><input type="text" id="bplan_form_title3" name="bplan_form_title3" placeholder="항목명 입력"value=""></a></li>
 							<li data-tab="tab4" ><a href="javascript:void(0)"><input type="text" id="bplan_form_title4" name="bplan_form_title4" value="연구개발비"></a></li>
 						</ul>
 					</form>

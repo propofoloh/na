@@ -46,15 +46,15 @@
                    	 <p class="tit">사용자</p>
                     <ul>
                         <li class="on">
-                            <a href="#">사업공고</a>
+                            <a href="/bam/businessAnnouncementList">사업공고</a>
                             <ul class="second_menu">
-                                <li class="on"><a href="javascript:void(0)">· 사업공고</a></li>
+                                <li class="on"><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
                             </ul>
                             
                         <li class=" ">
-                            <a href="#">사업 계획서</a>
+                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
                             <ul class="second_menu">
-                                <li class=""><a href="javascript:void(0)">· 접수내역 조회</a></li>
+                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
                             </ul>
                     </ul>
                 </div>

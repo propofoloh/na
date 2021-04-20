@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import emp.bpm.util.SearchCriteria;
+import emp.bpm.vo.BusinessPlanCostVO;
 import emp.bpm.vo.BusinessPlanVO;
 
 
@@ -49,5 +50,11 @@ public interface BusinessPlanDAO {
 
 	// 사업계획서 상세보기
 	public Map<String,Object> businessPlanApplyForm(int bam_anc_idx) throws Exception;
+	
+	//사업계획서 연구개발비 비용 등록
+	public void businessPlanInputCost(BusinessPlanCostVO businessPlanCostVO) throws Exception;
+		
+	//사업계획서 연구개발비 비용 조회
+	public String businessPlanSelectCost(int bpm_bplan_idx) throws Exception;
 	
 }

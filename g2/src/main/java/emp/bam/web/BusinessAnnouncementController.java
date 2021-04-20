@@ -110,8 +110,7 @@ public class BusinessAnnouncementController {
 	//사업 공고 수정
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(BusinessAnnouncementVO businessAnnouncementVO, 
-			@ModelAttribute("scri") SearchCriteria scri, 
-			RedirectAttributes rttr,
+			@ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr,
 			@RequestParam(value="fileNoDel[]") String[] files,
 			@RequestParam(value="fileNameDel[]") String[] fileNames,
 			MultipartHttpServletRequest mpRequest) throws Exception {
@@ -169,7 +168,7 @@ public class BusinessAnnouncementController {
 			redirect.addAttribute(bam_anc_idx);	
 	}
 	//사업계획서 양식등록
-		 @RequestMapping(value="/businessPlanApplyEdit",method = RequestMethod.POST)
+		@RequestMapping(value="/businessPlanApplyEdit",method = RequestMethod.POST)
 		public String businessPlanApplyEdit (
 				@RequestParam(value = "Sbam_anc_idx") String Sbam_anc_idx,
 				@RequestParam(value = "bplan_form_title1") String bplan_form_title1,
@@ -198,5 +197,16 @@ public class BusinessAnnouncementController {
 				redirect.addAttribute(bam_anc_idx);	
 		}
 	
-
+/*
+ * //사업계획서 양식등록
+ * 
+ * @RequestMapping(value="/businessPlanApplyEdit",method = RequestMethod.POST)
+ * public String businessAnnouncementInput (
+ * 
+ * @RequestParam(value = "Sbam_anc_idx") String Sbam_anc_idx,
+ * 
+ * @RequestParam(value = "") String bplan_form_title1, Model
+ * model,HttpServletResponse response) throws Exception{ } 
+ * 
+ */
 }

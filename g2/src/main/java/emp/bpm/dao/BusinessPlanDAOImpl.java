@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import emp.bpm.util.SearchCriteria;
+import emp.bpm.vo.BusinessPlanCostVO;
 import emp.bpm.vo.BusinessPlanVO;
 
 
@@ -110,5 +111,19 @@ public class BusinessPlanDAOImpl implements BusinessPlanDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("businessPlanMapper.businessPlanApplyForm", bam_anc_idx);
 	}
+	@Override
+	public void businessPlanInputCost(BusinessPlanCostVO businessPlanCostVO) throws Exception {
+		// TODO Auto-generated method stub
+		
+		sqlSession.insert("businessPlanMapper.businessPlanInputCost",businessPlanCostVO);
+		
+	}
+	
+	@Override
+	public String businessPlanSelectCost(int bpm_bplan_idx) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("businessPlanMapper.businessPlanSelectCost",bpm_bplan_idx);
+	}
+	
 	
 }

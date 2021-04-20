@@ -41,29 +41,21 @@
                 </ul>
                 </section>
                  <section class="sect2">
-                    <div  class="insideArea row">
-                <div class="lnb">
-                    <p class="tit">사용자</p>
+                 <div  class="insideArea row">
+                	<div class="lnb">
+                   	 <p class="tit">사용자</p>
                     <ul>
-                        <li>
-                            <a href="#">사업분류</a>
-                        </li>
-                        <li class="on">
+                        <li class="">
                             <a href="#">사업공고</a>
                             <ul class="second_menu">
-                                <li>· 사업공고일정</li>
-                                <li class="on">· 사업공지</li>
+                                <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#">사업질의응답</a>
-                        </li>
-                        <li>
-                            <a href="#">사업자료실</a>
-                        </li>
-                        <li>
-                            <a href="#">정보서비스</a>
-                        </li>
+                            
+                        <li class="on">
+                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
+                            <ul class="second_menu">
+                                <li class="on"><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                            </ul>
                     </ul>
                 </div>
                 <div class="cont">
@@ -122,7 +114,7 @@
                                     </thead>
                                     <tbody>
                             			<c:forEach items="${list}" var = "list" varStatus="status">
-											<c:if test = "${list.writer == member.user_id}">
+											
 												<tr class="  ">
 													<td ><c:out value="${status.index+1}" /></td>
 													<td>
@@ -145,7 +137,7 @@
 													</c:choose>
 													</td>
 												</tr>
-											</c:if>	
+											
 						</c:forEach>
                                         <!-- <tr class="  ">
                                             <td>

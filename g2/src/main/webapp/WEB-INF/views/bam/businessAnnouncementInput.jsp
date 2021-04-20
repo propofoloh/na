@@ -19,6 +19,78 @@
 
     <title>충북대 평가관리프로그램</title>
 </head>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	var memberInfo = new Array();
+	
+	$('input[type=checkbox]').click(function(){
+			
+		var rowData = new Array();
+		var memberArr = new Array();
+		var checkbox = $("input[name=checkedUserId]:checked");
+		// 체크된 체크박스 값을 가져온다
+			checkbox.each(function(i) {
+				memberArr = new Array();
+				// checkbox.parent() : checkbox의 부모는 <td>이다.
+				// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
+				var tr = checkbox.parent().parent().eq(i);
+				var td = tr.children();
+				
+				// 체크된 row의 모든 값을 배열에 담는다.
+				rowData.push(tr.text());
+				
+				// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
+				var user_id = td.eq(2).text()+"";
+
+				
+				// 가져온 값을 배열에 담는다.
+				memberArr.push(user_id); 
+	
+				
+			});
+			memberInfo = memberArr
+			$('#check_Btn').click(function(){
+				
+				$.each(memberArr, function(index,item){
+					
+				$('#evaluatorList').append('<div>'+memberArr[index]+'</div>') ;
+				
+				});
+				close_pop();
+			})
+			
+	})
+	 
+	var formdata = $('#writeForm')[0];
+
+	/* $.ajax({
+		type: "POST",
+		url : '/bam/businessEvaluationInputWrite',
+		dataType :"text",
+		data: objParams,
+		contentType : false,
+        processData : false,
+		success : function(data) {
+							
+			window.location.replace('/bam/businessPlanApplyEdit?bam_anc_idx=${param.bam_anc_idx}')	
+
+		},
+		error : function(request, status, error){
+			alert(error);
+		}
+	}); */
+});
+
+function open_pop(flag){
+	$('#selectEvaluator').show();
+};
+function close_pop(flag) {
+    $('#selectEvaluator').hide();
+    
+};
+	
+</script>
 <body>
     <div class="wrap">
         <dl id="skip_nav">
@@ -42,28 +114,20 @@
                 </section>
                 <section class="sect2">
                 <div  class="insideArea row">
-                <div class="lnb">
-                    <p class="tit">사용자</p>
+                	<div class="lnb">
+                   	 <p class="tit">사용자</p>
                     <ul>
-                        <li>
-                            <a href="#">사업분류</a>
-                        </li>
                         <li class="on">
-                            <a href="#">사업공고</a>
+                            <a href="/bam/businessAnnouncementList">사업공고</a>
                             <ul class="second_menu">
-                                <li>· 사업공고일정</li>
-                                <li class="on">· 사업공지</li>
+                                <li class="on"><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#">사업질의응답</a>
-                        </li>
-                        <li>
-                            <a href="#">사업자료실</a>
-                        </li>
-                        <li>
-                            <a href="#">정보서비스</a>
-                        </li>
+                            
+                        <li class=" ">
+                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
+                            <ul class="second_menu">
+                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                            </ul>
                     </ul>
                 </div>
                 <div class="cont">
@@ -95,8 +159,11 @@
                                     </tr>
                                      <tr>
                                         <th scope="row"><span>* </span>평가원선택</th>
-                                        <td>
+                                        <td >
+                                            <button class="select_Evaluator" type="button" onClick="open_pop();">평가원선택</button>
+                                            <div id="evaluatorList">
                                             
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -126,7 +193,7 @@
                         
                         <div class="board_btn_wrap btn2 right">
                             <div class="btn_wrap">
-                            	 <button type="submit" class="red" onclick="window.location.href=''">등록</button>
+                            	 <button id="submit" type="submit" class="red">등록</button>
                             	 <button type="button" class="gray" onclick="window.location.href='/bam/businessAnnouncementList'">목록보기</button>
                             </div>
                         </div>
@@ -137,6 +204,46 @@
             	</section>
         	</div>
         </div>
+        <div id="selectEvaluator" class="modal">
+              <!-- Modal content -->
+      <div class="modal-content">
+                <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt; margin-bottom: 10px;">평가원 선택</span></b></span></p>
+               	<table class="table table-hover">
+						<thead>
+							<tr>
+								<th style="width: 60px; text-align: center;">선택</th>
+								<th style="width: 60px; text-align: center;">평가원 성명</th>
+								<th style="width: 60px; text-align: center;">아이디</th>
+							</tr>
+						</thead>
+						
+						<c:forEach items="${memberList}" var = "memberList">
+							<tr>
+								<td style="text-align: center;"><input type="checkbox" name="checkedUserId"/></td>
+								<td style="text-align: center;"id="user_name"><c:out value="${memberList.user_name}" /></td>
+								<td style="text-align: center;"id="user_id"><c:out value="${memberList.user_id}" /> </td>
+							</tr>
+						</c:forEach>
+					</table>
+                <p><br /></p>
+             <div>
+		            <div style="float:left; color:#000; width: 48%; pointer;background-color:#e6e6e6;text-align: center;padding-bottom: 10px;padding-top: 10px; margin-right: 10px;" onClick="close_pop();">
+		                <span class="pop_bt" style="font-size: 13pt;" >
+		                   	 취소
+		                </span>
+		            </div>
+		            
+					<div id="check_Btn" style="float:left; color:#FFFFFF; width: 48%; pointer;background-color:#952940;text-align: center;padding-bottom: 10px;padding-top: 10px;">
+		                <span class="pop_bt" style="font-size: 13pt;" >
+		                   	 확인
+		                </span>
+		            </div>		            
+			</div>
+   
+ 	
+    </div>
+    </div>
+        <!--End Modal-->
         <footer></footer>
         <script>
             $(function() {
