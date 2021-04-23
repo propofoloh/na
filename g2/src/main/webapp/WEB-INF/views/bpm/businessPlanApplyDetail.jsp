@@ -34,10 +34,14 @@
         <div class="content">
             <span id="contents"></span>
             <div class="row content_outer">
-                <ul class="location row">
+                <section class="location sect1">
+                    <ul class="insideArea row">
                     <li>사용자</li>
-                    <li>사업공고</li>
+                    <li>사업계획서 상세</li>
                 </ul>
+                </section>
+                <section class="sect2">
+               <div  class="insideArea row">
                 <div class="lnb">
                     <p class="tit">사업안내</p>
                     <ul>
@@ -253,6 +257,8 @@
 					</div>
                 </div>
             </div>
+            </section>
+        </div>
         </div>
         <footer></footer>
     </div>

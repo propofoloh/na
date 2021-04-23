@@ -106,47 +106,52 @@
 	</sql>
 	
 
-	    <!-- <insert id="insertFile" parameterType="hashMap">
-		INSERT INTO MP_FILE(
-			FILE_NO,
-			BNO,
-			ORG_FILE_NAME,
-			STORED_FILE_NAME,
+	     <insert id="insertFile" parameterType="hashMap">
+		INSERT INTO EMP_FILE(
+			FILE_IDX,
+			BOARD_IDX,
+			BOARD_LIST_IDX,
+			FILE_FNAME,
+			FILE_SNAME,
 			FILE_SIZE
 		)VALUES(
-			SEQ_MP_FILE_NO.NEXTVAL,
-			#{BNO},
-			#{ORG_FILE_NAME},
-			#{STORED_FILE_NAME},
-			#{FILE_SIZE}
+			SEQ_FILE_IDX.NEXTVAL,
+			1,
+			#{bam_anc_idx},
+			#{file_fname},
+			#{file_sname},
+			#{file_size}
 		)
-    </insert> -->
+    </insert>
 
 
-<!-- <select id="selectFileList" parameterType="int" resultType="hashMap">
-	SELECT FILE_NO,
-		   ORG_FILE_NAME,
-		   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
-	  FROM MP_FILE
-	 WHERE BNO = #{BNO}
-	   AND DEL_GB = 'N'
-	   ORDER BY FILE_NO ASC
-</select> -->
-
-
-<!-- <select id="selectFileInfo" parameterType="hashMap" resultType="hashMap">
-	SELECT 
-		STORED_FILE_NAME,
-		ORG_FILE_NAME
-	FROM MP_FILE
-	WHERE FILE_NO = #{FILE_NO}
+ <select id="selectFileList" parameterType="int" resultType="hashMap">
+SELECT      FILE_IDX,
+			FILE_FNAME,
+			ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+		
+		FROM EMP_FILE
+		WHERE BOARD_LIST_IDX = #{bam_anc_idx}
+		AND BOARD_IDX = 1
+		AND DEL_YN = 'N'
+		ORDER BY FILE_IDX ASC
 </select>
 
-    <update id="updateFile" parameterType="hashMap">
+	<select id="selectFileInfo" parameterType="hashMap" resultType="hashMap">
+		SELECT
+		FILE_SNAME,
+		FILE_FNAME
+		FROM EMP_FILE
+		WHERE FILE_IDX = #{FILE_IDX}
+	</select>
+
+   <!--  <update id="updateFile" parameterType="hashMap">
     	UPDATE MP_FILE SET
     	DEL_GB = 'Y'
     	WHERE FILE_NO = #{FILE_NO}
     </update> -->
+    
+    
       <insert id="businessEvaluationEdit" parameterType="hashMap" >
 	   INSERT INTO EMP_BEM_BEVAL_FORM( BAM_ANC_IDX
 	   						  , BEM_BEVAL_FORM_IDX

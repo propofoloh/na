@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="../../resource/css/common.css">
     <link rel="stylesheet" href="../../resource/css/sub.css">
     <link rel="stylesheet" href="../../resource/css/board.css">
-	<link rel="stylesheet" href="../../resource/css/hj.css">
 
 	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
@@ -81,9 +80,9 @@
                                                     <input type="hidden" name="no" value="">
                                                     <input type="hidden" name="sno" value="">
                                                 </form>
-                                               <c:forEach var="file" items="${file}">
-													<a class="file" href="#" onclick="fn_fileDown('${file.file_idx}'); return false;">${file.file_sname}</a>(${file.FILE_SIZE})<br>
-												</c:forEach>
+						                           <c:forEach var="file" items="${file}">
+														첨부파일 :<a href="#" onclick="fn_fileDownload('${file.FILE_IDX}');">${file.FILE_FNAME}</a>(${file.FILE_SIZE}kb)<br>
+												   </c:forEach>
                                                 </div>
                                         </div>
                                         <button type="button" class="print" id="printBtn">게시물 프린트</button>

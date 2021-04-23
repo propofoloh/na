@@ -65,11 +65,9 @@ public class BusinessAnnouncementController {
 		model.addAttribute("read", service.businessAnnouncementDetail(businessAnnouncementVO.getBam_anc_idx()));
 		model.addAttribute("scri", scri);
 
-		/*
-		 * List<Map<String, Object>> fileList =
-		 * service.selectFileList(boardVO.getBno()); model.addAttribute("file",
-		 * fileList);
-		 */		
+		
+		 List<Map<String, Object>> fileList =service.selectFileList(businessAnnouncementVO.getBam_anc_idx()); model.addAttribute("file",fileList);
+		 
 		return "bam/businessAnnouncementDetail";
 	}
 

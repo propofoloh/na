@@ -60,7 +60,6 @@ public class BusinessPlanDAOImpl implements BusinessPlanDAO {
 	// 사업공고 삭제
 	@Override
 	public void delete(int bno) throws Exception {
-		
 		sqlSession.delete("businessPlanMapper.delete", bno);
 	}
 	

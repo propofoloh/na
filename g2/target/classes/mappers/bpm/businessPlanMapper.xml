@@ -123,7 +123,7 @@
     </insert> 
 
 
-	 <select id="selectFileList" parameterType="int" resultType="hashMap">
+<!-- 	 <select id="selectFileList" parameterType="int" resultType="hashMap">
 	SELECT  FILE_IDX,
 			FILE_FNAME,
 			ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
@@ -132,7 +132,7 @@
 		WHERE BOARD_LIST_IDX = #{bpm_bplan_idx}
 		AND DEL_YN = 'N'
 		ORDER BY FILE_IDX ASC
-</select>
+</select> -->
 
 
 	<select id="selectFileInfo" parameterType="hashMap"

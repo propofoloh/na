@@ -66,7 +66,6 @@ function fn_addFile(){
 		
 	});
 	
-	
 }
 
 
@@ -161,120 +160,120 @@ function fn_addFile(){
                                     		<th class="boldtext">인건비</th>
                                     		<th class="boldtext">내부인건비</th>
                                     		<th class="boldtext">미지급</th>
-                                    		<th ><input type="number" name="bplan_cost_value1"></th>
+                                    		<th ><input type="number" name="bplan_cost_value1" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th ><input type="number" name="bplan_cost_value2"></th>
+                                    		<th ><input type="number" name="bplan_cost_value2" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">현물</th>
-                                    		<th ><input type="number" name="bplan_cost_value3"></th>
+                                    		<th ><input type="number" name="bplan_cost_value3" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">외부인건비</th>
                                     		<th class="boldtext">미지급</th>
-                                    		<th ><input type="number" name="bplan_cost_value4"></th>
+                                    		<th ><input type="number" name="bplan_cost_value4" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th ><input type="number" name="bplan_cost_value5"></th>
+                                    		<th ><input type="number" name="bplan_cost_value5" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">현물</th>
-                                    		<th ><input type="number" name="bplan_cost_value6"></th>
+                                    		<th ><input type="number" name="bplan_cost_value6" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext" style="text-align: center"colspan="2">연구지원인력인건비</th>
-                                    		<th ><input type="number" name="bplan_cost_value7"></th>
+                                    		<th ><input type="number" name="bplan_cost_value7" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">직</th>
                                     		<th class="boldtext" style="text-align:right"" colspan="3"_>학생인건비</th>
-                                    		<th ><input type="number" name="bplan_cost_value8"></th>
+                                    		<th ><input type="number" name="bplan_cost_value8" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">접</th>
                                     		<th class="boldtext" style="text-align:right"" colspan="3"_>인건비 소계</th>
-                                    		<th ><input type="number" name="bplan_cost_value9"></th>
+                                    		<th ><input type="number" name="bplan_cost_value9" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">비</th>
                                     		<th class="boldtext" colspan="2">연구시설</th>
                                     		<th class="boldtext">현금_일반</th>
-                                    		<th ><input type="number" name="bplan_cost_value10"></th>
+                                    		<th ><input type="number" name="bplan_cost_value10" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">비</th>
                                     		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">장비비</th>
                                     		<th class="boldtext">현금통합관리</th>
-                                    		<th ><input type="number" name="bplan_cost_value11"></th>
+                                    		<th ><input type="number" name="bplan_cost_value11" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">현물</th>
-                                    		<th ><input type="number" name="bplan_cost_value12"></th>
+                                    		<th ><input type="number" name="bplan_cost_value12" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">연구활동비</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th ><input type="number" name="bplan_cost_value13"></th>
+                                    		<th ><input type="number" name="bplan_cost_value13" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">현물</th>
-                                    		<th ><input type="number" name="bplan_cost_value14"></th>
+                                    		<th ><input type="number" name="bplan_cost_value14" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">연구재료비</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th ><input type="number" name="bplan_cost_value15"></th>
+                                    		<th ><input type="number" name="bplan_cost_value15" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext">현물</th>
-                                    		<th ><input type="number" name="bplan_cost_value16"></th>
+                                    		<th ><input type="number" name="bplan_cost_value16" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext" colspan="3">연구수당</th>
-                                    		<th ><input type="number" name="bplan_cost_value17"></th>
+                                    		<th ><input type="number" name="bplan_cost_value17" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext" colspan="3">위탁연구개발비</th>
-                                    		<th ><input type="number" name="bplan_cost_value18"></th>
+                                    		<th ><input type="number" name="bplan_cost_value18" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">　</th>
                                     		<th class="boldtext" colspan="3">직접비 소계</th>
-                                    		<th ><input type="number" name="bplan_cost_value19"></th>
+                                    		<th ><input type="number" name="bplan_cost_value19" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext" colspan="4">간접비</th>
-                                    		<th ><input type="number" name="bplan_cost_value20"></th>
+                                    		<th ><input type="number" name="bplan_cost_value20" value=0></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext" colspan="4">연구개발비 총액</th>
-                                    		<th ><input type="number" name="bplan_cost_value21"></th>
+                                    		<th ><input type="number" name="bplan_cost_value21" value=0></th>
                                     	</tr>
                                     
                                     </tbody>
@@ -284,9 +283,12 @@ function fn_addFile(){
 							
 						</div><!--//#tab1-->
 						
-						<div id="fileIndex">	
-								<input type="file" id="input-file" style="display: none" />	
-								<button id ="fileAdd_btn" class="normal" type="button">파일추가</button>
+						<div class="btn_wrap">
+							<div id="fileIndex">	
+									<input type="file" id="input-file" style="display: none" />	
+									<button class="addFile" id="fileAdd_btn"  type="button">파일추가</button>
+							</div>
+						</div>
 						</div>
 						
 			 			 <div class="btn_wrap text-right">
