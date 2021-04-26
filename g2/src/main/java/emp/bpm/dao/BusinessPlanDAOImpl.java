@@ -119,7 +119,7 @@ public class BusinessPlanDAOImpl implements BusinessPlanDAO {
 	}
 	
 	@Override
-	public String businessPlanSelectCost(int bpm_bplan_idx) throws Exception {
+	public BusinessPlanCostVO businessPlanSelectCost(int bpm_bplan_idx) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("businessPlanMapper.businessPlanSelectCost",bpm_bplan_idx);
 	}

@@ -48,6 +48,6 @@ public interface BusinessPlanService {
 		public void businessPlanInputCost(BusinessPlanCostVO businessPlanCostVO) throws Exception;
 		
 		//사업계획서 연구개발비 비용 조회
-		public String businessPlanSelectCost(int bpm_bplan_idx) throws Exception;
+		public BusinessPlanCostVO businessPlanSelectCost(int bpm_bplan_idx) throws Exception;
 	}    
  

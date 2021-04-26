@@ -48,8 +48,8 @@
                         <li class="on">
                             <a href="/bam/businessAnnouncementList">사업공고</a>
                             <ul class="second_menu">
-                                <li class="on"><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
-                                <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
+                                <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                                <li class="on"><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
                             </ul>
                         <li class=" ">
                             <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
@@ -59,8 +59,7 @@
                         <li class=" ">
                             <a href="/bpm/businessEvaluationMyList">사업 평가</a>
                             <ul class="second_menu">
-                                <li class=""><a href="/bem/businessEvaluationMyList">· 평가내역 조회</a></li>
-                                <li class=""><a href="/bem/businessEvaluationMyList">· 종합의견 조회</a></li>
+                                <li class=""><a href="/bpm/businessEvaluationMyList">· 평가내역 조회</a></li>
                             </ul>
                     </ul>
                 </div>
@@ -117,10 +116,8 @@
                                         <tr>
                                             <th scope="col">순번</th>
                                             <th scope="col">사업명</th>
-                                            <th scope="col">작성자</th>
-                                            <th scope="col">공고시작일</th>
-                                            <th scope="col">공고종료일</th>
-                                            <th scope="col">바로가기</th>
+                                            <th scope="col">사업계획서</th>
+                                            <th scope="col">평가지표</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -128,54 +125,59 @@
 											<tr>
 												<td style="text-align: center;"><c:out value="${status.index+1}" /></td>
 												<td>
-													<a style="width : 100%;" href="/bam/businessAnnouncementDetail?bam_anc_idx=${list.bam_anc_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.anc_title}" /></a>
+													<c:out value="${list.anc_title}"/>
 												</td>
 												<td>
-													<c:out value="${list.writer}" />
-												</td>
-												<td>
-													<fmt:formatDate value="${list.anc_begin_dt}" pattern="yyyy-MM-dd" />
-												</td>
-												<td>
-													<fmt:formatDate value="${list.anc_end_dt}" pattern="yyyy-MM-dd" />
-												</td>
-											<c:choose>
+													<c:choose>
 												<c:when test="${member.user_auth == '1' || member.user_auth == '2'}">
 													<td class="quickBtn" style="text-align: center;">
-														<a href="/bpm/businessPlanApplyList?bam_anc_idx=${list.bam_anc_idx}">접수목록보기</a>
+														<a href="">양식 등록</a>
 													</td>
 												</c:when>
 												<c:otherwise>
 													<td class="quickBtn" style="text-align: center;">
-														<a href="/bpm/businessPlanApply?bam_anc_idx=${list.bam_anc_idx}">접수하기</a>
+														<a href="">등록완료</a>
+													</td>
+												</c:otherwise>
+											</c:choose>	
+												</td>
+											<c:choose>
+												<c:when test="${member.user_auth == '1' || member.user_auth == '2'}">
+													<td class="quickBtn" style="text-align: center;">
+														<a href="">양식 등록</a>
+													</td>
+												</c:when>
+												<c:otherwise>
+													<td class="quickBtn" style="text-align: center;">
+														<a href="">등록완료</a>
 													</td>
 												</c:otherwise>
 											</c:choose>	
 												</tr>
 										</c:forEach>
                                      </tbody>
-                            </table>	
-			             <div class="pasingDiv" style="width: 100%; text-align: center">
-							<ul class="pagination">
-								<c:if test="${pageMaker.prev}">
-									<li><a
-										href="businessAnnouncementList${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
-								</c:if>
-			
-								<c:forEach begin="${pageMaker.startPage}"
-									end="${pageMaker.endPage}" var="idx">
-									<li
-										<c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
-										<a href="businessAnnouncementList${pageMaker.makeSearch(idx)}">${idx}</a>
-									</li>
-								</c:forEach>
-			
-								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-									<li><a
-										href="businessAnnouncementList{pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
-								</c:if>
-							</ul>
-						</div>
+                            </table>
+                            <div class="pasingDiv">
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<li><a
+											href="businessAnnouncementList${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+									</c:if>
+				
+									<c:forEach begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}" var="idx">
+										<li
+											<c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
+											<a href="businessAnnouncementList${pageMaker.makeSearch(idx)}">${idx}</a>
+										</li>
+									</c:forEach>
+				
+									<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+										<li><a
+											href="businessAnnouncementList{pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+									</c:if>
+								</ul>
+							</div>
                           	  <div class="board_btn_wrap btn2 right">
                            		<div class="btn_wrap">
                             		<c:if test="${member.user_auth == '2'}">

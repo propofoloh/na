@@ -25,6 +25,46 @@ $(document).ready(function(){
 	
 	fn_addFile();
 	
+	var laborCost = 0;
+	var directCost = 0;
+	var indirectCost =$('.indirectCostSum').val();
+	 $('.laborCost').on('keyup',function(){
+			 var Sum = 0;
+        $('.laborCost').each(function(idx,value){ 
+            if(!isNaN(this.value)&&this.value.length!=0){
+                	Sum+=Number($(value).val());
+                    	$('.laborCostSum').val(Sum);
+        				laborCost = Sum;
+        				$('.directCostSum').val(laborCost);
+        				$('.RDCostSum').val(laborCost);
+        		}	
+        });
+	 });
+	 
+	 $('.directCost').on('keyup',function(){
+		 var Sum = 0;
+    $('.directCost').each(function(idx,value){ 
+        if(!isNaN(this.value)&&this.value.length!=0){
+            	Sum+=Number($(value).val());
+                	$('.directCostSum').val(Sum+laborCost);
+                	directCost = Sum;
+                	$('.RDCostSum').val(directCost+laborCost);
+ 
+    			
+    		}	
+    });
+	 });
+	 
+    $('.indirectCostSum').on('keyup',function(){
+  	
+    	if(!isNaN(this.value)&&this.value.length!=0){
+        	Sum = Number(this.value);
+    	$('.RDCostSum').val(directCost+ Sum);	
+    
+    	}
+    })
+     
+        
 	  $('#write_btn').click(function(){
 			
 		  var len = 22;
@@ -98,15 +138,21 @@ function fn_addFile(){
                    	 <p class="tit">사용자</p>
                     <ul>
                         <li class="">
-                            <a href="#">사업공고</a>
+                            <a href="/bam/businessAnnouncementList">사업공고</a>
                             <ul class="second_menu">
                                 <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                                <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
                             </ul>
-                            
                         <li class="on">
                             <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
                             <ul class="second_menu">
-                                <li class="on"><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                            	<li class="on"><a href="/bpm/businessPlanApplyMyList">· 사업계획서 작성</a></li>
+                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                            </ul>
+                        <li class=" ">
+                            <a href="/bpm/businessEvaluationMyList">사업 평가</a>
+                            <ul class="second_menu">
+                                <li class=""><a href="/bem/businessEvaluationMyList">· 평가내역 조회</a></li>
                             </ul>
                     </ul>
                 </div>
@@ -136,7 +182,6 @@ function fn_addFile(){
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab4">
 							<h2 id="title4" >${form.BPLAN_FORM_TITLE4}</h2>
-							
 							<div class="tablebox">
 							<!-- <textarea name="title_remark4" id="" cols="30" rows="10"> -->
 							 <table class="thead_gray">
@@ -147,133 +192,118 @@ function fn_addFile(){
                                         <col style="width:5%">
                                         <col style="width:7%">
                                     </colgroup>
+                                    
                                     <thead>
                                         <tr>
                                             <th class="boldtext" scope="col">비목</th>
                                             <th class="boldtext" colspan="3"scope="col">세목</th>	
-                                            <th class="boldtext" scope="col">당해</th>
+                                            <th class="boldtext" scope="col">금액 (단위 : 천원)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">인건비</th>
-                                    		<th class="boldtext">내부인건비</th>
+                                    		<th class="boldtext" rowspan="19">직접비</th>
+                                    		<th class="boldtext" rowspan="7">인건비</th>
+                                    		<th class="boldtext" rowspan="3">내부인건비</th>
                                     		<th class="boldtext">미지급</th>
-                                    		<th ><input type="number" name="bplan_cost_value1" value=0></th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value1" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th ><input type="number" name="bplan_cost_value2" value=0></th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value2" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext">현물</th>
-                                    		<th ><input type="number" name="bplan_cost_value3" value=0></th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value3" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">외부인건비</th>
+                                    		<th class="boldtext" rowspan="3">외부인건비</th>
                                     		<th class="boldtext">미지급</th>
-                                    		<th ><input type="number" name="bplan_cost_value4" value=0></th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value4" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th ><input type="number" name="bplan_cost_value5" value=0></th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value5" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext">현물</th>
-                                    		<th ><input type="number" name="bplan_cost_value6" value=0></th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value6" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext" style="text-align: center"colspan="2">연구지원인력인건비</th>
-                                    		<th ><input type="number" name="bplan_cost_value7" value=0></th>
+                                    		<th class="boldtext" colspan="2">연구지원인력인건비</th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value7" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">직</th>
-                                    		<th class="boldtext" style="text-align:right"" colspan="3"_>학생인건비</th>
-                                    		<th ><input type="number" name="bplan_cost_value8" value=0></th>
+                                    		
+                                    		<th class="boldtext"  colspan="3"_>학생인건비</th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value8" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">접</th>
-                                    		<th class="boldtext" style="text-align:right"" colspan="3"_>인건비 소계</th>
-                                    		<th ><input type="number" name="bplan_cost_value9" value=0></th>
+                                    		
+                                    		<th class="boldtext"  colspan="3"_>인건비 소계</th>
+                                    		<th ><input type="number" class="laborCostSum" name="bplan_cost_value9" value="" readonly="readonly"></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">비</th>
+                                    		
                                     		<th class="boldtext" colspan="2">연구시설</th>
                                     		<th class="boldtext">현금_일반</th>
-                                    		<th ><input type="number" name="bplan_cost_value10" value=0></th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value10" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">비</th>
+                                    	
                                     		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">장비비</th>
                                     		<th class="boldtext">현금통합관리</th>
-                                    		<th ><input type="number" name="bplan_cost_value11" value=0></th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value11" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
+                                    	
                                     		<th class="boldtext">현물</th>
-                                    		<th ><input type="number" name="bplan_cost_value12" value=0></th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value12" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
+                                    		
                                     		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">연구활동비</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th ><input type="number" name="bplan_cost_value13" value=0></th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value13" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
+                                    	
                                     		<th class="boldtext">현물</th>
-                                    		<th ><input type="number" name="bplan_cost_value14" value=0></th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value14" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
+                                    		
                                     		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">연구재료비</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th ><input type="number" name="bplan_cost_value15" value=0></th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value15" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
+                                    		
                                     		<th class="boldtext">현물</th>
-                                    		<th ><input type="number" name="bplan_cost_value16" value=0></th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value16" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
+                                    		
                                     		<th class="boldtext" colspan="3">연구수당</th>
-                                    		<th ><input type="number" name="bplan_cost_value17" value=0></th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value17" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
+                                    	
                                     		<th class="boldtext" colspan="3">위탁연구개발비</th>
-                                    		<th ><input type="number" name="bplan_cost_value18" value=0></th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value18" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext" colspan="3">직접비 소계</th>
-                                    		<th ><input type="number" name="bplan_cost_value19" value=0></th>
+                                    	
+                                    		<th class="boldtext" colspan="3">직접비 소계(A)</th>
+                                    		<th ><input type="number" class="directCostSum"name="bplan_cost_value19" value="" readonly="readonly"></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext" colspan="4">간접비</th>
-                                    		<th ><input type="number" name="bplan_cost_value20" value=0></th>
+                                    		<th class="boldtext" colspan="4">간접비 소계(B)</th>
+                                    		<th ><input type="number" class="indirectCostSum"name="bplan_cost_value20" value=0></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext" colspan="4">연구개발비 총액</th>
-                                    		<th ><input type="number" name="bplan_cost_value21" value=0></th>
+                                    		<th class="boldtext" colspan="4">연구개발비 총액 (A + B)</th>
+                                    		<th ><input type="number" class="RDCostSum" name="bplan_cost_value21" value="" readonly="readonly"></th>
                                     	</tr>
                                     
                                     </tbody>

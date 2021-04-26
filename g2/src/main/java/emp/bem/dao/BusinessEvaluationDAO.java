@@ -32,6 +32,9 @@ public interface BusinessEvaluationDAO {
     
 	// 사업공고 조회수
 	public void boardHit(int bem_beval_idx) throws Exception;
+	
+	// 사업공고 리스트조회(사용자)
+	public List<BusinessEvaluationVO> businessEvaluationMyList(Map<String,Object> parmanMap) throws Exception;
 
 
 	    

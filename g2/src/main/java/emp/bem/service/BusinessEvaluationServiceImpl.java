@@ -69,7 +69,11 @@ public class BusinessEvaluationServiceImpl implements BusinessEvaluationService 
 		dao.delete(bem_beval_idx);
 		
 	}
-
+	@Override
+	public List<BusinessEvaluationVO> businessEvaluationMyList(Map<String, Object> parmanMap) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.businessEvaluationMyList(parmanMap);
+	}
 
 
 }

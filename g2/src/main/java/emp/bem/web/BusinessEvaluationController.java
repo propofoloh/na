@@ -1,7 +1,6 @@
 package emp.bem.web;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import emp.bam.service.BusinessAnnouncementService;
@@ -23,6 +22,7 @@ import emp.bem.util.PageMaker;
 import emp.bem.util.SearchCriteria;
 import emp.bem.vo.BusinessEvaluationVO;
 import emp.bpm.service.BusinessPlanService;
+import emp.cmm.vo.MemberVO;
 
 
 
@@ -63,6 +63,28 @@ public class BusinessEvaluationController {
 		return "bem/businessEvaluationList";
 
 	}
+	
+	@RequestMapping(value = "/businessEvaluationMyList", method = RequestMethod.GET)
+	public String businessEvaluationMyList(Model model,@SessionAttribute("member") MemberVO member, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes redirect) throws Exception{
+		logger.info("businessEvaluationList");
+		
+		String user_id = member.getUser_id();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("rowStart", scri.getRowStart());
+		paramMap.put("rowEnd", scri.getRowEnd());
+		paramMap.put("user_id",user_id);
+		model.addAttribute("businessEvaluationList", service.businessEvaluationMyList(paramMap));
+
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.listCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "bem/businessEvaluationList";
+
+	}
 
 	//사업계획서 평가지표 등록
 	@RequestMapping(value = "/businessEvaluation", method = RequestMethod.GET)
@@ -76,10 +98,10 @@ public class BusinessEvaluationController {
 	
 	//사업계획서 등록 서비스실행
 	@RequestMapping(value = "/businessEvaluation", method = RequestMethod.POST)
-	public String businessEvaluation(BusinessEvaluationVO businessEvaluationVO ,RedirectAttributes redirect) throws Exception {
+	public String businessEvaluation(@RequestParam("bpm_bplan_idx") int bpm_bplan_idx, BusinessEvaluationVO businessEvaluationVO ,RedirectAttributes redirect) throws Exception {
 		logger.info("businessEvaluation");
 		
-		int bpm_bplan_idx = businessEvaluationVO.getBpm_bplan_idx();
+		
 		service.businessEvaluation(businessEvaluationVO);
 		redirect.addAttribute("bpm_bplan_idx", bpm_bplan_idx);
 		return "redirect:/bem/businessEvaluationList";

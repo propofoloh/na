@@ -34,7 +34,6 @@
  	     //innerHTML을 이용하여 Div로 묶어준 부분을 가져옵니다.
  	     var pFooter="</body></html>";
  	     pContent=pHeader + pgetContent + pFooter; 
- 	     alert(pHeader)
  	     pWin=window.open("","print","width=" + w +",height="+ h +",top=" + ypos + ",left="+ xpos +",status=yes,scrollbars=yes"); //동적인 새창을 띄웁니다.
  	     pWin.document.open(); //팝업창 오픈
  	     pWin.document.write(pContent); //새롭게 만든 html소스를 씁니다.
@@ -56,7 +55,7 @@
             </dd>
         </dl>
         <header>
-           
+         	 <%@include file="../cmm/topmenu.jsp"%>
         </header>
         <div class="content">
             <span id="contents"></span>
@@ -71,26 +70,23 @@
                     <div  class="insideArea row">
                         <div class="lnb">
                             <p class="tit">사업안내</p>
-                            <ul>
-                                <li>
-                                    <a href="#">사업분류</a>
-                                </li>
-                                <li class="on">
-                                    <a href="#">사업공고</a>
-                                    <ul class="second_menu">
-                                        <li>· 사업공고일정</li>
-                                        <li class="on">· 사업공지</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">사업질의응답</a>
-                                </li>
-                                <li>
-                                    <a href="#">사업자료실</a>
-                                </li>
-                                <li>
-                                    <a href="#">정보서비스</a>
-                                </li>
+                              <ul>
+                        <li class="">
+                            <a href="/bam/businessAnnouncementList">사업공고</a>
+                            <ul class="second_menu">
+                                <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                                <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
+                            </ul>
+                        <li class="">
+                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
+                            <ul class="second_menu">
+                            	<li class="on"><a href="/bpm/businessPlanApplyMyList">· 사업계획서 조회</a></li>
+                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                            </ul>
+                        <li class="on">
+                            <a href="/bpm/businessEvaluationMyList">사업 평가</a>
+                            <ul class="second_menu">
+                                <li class="on"><a href="/bem/businessEvaluationMyList">· 평가내역 조회(상세)</a></li>
                             </ul>
                         </div>
                         <div class="cont">

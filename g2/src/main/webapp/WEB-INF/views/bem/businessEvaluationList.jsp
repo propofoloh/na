@@ -44,26 +44,23 @@
                     <div  class="insideArea row">
                         <div class="lnb">
                             <p class="tit">사용자</p>
-                            <ul>
-                                <li>
-                                    <a href="#">사업분류</a>
-                                </li>
-                                <li class="on">
-                                    <a href="#">사업공고</a>
-                                    <ul class="second_menu">
-                                        <li>· 사업공고일정</li>
-                                        <li class="on">· 사업공지</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">사업질의응답</a>
-                                </li>
-                                <li>
-                                    <a href="#">사업자료실</a>
-                                </li>
-                                <li>
-                                    <a href="#">정보서비스</a>
-                                </li>
+                             <ul>
+                        <li class="">
+                            <a href="/bam/businessAnnouncementList">사업공고</a>
+                            <ul class="second_menu">
+                                <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                                <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
+                            </ul>
+                        <li class="">
+                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
+                            <ul class="second_menu">
+                            	<li class=""><a href="/bpm/businessPlanApplyMyList">· 사업계획서 조회</a></li>
+                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                            </ul>
+                        <li class="on">
+                            <a href="/bpm/businessEvaluationMyList">사업 평가</a>
+                            <ul class="second_menu">
+                                <li class="on"><a href="/bem/businessEvaluationMyList">· 평가내역 조회</a></li>
                             </ul>
                         </div>
                         <div class="cont">
@@ -125,7 +122,7 @@
 								 <c:forEach items="${businessEvaluationList}" var = "businessEvaluationList">
 										<tr>
 											<td style="text-align: center">
-												<a href="/bem/businessEvaluationDetail?bem_beval_idx=${businessEvaluationList.bem_beval_idx}&bpm_bplan_idx=${param.bpm_bplan_idx}"><c:out value="${businessEvaluationList.eval_writer}" /></a>
+												<a href="/bem/businessEvaluationDetail?bem_beval_idx=${businessEvaluationList.bem_beval_idx}&bpm_bplan_idx=${businessEvaluationList.bpm_bplan_idx}"><c:out value="${businessEvaluationList.eval_writer}" /></a>
 											</td>
 											<td style="text-align: center">${businessEvaluationList.eval_totalscore}</td>
 											<td style="text-align: center"><fmt:formatDate value="${businessEvaluationList.reg_date}" pattern="yyyy-MM-dd"/></td>

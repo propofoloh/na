@@ -9,12 +9,6 @@ public class BusinessPlanCostVO extends Criteria{
 	private int bpm_bplan_idx;
 	private int board_idx = 2;
 	private int bpm_bplan_cost_idx;
-	public int getBpm_bplan_cost_idx() {
-		return bpm_bplan_cost_idx;
-	}
-	public void setBpm_bplan_cost_idx(int bpm_bplan_cost_idx) {
-		this.bpm_bplan_cost_idx = bpm_bplan_cost_idx;
-	}
 	private int bplan_cost_value1;
 	private int bplan_cost_value2;
 	private int bplan_cost_value3;
@@ -36,6 +30,13 @@ public class BusinessPlanCostVO extends Criteria{
 	private int bplan_cost_value19;
 	private int bplan_cost_value20;
 	private int bplan_cost_value21;
+	
+	public int getBpm_bplan_cost_idx() {
+		return bpm_bplan_cost_idx;
+	}
+	public void setBpm_bplan_cost_idx(int bpm_bplan_cost_idx) {
+		this.bpm_bplan_cost_idx = bpm_bplan_cost_idx;
+	}
 	public int getBpm_bplan_idx() {
 		return bpm_bplan_idx;
 	}

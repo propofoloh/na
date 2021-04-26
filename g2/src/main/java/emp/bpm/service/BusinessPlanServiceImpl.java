@@ -109,7 +109,7 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 	}
 	
 	@Override
-	public String businessPlanSelectCost(int bpm_bplan_idx) throws Exception {
+	public BusinessPlanCostVO businessPlanSelectCost(int bpm_bplan_idx) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.businessPlanSelectCost(bpm_bplan_idx);
 	}

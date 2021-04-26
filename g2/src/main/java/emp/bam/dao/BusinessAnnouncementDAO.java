@@ -3,8 +3,6 @@ package emp.bam.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import emp.bam.util.SearchCriteria;
 import emp.bam.vo.BusinessAnnouncementVO;
 
@@ -15,7 +13,7 @@ public interface BusinessAnnouncementDAO {
 	public List<BusinessAnnouncementVO> businessAnnouncementList(SearchCriteria scri) throws Exception;
 	
 	// 사업공고등록
-	public void write(BusinessAnnouncementVO VO,MultipartHttpServletRequest mpRequest) throws Exception;
+	public void write(BusinessAnnouncementVO VO) throws Exception;
 	
 	// 사업공고 갯수
 	public int listCount(SearchCriteria scri) throws Exception;

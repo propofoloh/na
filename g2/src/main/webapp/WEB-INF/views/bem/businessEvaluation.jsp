@@ -50,9 +50,9 @@
                 if(!isNaN(this.value)&&this.value.length!=0){
 	                	Sum+=Number($(value).val());
 	                	if(Sum <= 100)
-	                    	$('#eval_totalscore').text(Sum);
+	                    	$('#eval_totalscore').val(Sum);
 	                	else if(Sum > 100){
-            				$('#eval_totalscore').text(Sum-Number($(value).val()));
+            				$('#eval_totalscore').val(Sum-Number($(value).val()));
             				this.value=null;
             				this.focus();
             				return ;
@@ -71,9 +71,9 @@
             	   
 	                	Sum+=Number($(value).val());
 	                	if(Sum <= 100)
-	                    	$('#MaxScoreSum').text(Sum);
+	                    	$('#MaxScoreSum').val(Sum);
 	                	else if(Sum > 100){
-	           				$('#MaxScoreSum').text(Sum-Number($(value).val()));
+	           				$('#MaxScoreSum').val(Sum-Number($(value).val()));
 	           				this.value=null;
 	           				
 	                	}
@@ -97,8 +97,8 @@
                 <a href="#gnb">대메뉴 바로가기</a>
             </dd>
         </dl>
-        <header>
-           <%@include file="../cmm/topmenu.jsp"%>
+         <header>
+         	 <%@include file="../cmm/topmenu.jsp"%>
         </header>
         <div class="content">
             <span id="contents"></span>
@@ -114,26 +114,24 @@
                         <div class="lnb">
                             <p class="tit">사업안내</p>
                             <ul>
-                                <li>
-                                    <a href="#">사업분류</a>
-                                </li>
-                                <li class="on">
-                                    <a href="#">사업공고</a>
-                                    <ul class="second_menu">
-                                        <li>· 사업공고일정</li>
-                                        <li class="on">· 사업공지</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">사업질의응답</a>
-                                </li>
-                                <li>
-                                    <a href="#">사업자료실</a>
-                                </li>
-                                <li>
-                                    <a href="#">정보서비스</a>
-                                </li>
+                        <li class="">
+                            <a href="/bam/businessAnnouncementList">사업공고</a>
+                            <ul class="second_menu">
+                                <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                                <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
                             </ul>
+                        <li class="">
+                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
+                            <ul class="second_menu">
+                            	<li class="on"><a href="/bpm/businessPlanApplyMyList">· 사업계획서 조회</a></li>
+                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                            </ul>
+                        <li class="on">
+                            <a href="/bpm/businessEvaluationMyList">사업 평가</a>
+                            <ul class="second_menu">
+                                <li class="on"><a href="/bem/businessEvaluationMyList">· 사업계획서 평가</a></li>
+                            </ul>
+                    </ul>
                         </div>
                         <div class="cont">
                             <h2>사업 평가</h2>
@@ -157,7 +155,8 @@
                                         </tr>
                                     </tbody>
                                 </table>
-							<form action="/bpm/businessEvaluation" method="post">
+							<form action="/bem/businessEvaluation" method="post">
+							<input type="hidden" name ="bpm_bplan_idx" value="${param.bpm_bplan_idx}"> 
                                 <table class="thead_gray">
                                     <colgroup>
                                         <col style="width:7%">
@@ -222,7 +221,7 @@
                                         <tr class="total">
                                             <td colspan="3">합계</td>
                                             <td class="score">100</td>
-                                            <td name="eval_totalscore" id="eval_totalscore" readonly="readonly"></td>
+                                            <td><input type="text" name="eval_totalscore" class="totalscore" id="eval_totalscore" readonly="readonly"></td>
                                         	</tr>
                                          
                                     </tbody>

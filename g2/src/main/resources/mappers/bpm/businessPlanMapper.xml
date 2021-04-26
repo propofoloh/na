@@ -35,6 +35,7 @@
 <select id="businessPlanApplyList" resultType="emp.bpm.vo.BusinessPlanVO" parameterType="hashMap">
 		SELECT  BPM_BPLAN_IDX 
 	   					      , BOARD_IDX 
+	   					      , BAM_ANC_IDX
 	   					      , TITLE_REMARK1
 	   					      , TITLE_REMARK2
 	   					      , TITLE_REMARK3
@@ -46,6 +47,7 @@
 		 FROM ( 
 		        SELECT BPM_BPLAN_IDX 
 	   					      , BOARD_IDX 
+	   					      , BAM_ANC_IDX
 	   					      , TITLE_REMARK1
 	   					      , TITLE_REMARK2
 	   					      , TITLE_REMARK3
@@ -66,6 +68,7 @@
 		<select id="businessPlanApplyDetail" parameterType="int" resultType="emp.bpm.vo.BusinessPlanVO">
 		SELECT	BPM_BPLAN_IDX 
 	   					      , BOARD_IDX 
+	   					      , BAM_ANC_IDX
 	   					      , TITLE_REMARK1
 	   					      , TITLE_REMARK2
 	   					      , TITLE_REMARK3					  	
@@ -123,16 +126,17 @@
     </insert> 
 
 
-<!-- 	 <select id="selectFileList" parameterType="int" resultType="hashMap">
+	 <select id="selectFileList" parameterType="int" resultType="hashMap">
 	SELECT  FILE_IDX,
 			FILE_FNAME,
 			ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
 		
 		FROM EMP_FILE
 		WHERE BOARD_LIST_IDX = #{bpm_bplan_idx}
+		AND BOARD_IDX = 2
 		AND DEL_YN = 'N'
 		ORDER BY FILE_IDX ASC
-</select> -->
+</select> 
 
 
 	<select id="selectFileInfo" parameterType="hashMap"
@@ -152,6 +156,7 @@
    
     <select id="businessPlanApplyMyList" resultType="emp.bpm.vo.BusinessPlanVO" parameterType="hashMap">
 		SELECT  BPM_BPLAN_IDX 
+							  , BAM_ANC_IDX
 	   					      , BOARD_IDX 
 	   					      , TITLE_REMARK1
 	   					      , TITLE_REMARK2
@@ -162,7 +167,8 @@
 	   					      , STATUS
 	   					      , WRITER_ID
 		 FROM ( 
-		        SELECT BPM_BPLAN_IDX 
+		        SELECT BPM_BPLAN_IDX
+		        			  , BAM_ANC_IDX 
 	   					      , BOARD_IDX 
 	   					      , TITLE_REMARK1
 	   					      , TITLE_REMARK2

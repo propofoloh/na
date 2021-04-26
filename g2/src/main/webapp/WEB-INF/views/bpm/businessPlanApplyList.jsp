@@ -44,17 +44,23 @@
                  <div  class="insideArea row">
                 	<div class="lnb">
                    	 <p class="tit">사용자</p>
-                    <ul>
+                   <ul>
                         <li class="">
-                            <a href="#">사업공고</a>
+                            <a href="/bam/businessAnnouncementList">사업공고</a>
                             <ul class="second_menu">
                                 <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                                <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
                             </ul>
-                            
                         <li class="on">
                             <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
                             <ul class="second_menu">
-                                <li class="on"><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                            	<li class="on"><a href="/bpm/businessPlanApplyMyList">· 사업계획서 조회</a></li>
+                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                            </ul>
+                        <li class=" ">
+                            <a href="/bpm/businessEvaluationMyList">사업 평가</a>
+                            <ul class="second_menu">
+                                <li class=""><a href="/bem/businessEvaluationMyList">· 평가내역 조회</a></li>
                             </ul>
                     </ul>
                 </div>
@@ -118,7 +124,7 @@
 												<tr class="  ">
 													<td ><c:out value="${status.index+1}" /></td>
 													<td>
-															<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${param.bam_anc_idx}">
+															<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${list.bam_anc_idx}">
 															<span>${list.writer}</span>
 															</a>
 													</td>

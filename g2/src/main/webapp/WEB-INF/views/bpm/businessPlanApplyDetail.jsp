@@ -19,6 +19,16 @@
     <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
     <script type="text/javascript" src="../../resource/js/sub.js"></script>	
 </head>
+<script type="text/javascript">
+
+function fn_fileDownload(fileidx){
+	var formObj = $("form[name='download']");
+	$("#FILE_IDX").attr("value", fileidx);
+	formObj.attr("action", "/bpm/fileDown");
+	formObj.submit();
+}
+
+</script>
 <body>
     <div class="wrap">
         <dl id="skip_nav">
@@ -36,7 +46,7 @@
             <div class="row content_outer">
                 <section class="location sect1">
                     <ul class="insideArea row">
-                    <li>사용자</li>
+  	                  <li>사용자</li>
                     <li>사업계획서 상세</li>
                 </ul>
                 </section>
@@ -45,25 +55,23 @@
                 <div class="lnb">
                     <p class="tit">사업안내</p>
                     <ul>
-                        <li>
-                            <a href="#">사업분류</a>
-                        </li>
-                        <li class="on">
-                            <a href="#">사업공고</a>
+                     <li class="">
+                            <a href="/bam/businessAnnouncementList">사업공고</a>
                             <ul class="second_menu">
-                                <li>· 사업공고일정</li>
-                                <li class="on">· 사업공지</li>
+                                <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                                <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#">사업질의응답</a>
-                        </li>
-                        <li>
-                            <a href="#">사업자료실</a>
-                        </li>
-                        <li>
-                            <a href="#">정보서비스</a>
-                        </li>
+                        <li class="on">
+                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
+                            <ul class="second_menu">
+                            	<li class="on"><a href="/bpm/businessPlanApplyMyList">· 사업계획서 조회(상세)</a></li>
+                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                            </ul>
+                        <li class=" ">
+                            <a href="/bpm/businessEvaluationMyList">사업 평가</a>
+                            <ul class="second_menu">
+                                <li class=""><a href="/bem/businessEvaluationMyList">· 평가내역 조회</a></li>
+                            </ul>
                     </ul>
                 </div>
                 <div class="cont">
@@ -238,12 +246,15 @@
                                     
 						</div><!--//#tab4-->
 						<div class="filelist form-group file_hwp mb-0">
+							 <form name="download" method="post" action="/bpm/fileDown">
+							 <input type="hidden" name ="FILE_IDX" id="FILE_IDX">
 								<p>파일 목록</p>
 								<ul>
-									<li><span>첨부파일 : </span><a href="javascript:void(0)">1.JPG</a>(33.5kb)</li>
-									<li><span>첨부파일 : </span><a href="javascript:void(0)">1.JPG</a>(33.5kb)</li>
-									<li><span>첨부파일 : </span><a href="javascript:void(0)">1.JPG</a>(33.5kb)</li>
+									<c:forEach var="file" items="${file}">
+										<li>첨부파일 : </span><a href="#" onclick="fn_fileDownload('${file.FILE_IDX}');">${file.FILE_FNAME}</a>(${file.FILE_SIZE}kb)
+									</c:forEach>
 								</ul>
+								</form>
 							</div>
 							<c:if test="${member.user_auth != 0}">
 							 <div class="btn_wrap text-right">

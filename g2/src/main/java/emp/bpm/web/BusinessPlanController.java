@@ -120,10 +120,9 @@ public class BusinessPlanController {
 		model.addAttribute("form",resultMap);
 		model.addAttribute("read", service.businessPlanApplyDetail(businessPlanVO.getBpm_bplan_idx()));
 		model.addAttribute("scri", scri);
-		/*
-		 * model.addAttribute("cost",service.businessPlanSelectCost(businessPlanVO.
-		 * getBpm_bplan_idx()));
-		 */	
+		
+		model.addAttribute("cost",service.businessPlanSelectCost(businessPlanVO.getBpm_bplan_idx()));
+		 
 		redirect.addAttribute("bam_anc_idx",businessPlanVO.getBpm_bplan_idx());
 		List<Map<String, Object>> fileList = service.selectFileList(businessPlanVO.getBpm_bplan_idx());
 		 model.addAttribute("file", fileList);

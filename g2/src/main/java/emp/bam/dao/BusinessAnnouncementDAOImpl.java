@@ -30,7 +30,7 @@ public class BusinessAnnouncementDAOImpl implements BusinessAnnouncementDAO {
 	
 	// 사업공고등록
 	@Override
-	public void write(BusinessAnnouncementVO VO,MultipartHttpServletRequest mpRequest) throws Exception {
+	public void write(BusinessAnnouncementVO VO) throws Exception {
 		sqlSession.insert("businessAnnouncementMapper.insert", VO);
 		
 	}

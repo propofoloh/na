@@ -17,6 +17,16 @@
     <script type="text/javascript" src="../../resource/js/sub.js"></script>
     <title>충북대 평가관리프로그램</title>
 </head>
+<script type="text/javascript">
+
+function fn_fileDownload(fileidx){
+	var formObj = $("form[name='download']");
+	$("#FILE_IDX").attr("value", fileidx);
+	formObj.attr("action", "/bam/fileDown");
+	formObj.submit();
+}
+
+</script>
 <body>
     <div class="wrap">
         <dl id="skip_nav">
@@ -47,12 +57,17 @@
                             <a href="/bam/businessAnnouncementList">사업공고</a>
                             <ul class="second_menu">
                                 <li class="on"><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                                <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
                             </ul>
-                            
                         <li class=" ">
                             <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
                             <ul class="second_menu">
                                 <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                            </ul>
+                        <li class=" ">
+                            <a href="/bpm/businessEvaluationMyList">사업 평가</a>
+                            <ul class="second_menu">
+                                <li class=""><a href="/bem/businessEvaluationMyList">· 평가내역 조회</a></li>
                             </ul>
                     </ul>
                 </div>
@@ -75,14 +90,17 @@
                                         <div class="attach">
                                             <div class="title">첨부파일</div>
                                             <div class="contents">
-                                                <form name="download" method="post" action="/file/boardDownload">
-                                                    <input type="hidden" name="fileType" value="">
+                                                <form name="download" method="post" action="/bam/fileDown">
+                                                    <input type="hidden" name="FILE_IDX" id="FILE_IDX" value="">
                                                     <input type="hidden" name="no" value="">
                                                     <input type="hidden" name="sno" value="">
-                                                </form>
+                                                
 						                           <c:forEach var="file" items="${file}">
-														첨부파일 :<a href="#" onclick="fn_fileDownload('${file.FILE_IDX}');">${file.FILE_FNAME}</a>(${file.FILE_SIZE}kb)<br>
+						                           <span class="file">
+														<a href="#" onclick="fn_fileDownload('${file.FILE_IDX}');">${file.FILE_FNAME}</a>(${file.FILE_SIZE}kb)<br>
+												   </span>
 												   </c:forEach>
+												   </form>
                                                 </div>
                                         </div>
                                         <button type="button" class="print" id="printBtn">게시물 프린트</button>

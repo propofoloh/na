@@ -16,7 +16,6 @@ import emp.bam.dao.BusinessAnnouncementDAO;
 import emp.bam.util.FileUtils;
 import emp.bam.util.SearchCriteria;
 import emp.bam.vo.BusinessAnnouncementVO;
-import oracle.net.aso.o;
 
 
 
@@ -34,7 +33,13 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 	@Override
 	public void write(BusinessAnnouncementVO businessAnnouncementVO,MultipartHttpServletRequest mpRequest) throws Exception {
 		// TODO Auto-generated method stub
-		dao.write(businessAnnouncementVO,mpRequest);
+		dao.write(businessAnnouncementVO);
+		
+		List<Map<String,Object>> list = FileUtils.parseInsertFileInfo(businessAnnouncementVO, mpRequest); 
+		int size = list.size();
+		for(int i=0; i<size; i++){ 
+			dao.insertFile(list.get(i)); 
+					}
 	}
 	
 	// 寃뚯떆臾� 紐⑸줉 議고쉶

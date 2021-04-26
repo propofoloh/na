@@ -70,5 +70,11 @@ public class BusinessEvaluationDAOImpl implements BusinessEvaluationDAO {
 		sqlSession.update("businessEvaluationMapper.boardHit", bno);
 	}
 	
+	@Override
+	public List<BusinessEvaluationVO> businessEvaluationMyList(Map<String, Object> parmaMap) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("businessEvaluationMapper.businessEvaluationMyList",parmaMap);
+	}
+	
 	
 }

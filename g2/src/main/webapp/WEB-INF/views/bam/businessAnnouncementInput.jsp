@@ -23,7 +23,7 @@
 $(document).ready(function(){
 	
 	var memberInfo = new Array();
-	
+	fn_addFile();
 	$('input[type=checkbox]').click(function(){
 			
 		var rowData = new Array();
@@ -89,7 +89,18 @@ function close_pop(flag) {
     $('#selectEvaluator').hide();
     
 };
+function fn_addFile(){
+	var fileIndex = 1;
+	//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
+	$("#fileAdd_btn").on("click", function(){
+		$("#fileIndex").append("<div id='fileAddDiv'><input class='file' style='padding-bottom:5px' data-show-preview='false' type='file' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button class='filedel'type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
+	});
+	$(document).on("click","#fileDelBtn", function(){
+		$(this).parent().remove();
+		
+	});
 	
+}
 </script>
 <body>
     <div class="wrap">
@@ -126,7 +137,7 @@ function close_pop(flag) {
                         <li class=" ">
                             <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
                             <ul class="second_menu">
-                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                                <li class=""><a href="/bem/businessPlanApplyMyList">· 접수내역 조회</a></li>
                             </ul>
                     </ul>
                 </div>
@@ -183,7 +194,13 @@ function close_pop(flag) {
                                     <tr>
                                         <th scope="row">첨부파일</th>
                                         <td>
-                                            <input type="file" name="bf_file[]" id="bf_file_2" class="file-loadingz" style="padding-bottom:5px" data-show-preview="false" onchange="checkFile(this)">
+                                        	<div class="btn_wrap">
+												<div id="fileIndex">	
+														<input type="file" id="input-file" style="display: none" />	
+														<button class="addFile" id="fileAdd_btn"  type="button">파일추가</button>
+												</div>
+											</div>
+                                            <!-- <input type="file" name="bf_file[]" id="bf_file_2" class="file-loadingz" style="padding-bottom:5px" data-show-preview="false" onchange="checkFile(this)"> -->
                                         </td>
                                     </tr>
                                    

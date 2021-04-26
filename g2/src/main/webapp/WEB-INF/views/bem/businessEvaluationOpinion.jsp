@@ -41,17 +41,16 @@
         				Min = $(value).text()
         			} 
          			if($(value).text() > Max){
-         				
          				Max = Number($(value).text())
-         			}else if($(value).text() < Min){
-         				
+         			}else if($(value).text() < Min){         				
          				Min = Number($(value).text())
          			}
                 	Sum = Sum + Number($(value).text());
                 	average = (Sum/(idx+1)).toFixed(2);
                 	convertedaverage = (Sum-(Number(Max+Min))) / (idx-1)
+                	alert(convertedaverage);
                 	 $('#average').text(average)
-                     $('#convertedaverage').text(convertedaverage);
+                     $('#convertedaverage').text(convertedaverage.toFixed(2));
                    
         });
         
@@ -114,26 +113,24 @@
                     <div  class="insideArea row">
                         <div class="lnb">
                             <p class="tit">사용자</p>
-                            <ul>
-                                <li>
-                                    <a href="#">사업분류</a>
-                                </li>
-                                <li>
-                                    <a href="#">사업공고</a>
-                                    <ul class="second_menu">
-                                        <li>· 사업공고일정</li>
-                                        <li>· 사업공지</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">사업질의응답</a>
-                                </li>
-                                <li>
-                                    <a href="#">사업자료실</a>
-                                </li>
-                                <li>
-                                    <a href="#">정보서비스</a>
-                                </li>
+                              <ul>
+                        <li class="">
+                            <a href="/bam/businessAnnouncementList">사업공고</a>
+                            <ul class="second_menu">
+                                <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                                <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
+                            </ul>
+                        <li class="">
+                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
+                            <ul class="second_menu">
+                            	<li class="on"><a href="/bpm/businessPlanApplyMyList">· 사업계획서 조회</a></li>
+                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+                            </ul>
+                        <li class="on">
+                            <a href="/bpm/businessEvaluationMyList">사업 평가</a>
+                            <ul class="second_menu">
+                                <li class=""><a href="/bpm/businessEvaluationMyList">· 평가내역 조회</a></li>
+                                <li class="on"><a href="/bem/businessEvaluationMyList">· 사업계획서 별 종합의견</a></li>
                             </ul>
                         </div>
                         <c:if test="${member.user_auth == 2}">
@@ -191,7 +188,7 @@
 									</c:forEach>
                                           
                                                 <tr>
-                                                    <th class="br_th" scope="col" colspan="7">합계</th>
+                                                    <th class="br_th" scope="col" colspan="7">평균</th>
                                                     <th id="average" class="br_th" scope="col" colspan="2"></th>
                                                 </tr>
                                                 <tr>

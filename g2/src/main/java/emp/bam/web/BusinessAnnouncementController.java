@@ -88,7 +88,7 @@ public class BusinessAnnouncementController {
 		int bam_anc_idx = businessAnnouncementVO.getBam_anc_idx();
 		System.out.println(bam_anc_idx);
 		redirect.addAttribute("bam_anc_idx",bam_anc_idx);
-		return "redirect:/bam/businessEvaluationEdit";
+		return "redirect:/bam/businessAnnouncementList";
 	}
 
 	//사업 공고 수정 페이지 조회
@@ -126,8 +126,8 @@ public class BusinessAnnouncementController {
 	@RequestMapping(value="/fileDown")
 	public void fileDown(@RequestParam Map<String, Object> map, HttpServletResponse response) throws Exception{
 		Map<String, Object> resultMap = service.selectFileInfo(map);
-		String storedFileName = (String) resultMap.get("STORED_FILE_NAME");
-		String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
+		String storedFileName = (String) resultMap.get("FILE_SNAME");
+		String originalFileName = (String) resultMap.get("FILE_FNAME");
 
 		byte fileByte[] = org.apache.commons.io.FileUtils
 				.readFileToByteArray(new File("C:\\mp\\file\\" + storedFileName));
@@ -146,7 +146,7 @@ public class BusinessAnnouncementController {
 	public @ResponseBody void businessEvaluationEdit (
 			@RequestParam(value = "arrEval_form_title[]") List<String> arrEval_form_title,
 			@RequestParam(value = "arrEval_form_item[]") List<String> arrEval_form_item,
-			@RequestParam(value = "arrEval_form_score[]") List<String> arrEval_form_score,
+			@RequestParam(value = "arrEval_form_score[]") List<String> arrEval_form_score,	
 			@RequestParam(value = "Sbam_anc_idx") String Sbam_anc_idx,
 			Model model,HttpServletResponse response) throws Exception{
 		try {
@@ -195,16 +195,12 @@ public class BusinessAnnouncementController {
 				redirect.addAttribute(bam_anc_idx);	
 		}
 	
-/*
- * //사업계획서 양식등록
- * 
- * @RequestMapping(value="/businessPlanApplyEdit",method = RequestMethod.POST)
- * public String businessAnnouncementInput (
- * 
- * @RequestParam(value = "Sbam_anc_idx") String Sbam_anc_idx,
- * 
- * @RequestParam(value = "") String bplan_form_title1, Model
- * model,HttpServletResponse response) throws Exception{ } 
- * 
- */
+		@RequestMapping(value="/businessFormEditList",method = RequestMethod.GET)
+		public void businessAnnouncementList() throws Exception{
+				logger.info("businessFormEditList.jsp");
+				
+		}
+		
 }
+
+	

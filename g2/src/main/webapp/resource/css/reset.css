@@ -30,10 +30,11 @@ time, mark, audio, video {
 select{-webkit-appearance: none;appearance: none;-moz-appearance: none;background: url('../images/common/search_select_arrow.png') no-repeat right 18px center;color: #888888;}
 select::-ms-expand {display:none}
 input, select{height: 45px;padding: 0;margin: 0;border: 0;box-sizing: border-box;color: #000;font-size: 17px;vertical-align: middle;line-height: 43px;text-indent: 12px;}
-input.score{width:98%;}
-legend{font-size: 0;text-indent: -100000px;left: -10000px;top: auto;height: 0;overflow: hidden;}
+input.score{width:96%; margin-left: 8px;}
+input.totalscore{width:96%; background-color:#ededed; outline: none; font-weight: 700; color: red; font-family: 'Noto Sans CJKR', sans-serif !important; margin-left: 8px;}
+legend{font-size: 0;text-indent: -100000px;left: -10000px;top: auto;height: 0;overflow: hidden;s}
 .pasingDiv ul li a {float:left;padding:4px;margin-top:10px;width:30px; vertical-align:middle; height:30px; color:#000;font:bold 18px 'notokr', sans-serif;border:1px solid #eee;text-align:center;text-decoration:none;}
-.pasingDiv ul li a:hover, .pasingDiv ul li a:focus {color:#fff;border:1px solid;background-color:#952953;}
+.pasingDiv ul li a:hover, .pasingDiv ul li a:focus {color:#fff;border:1px solid;background-color:#952953; }
 .pasingDiv{display: flex;flex-direction: row;justify-content: center;flex-wrap : wrap;margin :auto;}
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,

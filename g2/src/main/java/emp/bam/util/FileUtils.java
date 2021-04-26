@@ -54,9 +54,9 @@ public class FileUtils {
 				multipartFile.transferTo(file);
 				listMap = new HashMap<String, Object>();
 				listMap.put("bam_anc_idx", bam_anc_idx);
-				listMap.put("ORG_FILE_NAME", originalFileName);
-				listMap.put("STORED_FILE_NAME", storedFileName);
-				listMap.put("FILE_SIZE", multipartFile.getSize());
+				listMap.put("file_fname", originalFileName);
+				listMap.put("file_sname", storedFileName);
+				listMap.put("file_size", multipartFile.getSize());
 				list.add(listMap);
 			}
 		}
@@ -82,9 +82,9 @@ public class FileUtils {
 				listMap = new HashMap<String,Object>();
 				listMap.put("IS_NEW", "Y");
 				listMap.put("bam_anc_idx", bam_anc_idx); 
-				listMap.put("ORG_FILE_NAME", originalFileName);
-				listMap.put("STORED_FILE_NAME", storedFileName); 
-				listMap.put("FILE_SIZE", multipartFile.getSize()); 
+				listMap.put("file_fname", originalFileName);
+				listMap.put("file_sname", storedFileName);
+				listMap.put("file_size", multipartFile.getSize());
 				list.add(listMap); 
 			} 
 		}

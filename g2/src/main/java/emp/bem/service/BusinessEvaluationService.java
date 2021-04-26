@@ -29,6 +29,9 @@ public interface BusinessEvaluationService {
 		// 평가지표 삭제
 		public void delete(int bem_beval_idx) throws Exception;
 		
+		// 평가지표 리스트조회 (사용자)
+		public List<BusinessEvaluationVO> businessEvaluationMyList(Map<String,Object> parmanMap) throws Exception;
+		
 		
 	}    
  
