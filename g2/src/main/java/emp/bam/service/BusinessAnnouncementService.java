@@ -42,7 +42,10 @@ public interface BusinessAnnouncementService {
 		
 		//사업 계획서 양식 등록 
 		public void businessPlanApplyEdit(Map<String,Object> paramMap) throws Exception;
-
+		
+		//사업 공고 평가위원 등록
+		public void businessAnnouncementMember(List<String> anc_member_id,List<String> anc_member_name, int bam_anc_idx) throws Exception;
+		
 		    
 		
 	}    

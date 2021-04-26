@@ -201,5 +201,20 @@ SELECT      FILE_IDX,
 	              
    
    </insert>
+   <insert id="businessAnnouncementMember" parameterType="hashMap" >
+	   INSERT INTO EMP_BAM_ANC_MEMBER( BAM_ANC_IDX 
+	   						  , BAM_ANC_MEMBER_IDX
+	   					      , ANC_MEMBER_ID 
+	   					      , ANC_MEMBER_NAME
+	   					       )
+	                 VALUES(   #{bam_anc_idx}
+	                 		  , SEQ_BAM_ANC_MEMBER_IDX.NEXTVAL
+	                 		  , #{anc_member_id}
+	                 		  , #{anc_member_name}
+	                 		    )
+	              
+   
+   </insert>
+   
 </mapper>
 	

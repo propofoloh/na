@@ -2,26 +2,27 @@ package emp.bam.web;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.RespectBinding;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.sun.org.apache.bcel.internal.generic.Select;
 
 import emp.bam.service.BusinessAnnouncementService;
 import emp.bam.util.PageMaker;
@@ -81,12 +82,19 @@ public class BusinessAnnouncementController {
 	}
 	
 	@RequestMapping(value = "/businessAnnouncementInputWrite", method = RequestMethod.POST)
-	public String write(BusinessAnnouncementVO businessAnnouncementVO, MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception{
+	public String write(BusinessAnnouncementVO businessAnnouncementVO,
+			@RequestParam(value = "anc_member_id") List<String> anc_member_id,
+			@RequestParam(value = "anc_member_name") List<String> anc_member_name,
+			MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception{
 		logger.info("businessAnnouncementInputWrite");
 
+		
 		service.write(businessAnnouncementVO, mpRequest);
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@컨트롤러"+anc_member_id.get(0));
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@컨트롤러2"+anc_member_id.get(1));
 		int bam_anc_idx = businessAnnouncementVO.getBam_anc_idx();
-		System.out.println(bam_anc_idx);
+		service.businessAnnouncementMember(anc_member_id,anc_member_name,bam_anc_idx);
+		
 		redirect.addAttribute("bam_anc_idx",bam_anc_idx);
 		return "redirect:/bam/businessAnnouncementList";
 	}
@@ -200,7 +208,6 @@ public class BusinessAnnouncementController {
 				logger.info("businessFormEditList.jsp");
 				
 		}
-		
 }
 
 	
