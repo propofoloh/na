@@ -32,45 +32,53 @@ $(document).ready(function(){
 		var arrName= new Array();
 		var checkbox = $("input[name=checkedUserId]:checked");
 		// 체크된 체크박스 값을 가져온다
-			checkbox.each(function(i) {
-				if(i=0)
-				memberArr = new Array();
-				
-				// checkbox.parent() : checkbox의 부모는 <td>이다.
-				// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
-				var tr = checkbox.parent().parent().eq(i);
-				var td = tr.children();
-				
-				// 체크된 row의 모든 값을 배열에 담는다.
-				rowData.push(tr.text());
-				
-				// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
-				var user_id = td.eq(2).text()+"";
-				var user_name= td.eq(1).text()+"";
-				
-				// 가져온 값을 배열에 담는다.
-				memberArr.push(user_id); 
-				arrId.push(user_id);
-				arrName.push(user_name);
-				
-			});
-			memberInfo = memberArr
+			
+			
 			$('#check_Btn').click(function(){
-				alert(memberArr.length);
-				if(memberArr.size < 1){
+				checkbox.each(function(i) {
+					 arrId = new Array();
+					 arrName= new Array();
+					 memberArr = new Array();
+					
+					
+					// checkbox.parent() : checkbox의 부모는 <td>이다.
+					// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
+					var tr = checkbox.parent().parent().eq(i);
+					var td = tr.children();
+					
+					// 체크된 row의 모든 값을 배열에 담는다.
+					rowData.push(tr.text());
+					
+					// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
+					var user_id = td.eq(2).text()+"";
+					var user_name= td.eq(1).text()+"";
+					
+					// 가져온 값을 배열에 담는다.
+				
+					memberArr.push(user_id); 
+					arrId.push(user_id);
+					arrName.push(user_name);
+					
+				});
+			
 					
 				$.each(memberArr, function(index,item){
 					$('#evaluatorList').append('<div>'+memberArr[index]+'</div>') ;
 				});
 				
+				if(arrId.length > 1){
 				$.each(arrId, function(index,item){
-					$('#evaluatorList').append("<input type='text' name='anc_member_id' value='"+arrId[index]+"'>") ;
+					$('#evaluatorList').append("<input type='text' name='anc_member_id' value='"+arrId[index]+"'>");
 				});
+				}else
+					$('#evaluatorList').append("<input type='text' name='anc_member_id' value='"+arrId[0]+"'>");
 				
+				if(arrId.length > 1){
 				$.each(arrName, function(index,item){
 					$('#evaluatorList').append("<input type='text' name='anc_member_name' value='"+arrName[index]+"'>") ;
 				});
-				}
+				}else
+					$('#evaluatorList').append("<input type='text' name='anc_member_name' value='"+arrName[0]+"'>") ;
 				close_pop();
 			})
 			

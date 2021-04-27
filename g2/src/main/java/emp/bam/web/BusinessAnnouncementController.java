@@ -83,11 +83,12 @@ public class BusinessAnnouncementController {
 	
 	@RequestMapping(value = "/businessAnnouncementInputWrite", method = RequestMethod.POST)
 	public String write(BusinessAnnouncementVO businessAnnouncementVO,
-			@RequestParam(value = "anc_member_id") List<String> anc_member_id,
-			@RequestParam(value = "anc_member_name") List<String> anc_member_name,
+			@RequestParam(required = false,value = "anc_member_id") List<String> anc_member_id,
+			@RequestParam(required = false,value = "anc_member_name") List<String> anc_member_name,
 			MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception{
 		logger.info("businessAnnouncementInputWrite");
-
+		if(anc_member_id == null) anc_member_id.add("");
+		if(anc_member_name == null) anc_member_id.add("");
 		
 		service.write(businessAnnouncementVO, mpRequest);
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@컨트롤러"+anc_member_id.get(0));

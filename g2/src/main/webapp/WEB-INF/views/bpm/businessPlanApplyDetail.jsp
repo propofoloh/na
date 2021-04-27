@@ -20,13 +20,22 @@
     <script type="text/javascript" src="../../resource/js/sub.js"></script>	
 </head>
 <script type="text/javascript">
-
+$(document).ready(function(){
+	$('#evalBtn').click(function(){
+		var memberId = ${member.user_id}
+		
+		if()
+		
+	})
+	
+})
 function fn_fileDownload(fileidx){
 	var formObj = $("form[name='download']");
 	$("#FILE_IDX").attr("value", fileidx);
 	formObj.attr("action", "/bpm/fileDown");
 	formObj.submit();
 }
+
 
 </script>
 <body>
@@ -262,7 +271,8 @@ function fn_fileDownload(fileidx){
 								<c:if test="${member.user_auth == 2}">
 									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}'">종합의견</button>
 								</c:if>
-									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">평가하기</button>
+								
+									<button type="button" class="normal" id="evalBtn" onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">평가하기</button>
 							 </div>
 							 </c:if>
 					</div>

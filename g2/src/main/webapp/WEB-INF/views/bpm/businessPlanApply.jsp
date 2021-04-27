@@ -27,16 +27,20 @@ $(document).ready(function(){
 	
 	var laborCost = 0;
 	var directCost = 0;
-	var indirectCost =$('.indirectCostSum').val();
+	var indirectCost = 0;
 	 $('.laborCost').on('keyup',function(){
 			 var Sum = 0;
         $('.laborCost').each(function(idx,value){ 
             if(!isNaN(this.value)&&this.value.length!=0){
                 	Sum+=Number($(value).val());
                     	$('.laborCostSum').val(Sum);
-        				laborCost = Sum;
-        				$('.directCostSum').val(laborCost);
-        				$('.RDCostSum').val(laborCost);
+        				$('.directCostSum').val(Sum);
+        				if($('.RDCostSum').val() == 0 ){$('.RDCostSum').val(Sum);}
+        				else{$('.RDCostSum').val(Number(directCost + indirectCost));}
+        					
+        				
+        				laborCost = $('.laborCostSum').val();
+        				
         		}	
         });
 	 });
@@ -46,24 +50,24 @@ $(document).ready(function(){
     $('.directCost').each(function(idx,value){ 
         if(!isNaN(this.value)&&this.value.length!=0){
             	Sum+=Number($(value).val());
-                	$('.directCostSum').val(Sum+laborCost);
-                	directCost = Sum;
-                	$('.RDCostSum').val(directCost+laborCost);
- 
-    			
+                	$('.directCostSum').val(Number(Sum+laborCost));
+                	$('.RDCostSum').val(Number(directCost + indirectCost));
+                	directCost = $('.directCostSum').val();
     		}	
-    });
+   		});
 	 });
 	 
     $('.indirectCostSum').on('keyup',function(){
-  	
+    	 var Sum = 0;
+    	 $('.directCost').each(function(idx,value){
     	if(!isNaN(this.value)&&this.value.length!=0){
-        	Sum = Number(this.value);
-    	$('.RDCostSum').val(directCost+ Sum);	
-    
+    		Sum += Number($(value).val());
+        	$('.indirectCostSum').val(Sum);
+        	$('.RDCostSum').val(Number(directCost + indirectCost));
+        	indirectCost = $('.indirectCostSum').val();
     	}
     })
-     
+  }); 
         
 	  $('#write_btn').click(function(){
 			
@@ -241,7 +245,7 @@ function fn_addFile(){
                                     	<tr>
                                     		
                                     		<th class="boldtext"  colspan="3"_>인건비 소계</th>
-                                    		<th ><input type="number" class="laborCostSum" name="bplan_cost_value9" value="" readonly="readonly"></th>
+                                    		<th ><input type="number" class="laborCostSum" name="bplan_cost_value9" value="0" readonly="readonly"></th>
                                     	</tr>
                                     	<tr>
                                     		
@@ -295,7 +299,7 @@ function fn_addFile(){
                                     	<tr>
                                     	
                                     		<th class="boldtext" colspan="3">직접비 소계(A)</th>
-                                    		<th ><input type="number" class="directCostSum"name="bplan_cost_value19" value="" readonly="readonly"></th>
+                                    		<th ><input type="number" class="directCostSum"name="bplan_cost_value19" value="0" readonly="readonly"></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext" colspan="4">간접비 소계(B)</th>
@@ -303,7 +307,7 @@ function fn_addFile(){
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext" colspan="4">연구개발비 총액 (A + B)</th>
-                                    		<th ><input type="number" class="RDCostSum" name="bplan_cost_value21" value="" readonly="readonly"></th>
+                                    		<th ><input type="number" class="RDCostSum" name="bplan_cost_value21" value="0" readonly="readonly"></th>
                                     	</tr>
                                     
                                     </tbody>
