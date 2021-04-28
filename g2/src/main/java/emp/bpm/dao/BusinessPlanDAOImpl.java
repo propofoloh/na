@@ -124,5 +124,11 @@ public class BusinessPlanDAOImpl implements BusinessPlanDAO {
 		return sqlSession.selectOne("businessPlanMapper.businessPlanSelectCost",bpm_bplan_idx);
 	}
 	
+	@Override
+	public List<Map<String, Object>> businessPlanEvalMember(int bam_anc_idx) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("businessPlanMapper.businessPlanEvalMember",bam_anc_idx);
+	}
+	
 	
 }

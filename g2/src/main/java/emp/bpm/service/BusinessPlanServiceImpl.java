@@ -1,5 +1,7 @@
 package emp.bpm.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +19,7 @@ import emp.bpm.util.FileUtils;
 import emp.bpm.util.SearchCriteria;
 import emp.bpm.vo.BusinessPlanCostVO;
 import emp.bpm.vo.BusinessPlanVO;
+import oracle.net.aso.o;
 
 
 
@@ -137,4 +140,29 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 		return dao.businessPlanApplyForm(bam_anc_idx);
 	}
 
+	
+	@Override
+	public List<Map<String, Object>> businessPlanEvalMember(int bam_anc_idx) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.businessPlanEvalMember(bam_anc_idx);
+	}
+	
+	@Override
+	public String businessPlanEvalcheck(String user_id, List<Map<String, Object>> EvalMember) throws Exception {
+		// TODO Auto-generated method stub
+		List<String> resultList = new ArrayList();
+		String Status = "";
+		for(int i=0;i<EvalMember.size();i++) {
+			resultList.add(EvalMember.get(i).get("ANC_MEMBER_ID").toString().trim());
+		}
+		for(String temp : resultList) {
+			if(temp.equals(user_id)) {
+				Status = "Success";
+			}
+		}
+		if(!Status.equals("Success"))
+			Status = "Fail";
+		
+		return Status;
+	}
 }

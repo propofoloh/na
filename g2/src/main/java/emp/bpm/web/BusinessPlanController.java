@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -154,12 +155,18 @@ public class BusinessPlanController {
 		response.getOutputStream().close();
 
 	}
-	@RequestMapping(value = "/evalCheck")
-	public @ResponseBody String evalCheck(@SessionAttribute("member") MemberVO member, @RequestParam("bam_anc_idx") int bam_anc_idx) throws Exception {
+	@RequestMapping(value = "/evalCheck", method = RequestMethod.POST)
+	@ResponseBody
+	public String evalCheck(@SessionAttribute("member") MemberVO member, @RequestParam(value="bam_anc_idx") int bam_anc_idx) throws Exception {
 		String user_id = member.getUser_id();
 		
+		//등록된 멤버 리스트 조회
+		List<Map<String,Object>> resultList = service.businessPlanEvalMember(bam_anc_idx);
+
+		String resultType = service.businessPlanEvalcheck(user_id, resultList);
 		
-		return "";
+		
+		return resultType;
 	}
 	
 	

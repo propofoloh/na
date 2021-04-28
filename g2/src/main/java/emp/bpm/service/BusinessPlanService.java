@@ -49,5 +49,11 @@ public interface BusinessPlanService {
 		
 		//사업계획서 연구개발비 비용 조회
 		public BusinessPlanCostVO businessPlanSelectCost(int bpm_bplan_idx) throws Exception;
-	}    
+		
+		//사업계획서 평가위원 리스트
+		public List<Map<String,Object>> businessPlanEvalMember(int bam_anc_idx) throws Exception;
+		
+		//사업계획서 평가위원 체크
+		public String businessPlanEvalcheck(String user_id, List<Map<String,Object>> EvalMember ) throws Exception;
+}    
  

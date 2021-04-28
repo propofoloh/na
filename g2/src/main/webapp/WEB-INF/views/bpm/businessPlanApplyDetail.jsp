@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../../resource/css/reset.css">
     <link rel="stylesheet" href="../../resource/css/common.css">
     <link rel="stylesheet" href="../../resource/css/sub.css">
-    <link rel="stylesheet" href="../../resource/css/hj.css">
     <link rel="stylesheet" href="../../resource/css/board.css">
 
 	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
@@ -22,9 +21,29 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#evalBtn').click(function(){
-		var memberId = ${member.user_id}
+		var memberId = '${member.user_id}'
+		var bam_anc_idx = ${param.bam_anc_idx}
+		var param = {"bam_anc_idx" : bam_anc_idx
+		}
 		
-		if()
+		
+		$.ajax({
+		    type:"POST",
+		    url: "/bpm/evalCheck",
+		    data: param,
+		    datatype : "json",
+		    success: function(e){
+		    
+		    	if(e == "Success")
+		    		alert("성공")
+		    	else
+		    		alert("해당공고의 평가위원이 아닙니다.")
+		    },
+		    err: function(err){
+		      console.log("err:", err)
+		    }
+		  })
+	
 		
 	})
 	
@@ -272,7 +291,8 @@ function fn_fileDownload(fileidx){
 									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}'">종합의견</button>
 								</c:if>
 								
-									<button type="button" class="normal" id="evalBtn" onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">평가하기</button>
+									<button type="button" class="normal" id="evalBtn" >평가하기</button>
+									<!-- onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'" -->
 							 </div>
 							 </c:if>
 					</div>
