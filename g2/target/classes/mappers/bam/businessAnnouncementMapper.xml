@@ -41,6 +41,8 @@
 	   					      , WRITER
 	   					      , REG_DATE
 	   					      , MOD_DATE
+	   					      , BPLAN_FORM_CHK
+	   					      , EVAL_FORM_CHK
 		 FROM ( 
 		        SELECT BAM_ANC_IDX 
 	   					      , BOARD_IDX 
@@ -51,6 +53,8 @@
 	   					      , WRITER
 	   					      , REG_DATE
 	   					      , MOD_DATE
+	   					      , BPLAN_FORM_CHK
+	   					      , EVAL_FORM_CHK
 		               ,ROW_NUMBER() OVER(ORDER BY BAM_ANC_IDX DESC) AS RNUM
 		         FROM EMP_BAM_ANC
 		         WHERE 1=1 
@@ -176,6 +180,14 @@ SELECT      FILE_IDX,
    
    </insert>
    
+   <update id="businessEvaluationEditUpdate">
+   		UPDATE EMP_BAM_ANC SET
+   			EVAL_FORM_CHK = 'Y'
+   			WHERE BAM_ANC_IDX = #{bam_anc_idx}
+   			
+   			     
+   </update>
+   
          <insert id="businessPlanApplyEdit" parameterType="hashMap" >
 	   INSERT INTO EMP_BPM_BPLAN_FORM( BAM_ANC_IDX
 	   						  , BPM_BPLAN_FORM_IDX
@@ -201,6 +213,12 @@ SELECT      FILE_IDX,
 	              
    
    </insert>
+    <update id="businessPlanApplyEditUpdate">
+   		UPDATE EMP_BAM_ANC SET
+   			BPLAN_FORM_CHK = 'Y'
+   			WHERE BAM_ANC_IDX = #{bam_anc_idx}
+   </update>
+   
    <insert id="businessAnnouncementMember" parameterType="hashMap" >
 	   INSERT INTO EMP_BAM_ANC_MEMBER( BAM_ANC_IDX 
 	   						  , BAM_ANC_MEMBER_IDX

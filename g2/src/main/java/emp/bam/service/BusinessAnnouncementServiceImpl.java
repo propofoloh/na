@@ -116,12 +116,15 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 	public void businessPlanApplyEdit(Map<String, Object> paramMap) throws Exception {
 		// TODO Auto-generated method stub
 		dao.businessPlanApplyEdit(paramMap);
+		int bam_anc_idx = Integer.parseInt(paramMap.get("bam_anc_idx").toString());
+		dao.businessPlanApplyEditUpdate(bam_anc_idx);
+		
 	}
 	@Override
 	public void businessEvaluationEdit(List<String> arrEval_form_title, List<String> arrEval_form_item,
 			List<String> arrEval_form_score,int bam_anc_idx) throws Exception {
 		// TODO Auto-generated method stub
-			for(int i=0; i <arrEval_form_title.size();i++) {
+			for(int i=0; i < arrEval_form_title.size();i++) {
 				String eval_form_title = arrEval_form_title.get(i);
 				String eval_form_item = arrEval_form_item.get(i);
 				String eval_form_score = arrEval_form_score.get(i);
@@ -132,6 +135,11 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 				paramMap.put("eval_form_score",eval_form_score);
 				paramMap.put("bam_anc_idx",bam_anc_idx);
 				dao.businessEvaluationEdit(paramMap);
+				if(i == arrEval_form_title.size()-1) {
+					System.out.println("@@@@@@@@@@@@@@@@@@@@ 업데이트 포문@@@@@@@@@@@");
+					dao.businessEvaluationEditUpdate(bam_anc_idx);
+				
+				}
 			}
 		
 	}

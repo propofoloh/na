@@ -107,9 +107,7 @@
                                     
                                         <col style="width:10%">
                                         <col style="width:auto">
-                                        <col style="width:14%">
-                                        <col style="width:10%">
-                                        <col style="width:10%">
+                                        <col style="width:20%">
                                         <col style="width:20%">
                                     </colgroup>
                                     <thead>
@@ -127,11 +125,10 @@
 												<td>
 													<c:out value="${list.anc_title}"/>
 												</td>
-												<td>
 													<c:choose>
-												<c:when test="${member.user_auth == '1' || member.user_auth == '2'}">
+												<c:when test="${list.bplan_form_chk == 'N'}">
 													<td class="quickBtn" style="text-align: center;">
-														<a href="">양식 등록</a>
+														<a href="/bam/businessPlanApplyEdit?bam_anc_idx=${list.bam_anc_idx}">양식 등록</a>
 													</td>
 												</c:when>
 												<c:otherwise>
@@ -140,11 +137,10 @@
 													</td>
 												</c:otherwise>
 											</c:choose>	
-												</td>
 											<c:choose>
-												<c:when test="${member.user_auth == '1' || member.user_auth == '2'}">
+												<c:when test="${list.eval_form_chk == 'N'}">
 													<td class="quickBtn" style="text-align: center;">
-														<a href="">양식 등록</a>
+														<a href="/bam/businessEvaluationEdit?bam_anc_idx=${list.bam_anc_idx}">양식 등록</a>
 													</td>
 												</c:when>
 												<c:otherwise>
@@ -178,13 +174,7 @@
 									</c:if>
 								</ul>
 							</div>
-                          	  <div class="board_btn_wrap btn2 right">
-                           		<div class="btn_wrap">
-                            		<c:if test="${member.user_auth == '2'}">
-                            			 <button type="button" class="red" onclick="window.location.href='businessAnnouncementInput'">사업등록</button>
-									</c:if>
-								</div>
-                        	 </div>
+                         
                     </div>    
                 </div>
             </div>

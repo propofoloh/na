@@ -154,7 +154,7 @@
 				data: objParams,
 				success : function(data) {
 									
-					window.location.replace('/bam/businessPlanApplyEdit?bam_anc_idx=${param.bam_anc_idx}')	
+					window.location.replace('/bam/businessFormEditList');
 
 				},
 				error : function(request, status, error){

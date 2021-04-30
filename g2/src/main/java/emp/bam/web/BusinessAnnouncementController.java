@@ -162,6 +162,7 @@ public class BusinessAnnouncementController {
 			int bam_anc_idx=Integer.parseInt(Sbam_anc_idx);
 			service.businessEvaluationEdit(arrEval_form_title,arrEval_form_item,arrEval_form_score,bam_anc_idx);
 			
+			
 		}catch (Exception e) {
 			
 		}
@@ -194,7 +195,7 @@ public class BusinessAnnouncementController {
 				paramMap.put("bam_anc_idx",bam_anc_idx);
 				service.businessPlanApplyEdit(paramMap);
 				
-				return "redirect:/bam/businessAnnouncementList";
+				return "redirect:/bam/businessFormEditList";
 			
 		
 		}
@@ -205,8 +206,18 @@ public class BusinessAnnouncementController {
 		}
 	
 		@RequestMapping(value="/businessFormEditList",method = RequestMethod.GET)
-		public void businessAnnouncementList() throws Exception{
-				logger.info("businessFormEditList.jsp");
+		public String businessFormEditList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+				logger.info("businessFormEditList");
+				
+				model.addAttribute("list", service.businessAnnouncementList(scri));
+
+				PageMaker pageMaker = new PageMaker();
+				pageMaker.setCri(scri);
+				pageMaker.setTotalCount(service.listCount(scri));
+
+				model.addAttribute("pageMaker", pageMaker);
+
+				return "bam/businessFormEditList";
 				
 		}
 }

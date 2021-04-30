@@ -6,11 +6,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class BusinessAnnouncementVO {
 	
+	
 	private int bam_anc_idx;
 	private int board_idx = 1;
 	private String anc_title;
 	private String anc_remark;
 	private String writer;
+	private String bplan_form_chk;
+	private String eval_form_chk;
 	
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date anc_begin_dt;
@@ -21,7 +24,18 @@ public class BusinessAnnouncementVO {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date mod_date;
 	
-	
+	public String getBplan_form_chk() {
+		return bplan_form_chk;
+	}
+	public void setBplan_form_chk(String bplan_form_chk) {
+		this.bplan_form_chk = bplan_form_chk;
+	}
+	public String getEval_form_chk() {
+		return eval_form_chk;
+	}
+	public void setEval_form_chk(String eval_form_chk) {
+		this.eval_form_chk = eval_form_chk;
+	}
 	public int getBam_anc_idx() {
 		return bam_anc_idx;
 	}
