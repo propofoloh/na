@@ -76,5 +76,10 @@ public class BusinessEvaluationDAOImpl implements BusinessEvaluationDAO {
 		return sqlSession.selectList("businessEvaluationMapper.businessEvaluationMyList",parmaMap);
 	}
 	
+	@Override
+	public List<Map<String, Object>> businessEvaluationFormList(int bam_anc_idx) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("businessEvaluationMapper.businessEvaluationFormList",bam_anc_idx);
+	}
 	
 }

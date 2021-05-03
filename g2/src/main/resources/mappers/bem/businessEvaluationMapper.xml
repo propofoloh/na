@@ -221,5 +221,18 @@
 		ORDER BY BEM_BEVAL_IDX DESC
 	</select>
     
+    <select id="businessEvaluationFormList" parameterType="int" resultType="hashMap">
+		SELECT BEM_BEVAL_FORM_IDX
+							  , BAM_ANC_IDX
+							  , EVAL_FORM_TITLE
+							  , EVAL_FORM_ITEM
+							  , EVAL_FORM_SCORE
+							  FROM EMP_BEM_BEVAL_FORM
+							  WHERE 1=1
+							  AND DEL_YN = 'N'
+							  AND BAM_ANC_IDX = #{bam_anc_idx}
+	
+	</select>
+	
 </mapper>
 	

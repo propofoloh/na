@@ -36,6 +36,9 @@ public interface BusinessEvaluationDAO {
 	// 사업공고 리스트조회(사용자)
 	public List<BusinessEvaluationVO> businessEvaluationMyList(Map<String,Object> parmanMap) throws Exception;
 
+	//평가지표 양식 조회
+	public List<Map<String, Object>> businessEvaluationFormList(int bam_anc_idx) throws Exception;
+			
 
 	    
 	

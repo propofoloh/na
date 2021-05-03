@@ -75,5 +75,10 @@ public class BusinessEvaluationServiceImpl implements BusinessEvaluationService 
 		return dao.businessEvaluationMyList(parmanMap);
 	}
 
+	@Override
+	public List<Map<String, Object>> businessEvaluationFormList(int bam_anc_idx) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.businessEvaluationFormList(bam_anc_idx);
+	}
 
 }

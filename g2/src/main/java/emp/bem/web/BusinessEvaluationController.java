@@ -92,7 +92,7 @@ public class BusinessEvaluationController {
 		logger.info("businessEvaluation");
 		System.out.println("bamidx"+bam_anc_idx);
 		System.out.println("bpm_bplan_idx"+bpm_bplan_idx);
-		model.addAttribute("ancInfo",ancService.businessAnnouncementDetail(bam_anc_idx));
+		model.addAttribute("ancInfo",service.businessEvaluationFormList(bam_anc_idx));
 		return "bem/businessEvaluation";
 	}
 	

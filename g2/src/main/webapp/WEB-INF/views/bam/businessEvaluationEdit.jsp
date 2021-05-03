@@ -163,6 +163,7 @@
 			});
  	 })
   })
+  
   </script>
       <title>사업계획서 평가지표 양식 설정</title>
   </head>
@@ -185,79 +186,51 @@
 	          <th scope="col">구분</th>
 	          <th scope="col">평가항목</th>
 	          <th scope="col">배점</th>
-	          <th scope="col">평점</th>
 	        </tr>
 	  </thead>
 	  <tbody>
 	        <tr>
-	          <th scope="col">신청기업</th>
-	          <th scope="col"><textarea name="eval_form_title">1</textarea></th>
+	          <th rowspan="6" class="f_bold">신청기업</th>
+	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
 	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
-	          <th scope="col"><input name="eval_score1" class="score" type="number"></th>
 	        </tr>
-	        
 	        <tr>
-	          <th scope="col">신청기업</th>
-	          <th scope="col"><textarea name="eval_form_title">1</textarea></th>
+	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
 	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
-	          <th scope="col"><input name="eval_score1" class="score" type="number"></th>
 	        </tr>
-	        
 	        <tr>
-	          <th scope="col">신청기업</th>
-	          <th scope="col"><textarea name="eval_form_title">1</textarea></th>
+	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
 	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
-	          <th scope="col"><input name="eval_score1" class="score" type="number"></th>
 	        </tr>
-	        
 	        <tr>
-	          <th scope="col">신청기업</th>
-	          <th scope="col"><textarea name="eval_form_title">1</textarea></th>
+	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
 	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
-	          <th scope="col"><input name="eval_score1" class="score" type="number"></th>
 	        </tr>
-	        
 	        <tr>
-	          <th scope="col">신청기업</th>
-	          <th scope="col"><textarea name="eval_form_title">1</textarea></th>
+	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
 	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
-	          <th scope="col"><input name="eval_score1" class="score" type="number"></th>
 	        </tr>
-	        
 	        <tr>
-	          <th scope="col">신청기업</th>
-	          <th scope="col"><textarea name="eval_form_title">1</textarea></th>
+	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
 	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
-	          <th scope="col"><input name="eval_score1" class="score" type="number"></th>
 	        </tr>
-	        
 	        <tr>
-	          <th scope="col">신청기업</th>
-	          <th scope="col"><textarea name="eval_form_title">1</textarea></th>
+	          <th rowspan="2" class="f_bold">신청기업</th>
+	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
 	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
-	          <th scope="col"><input name="eval_score1" class="score" type="number"></th>
 	        </tr>
-	        
 	        <tr>
-	          <th scope="col">신청기업</th>
-	          <th scope="col"><textarea name="eval_form_title">1</textarea></th>
+	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
 	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
-	          <th scope="col"><input name="eval_score1" class="score" type="number"></th>
 	        </tr>
-	        
-	        
-	      
-	        
-	      
-	        
 	  </tbody>  
 	 </table>
 		 <div class="submitForm">

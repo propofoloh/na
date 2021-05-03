@@ -35,13 +35,14 @@ $(document).ready(function(){
 		    success: function(e){
 		    
 		    	if(e == "Success")
-		    		alert("성공")
+		    		location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'
 		    	else
 		    		alert("해당공고의 평가위원이 아닙니다.")
 		    },
 		    err: function(err){
 		      console.log("err:", err)
 		    }
+		    
 		  })
 	
 		

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.Calendar" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
  <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -175,8 +178,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    
-                                        <tr>
+                                    	<c:forEach items="${ancInfo}" var="ancInfo" varStatus="status" >
+                                    		 <tr>
+                                    		 	<c:if test="${status.index == 0}">
+	                                            	<th rowspan="6" class="f_bold">신청기업</th>
+	                                            </c:if>
+	                                            <c:if test="${status.index == 6}">
+	                                            	<th rowspan="6" class="f_bold">수행기관</th>
+	                                            </c:if>
+	                                            <td class="type">${ancInfo.EVAL_FORM_TITLE}</td>
+	                                            <td >${ancInfo.EVAL_FORM_ITEM}</td>
+	                                            <td class="score" >${ancInfo.EVAL_FORM_SCORE}</</td>	
+	                                            <td ><input name="eval_score1" class="score" type="number"></td>
+                                        	</tr>
+                                    	</c:forEach>
+                                    	
+	                                    	<tr class="total">
+	                                            <td colspan="3">합계</td>
+	                                            <td class="score">100</td>
+	                                            <td><input type="text" name="eval_totalscore" class="totalscore" id="eval_totalscore" readonly="readonly"></td>
+	                                       	</tr>
+                                       <!--  <tr>
                                             <th rowspan="6" class="f_bold">신청기업</th>
                                             <td rowspan="2" class="type">추진계획타당성</td>
                                             <td>사전준비도 및 사업목표의 명확성</td>
@@ -217,12 +239,9 @@
                                             <td>참여인력의 업무수행 능력 및 역량</td>
                                             <td class="score" >15</td>
                                             <td><input name="eval_score6" class="score" type="number"></td>
-                                        </tr>
-                                        <tr class="total">
-                                            <td colspan="3">합계</td>
-                                            <td class="score">100</td>
-                                            <td><input type="text" name="eval_totalscore" class="totalscore" id="eval_totalscore" readonly="readonly"></td>
-                                        	</tr>
+                                        </tr> -->
+                                        
+                                        
                                          
                                     </tbody>
                                 </table>

@@ -1,4 +1,4 @@
-@charset "UTF-8";
+ @charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -30,7 +30,7 @@ time, mark, audio, video {
 select{-webkit-appearance: none;appearance: none;-moz-appearance: none;background: url('../images/common/search_select_arrow.png') no-repeat right 18px center;color: #888888;}
 select::-ms-expand {display:none}
 input, select{height: 45px;padding: 0;margin: 0;border: 0;box-sizing: border-box;color: #000;font-size: 17px;vertical-align: middle;line-height: 43px;text-indent: 12px;}
-input.score{width:96%; margin-left: 8px;}
+input.score{width:95%; margin-left: 8px;}
 input.totalscore{width:96%; background-color:#ededed; outline: none; font-weight: 700; color: red; font-family: 'Noto Sans CJKR', sans-serif !important; margin-left: 8px;}
 legend{font-size: 0;text-indent: -100000px;left: -10000px;top: auto;height: 0;overflow: hidden;}
 .pagination {float:left;display: flex;}
