@@ -12,9 +12,7 @@
     <link rel="stylesheet" href="../../resource/css/reset.css">
     <link rel="stylesheet" href="../../resource/css/common.css">
     <link rel="stylesheet" href="../../resource/css/sub.css">
-    <link rel="stylesheet" href="../../resource/css/hj.css">
     <link rel="stylesheet" href="../../resource/css/board.css">
-
 	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
     <script type="text/javascript" src="../../resource/js/sub.js"></script>	
@@ -29,8 +27,8 @@
  	     var h=600;//세로길이
  	     var xpos=(sw-w)/2; 
  	     var ypos=(sh-h)/2; 
- 	     var pHeader="<html><head><link rel='stylesheet' type='text/css' href='../../resource/css/sub.css'><title>" + print + "</title></head><body>";
- 	     var pgetContent=document.getElementById("table_wrap").innerHTML + "<br>";
+ 	     var pHeader="<html><head><link rel='stylesheet' type='text/css' href='../../resource/css/sub.css'><link rel='stylesheet' type='text/css' href='../../resource/css/reset.css'><title>" + print + "</title></head><body>"; 	     
+ 	     var pgetContent=document.getElementById("printArea").innerHTML + "<br>";
  	     //innerHTML을 이용하여 Div로 묶어준 부분을 가져옵니다.
  	     var pFooter="</body></html>";
  	     pContent=pHeader + pgetContent + pFooter; 
@@ -40,7 +38,7 @@
  	     pWin.document.close(); //클로즈
  	     pWin.print(); //윈도우 인쇄 창 띄우고
  	     pWin.close(); //인쇄가  되던가 취소가 되면 팝업창을 닫습니다.
-   
+   	
  	}
  
  
@@ -62,37 +60,72 @@
             <div class="row content_outer">
                 <section class="location sect1">
                     <ul class="insideArea row">
-                        <li>사용자</li>
-                        <li>사업공고</li>
+                        <c:choose>
+                    	<c:when test="${member.user_auth == 1}">
+                    		<li>평가위원</li>
+                    	</c:when>
+                    	<c:when test="${member.user_auth == 2}">
+                    		<li>평가위원장</li>
+                    	</c:when>
+                    	<c:when test="${member.user_auth == 0}">
+                    		<li>사용자</li>
+                    	</c:when>
+                    	<c:when test="${member.user_auth == null}">
+                    		<li>비로그인</li>
+                    	</c:when>
+                    </c:choose>         
+                        <li>사업평가리스트</li>
                     </ul>
                 </section>
                 <section class="sect2">
                     <div  class="insideArea row">
-                        <div class="lnb">
-                            <p class="tit">사업안내</p>
-                              <ul>
+        <div class="lnb">
+        	<c:choose>
+                   	<c:when test="${member.user_auth == 1}">
+                   		<p class="tit">평가위원</p>
+                   	</c:when>
+                   	<c:when test="${member.user_auth == 2}">
+                   		<p class="tit">평가위원장</p>
+                   	</c:when>
+                   	<c:when test="${member.user_auth == 0}">
+                   		<p class="tit">사용자</p>
+                   	</c:when>
+                   	<c:when test="${member.user_auth == null}">
+                   		<p class="tit">비로그인</p>
+                   	</c:when>
+            </c:choose>
+                    <ul>
                         <li class="">
                             <a href="/bam/businessAnnouncementList">사업공고</a>
                             <ul class="second_menu">
                                 <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                               <c:if test="${member.user_auth == 2}">
                                 <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
+                               </c:if>
                             </ul>
-                        <li class="">
-                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
-                            <ul class="second_menu">
-                            	<li class="on"><a href="/bpm/businessPlanApplyMyList">· 사업계획서 조회</a></li>
-                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
-                            </ul>
+                       <c:if test="${member.user_auth == 0}">
+	                        <li class="">
+	                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
+	                            <ul class="second_menu">
+	                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+	                            </ul>
+	                        </li>
+                        </c:if>
+                       <c:if test="${member.user_auth != 0}">
                         <li class="on">
                             <a href="/bpm/businessEvaluationMyList">사업 평가</a>
                             <ul class="second_menu">
-                                <li class="on"><a href="/bem/businessEvaluationMyList">· 평가내역 조회(상세)</a></li>
+                                <li class="on"><a href="/bem/businessEvaluationMyList">· 평가내역 조회</a></li>
                             </ul>
-                        </div>
+                            </li>
+                      </c:if>
+                    </ul>
+                </div>
                         <div class="cont">
-                            <h2>사업 평가</h2>
-                            <h3>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</h3>
+                            <h3 style="text-align: center;">충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</h3>
+                            <div id="printArea" style="height: 90%">
                             <div class="table_wrap" id="table_wrap">
+                            
                                 <table>
                                     <colgroup>
                                         <col style="width:10%">
@@ -199,14 +232,15 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                        		</div>
                             </div>
-
-                            <div class="btn_wrap text-right same mt_20 d-flex justify-between">
-                                <button type="button" class="cancel">목록</button>
-                                <button type="button" class="normal" onclick="printFn()">인쇄</button>
-                            </div>
+						
                             
-
+                                <div class="btn_wrap text-right same mt_20 justify-between">
+                                <button type="button" class="cancel" style="float: left;">목록</button>
+                                <button type="button" class="normal"  onclick="">수정</button>
+                                <button type="button" class="normal"  onclick="printFn()">인쇄</button>
+                            </div>
                         </div>
                     </div>
                 </section>

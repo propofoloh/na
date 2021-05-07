@@ -143,9 +143,6 @@
 					"Sbam_anc_idx" : Sbam_anc_idx,
 				};
 
-					
-		  
-		   
 		 
 		  $.ajax({
 				type: "POST",
@@ -156,7 +153,36 @@
 									
 					window.location.replace('/bam/businessFormEditList');
 
-				},
+				}, beforeSend: function () {
+		              var width = 0;
+		              var height = 0;
+		              var left = 0;
+		              var top = 0;
+
+		              width = 50;
+		              height = 50;
+
+
+		              top = ( $(window).height() - height ) / 2 + $(window).scrollTop();
+		              left = ( $(window).width() - width ) / 2 + $(window).scrollLeft();
+
+		 
+
+		              if($("#div_ajax_load_image").length != 0) {
+		                     $("#div_ajax_load_image").css({
+		                            "top": top+"px",
+		                            "left": left+"px"
+		                     });
+		                     $("#div_ajax_load_image").show();
+		              }
+		              else {
+		                     $('body').append('<div id="div_ajax_load_image" style="position:absolute; top:' + top + 'px; left:' + left + 'px; width:' + width + 'px; height:' + height + 'px; z-index:9999; background:#f0f0f0; filter:alpha(opacity=50); opacity:alpha*0.5; margin:auto; padding:0; "><img src="../../resource/image/loading.gif" style="width:50px; height:50px;"></div>');
+		              }
+
+		       }
+		       , complete: function () {
+		                     $("#div_ajax_load_image").hide();
+		       },
 				error : function(request, status, error){
 					alert(error);
 				}
@@ -235,7 +261,7 @@
 	 </table>
 		 <div class="submitForm">
 			    <input class ="cancle_btn" type="button" onclick="location.href='/bpm/businessPlanApplyList?bam_anc_idx=${param.bam_anc_idx}'" value="취소"> 
-			    <input class ="write_btn" type="button" value="평가완료">
+			    <input class ="write_btn" type="button" value="등록완료">
 		</div>
     </form>
   </body>

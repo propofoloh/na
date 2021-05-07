@@ -75,32 +75,65 @@ function fn_fileDownload(fileidx){
             <div class="row content_outer">
                 <section class="location sect1">
                     <ul class="insideArea row">
-  	                  <li>사용자</li>
-                    <li>사업계획서 상세</li>
-                </ul>
+  	                  <c:choose>
+                    	<c:when test="${member.user_auth == 1}">
+                    		<li>평가위원</li>
+                    	</c:when>
+                    	<c:when test="${member.user_auth == 2}">
+                    		<li>평가위원장</li>
+                    	</c:when>
+                    	<c:when test="${member.user_auth == 0}">
+                    		<li>사용자</li>
+                    	</c:when>
+                    	<c:when test="${member.user_auth == null}">
+                    		<li>비로그인</li>
+                    	</c:when>
+                    </c:choose>         
+                        <li>사업평가리스트</li>
+                    </ul>
                 </section>
                 <section class="sect2">
-               <div  class="insideArea row">
-                <div class="lnb">
-                    <p class="tit">사업안내</p>
+                    <div  class="insideArea row">
+        <div class="lnb">
+        	<c:choose>
+                   	<c:when test="${member.user_auth == 1}">
+                   		<p class="tit">평가위원</p>
+                   	</c:when>
+                   	<c:when test="${member.user_auth == 2}">
+                   		<p class="tit">평가위원장</p>
+                   	</c:when>
+                   	<c:when test="${member.user_auth == 0}">
+                   		<p class="tit">사용자</p>
+                   	</c:when>
+                   	<c:when test="${member.user_auth == null}">
+                   		<p class="tit">비로그인</p>
+                   	</c:when>
+            </c:choose>
                     <ul>
-                     <li class="">
+                        <li class="">
                             <a href="/bam/businessAnnouncementList">사업공고</a>
                             <ul class="second_menu">
                                 <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                               <c:if test="${member.user_auth == 2}">
                                 <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
+                               </c:if>
                             </ul>
-                        <li class="on">
-                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
-                            <ul class="second_menu">
-                            	<li class="on"><a href="/bpm/businessPlanApplyMyList">· 사업계획서 조회(상세)</a></li>
-                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
-                            </ul>
+                       <c:if test="${member.user_auth == 0}">
+	                        <li class="on">
+	                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
+	                            <ul class="second_menu">
+	                                <li class="on"><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+	                            </ul>
+	                        </li>
+                        </c:if>
+                       <c:if test="${member.user_auth != 0}">
                         <li class=" ">
                             <a href="/bpm/businessEvaluationMyList">사업 평가</a>
                             <ul class="second_menu">
                                 <li class=""><a href="/bem/businessEvaluationMyList">· 평가내역 조회</a></li>
                             </ul>
+                            </li>
+                      </c:if>
                     </ul>
                 </div>
                 <div class="cont">
@@ -150,124 +183,92 @@ function fn_fileDownload(fileidx){
                                     </thead>
                                     <tbody>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">인건비</th>
-                                    		<th class="boldtext">내부인건비</th>
+                                    		<th class="boldtext" rowspan="18">직접비</th>
+                                    		<th class="boldtext" rowspan="6">인건비</th>
+                                    		<th class="boldtext" rowspan="3">내부인건비</th>
                                     		<th class="boldtext">미지급</th>
-                                    		<th>${cost.bplan_cost_value1} </th>
+                                    		<th class="value">${cost.bplan_cost_value1} </th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th >${cost.bplan_cost_value2}</th>
+                                    		<th class="value">${cost.bplan_cost_value2}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext">현물</th>
-                                    		<th >${cost.bplan_cost_value3}</th>
+                                    		<th class="value">${cost.bplan_cost_value3}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">외부인건비</th>
+                                    		<th class="boldtext" rowspan="3">외부인건비</th>
                                     		<th class="boldtext">미지급</th>
-                                    		<th >${cost.bplan_cost_value4}</th>
+                                    		<th class="value">${cost.bplan_cost_value4}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th >${cost.bplan_cost_value5}</th>
+                                    		<th class="value">${cost.bplan_cost_value5}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext">현물</th>
-                                    		<th >${cost.bplan_cost_value6}</th>
+                                    		<th class="value">${cost.bplan_cost_value6}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext" style="text-align: center"colspan="2">연구지원인력인건비</th>
-                                    		<th >${cost.bplan_cost_value7}</th>
+                                    		<th class="boldtext" colspan="3">학생인건비</th>
+                                    		<th class="value">${cost.bplan_cost_value7}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">직</th>
-                                    		<th class="boldtext" style="text-align:right"" colspan="3"_>학생인건비</th>
-                                    		<th >${cost.bplan_cost_value8}</th>
+                                    		<th class="boldtext" colspan="3"_>인건비 소계</th>
+                                    		<th class="value">${cost.bplan_cost_value8}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">접</th>
-                                    		<th class="boldtext" style="text-align:right"" colspan="3"_>인건비 소계</th>
-                                    		<th >${cost.bplan_cost_value9}</th>
-                                    	</tr>
-                                    	<tr>
-                                    		<th class="boldtext">비</th>
                                     		<th class="boldtext" colspan="2">연구시설</th>
                                     		<th class="boldtext">현금_일반</th>
-                                    		<th >${cost.bplan_cost_value10}</th>
+                                    		<th class="value">${cost.bplan_cost_value9}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">비</th>
-                                    		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">장비비</th>
+                                    		<th class="boldtext" rowspan="2" colspan="2">장비비</th>
                                     		<th class="boldtext">현금통합관리</th>
-                                    		<th >${cost.bplan_cost_value11}</th>
+                                    		<th class="value">${cost.bplan_cost_value10}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext">현물</th>
-                                    		<th >${cost.bplan_cost_value12}</th>
+                                    		<th class="value">${cost.bplan_cost_value11}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">연구활동비</th>
+                                    		<th class="boldtext" rowspan="2" colspan="2" >연구활동비</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th >${cost.bplan_cost_value13}</th>
+                                    		<th class="value">${cost.bplan_cost_value12}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext">현물</th>
-                                    		<th>${cost.bplan_cost_value14}</th>
+                                    		<th class="value">${cost.bplan_cost_value13}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
-                                    		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">연구재료비</th>
+                                    		<th class="boldtext" rowspan="2" colspan="2" >연구재료비</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th >${cost.bplan_cost_value15}</th>
+                                    		<th class="value">${cost.bplan_cost_value14}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext">현물</th>
-                                    		<th >${cost.bplan_cost_value16}</th>
+                                    		<th class="value">${cost.bplan_cost_value15}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext" colspan="3">연구수당</th>
-                                    		<th >${cost.bplan_cost_value17}</th>
+                                    		<th class="value">${cost.bplan_cost_value16}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext" colspan="3">위탁연구개발비</th>
-                                    		<th >${cost.bplan_cost_value18}</th>
+                                    		<th class="value">${cost.bplan_cost_value17}</th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext">　</th>
                                     		<th class="boldtext" colspan="3">직접비 소계</th>
-                                    		<th >${cost.bplan_cost_value19}</th>
+                                    		<th class="value">${cost.bplan_cost_value18}</th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext" colspan="4">간접비</th>
-                                    		<th >${cost.bplan_cost_value20}</th>
+                                    		<th class="value">${cost.bplan_cost_value19}</th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext" colspan="4">연구개발비 총액</th>
-                                    		<th >${cost.bplan_cost_value21}</th>
+                                    		<th class="value">${cost.bplan_cost_value20}</th>
                                     	</tr>
                                    	</tbody>
                                  </table>
@@ -289,7 +290,7 @@ function fn_fileDownload(fileidx){
 							 <div class="btn_wrap text-right">
 									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationList?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">평가리스트</button>
 								<c:if test="${member.user_auth == 2}">
-									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}'">종합의견</button>
+									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">종합의견</button>
 								</c:if>
 								
 									<button type="button" class="normal" id="evalBtn" >평가하기</button>

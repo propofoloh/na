@@ -108,34 +108,67 @@
             <div class="row content_outer">
                 <section class="location sect1">
                     <ul class="insideArea row">
-                        <li>사용자</li>
-                        <li>사업공고</li>
+                   <c:choose>
+                    	<c:when test="${member.user_auth == 1}">
+                    		<li>평가위원</li>
+                    	</c:when>
+                    	<c:when test="${member.user_auth == 2}">
+                    		<li>평가위원장</li>
+                    	</c:when>
+                    	<c:when test="${member.user_auth == 0}">
+                    		<li>사용자</li>
+                    	</c:when>
+                    	<c:when test="${member.user_auth == null}">
+                    		<li>비로그인</li>
+                    	</c:when>
+                    </c:choose>         
+                        <li>사업평가리스트</li>
                     </ul>
                 </section>
                 <section class="sect2">
                     <div  class="insideArea row">
-                        <div class="lnb">
-                            <p class="tit">사업안내</p>
-                            <ul>
+        <div class="lnb">
+        	<c:choose>
+                   	<c:when test="${member.user_auth == 1}">
+                   		<p class="tit">평가위원</p>
+                   	</c:when>
+                   	<c:when test="${member.user_auth == 2}">
+                   		<p class="tit">평가위원장</p>
+                   	</c:when>
+                   	<c:when test="${member.user_auth == 0}">
+                   		<p class="tit">사용자</p>
+                   	</c:when>
+                   	<c:when test="${member.user_auth == null}">
+                   		<p class="tit">비로그인</p>
+                   	</c:when>
+            </c:choose>
+	                    <ul>
                         <li class="">
                             <a href="/bam/businessAnnouncementList">사업공고</a>
                             <ul class="second_menu">
                                 <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                               <c:if test="${member.user_auth == 2}">
                                 <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
+                               </c:if>
                             </ul>
-                        <li class="">
-                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
-                            <ul class="second_menu">
-                            	<li class="on"><a href="/bpm/businessPlanApplyMyList">· 사업계획서 조회</a></li>
-                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
-                            </ul>
+                       <c:if test="${member.user_auth == 0}">
+	                        <li class="">
+	                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
+	                            <ul class="second_menu">
+	                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+	                            </ul>
+	                        </li>
+                        </c:if>
+                       <c:if test="${member.user_auth != 0}">
                         <li class="on">
                             <a href="/bpm/businessEvaluationMyList">사업 평가</a>
                             <ul class="second_menu">
-                                <li class="on"><a href="/bem/businessEvaluationMyList">· 사업계획서 평가</a></li>
+                                <li class=""><a href="/bem/businessEvaluationMyList">· 평가내역 조회</a></li>
                             </ul>
+                            </li>
+                      </c:if>
                     </ul>
-                        </div>
+                </div>
                         <div class="cont">
                             <h2>사업 평가</h2>
                             <h3>충북청주 강소연구개발특구 특화기업 성장지원 사업 평가지표</h3>
@@ -160,6 +193,7 @@
                                 </table>
 							<form action="/bem/businessEvaluation" method="post">
 							<input type="hidden" name ="bpm_bplan_idx" value="${param.bpm_bplan_idx}"> 
+							<input type="hidden" name ="write_id" value="${member.user_id}"> 
                                 <table class="thead_gray">
                                     <colgroup>
                                         <col style="width:7%">
@@ -189,61 +223,15 @@
 	                                            <td class="type">${ancInfo.EVAL_FORM_TITLE}</td>
 	                                            <td >${ancInfo.EVAL_FORM_ITEM}</td>
 	                                            <td class="score" >${ancInfo.EVAL_FORM_SCORE}</</td>	
-	                                            <td ><input name="eval_score1" class="score" type="number"></td>
+	                                            <td ><input name="eval_score${status.index+1}" class="score" type="number"></td>
                                         	</tr>
                                     	</c:forEach>
-                                    	
+                                    	</tbody>
 	                                    	<tr class="total">
 	                                            <td colspan="3">합계</td>
 	                                            <td class="score">100</td>
-	                                            <td><input type="text" name="eval_totalscore" class="totalscore" id="eval_totalscore" readonly="readonly"></td>
+	                                            <td ><input type="text" name="eval_totalscore" class="totalscore" id="eval_totalscore" readonly="readonly"></td>
 	                                       	</tr>
-                                       <!--  <tr>
-                                            <th rowspan="6" class="f_bold">신청기업</th>
-                                            <td rowspan="2" class="type">추진계획타당성</td>
-                                            <td>사전준비도 및 사업목표의 명확성</td>
-                                            <td rowspan="2" class="score" >20</td>	
-                                            <td rowspan="2"><input name="eval_score1" class="score" type="number"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>사업 추진방안의 타당성</td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2" class="type">지원 필요성 및 추진역량</td>
-                                            <td>지원의 필요성 및 신청지원 분야의 적합성</td>
-                                            <td rowspan="2" class="score">20</td>
-                                            <td rowspan="2"><input name="eval_score2" class="score" type="number"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>사업추진역량 및 의지</td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2" class="type">지원 효과성 및 사업비 적정성</td>
-                                            <td>사업지원의 기대효과</td>
-                                            <td rowspan="" class="score">15</td>
-                                            <td rowspan=""><input name="eval_score3" class="score" type="number"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>사업비 구성의 적정성 및 합리성</td>
-                                            <td class="score">15</td>
-                                            <td><input name="eval_score4" class="score" type="number"></td>
-                                        </tr>
-                                        <tr>
-                                            <th rowspan="2" class="f_bold">수행기관</th>
-                                            <td rowspan="2" class="type">관련 분야 전문성 및 역향</td>
-                                            <td>지원분야의 수행기관 매칭 적합성 및 관련 실적</td>
-                                            <td rowspan="" class="score">15</td>
-                                            <td rowspan=""><input name="eval_score5" class="score" type="number"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>참여인력의 업무수행 능력 및 역량</td>
-                                            <td class="score" >15</td>
-                                            <td><input name="eval_score6" class="score" type="number"></td>
-                                        </tr> -->
-                                        
-                                        
-                                         
-                                    </tbody>
                                 </table>
                                 <table>
                                     <colgroup>

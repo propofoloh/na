@@ -94,7 +94,6 @@ public class BusinessPlanController {
 		logger.info("businessPlanApplyList");
 
 		String user_id = member.getUser_id();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+user_id);
 		Map<String, Object> paramMap = new HashMap();
 		paramMap.put("rowStart", scri.getRowStart());
 		paramMap.put("rowEnd", scri.getRowEnd());

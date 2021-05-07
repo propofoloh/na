@@ -14,7 +14,14 @@
 <body>
 	<div class="insideArea">
                 <h1 class="logo">
-                    <a href="/"><img src="../../resource/image/logo.jpg" alt="충북대학교"></a>
+                	<c:choose>
+                		<c:when test ="${member.user_auth == null}">
+                   			<a href="/"><img src="../../resource/image/logo.jpg" alt="충북대학교"></a>
+                    	</c:when>
+                    	<c:when test ="${member.user_auth != null}">
+                    		<a href="/bam/businessAnnouncementList"><img src="../../resource/image/logo.jpg" alt="충북대학교"></a>
+                    	</c:when>
+                    	</c:choose>
                     <span>평가관리프로그램</span>
                 </h1>
                 <c:if test="${member != null}">
@@ -27,6 +34,7 @@
 								<a href="javascript:void(0)">2번 메뉴</a>
 							</div>
 						</li>
+						<c:if test="${member.user_auth == 0}">
 				 		<li class="">
 							<a href="/bpm/businessPlanApplyMyList">사업계획서</a>
 							<div class="sub_menu">
@@ -34,6 +42,8 @@
 								<a href="javascript:void(0)">사업공지</a>
 							</div>
 						</li>
+						</c:if>
+						<c:if test="${member.user_auth != 0}">
 						<li class="">
 							<a href="/bem/businessEvaluationMyList">사업평가</a>
 							<div class="sub_menu">
@@ -41,7 +51,7 @@
 								<a href="javascript:void(0)">사업공지</a>
 							</div>
 						</li>
-	
+						</c:if>
 					</ul> 
 					</c:if>
 				</div>

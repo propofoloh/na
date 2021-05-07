@@ -231,7 +231,7 @@
 	   					      , BPLAN_COST_VALUE18
 	   					      , BPLAN_COST_VALUE19
 	   					      , BPLAN_COST_VALUE20
-	   					      , BPLAN_COST_VALUE21  					      
+	   					      					      
 	   					       )
 	   					       
 	                 VALUES ( 
@@ -258,7 +258,7 @@
 	                 		  , #{bplan_cost_value18}
 	                 		  , #{bplan_cost_value19}
 	                 		  , #{bplan_cost_value20}
-	                 		  , #{bplan_cost_value21}
+	                 		
 	                 		    )
    
   	 </insert>
@@ -287,7 +287,7 @@
 		   					      , BPLAN_COST_VALUE18
 		   					      , BPLAN_COST_VALUE19
 		   					      , BPLAN_COST_VALUE20	
-		   					      , BPLAN_COST_VALUE21
+		   					  
 		   			FROM EMP_BPM_BPLAN_COST
 		   			WHERE 1=1
 		   			AND DEL_YN ='N'

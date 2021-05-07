@@ -48,7 +48,7 @@
                 	Sum = Sum + Number($(value).text());
                 	average = (Sum/(idx+1)).toFixed(2);
                 	convertedaverage = (Sum-(Number(Max+Min))) / (idx-1)
-                	alert(convertedaverage);
+                	
                 	 $('#average').text(average)
                      $('#convertedaverage').text(convertedaverage.toFixed(2));
                    
@@ -77,7 +77,6 @@
 	     //innerHTML을 이용하여 Div로 묶어준 부분을 가져옵니다.
 	     var pFooter="</body></html>";
 	     pContent=pHeader + pgetContent + pFooter; 
-	     alert(pHeader)
 	     pWin=window.open("","print","width=" + w +",height="+ h +",top=" + ypos + ",left="+ xpos +",status=yes,scrollbars=yes"); //동적인 새창을 띄웁니다.
 	     pWin.document.open(); //팝업창 오픈
 	     pWin.document.write(pContent); //새롭게 만든 html소스를 씁니다.
@@ -105,35 +104,67 @@
             <div class="row content_outer">
                 <section class="location sect1">
                     <ul class="insideArea row">
-                        <li>사용자</li>
-                        <li>사업공고</li>
+                       <c:choose>
+                    	<c:when test="${member.user_auth == 1}">
+                    		<li>평가위원</li>
+                    	</c:when>
+                    	<c:when test="${member.user_auth == 2}">
+                    		<li>평가위원장</li>
+                    	</c:when>
+                    	<c:when test="${member.user_auth == 0}">
+                    		<li>사용자</li>
+                    	</c:when>
+                    	<c:when test="${member.user_auth == null}">
+                    		<li>비로그인</li>
+                    	</c:when>
+                    </c:choose>         
+                        <li>사업평가리스트</li>
                     </ul>
                 </section>
                 <section class="sect2">
                     <div  class="insideArea row">
-                        <div class="lnb">
-                            <p class="tit">사용자</p>
-                              <ul>
+        <div class="lnb">
+        	<c:choose>
+                   	<c:when test="${member.user_auth == 1}">
+                   		<p class="tit">평가위원</p>
+                   	</c:when>
+                   	<c:when test="${member.user_auth == 2}">
+                   		<p class="tit">평가위원장</p>
+                   	</c:when>
+                   	<c:when test="${member.user_auth == 0}">
+                   		<p class="tit">사용자</p>
+                   	</c:when>
+                   	<c:when test="${member.user_auth == null}">
+                   		<p class="tit">비로그인</p>
+                   	</c:when>
+            </c:choose>
+                    <ul>
                         <li class="">
                             <a href="/bam/businessAnnouncementList">사업공고</a>
                             <ul class="second_menu">
                                 <li class=""><a href="/bam/businessAnnouncementList">· 사업공고</a></li>
+                               <c:if test="${member.user_auth == 2}">
                                 <li class=""><a href="/bam/businessFormEditList">· 공고별 양식등록</a></li>
+                               </c:if>
                             </ul>
-                        <li class="">
-                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
-                            <ul class="second_menu">
-                            	<li class="on"><a href="/bpm/businessPlanApplyMyList">· 사업계획서 조회</a></li>
-                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
-                            </ul>
+                       <c:if test="${member.user_auth == 0}">
+	                        <li class="">
+	                            <a href="/bpm/businessPlanApplyMyList">사업 계획서</a>
+	                            <ul class="second_menu">
+	                                <li class=""><a href="/bpm/businessPlanApplyMyList">· 접수내역 조회</a></li>
+	                            </ul>
+	                        </li>
+                        </c:if>
+                       <c:if test="${member.user_auth != 0}">
                         <li class="on">
                             <a href="/bpm/businessEvaluationMyList">사업 평가</a>
                             <ul class="second_menu">
-                                <li class=""><a href="/bpm/businessEvaluationMyList">· 평가내역 조회</a></li>
-                                <li class="on"><a href="/bem/businessEvaluationMyList">· 사업계획서 별 종합의견</a></li>
+                                <li class="on"><a href="/bem/businessEvaluationMyList">· 평가내역 조회</a></li>
                             </ul>
-                        </div>
-                        <c:if test="${member.user_auth == 2}">
+                            </li>
+                      </c:if>
+                    </ul>
+                </div>                        <c:if test="${member.user_auth == 2}">
                         <div class="cont">
                             <h2>종합의견</h2>
 
@@ -157,21 +188,24 @@
                                             <thead>
                                                 <tr>
                                                     <th class="br_th" scope="col" rowspan="2">평가위원</th>
-                                                    <th class="br_th" scope="col" colspan="6">평가 항목별 점수</th>
+                                                    <th class="br_th" scope="col" colspan="8">평가 항목별 점수</th>
                                                     <th scope="col" colspan="2">종합</th>
                                                 </tr>
                                                 <tr>
-                                                    <th class="br_th" scope="col">추진 계획 타당성</th>
-                                                    <th class="br_th" scope="col">지원 필요성 및 추진 역량</th>
+                                                 <c:forEach items="${ancInfo}" var="ancInfo">
+                                                    <th class="br_th" scope="col">${ancInfo.EVAL_FORM_TITLE}<br>(${ancInfo.EVAL_FORM_SCORE})</th>
+                                                 </c:forEach>
+                                                 	<th class="br_th" scope="col">평균</th>
+                                                 	<th scope="col">평가의견</th>
+                                                </tr>
+                                            </thead>
+                                            <!--  <th class="br_th" scope="col">지원 필요성 및 추진 역량</th>
                                                     <th class="br_th" scope="col">사업 지원의 기대 효과</th>
                                                     <th class="br_th" scope="col">사업비 구성의 적정성 및 합리성</th>
                                                     <th class="br_th" scope="col">지원 분야의 수행기관 매칭 적합성 및 관련 실적</th>
-                                                    <th class="br_th" scope="col">참여 인력의 업무수행 능력 및 역량</th>
+                                                    <th class="br_th" scope="col">참여인력의 업무수행 능력 및 역량</th>
                                                     <th class="br_th" scope="col">평균</th>
-                                                    <th scope="col">평가의견</th>
-                                                    
-                                                </tr>
-                                            </thead>
+                                                    <th scope="col">평가의견</th> -->
                                             <tbody>
                                     <c:forEach items="${businessEvaluationList}" var="businessEvaluationList">
 												<tr class=" ">
@@ -182,21 +216,23 @@
 													<td style="text-align: center">${businessEvaluationList.eval_score4}</td>
 													<td style="text-align: center">${businessEvaluationList.eval_score5}</td>
 													<td style="text-align: center">${businessEvaluationList.eval_score6}</td>
+													<td style="text-align: center">${businessEvaluationList.eval_score7}</td>
+													<td style="text-align: center">${businessEvaluationList.eval_score8}</td>
 													<td class="totalscore" style="text-align: center">${businessEvaluationList.eval_totalscore}</td>
 													<td><button class="btn" type="button" onclick="open_pop('${businessEvaluationList.eval_opinion}')">평가의견</button></td>
 												</tr>
 									</c:forEach>
                                           
                                                 <tr>
-                                                    <th class="br_th" scope="col" colspan="7">평균</th>
+                                                    <th class="br_th" scope="col" colspan="9">평균</th>
                                                     <th id="average" class="br_th" scope="col" colspan="2"></th>
                                                 </tr>
                                                 <tr>
-                                                    <th class="br_th" scope="col" colspan="7">환산점수</th>
+                                                    <th class="br_th" scope="col" colspan="9">환산점수</th>
                                                     <th id="convertedaverage" class="br_th" scope="col" colspan="2"></th>
                                                 </tr>
                                             	<tr>
-                                            		<th class="br_th" scope="col" colspan="7">평가위원장 </th>
+                                            		<th class="br_th" scope="col" colspan="9">평가위원장 </th>
                                            		<th  class="br_th" scope="col" colspan="2"><span style="float: right;">(서명)</span></th>
                                             	</tr>
                                             		
@@ -204,6 +240,8 @@
                                     
                                     </table>
                                     <p class="sum">*환산점수 : 총점 - (최고점 + 최저점)</p>
+                            		</div>        
+              					</div>                      
                                     <!-- The Modal -->
 			<div id="opinionmodal" class="modal">
 
@@ -223,13 +261,12 @@
 				</div>
 			<!--End Modal-->
 		</div>
-								</div>                                    
+							                                 
                                     <div class="btn_wrap text-right same mt_20 d-flex justify-between">
                                         <button type="button" class="cancel">목록</button>
                                         <button type="button" class="normal" onclick="printFn()">인쇄</button>
                                     </div>
-                                </div>
-                            
+                                        
                             </div>    
                         </div>
                     </div>

@@ -18,6 +18,10 @@ public class BusinessEvaluationVO extends Criteria{
 	private String eval_score4;
 	private String eval_score5;
 	private String eval_score6;
+	private String eval_score7;
+	private String eval_score8;
+	private String writer_id;
+	
 	private String eval_totalscore;
 	private String eval_opinion;
 	private String eval_writer;
@@ -25,7 +29,24 @@ public class BusinessEvaluationVO extends Criteria{
 	private Date reg_date;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date mod_date;
-	
+	public String getWrite_id() {
+		return writer_id;
+	}
+	public void setWrite_id(String write_id) {
+		this.writer_id = write_id;
+	}
+	public String getEval_score7() {
+		return eval_score7;
+	}
+	public void setEval_score7(String eval_score7) {
+		this.eval_score7 = eval_score7;
+	}
+	public String getEval_score8() {
+		return eval_score8;
+	}
+	public void setEval_score8(String eval_score8) {
+		this.eval_score8 = eval_score8;
+	}
 	public int getBpm_bplan_idx() {
 		return bpm_bplan_idx;
 	}

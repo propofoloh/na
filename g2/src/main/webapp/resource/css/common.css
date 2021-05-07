@@ -36,6 +36,7 @@ header .insideArea{-ms-display: flexbox;display:flex;display: -moz-box;display: 
 .cont > .inner.box{padding:35px 15px;border:1px solid #ccc;}
 .tablebox {border: 1px solid #ccc; margin-bottom : 10px;}
 .tablebox th {border: 1px solid #ccc; padding: 5px; font-weight: bold;vertical-align: middle;}
+.value {height: 45px;}
 .boldtext {background-color: #E6E6E6}
 /* margin */
 .mt15 {margin-top:15px;}
@@ -89,3 +90,6 @@ header .insideArea{-ms-display: flexbox;display:flex;display: -moz-box;display: 
 .sub_menu a:hover{background:#ab3161}
 .sub_menu.ls a{padding:3px 6px;letter-spacing: -0.1em;}
 .gnb > ul > li.on .sub_menu{overflow:visible;height:auto;transition:all .1s  ease-in-out;opacity:1;transform:translateY(16px); }
+
+
+

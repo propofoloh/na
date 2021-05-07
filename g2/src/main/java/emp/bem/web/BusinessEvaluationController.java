@@ -135,14 +135,13 @@ public class BusinessEvaluationController {
 
 	//사업계획서 종합의견 조회
 	@RequestMapping(value = "/businessEvaluationOpinion", method = RequestMethod.GET)
-	public String opinion(Model model, @ModelAttribute("scri") SearchCriteria scri,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx) throws Exception{
+	public String opinion(Model model, @ModelAttribute("scri") SearchCriteria scri,@RequestParam("bam_anc_idx") int bam_anc_idx,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx) throws Exception{
 		logger.info("businessEvaluationOpinion");
 		
 		Map<String, Integer> paramMap = new HashMap<String, Integer>();
-		paramMap.put("rowStart", scri.getRowStart());
-		paramMap.put("rowEnd", scri.getRowEnd());
 		paramMap.put("bpm_bplan_idx",bpm_bplan_idx);
 		model.addAttribute("businessEvaluationList", service.businessEvaluationList(paramMap));
+		model.addAttribute("ancInfo",service.businessEvaluationFormList(bam_anc_idx));
 		
 		return "bem/businessEvaluationOpinion";
 	}

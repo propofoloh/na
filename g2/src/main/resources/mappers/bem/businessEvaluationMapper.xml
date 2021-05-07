@@ -16,8 +16,11 @@
 	   					      , EVAL_SCORE4
 	   					      , EVAL_SCORE5
 	   					      , EVAL_SCORE6
+	   					      , EVAL_SCORE7
+	   					      , EVAL_SCORE8
 	   					      , EVAL_TOTALSCORE	
 	   					      , EVAL_WRITER
+	   					      , WRITER_ID
 	   					      , REG_DATE
 	   					      , BPM_BPLAN_IDX
 	   					   
@@ -31,8 +34,11 @@
 	                 		  , #{eval_score4}
 	                 		  , #{eval_score5}
 	                 		  , #{eval_score6}
+	                 		  , #{eval_score7}
+	                 		  , #{eval_score8}
 	                 		  , #{eval_totalscore}
 	                 		  , #{eval_writer}
+	                 		  , #{writer_id}
 	                 		  , SYSDATE
 	                 		  , #{bpm_bplan_idx}
 	                 		    )
@@ -42,7 +48,6 @@
    
 <select id="businessEvaluationList" resultType="emp.bem.vo.BusinessEvaluationVO" parameterType="hashMap">
 		SELECT 		      BEM_BEVAL_IDX 
-					
 	   					      , BOARD_IDX 
 	   					      , EVAL_OPINION
 	   					      , EVAL_SCORE1
@@ -51,36 +56,18 @@
 	   					      , EVAL_SCORE4
 	   					      , EVAL_SCORE5
 	   					      , EVAL_SCORE6
+	   					      , EVAL_SCORE7
+	   					      , EVAL_SCORE8
 	   					      , EVAL_TOTALSCORE	
 	   					      , EVAL_WRITER
+	   					      , WRITER_ID
 	   					      , BPM_BPLAN_IDX
 	   					      , REG_DATE
 	   					      , MOD_DATE
-		 FROM ( 
-		        SELECT BEM_BEVAL_IDX 
-		        
-	   					      , BOARD_IDX 
-	   					      , EVAL_OPINION
-	   					      , EVAL_SCORE1
-	   					      , EVAL_SCORE2
-	   					      , EVAL_SCORE3
-	   					      , EVAL_SCORE4
-	   					      , EVAL_SCORE5
-	   					      , EVAL_SCORE6
-	   					      , EVAL_TOTALSCORE	
-	   					      , EVAL_WRITER
-	   					      , BPM_BPLAN_IDX
-	   					      , REG_DATE
-	   					      , MOD_DATE
-		               ,ROW_NUMBER() OVER(ORDER BY BEM_BEVAL_IDX DESC) AS RNUM
-		         FROM EMP_BEM_BEVAL
-		         WHERE 1=1 
-		         AND BPM_BPLAN_IDX = #{bpm_bplan_idx}
-		         AND DEL_YN = 'N'
-		         	<include refid="search"></include>
-		                       ) MP
-		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-		ORDER BY BEM_BEVAL_IDX DESC
+		 FROM EMP_BEM_BEVAL
+		 WHERE 1=1 
+		 AND DEL_YN = 'N'
+	     ORDER BY BEM_BEVAL_IDX DESC
 	</select>
 		<select id="businessEvaluationDetail" parameterType="int" resultType="emp.bem.vo.BusinessEvaluationVO">
 		SELECT	BEM_BEVAL_IDX 
@@ -91,6 +78,9 @@
 	   					      , EVAL_SCORE4
 	   					      , EVAL_SCORE5
 	   					      , EVAL_SCORE6
+	   					      , EVAL_SCORE7
+	   					      , EVAL_SCORE8
+	   					      , WRITER_ID
 	   					      , EVAL_TOTALSCORE
 	   					      , TO_CHAR(REG_DATE,'YYYY.MM.DD')
 	   					      , EVAL_WRITER
@@ -108,6 +98,8 @@
 			   EVAL_SCORE4   =   #{eval_score4},
 			   EVAL_SCORE5   =   #{eval_score5},
 			   EVAL_SCORE6   =   #{eval_score6},
+			   EVAL_SCORE7   =   #{eval_score7},
+			   EVAL_SCORE8   =   #{eval_score8},
 			   EVAL_TOTALSCORE = #{eval_totalscore},
 		   	   EVAL_OPINION  =   #{eval_opinion}
 		 WHERE BEM_BEVAL_IDX = #{bem_beval_idx} 
@@ -190,34 +182,18 @@
 	   					      , EVAL_SCORE4
 	   					      , EVAL_SCORE5
 	   					      , EVAL_SCORE6
+	   					      , EVAL_SCORE7
+	   					      , EVAL_SCORE8
 	   					      , EVAL_TOTALSCORE	
 	   					      , EVAL_WRITER
+	   					      , WRITER_ID
 	   					      , BPM_BPLAN_IDX
 	   					      , REG_DATE
 	   					      , MOD_DATE
-		 FROM ( 
-		        SELECT BEM_BEVAL_IDX 
-	   					      , BOARD_IDX 
-	   					      , EVAL_OPINION
-	   					      , EVAL_SCORE1
-	   					      , EVAL_SCORE2
-	   					      , EVAL_SCORE3
-	   					      , EVAL_SCORE4
-	   					      , EVAL_SCORE5
-	   					      , EVAL_SCORE6
-	   					      , EVAL_TOTALSCORE	
-	   					      , EVAL_WRITER
-	   					      , BPM_BPLAN_IDX
-	   					      , REG_DATE
-	   					      , MOD_DATE
-		               ,ROW_NUMBER() OVER(ORDER BY BEM_BEVAL_IDX DESC) AS RNUM
-		         FROM EMP_BEM_BEVAL
-		         WHERE 1=1 
-		         AND WRITER_ID = #{user_id}
-		         AND DEL_YN = 'N'
-		         	<include refid="search"></include>
-		                       ) MP
-		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		 FROM EMP_BEM_BEVAL
+		 WHERE 1=1
+		 AND DEL_YN = 'N'
+		 AND WRITER_ID = #{user_id}
 		ORDER BY BEM_BEVAL_IDX DESC
 	</select>
     
@@ -231,7 +207,7 @@
 							  WHERE 1=1
 							  AND DEL_YN = 'N'
 							  AND BAM_ANC_IDX = #{bam_anc_idx}
-	
+							  ORDER BY BEM_BEVAL_FORM_IDX ASC	
 	</select>
 	
 </mapper>
