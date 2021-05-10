@@ -40,6 +40,19 @@
  	     pWin.close(); //인쇄가  되던가 취소가 되면 팝업창을 닫습니다.
    	
  	}
+ 	
+ 	$(document).ready(function(){
+ 		  	
+ 		$(".eval_score1").text(${read.eval_score1})
+ 		$(".eval_score2").text(${read.eval_score2})
+ 		$(".eval_score3").text(${read.eval_score3})
+ 		$(".eval_score4").text(${read.eval_score4})
+ 		$(".eval_score5").text(${read.eval_score5})
+ 		$(".eval_score6").text(${read.eval_score6})
+ 		$(".eval_score7").text(${read.eval_score7})
+ 		$(".eval_score8").text(${read.eval_score8})
+
+ 	})
  
  
  </script>
@@ -144,7 +157,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
                                 <table class="thead_gray mt_10">
                                     <colgroup>
                                         <col style="width:7%">
@@ -163,54 +175,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th rowspan="6" class="f_bold">신청기업</th>
-                                            <td rowspan="2" class="type ">추진계획타당성</td>
-                                            <td>사전준비도 및 사업목표의 명확성</td>
-                                            <td rowspan="2" class="score f_bold">20</td>
-                                            <td rowspan="2" class="f_bold va_m ta_c">${read.eval_score1}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>사업 추진방안의 타당성</td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2" class="type">지원 필요성 및 추진역량</td>
-                                            <td>지원의 필요성 및 신청지원 분야의 적합성</td>
-                                            <td rowspan="2" class="score f_bold">20</td>
-                                            <td rowspan="2" class="f_bold va_m ta_c">${read.eval_score2}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>사업추진역량 및 의지</td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2" class="type">지원 효과성 및 사업비 적정성</td>
-                                            <td>사업지원의 기대효과</td>
-                                            <td rowspan="" class="score f_bold ta_c" >15</td>
-                                            <td rowspan="" class="f_bold va_m ta_c">${read.eval_score3}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>사업비 구성의 적정성 및 합리성</td>
-                                            <td class="score f_bold ">15</td>
-                                            <td class="score f_bold ta_c">${read.eval_score4}</td>
-                                        </tr>
-                                        <tr>
-                                            <th rowspan="2" class="f_bold">수행기관</th>
-                                            <td rowspan="2" class="type">관련 분야 전문성 및 역량</td>
-                                            <td>지원분야의 수행기관 매칭 적합성 및 관련 실적</td>
-                                            <td rowspan="" class="score f_bold">15</td>
-                                            <td rowspan="" class="f_bold ta_c va_m">${read.eval_score5}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>참여인력의 업무수행 능력 및 역량</td>
-                                            <td class="score f_bold">10</td>
-                                            <td class="ta_c f_bold">${read.eval_score6}</td>
-                                        </tr>
-                                        <tr class="total">
-                                            <td colspan="3">합계</td>
+                                    <c:forEach items="${ancInfo}" var="ancInfo" varStatus="status" >
+                                    		 <tr>
+                                    		 	<c:if test="${status.index == 0}">
+	                                            	<th rowspan="6" class="f_bold">신청기업</th>
+	                                            </c:if>
+	                                            <c:if test="${status.index == 6}">
+	                                            	<th rowspan="6" class="f_bold">수행기관</th>
+	                                            </c:if>
+	                                            <td class="type">${ancInfo.EVAL_FORM_TITLE}</td>
+	                                            <td >${ancInfo.EVAL_FORM_ITEM}</td>
+	                                            <td class="score" >${ancInfo.EVAL_FORM_SCORE}</td>
+	                                            <td id="eval_score"class="eval_score${status.index+1}"></td>   
+                                        </c:forEach>	
+                                        	</tr>
+                                    	
+                                    	</tbody>
+                                    	<tr class="total">
+                                            <td colspan="	3">합계</td>
                                             <td>100</td>
                                             <td class=""><span class="color_red f_bold">${read.eval_totalscore}</span></td>
-                                        </tr>
-                                    </tbody>
+                                        </tr> 
+                                        
+                                    
                                 </table>
                                 <table>
                                     <colgroup>
@@ -234,11 +221,9 @@
                                 </table>
                         		</div>
                             </div>
-						
-                            
                                 <div class="btn_wrap text-right same mt_20 justify-between">
                                 <button type="button" class="cancel" style="float: left;">목록</button>
-                                <button type="button" class="normal"  onclick="">수정</button>
+                                <button type="button" class="normal"  onclick="location.href='/bem/businessEvaluationUpdate?bem_beval_idx=${read.bem_beval_idx}&bpm_bplan_idx=${param.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'"> 수정</button>
                                 <button type="button" class="normal"  onclick="printFn()">인쇄</button>
                             </div>
                         </div>

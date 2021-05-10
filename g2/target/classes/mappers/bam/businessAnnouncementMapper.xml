@@ -234,5 +234,15 @@ SELECT      FILE_IDX,
    
    </insert>
    
+   <update id="businessAnnouncementOldUpdate">
+   UPDATE EMP_BAM_ANC SET
+   					DEL_YN ='Y'
+   					
+   				WHERE
+   				<![CDATA[
+   				 ANC_END_DT < SYSDATE
+   				 ]]>
+   </update>
+   
 </mapper>
-	
+

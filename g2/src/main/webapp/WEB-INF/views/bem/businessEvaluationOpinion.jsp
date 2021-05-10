@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="../../resource/css/reset.css">
     <link rel="stylesheet" href="../../resource/css/common.css">
     <link rel="stylesheet" href="../../resource/css/sub.css">
-    <link rel="stylesheet" href="../../resource/css/hj.css">
     <link rel="stylesheet" href="../../resource/css/board.css">
 
 	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
@@ -47,7 +46,7 @@
          			}
                 	Sum = Sum + Number($(value).text());
                 	average = (Sum/(idx+1)).toFixed(2);
-                	convertedaverage = (Sum-(Number(Max+Min))) / (idx-1)
+                	convertedaverage = (Sum-(Max+Min)) / (idx-1)
                 	
                 	 $('#average').text(average)
                      $('#convertedaverage').text(convertedaverage.toFixed(2));
@@ -164,7 +163,8 @@
                             </li>
                       </c:if>
                     </ul>
-                </div>                        <c:if test="${member.user_auth == 2}">
+                </div>                        
+                <c:if test="${member.user_auth == 2}">
                         <div class="cont">
                             <h2>종합의견</h2>
 
@@ -175,13 +175,15 @@
                                 
                                     <table summary="종합의견" class="board-basic horizon notice list opinion">
                                             <colgroup>
-                                                <col style="width:12%">
-                                                <col style="width:11%">
-                                                <col style="width:11%">
-                                                <col style="width:11%">
-                                                <col style="width:11%">
-                                                <col style="width:11%">
-                                                <col style="width:11%">
+                                                <col style="width:8%">
+                                                <col style="width:7%">
+                                                <col style="width:7%">
+                                                <col style="width:7%">
+                                                <col style="width:7%">
+                                                <col style="width:7%">
+                                                <col style="width:7%">
+                                                <col style="width:7%">
+                                                <col style="width:7%">
                                                 <col style="width:auto">
                                                 <col style="width:auto">
                                             </colgroup>
@@ -198,17 +200,9 @@
                                                  	<th class="br_th" scope="col">평균</th>
                                                  	<th scope="col">평가의견</th>
                                                 </tr>
-                                            </thead>
-                                            <!--  <th class="br_th" scope="col">지원 필요성 및 추진 역량</th>
-                                                    <th class="br_th" scope="col">사업 지원의 기대 효과</th>
-                                                    <th class="br_th" scope="col">사업비 구성의 적정성 및 합리성</th>
-                                                    <th class="br_th" scope="col">지원 분야의 수행기관 매칭 적합성 및 관련 실적</th>
-                                                    <th class="br_th" scope="col">참여인력의 업무수행 능력 및 역량</th>
-                                                    <th class="br_th" scope="col">평균</th>
-                                                    <th scope="col">평가의견</th> -->
-                                            <tbody>
-                                    <c:forEach items="${businessEvaluationList}" var="businessEvaluationList">
-												<tr class=" ">
+                                            </thead>          
+                                                <c:forEach items="${businessEvaluationList}" var="businessEvaluationList">
+												<tr class="">
 													<td style="text-align: center">${businessEvaluationList.eval_writer}</td>
 													<td style="text-align: center">${businessEvaluationList.eval_score1}</td>
 													<td style="text-align: center">${businessEvaluationList.eval_score2}</td>
@@ -221,7 +215,7 @@
 													<td class="totalscore" style="text-align: center">${businessEvaluationList.eval_totalscore}</td>
 													<td><button class="btn" type="button" onclick="open_pop('${businessEvaluationList.eval_opinion}')">평가의견</button></td>
 												</tr>
-									</c:forEach>
+												</c:forEach>
                                           
                                                 <tr>
                                                     <th class="br_th" scope="col" colspan="9">평균</th>

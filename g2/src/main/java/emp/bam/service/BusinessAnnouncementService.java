@@ -46,7 +46,8 @@ public interface BusinessAnnouncementService {
 		//사업 공고 평가위원 등록
 		public void businessAnnouncementMember(List<String> anc_member_id,List<String> anc_member_name, int bam_anc_idx) throws Exception;
 		
-		
+		//공고일자 만료된 사업공고 삭제
+		public void businessAnnouncementOldUpdate() throws Exception;
 		    
 		
 	}    

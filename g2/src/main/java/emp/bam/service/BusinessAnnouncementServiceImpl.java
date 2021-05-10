@@ -162,5 +162,9 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 			System.out.println((i+1)+"번쨰 데이터");
 		}
 	}
-
+		@Override
+		public void businessAnnouncementOldUpdate() throws Exception {
+			// TODO Auto-generated method stub
+			dao.businessAnnouncementOldUpdate();
+		}
 }

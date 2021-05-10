@@ -92,6 +92,7 @@ ul.tab li.on::before{position:absolute; top:-1px; left:-1px; width:calc(100% + 2
 .table_wrap table td.ta_c{text-align:center;}
 .table_wrap table tbody tr.total td{font-weight:bold; text-align:center;}
 .table_wrap table tbody tr td.score{text-align:center; vertical-align:middle;}
+.table_wrap table tbody tr td#eval_score{text-align:center; vertical-align:middle;}										
 .table_wrap table tbody tr td.type{vertical-align:middle;}
 .table_wrap table tbody tr td.sign span{display:inline-block; margin-right:20px;}
 .f_bold{font-weight:bold}

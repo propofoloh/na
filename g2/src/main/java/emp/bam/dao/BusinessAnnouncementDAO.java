@@ -57,5 +57,7 @@ public interface BusinessAnnouncementDAO {
 	//사업 공고 평가위원 등록
 	public void businessAnnouncementMember(Map<String,Object> paramMap) throws Exception;
 	
+	//공고일자 만료된 사업공고 삭제
+	public void businessAnnouncementOldUpdate() throws Exception;
 	
 }

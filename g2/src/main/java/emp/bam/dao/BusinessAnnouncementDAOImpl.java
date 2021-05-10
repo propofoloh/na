@@ -125,4 +125,9 @@ public class BusinessAnnouncementDAOImpl implements BusinessAnnouncementDAO {
 		// TODO Auto-generated method stub
 		sqlSession.update("businessAnnouncementMapper.businessPlanApplyEditUpdate",bam_anc_idx);
 	}
+	@Override
+	public void businessAnnouncementOldUpdate() throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update("businessAnnouncementMapper.businessAnnouncementOldUpdate");
+	}
 }

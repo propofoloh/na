@@ -244,7 +244,6 @@
                                             <td colspan="3">
                                                 <div class="opi">
                                                     <textarea name="eval_opinion" id="" cols="30" rows="10"></textarea>
-                                                    
                                                 </div>
                                             </td>
                                         </tr>

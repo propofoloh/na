@@ -132,7 +132,7 @@
                             <div class="inner">
                                 <div class="total">총 12570건</div>
                                 <div class="board-wrap respon notscroll manage">			
-                                
+                                <input type="hidden" name="bam_anc_idx" value ="${param.bam_anc_idx}">
                                     <table summary="사업안내 | 사업공고 | 사업공지" class="board-basic horizon notice list dataroom notscroll ">
                                             
                                             <caption>사업안내 | 사업공고 | 사업공지에 순번, 사업명, 작성자, 등록일을 나타낸  테이블</caption>				
@@ -152,11 +152,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+								
 								 <c:forEach items="${businessEvaluationList}" var = "businessEvaluationList">
 										<tr>
+									
 											<td style="text-align: center">
-												<a href="/bem/businessEvaluationDetail?bem_beval_idx=${businessEvaluationList.bem_beval_idx}&bpm_bplan_idx=${businessEvaluationList.bpm_bplan_idx}"><c:out value="${businessEvaluationList.eval_writer}" /></a>
+												<a href="/bem/businessEvaluationDetail?bem_beval_idx=${businessEvaluationList.bem_beval_idx}&bpm_bplan_idx=${businessEvaluationList.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}"><c:out value="${businessEvaluationList.eval_writer}" /></a>
 											</td>
 											<td style="text-align: center">${businessEvaluationList.eval_totalscore}</td>
 											<td style="text-align: center"><fmt:formatDate value="${businessEvaluationList.reg_date}" pattern="yyyy-MM-dd"/></td>
