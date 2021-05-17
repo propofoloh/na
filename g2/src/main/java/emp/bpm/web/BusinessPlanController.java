@@ -143,7 +143,7 @@ public class BusinessPlanController {
 
 		// byte[]
 		byte fileByte[] = org.apache.commons.io.FileUtils
-				.readFileToByteArray(new File("C:\\mp\\file\\" + storedFileName));
+				.readFileToByteArray(new File("/home/ubuntu/mp/file/" + storedFileName));
 
 		response.setContentType("application/octet-stream");
 		response.setContentLength(fileByte.length);

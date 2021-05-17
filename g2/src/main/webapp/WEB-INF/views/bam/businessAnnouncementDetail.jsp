@@ -112,7 +112,7 @@ function fn_fileDownload(fileidx){
                                 <div class="view">
                                     <div class="view-head">
                                         <div class="title">
-                                            <div class="txt">2021년도 한-캐나다 산학연 공동연구사업 신규과제 공모</div>
+                                            <div class="txt">{read.anc_title}</div>
                                         </div>
                                         <div class="infos">
                                             <div class="info"><span class="title">담당자</span> <span class="content">${read.writer}</span></div>

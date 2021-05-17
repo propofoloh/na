@@ -16,7 +16,8 @@ import emp.bam.vo.BusinessAnnouncementVO;
 
 @Component("bamfileUtils")
 public class FileUtils {
-	private static final String filePath = "C:\\mp\\file\\"; // 파일이 저장될 위치
+	
+	private static final String filePath = "/home/ubuntu/mp/file/"; // 파일이 저장될 위치
 	
 	public List<Map<String, Object>> parseInsertFileInfo(BusinessAnnouncementVO BusinessAnnouncementVO, 
 			MultipartHttpServletRequest mpRequest) throws Exception{

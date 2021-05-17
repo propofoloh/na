@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -16,8 +18,9 @@ import emp.bpm.vo.BusinessPlanVO;
 
 @Component("bpmFileUtils")
 public class FileUtils {
-	private static final String filePath = "C:\\mp\\file\\"; // 파일이 저장될 위치
 	
+	  private static final String filePath = "/home/ubuntu/mp/file/";	
+	 
 	public List<Map<String, Object>> parseInsertFileInfo(BusinessPlanVO businessPlanVO, 
 			MultipartHttpServletRequest mpRequest) throws Exception{
 		

@@ -53,28 +53,27 @@
  		$(".eval_score8").val(${read.eval_score8})
 
  		
- 		 $('#eval_score').on('keyup',function(){
- 			 var Sum = 0;
-            $('#eval_score').each(function(idx,value){ 
+ 		 $('input').on('keyup',function(){
+ 			var Sum = 0;
+ 			  $('input').each(function(idx,value){ 
                 if(!isNaN(this.value)&&this.value.length!=0){
 	                	Sum+=Number($(value).val());
 	                	if(Sum <= 100)
-	                    	$('color_red f_bold').text(Sum);
+	                    	$('#eval_totalscore').text(Sum);
 	                	else if(Sum > 100){
-            				$('color_red f_bold').text(Sum-Number($(value).val()));
+            				$('#eval_totalscore').text(Sum-Number($(value).val()));
             				this.value=null;
             				this.focus();
             				return ;
 	                	}
-            			
-            		}	
-            });
+            		}
+ 			  
+            })
             if(Sum > 100) 
             	alert("평점이 100점을 넘을수 없습니다.")
-         });
- 		 
- 		
- 	})
+         })
+ 		  		
+ 	});
  
  
  </script>
@@ -211,10 +210,9 @@
 	                                            <td><input class="eval_score${status.index+1}"  id="eval_score" type="number" name="eval_score${status.index+1}" value=""></td>   
                                         </c:forEach>	
                                         	</tr>
-                                    	
                                     	</tbody>
                                     	<tr class="total">
-                                            <td colspan="	3">합계</td>
+                                            <td colspan="3">합계</td>
                                             <td>100</td>
                                             <td class=""><span id="eval_totalscore" class="color_red f_bold">${read.eval_totalscore}</span></td>
                                         </tr> 
