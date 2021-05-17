@@ -36,8 +36,8 @@
 		 var convertedaverage = 0;
         $('.totalscore').each(function(idx,value){
         			if(idx == 0){
-        				Max = $(value).text()
-        				Min = $(value).text()
+        				Max = Number($(value).text())
+        				Min = Number($(value).text())
         			} 
          			if($(value).text() > Max){
          				Max = Number($(value).text())

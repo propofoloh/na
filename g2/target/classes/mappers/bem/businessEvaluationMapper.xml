@@ -66,6 +66,7 @@
 	   					      , MOD_DATE
 		 FROM EMP_BEM_BEVAL
 		 WHERE 1=1 
+		 AND BPM_BPLAN_IDX = #{bpm_bplan_idx}
 		 AND DEL_YN = 'N'
 	     ORDER BY BEM_BEVAL_IDX DESC
 	</select>

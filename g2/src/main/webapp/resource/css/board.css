@@ -39,6 +39,8 @@
 .board-basic.horizon.dataroom td.deadline  {color:#888888;text-align: center;font-weight:500;}
 .board-basic.horizon.dataroom td.newspaper  {color:#ff8f00;text-align: center;font-weight:500;}
 .board-basic.horizon.dataroom td.broadcast  {color:#673ab7;text-align: center;font-weight:500;}
+
+
 .board-basic.horizon.dataroom td:nth-child(2) a {display: inline-block;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;width: 600px;}
 .board-basic.horizon.dataroom td.al {text-align: left;}
 .board-basic.horizon.dataroom td.al a {-ms-display: flexbox;display: flex;display: -moz-box; display: -ms-flexbox; display: -webkit-flex;justify-content: flex-start; align-items: center;width: 800px;height: auto;overflow: hidden;}
@@ -66,6 +68,10 @@
 .board_btn_wrap.right {float:right;margin-top:20px;}
 .board_btn_wrap.right button {width:30%; float:right;}
 .board_btn_wrap.right button + button {margin-left:20px;}
+/* */
+#evaluatorList .evalrator { float:left; line-height: 43px;text-indent: 12px;margin-left : 15px; margin-right : 15px; height:40px; width: 89%;background-color: #f9f9f9;}
+#evaluatorList .box{width: 100%; height:40px; margin-bottom: 5px;}
+td .box{width: 100%; height:40px;margin-bottom: 5px;}
 /* view */
 .m-board {
     font-family: "NotoSansRN";

@@ -192,7 +192,8 @@
                                     </tbody>
                                 </table>
 							<form action="/bem/businessEvaluation" method="post">
-							<input type="hidden" name ="bpm_bplan_idx" value="${param.bpm_bplan_idx}"> 
+							<input type="hidden" name ="bpm_bplan_idx" value="${param.bpm_bplan_idx}">
+							<input type="hidden" name ="bam_anc_idx" value="${param.bam_anc_idx}">  
 							<input type="hidden" name ="write_id" value="${member.user_id}"> 
                                 <table class="thead_gray">
                                     <colgroup>

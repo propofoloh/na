@@ -15,9 +15,9 @@ public class BusinessAnnouncementVO {
 	private String bplan_form_chk;
 	private String eval_form_chk;
 	
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date anc_begin_dt;
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date anc_end_dt;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date reg_date;

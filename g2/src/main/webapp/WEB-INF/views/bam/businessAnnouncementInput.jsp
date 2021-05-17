@@ -21,7 +21,24 @@
 </head>
 <script type="text/javascript">
 $(document).ready(function(){
+	$('#submit_Btn').click(function(){
 	
+		if($('#anc_title').val() == ""){
+			alert("제목을 입력해 주세요")
+			return 0;
+		}else if($('#anc_remark').val() == ""){
+			alert("내용을 입력해주세요")
+			return 0;
+		} else if($('#datepicker').val() == ""){
+			alert("공고시작일을 선택해주세요")
+			return 0;
+		}else if($('#datepicker2').val() == ""){
+			alert("공고종료일 선택해주세요")
+			return 0;
+		}else
+			$('#writeForm').submit();
+		
+	})
 	var memberInfo = new Array();
 	fn_addFile();
 	$('input[type=checkbox]').click(function(){
@@ -63,7 +80,7 @@ $(document).ready(function(){
 			
 					
 				$.each(memberArr, function(index,item){
-					$('#evaluatorList').append('<span>'+memberArr[index]+'</span>') ;
+					$('#evaluatorList').append("<div class='box'><div class='evalrator'>"+memberArr[index]+'</div>'+"<button class='filedel'type='button' style='float:right;' id='evalDelBtn'>"+"삭제"+"</button></div>");
 				});
 				
 				if(arrId.length > 1){
@@ -75,7 +92,7 @@ $(document).ready(function(){
 				
 				if(arrId.length > 1){
 				$.each(arrName, function(index,item){
-					$('#evaluatorList').append("<input type='hidden' name='anc_member_name' value='"+arrName[index]+"'>") ;
+					$('#evaluatorList').append("<input type='hidden'name='anc_member_name' value='"+arrName[index]+"'>") ;
 				});
 				}else
 					$('#evaluatorList').append("<input type='hidden' name='anc_member_name' value='"+arrName[0]+"'>") ;
@@ -83,7 +100,7 @@ $(document).ready(function(){
 			})
 			
 	})
-	 
+	 //<div id='del_idx"+index+"'>
 	/* var formdata = $('#writeForm')[0]; */
 
 });
@@ -101,10 +118,17 @@ function fn_addFile(){
 	$("#fileAdd_btn").on("click", function(){
 		$("#fileIndex").append("<div id='fileAddDiv'><input class='file' style='padding-bottom:5px' data-show-preview='false' type='file' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button class='filedel'type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
 	});
+	
 	$(document).on("click","#fileDelBtn", function(){
 		$(this).parent().remove();
 		
 	});
+	
+	$(document).on("click","#evalDelBtn", function(){
+		$(this).parent().remove();
+		
+	});
+	
 	
 }
 </script>
@@ -193,7 +217,7 @@ function fn_addFile(){
                         </div>
                     <div class="inner">
                         <div class="board-wrap">
-                        <form name="writeForm" method="post" action="/bam/businessAnnouncementInputWrite" enctype="multipart/form-data">
+                        <form id="writeForm" name="writeForm" method="post" action="/bam/businessAnnouncementInputWrite" enctype="multipart/form-data">
                             <table class="board-basic type-row">
                                 <caption>사업안내 | 사업공고 | 사업공지에  사업명, 작성자, 내용, 공고기간, 첨부파일을 나타낸  테이블</caption>
                                 <colgroup>
@@ -204,7 +228,7 @@ function fn_addFile(){
                                     <tr>
                                         <th scope="row"><span>* </span>사업명</th>
                                         <td>
-                                            <input type="text" name="anc_title" id="anc_title" placeholder="제목을 입력하세요.">
+                                            <input type="text" name="anc_title" id="anc_title" value="" placeholder="제목을 입력하세요.">
                                         </td>
                                     </tr>
                                     <tr>
@@ -215,11 +239,12 @@ function fn_addFile(){
                                     </tr>
                                      <tr>
                                         <th scope="row"><span>* </span>평가원선택</th>
-                                        <td >
-                                            <button class="select_Evaluator" type="button" onClick="open_pop();">평가원선택</button>
-                                            <div id="evaluatorList">
+                                        <td>
+                                        	<div class="box">
+	                                            <button class="select_Evaluator" type="button" onClick="open_pop();">평가원선택</button></div>
+	                                            <div id="evaluatorList">
+	                                            </div>
                                             
-                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -255,7 +280,7 @@ function fn_addFile(){
                         
                         <div class="board_btn_wrap btn2 right">
                             <div class="btn_wrap">
-                            	 <button id="submit" type="submit" class="red">등록</button>
+                            	 <button id="submit_Btn" type="button" class="red">등록</button>
                             	 <button type="button" class="gray" onclick="window.location.href='/bam/businessAnnouncementList'">목록보기</button>
                             </div>
                         </div>
@@ -278,7 +303,11 @@ function fn_addFile(){
 								<th style="width: 60px; text-align: center;">아이디</th>
 							</tr>
 						</thead>
-						
+							<tr>
+								<td style="text-align: center;"><input type="checkbox" name="checkedUserId"/></td>
+								<td style="text-align: center;"id="user_name"><c:out value="선택안함" /></td>
+								<td style="text-align: center;"id="user_id"><c:out value="선택안함" /> </td>
+							</tr>
 						<c:forEach items="${memberList}" var = "memberList">
 							<tr>
 								<td style="text-align: center;"><input type="checkbox" name="checkedUserId"/></td>
@@ -310,8 +339,10 @@ function fn_addFile(){
         <script>
             $(function() {
                 $("#datepicker").datepicker({
+                	dateFormat: 'yy-mm-dd'
                 });
                 $("#datepicker2").datepicker({
+                	dateFormat: 'yy-mm-dd'
                 });
             });
 

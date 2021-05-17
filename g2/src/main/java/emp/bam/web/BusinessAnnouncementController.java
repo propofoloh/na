@@ -88,11 +88,9 @@ public class BusinessAnnouncementController {
 			MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception{
 		logger.info("businessAnnouncementInputWrite");
 		if(anc_member_id == null) anc_member_id.add("");
-		if(anc_member_name == null) anc_member_id.add("");
+		if(anc_member_name == null) anc_member_name.add("");
 		
 		service.write(businessAnnouncementVO, mpRequest);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@컨트롤러"+anc_member_id.get(0));
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@컨트롤러2"+anc_member_id.get(1));
 		int bam_anc_idx = businessAnnouncementVO.getBam_anc_idx();
 		service.businessAnnouncementMember(anc_member_id,anc_member_name,bam_anc_idx);
 		
@@ -162,13 +160,10 @@ public class BusinessAnnouncementController {
 			int bam_anc_idx=Integer.parseInt(Sbam_anc_idx);
 			service.businessEvaluationEdit(arrEval_form_title,arrEval_form_item,arrEval_form_score,bam_anc_idx);
 			
-			
 		}catch (Exception e) {
 			
 		}
-		 
-		
-	
+
 	}
 	@RequestMapping(value="/businessEvaluationEdit",method = RequestMethod.GET)
 	public void businessEvaluationEditView(@RequestParam(value = "bam_anc_idx") int bam_anc_idx,RedirectAttributes redirect) throws Exception{;
