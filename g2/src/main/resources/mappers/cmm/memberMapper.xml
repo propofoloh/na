@@ -77,7 +77,7 @@
 	<delete id="memberDelete">
 		DELETE FROM EMP_MEMBER
 		WHERE USER_ID = #{user_id}
-		 <!--  AND USER_PWD = #{userPwd} --> 
+		AND USER_PWD = #{user_pwd}
 	</delete>
 	
 	<!-- 패스워드 체크 -->

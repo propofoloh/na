@@ -28,13 +28,13 @@ public class MemberController {
 	@Inject
 	BCryptPasswordEncoder pwdEncoder;
 	
-	// 占쎌돳占쎌뜚揶쏉옙占쎌뿯 get
+	// �쉶�썝媛��엯 get
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void getRegister() throws Exception {
 		logger.info("get register");
 	}
 	
-	// 占쎌돳占쎌뜚揶쏉옙占쎌뿯 post
+	// �쉶�썝媛��엯 post
 	@RequestMapping(value = "/postregister", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo )throws Exception {
 		logger.info("post register");
@@ -54,19 +54,15 @@ public class MemberController {
 				return "redirect:/";
 	}
 	
-	// 嚥≪뮄�젃占쎌뵥 post
+	// 濡쒓렇�씤 post
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
 		logger.info("post login");
 	
-		
-		boolean pwdMatch = false;
 		session.getAttribute("member");
 		MemberVO login = service.login(vo);
-		
-		if(login != null)
-			pwdMatch = pwdEncoder.matches(vo.getUser_pwd() ,login.getUser_pwd());
-			
+		boolean pwdMatch = pwdEncoder.matches(vo.getUser_pwd() ,login.getUser_pwd());
+
 		if(login != null && pwdMatch == true) {
 			session.setAttribute("member", login);
 			return "redirect:/bam/businessAnnouncementList";
@@ -78,7 +74,7 @@ public class MemberController {
 	}
 	
 	
-	// 嚥≪뮄�젃占쎈툡占쎌뜍 post
+	// 濡쒓렇�븘�썐 post
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception{
 		
@@ -87,13 +83,13 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	// 占쎌돳占쎌뜚占쎌젟癰귨옙 占쎈땾占쎌젟 get
+	// �쉶�썝�젙蹂� �닔�젙 get
 	@RequestMapping(value="/memberManagement", method = RequestMethod.GET)
 	public String memberManagement() throws Exception{
 		return "cmm/memberManagement";
 	}
 	
-	// 占쎌돳占쎌뜚占쎌젟癰귨옙 占쎈땾占쎌젟  post
+	// �쉶�썝�젙蹂� �닔�젙  post
 	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
 	public String registerUpdate(MemberVO vo, HttpSession session) throws Exception{
 		
@@ -111,15 +107,27 @@ public class MemberController {
 		return "redirect:/cmm/login";
 	}
 	
-	// 占쎌돳占쎌뜚 占쎄퉱占쎈닚 get
+	// �쉶�썝 �깉�눜 get
 	@RequestMapping(value="/memberDeleteView", method = RequestMethod.GET)
 	public String memberDeleteView() throws Exception{
 		return "cmm/memberDeleteView";
 	}
 	
-	// 占쎌돳占쎌뜚 占쎄퉱占쎈닚 post
+	// �쉶�썝 �깉�눜 post
 	@RequestMapping(value="/memberDelete", method = RequestMethod.POST)
 	public String memberDelete(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
+		
+		// 세션에 있는 member를 가져와 member변수에 넣어줍니다.
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		// 세션에있는 비밀번호
+		String sessionPass = member.getUser_pwd();
+		// vo로 들어오는 비밀번호
+		String voPass = vo.getUser_pwd();
+		
+		if(!(sessionPass.equals(voPass))) {
+			rttr.addFlashAttribute("msg", false);
+			return "redirect:/cmm/memberDeleteView";
+		}
 		
 		service.memberDelete(vo);
 		session.invalidate();

@@ -12,7 +12,7 @@ public interface MemberService {
 	public MemberVO login(MemberVO vo) throws Exception;
 	//회원정보 수정
 	public void memberUpdate(MemberVO vo) throws Exception;
-	//회원정보 삭재
+	//회원정보 삭제
 	public void memberDelete(MemberVO vo) throws Exception;
 	//패스워드체크
 	public int passChk(MemberVO vo) throws Exception;

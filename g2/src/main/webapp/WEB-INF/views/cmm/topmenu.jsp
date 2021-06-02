@@ -59,6 +59,7 @@
 				<c:if test="${member != null}">
 			 		<p>[<span>${member.user_id}</span>]님, 안녕하세요!</p>
                		<p><img src="" alt=""></p>
+               		<a href="/cmm/memberDeleteView">마이페이지</a>
                 	<a href="/cmm/logout">로그아웃</a>
 				</c:if>
 				

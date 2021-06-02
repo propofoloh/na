@@ -215,6 +215,20 @@ public class BusinessAnnouncementController {
 				return "bam/businessFormEditList";
 				
 		}
+		
+		//관리자 페이지
+		@RequestMapping(value = "/businessAnnouncementDetail2", method = RequestMethod.GET)
+		public String businessAnnouncementDetail2(BusinessAnnouncementVO businessAnnouncementVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception {
+			logger.info("read");
+
+			model.addAttribute("read", service.businessAnnouncementDetail(businessAnnouncementVO.getBam_anc_idx()));
+			model.addAttribute("scri", scri);
+
+			
+			 List<Map<String, Object>> fileList =service.selectFileList(businessAnnouncementVO.getBam_anc_idx()); model.addAttribute("file",fileList);
+			 
+			return "bam/businessAnnouncementDetail2";
+		}
 }
 
 	
