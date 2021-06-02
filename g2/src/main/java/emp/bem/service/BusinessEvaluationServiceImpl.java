@@ -70,15 +70,21 @@ public class BusinessEvaluationServiceImpl implements BusinessEvaluationService 
 		
 	}
 	@Override
-	public List<BusinessEvaluationVO> businessEvaluationMyList(Map<String, Object> parmanMap) throws Exception {
+	public List<BusinessEvaluationVO> businessEvaluationMyList(Map<String, Object> paramMap) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.businessEvaluationMyList(parmanMap);
+		return dao.businessEvaluationMyList(paramMap);
 	}
 
 	@Override
 	public List<Map<String, Object>> businessEvaluationFormList(int bam_anc_idx) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.businessEvaluationFormList(bam_anc_idx);
+	}
+	
+	@Override
+	public boolean businessEvaluationOverLapChk(Map<String, Object> evalparam) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.businessEvaluationOverLapChk(evalparam);
 	}
 
 }

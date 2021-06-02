@@ -71,15 +71,21 @@ public class BusinessEvaluationDAOImpl implements BusinessEvaluationDAO {
 	}
 	
 	@Override
-	public List<BusinessEvaluationVO> businessEvaluationMyList(Map<String, Object> parmaMap) throws Exception {
+	public List<BusinessEvaluationVO> businessEvaluationMyList(Map<String, Object> paramMap) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("businessEvaluationMapper.businessEvaluationMyList",parmaMap);
+		return sqlSession.selectList("businessEvaluationMapper.businessEvaluationMyList",paramMap);
 	}
 	
 	@Override
 	public List<Map<String, Object>> businessEvaluationFormList(int bam_anc_idx) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("businessEvaluationMapper.businessEvaluationFormList",bam_anc_idx);
+	}
+	
+	@Override
+	public boolean businessEvaluationOverLapChk(Map<String, Object> evalparam) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("businessEvaluationMapper.businessEvaluationOverLapChk",evalparam);
 	}
 	
 }

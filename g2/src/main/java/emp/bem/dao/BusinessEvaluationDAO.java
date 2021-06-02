@@ -34,12 +34,13 @@ public interface BusinessEvaluationDAO {
 	public void boardHit(int bem_beval_idx) throws Exception;
 	
 	// 사업공고 리스트조회(사용자)
-	public List<BusinessEvaluationVO> businessEvaluationMyList(Map<String,Object> parmanMap) throws Exception;
+	public List<BusinessEvaluationVO> businessEvaluationMyList(Map<String,Object> paramMap) throws Exception;
 
 	//평가지표 양식 조회
 	public List<Map<String, Object>> businessEvaluationFormList(int bam_anc_idx) throws Exception;
 			
-
+	//평가지표 중복체크
+	public boolean businessEvaluationOverLapChk(Map<String,Object> evalparam) throws Exception;
 	    
 	
 }

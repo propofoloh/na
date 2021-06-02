@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import emp.bem.service.BusinessEvaluationService;
 import emp.bpm.service.BusinessPlanService;
 import emp.bpm.util.PageMaker;
 import emp.bpm.util.SearchCriteria;
@@ -38,6 +39,9 @@ public class BusinessPlanController {
 	
 	@Inject
 	BusinessPlanService service;
+	
+	@Inject
+	BusinessEvaluationService evalservice;
 
 
 
@@ -116,12 +120,18 @@ public class BusinessPlanController {
 	public String businessPlanApplyDetail(BusinessPlanVO businessPlanVO, @ModelAttribute("scri") SearchCriteria scri, Model model,RedirectAttributes redirect) throws Exception {
 		logger.info("businessPlanApplyDetail");
 		
+		Map<String,Object> evalparam = new HashMap();
+		evalparam.put("bpm_bplan_idx", businessPlanVO.getBpm_bplan_idx());
+		evalparam.put("writer_id", businessPlanVO.getWriter_id());
+		System.out.println("@@@@@@@@@@@@@@@@@@" +evalparam.get("bpm_bplan_idx"));
+		System.out.println("@@@@@@@@@@@@@@@@@@" +evalparam.get("writer_id"));
+		boolean result =  evalservice.businessEvaluationOverLapChk(evalparam);
+		
 		Map<String,Object> resultMap = service.businessPlanApplyForm(businessPlanVO.getBam_anc_idx());
 		
 		model.addAttribute("form",resultMap);
 		model.addAttribute("read", service.businessPlanApplyDetail(businessPlanVO.getBpm_bplan_idx()));
 		model.addAttribute("scri", scri);
-		
 		model.addAttribute("cost",service.businessPlanSelectCost(businessPlanVO.getBpm_bplan_idx()));
 		 
 		redirect.addAttribute("bam_anc_idx",businessPlanVO.getBpm_bplan_idx());
