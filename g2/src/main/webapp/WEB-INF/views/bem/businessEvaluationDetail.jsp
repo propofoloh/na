@@ -175,21 +175,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <tr>
+                                    	 <th rowspan="8" class="f_bold">신청기업</th>
                                     <c:forEach items="${ancInfo}" var="ancInfo" varStatus="status" >
-                                    		 <tr>
-                                    		 	<c:if test="${status.index == 0}">
-	                                            	<th rowspan="6" class="f_bold">신청기업</th>
-	                                            </c:if>
-	                                            <c:if test="${status.index == 6}">
-	                                            	<th rowspan="6" class="f_bold">수행기관</th>
-	                                            </c:if>
 	                                            <td class="type">${ancInfo.EVAL_FORM_TITLE}</td>
 	                                            <td >${ancInfo.EVAL_FORM_ITEM}</td>
 	                                            <td class="score" >${ancInfo.EVAL_FORM_SCORE}</td>
 	                                            <td id="eval_score"class="eval_score${status.index+1}"></td>   
-                                        </c:forEach>	
-                                        	</tr>
-                                    	
+	                                           </tr>
+                                        </c:forEach>
                                     	</tbody>
                                     	<tr class="total">
                                             <td colspan="	3">합계</td>

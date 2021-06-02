@@ -197,7 +197,7 @@
                                                  <c:forEach items="${ancInfo}" var="ancInfo">
                                                     <th class="br_th" scope="col">${ancInfo.EVAL_FORM_TITLE}<br>(${ancInfo.EVAL_FORM_SCORE})</th>
                                                  </c:forEach>
-                                                 	<th class="br_th" scope="col">평균</th>
+                                                 	<th class="br_th" scope="col">합계</th>
                                                  	<th scope="col">평가의견</th>
                                                 </tr>
                                             </thead>          
