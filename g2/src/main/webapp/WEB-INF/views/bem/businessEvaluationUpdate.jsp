@@ -43,25 +43,25 @@
  	
  	$(document).ready(function(){
  		  	
- 		$(".eval_score1").val(${read.eval_score1})
- 		$(".eval_score2").val(${read.eval_score2})
- 		$(".eval_score3").val(${read.eval_score3})
- 		$(".eval_score4").val(${read.eval_score4})
- 		$(".eval_score5").val(${read.eval_score5})
- 		$(".eval_score6").val(${read.eval_score6})
- 		$(".eval_score7").val(${read.eval_score7})
- 		$(".eval_score8").val(${read.eval_score8})
+ 		$("#eval_score1").val(${read.eval_score1})
+ 		$("#eval_score2").val(${read.eval_score2})
+ 		$("#eval_score3").val(${read.eval_score3})
+ 		$("#eval_score4").val(${read.eval_score4})
+ 		$("#eval_score5").val(${read.eval_score5})
+ 		$("#eval_score6").val(${read.eval_score6})
+ 		$("#eval_score7").val(${read.eval_score7})
+ 		$("#eval_score8").val(${read.eval_score8})
 
  		
- 		 $('input').on('keyup',function(){
+ 		 $('.eval_score').on('keyup',function(){
  			var Sum = 0;
- 			  $('input').each(function(idx,value){ 
+ 			  $('.eval_score').each(function(idx,value){ 
                 if(!isNaN(this.value)&&this.value.length!=0){
 	                	Sum+=Number($(value).val());
 	                	if(Sum <= 100)
-	                    	$('#eval_totalscore').text(Sum);
+	                    	$('#eval_totalscore').val(Sum);
 	                	else if(Sum > 100){
-            				$('#eval_totalscore').text(Sum-Number($(value).val()));
+            				$('#eval_totalscore').val(Sum-Number($(value).val()));
             				this.value=null;
             				this.focus();
             				return ;
@@ -178,6 +178,11 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                 <span>${read.eval_totalscore}</span>
+                            <form action="/bem/businessEvaluationUpdate" method="post">
+                            <input type="hidden" name ="bpm_bplan_idx" value="${param.bpm_bplan_idx}">
+							<input type="hidden" name ="bem_beval_idx" value="${param.bem_beval_idx}">
+							
                                 <table class="thead_gray mt_10">
                                     <colgroup>
                                         <col style="width:7%">
@@ -196,7 +201,6 @@
                                         </tr>
                                     </thead>
                                     
-                                   <form action="/bem/businessEvaluation" method="post">
                                     <tbody>
                                     <c:forEach items="${ancInfo}" var="ancInfo" varStatus="status" >
                                     		 <tr>
@@ -209,17 +213,19 @@
 	                                            <td class="type">${ancInfo.EVAL_FORM_TITLE}</td>
 	                                            <td >${ancInfo.EVAL_FORM_ITEM}</td>
 	                                            <td class="score" >${ancInfo.EVAL_FORM_SCORE}</td>
-	                                            <td><input class="eval_score${status.index+1}"  id="eval_score" type="number" name="eval_score${status.index+1}" value=""></td>   
+	                                            <td><input class="eval_score"  id="eval_score${status.index+1}" type="number" name="eval_score${status.index+1}" value=""></td>   
+                                        
                                         </c:forEach>	
                                         	</tr>
                                     	</tbody>
                                     	<tr class="total">
                                             <td colspan="3">합계</td>
                                             <td>100</td>
-                                            <td class=""><span id="eval_totalscore" class="color_red f_bold">${read.eval_totalscore}</span></td>
+                                            <td><input id="eval_totalscore" name="eval_totalscore" class="color_red f_bold" value="${read.eval_totalscore}"></td>
                                         </tr> 
-                                    
+                                   
                                 </table>
+                                </form>
                                 <table>
                                     <colgroup>
                                         <col style="width:12%">
@@ -241,14 +247,18 @@
                                             <td class="ta_r f_bold sign"><span class="f_bold">${read.eval_writer}</span>(서명)</td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                    
+                                </table>  
                         		</div>
                             </div>
+                			            
                                 <div class="btn_wrap text-right same mt_20 justify-between">
                                 <button type="button" class="cancel" style="float: left;">목록</button>
-                                <button type="button" class="normal"  onclick="location.href='/bem/businessEvaluationUpdate&bam_anc_idx=${param.bam_anc_idx}'"> 수정</button>
+                                <button type="submit" class="normal" > 수정</button>
                                 <button type="button" class="normal"  onclick="printFn()">인쇄</button>
                             </div>
+                
+                       
                         </div>
                     </div>
                 </section>
