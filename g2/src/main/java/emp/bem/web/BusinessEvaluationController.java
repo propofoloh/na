@@ -42,7 +42,7 @@ public class BusinessEvaluationController {
 	BusinessAnnouncementService ancService;
 
 
-	//사업계획서 평가지표 목록 조회
+	//�궗�뾽怨꾪쉷�꽌 �룊媛�吏��몴 紐⑸줉 議고쉶
 	@RequestMapping(value = "/businessEvaluationList", method = RequestMethod.GET)
 	public String evaluationList(Model model, @RequestParam("bpm_bplan_idx") int bpm_bplan_idx, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes redirect) throws Exception{
 		logger.info("businessEvaluationList");
@@ -86,7 +86,7 @@ public class BusinessEvaluationController {
 
 	}
 
-	//사업계획서 평가지표 등록
+	//�궗�뾽怨꾪쉷�꽌 �룊媛�吏��몴 �벑濡�
 	@RequestMapping(value = "/businessEvaluation", method = RequestMethod.GET)
 	public String businessEvaluationview(Model model, @RequestParam("bam_anc_idx") int bam_anc_idx,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx ) throws Exception{
 		logger.info("businessEvaluation");
@@ -96,18 +96,19 @@ public class BusinessEvaluationController {
 		return "bem/businessEvaluation";
 	}
 	
-	//사업계획서 등록 서비스실행
+	//�궗�뾽怨꾪쉷�꽌 �벑濡� �꽌鍮꾩뒪�떎�뻾
 	@RequestMapping(value = "/businessEvaluation", method = RequestMethod.POST)
-	public String businessEvaluation(@RequestParam("bpm_bplan_idx") int bpm_bplan_idx, BusinessEvaluationVO businessEvaluationVO ,RedirectAttributes redirect) throws Exception {
+	public String businessEvaluation(@RequestParam("bam_anc_idx") int bam_anc_idx,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx, BusinessEvaluationVO businessEvaluationVO ,RedirectAttributes redirect) throws Exception {
 		logger.info("businessEvaluation");
 		
 		
 		service.businessEvaluation(businessEvaluationVO);
 		redirect.addAttribute("bpm_bplan_idx", bpm_bplan_idx);
+		redirect.addAttribute("bam_anc_idx", bam_anc_idx);
 		return "redirect:/bem/businessEvaluationList";
 	}
 	
-		//사업계획서 평가지표 상세 조회
+		//�궗�뾽怨꾪쉷�꽌 �룊媛�吏��몴 �긽�꽭 議고쉶
 		@RequestMapping(value = "/businessEvaluationDetail", method = RequestMethod.GET)
 		public void businessEvaluationDetail(BusinessEvaluationVO businessEvaluationVO, @RequestParam("bam_anc_idx") int bam_anc_idx, Model model,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx) throws Exception{
 			
@@ -116,7 +117,7 @@ public class BusinessEvaluationController {
 			model.addAttribute("Bplan", planService.businessPlanApplyDetail(bpm_bplan_idx));
 			 
 		}
-		//사업계획서 평가지표 수정 뷰
+		//�궗�뾽怨꾪쉷�꽌 �룊媛�吏��몴 �닔�젙 酉�
 		@RequestMapping(value = "/businessEvaluationUpdate", method = RequestMethod.GET)
 		public void businessEvaluationUpdateView(BusinessEvaluationVO businessEvaluationVO, Model model,@RequestParam("bam_anc_idx") int bam_anc_idx, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 			
@@ -124,7 +125,7 @@ public class BusinessEvaluationController {
 			model.addAttribute("read", service.businessEvaluationDetail(businessEvaluationVO.getBem_beval_idx()));
 			
 		}
-		//사업계획서 평가지표 수정
+		//�궗�뾽怨꾪쉷�꽌 �룊媛�吏��몴 �닔�젙
 		@RequestMapping(value = "/businessEvaluationUpdate", method = RequestMethod.POST)
 		public String businessEvaluationUpdate(@RequestParam("bpm_bplan_idx") int bpm_bplan_idx,@RequestParam("bem_beval_idx") int bem_beval_idx,BusinessEvaluationVO businessEvaluationVO,Model model) throws Exception{
 			
@@ -135,7 +136,7 @@ public class BusinessEvaluationController {
 		}
 
 
-	//사업계획서 종합의견 조회
+	//�궗�뾽怨꾪쉷�꽌 醫낇빀�쓽寃� 議고쉶
 	@RequestMapping(value = "/businessEvaluationOpinion", method = RequestMethod.GET)
 	public String opinion(Model model, @ModelAttribute("scri") SearchCriteria scri,@RequestParam("bam_anc_idx") int bam_anc_idx,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx) throws Exception{
 		logger.info("businessEvaluationOpinion");
