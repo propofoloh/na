@@ -195,6 +195,8 @@
                                             <th scope="col">평점</th>
                                         </tr>
                                     </thead>
+                                    
+                                   <form action="/bem/businessEvaluation" method="post">
                                     <tbody>
                                     <c:forEach items="${ancInfo}" var="ancInfo" varStatus="status" >
                                     		 <tr>
@@ -244,7 +246,7 @@
                             </div>
                                 <div class="btn_wrap text-right same mt_20 justify-between">
                                 <button type="button" class="cancel" style="float: left;">목록</button>
-                                <button type="button" class="normal"  onclick="location.href='/bem/businessEvaluationUpdate"> 수정</button>
+                                <button type="button" class="normal"  onclick="location.href='/bem/businessEvaluationUpdate&bam_anc_idx=${param.bam_anc_idx}'"> 수정</button>
                                 <button type="button" class="normal"  onclick="printFn()">인쇄</button>
                             </div>
                         </div>
