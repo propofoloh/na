@@ -65,5 +65,35 @@ public List<Map<String, Object>> memberList() throws Exception {
 	return sql.selectList("memberMapper.memberList");
 }
 
+//회원 관리
+// 회원목록
+@Override
+public List<MemberVO> memberMngList() {
+    return sql.selectList("memberMapper.memberMngList");
+}
+
+@Override
+public void insertMember(MemberVO vo) {
+
+}
+
+@Override
+public MemberVO viewMember() {
+    // TODO Auto-generated method stub
+    return null;
+}
+
+@Override
+public void deleteMember(String user_id) {
+    // TODO Auto-generated method stub
+
+}
+
+@Override
+public void updateMember(MemberVO vo) {
+    // TODO Auto-generated method stub
+
+}
+
 
 }

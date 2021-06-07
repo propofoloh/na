@@ -1,5 +1,7 @@
 package emp.cmm.vo;
 
+import java.util.List;
+
 public class MemberVO {
 	private String user_id;
 	private String user_pwd;
@@ -60,4 +62,5 @@ public class MemberVO {
 	public void setUser_auth(String user_auth) {
 		this.user_auth = user_auth;
 	}
+
 }

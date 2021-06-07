@@ -20,5 +20,17 @@ public interface MemberService {
 	public int idChk(MemberVO vo) throws Exception;
 	//멤버리스트 조회 
 	public List<Map<String,Object>> memberList() throws Exception;
+	
+	// 회원 관리
+    // 회원 목록 
+    public List<MemberVO> memberMngList();
+    // 회원 입력
+    public void insertMember(MemberVO vo);
+    // 회원 정보 상세보기
+    public MemberVO viewMember();
+    // 회원삭제
+    public void deleteMember(String user_id);
+    // 회원정보 수정
+    public void updateMember(MemberVO vo);
 
 }

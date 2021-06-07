@@ -27,7 +27,7 @@ public class MemberServiceImpl implements MemberService {
 		dao.register(vo);
 		
 	}
-	
+	 
 	@Override
 	public MemberVO login(MemberVO vo) throws Exception{
 		return dao.login(vo);
@@ -64,5 +64,31 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.memberList();
 	}
+	
+	////****회원 관리
+    @Override
+    public List<MemberVO> memberMngList() {
+        return dao.memberMngList();
+    }
+ 
+    @Override
+    public void insertMember(MemberVO vo) {
+        
+    }
+ 
+    @Override
+    public MemberVO viewMember() {
+        return null;
+    }
+ 
+    @Override
+    public void deleteMember(String user_id) {
+        
+    }
+ 
+    @Override
+    public void updateMember(MemberVO vo) {
+        
+    }
 
 }

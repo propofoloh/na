@@ -1,6 +1,8 @@
 package emp.cmm.web;
 
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -84,10 +86,10 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	// �쉶�썝�젙蹂� �닔�젙 get
-	@RequestMapping(value="/memberManagement", method = RequestMethod.GET)
-	public String memberManagement() throws Exception{
-		return "cmm/memberManagement";
+	@RequestMapping(value="/memberUpdateView", method = RequestMethod.GET)
+	public String registerUpdateView() throws Exception{
+		
+		return "cmm/memberUpdateView";
 	}
 	
 	// �쉶�썝�젙蹂� �닔�젙  post
@@ -159,5 +161,14 @@ public class MemberController {
 		
 		return "cmm/agreement";
 	}
+	
+    // 회원 관리 회원 목록
+    // url pattern mapping
+    @RequestMapping("/admin")
+    public String memberMngList(MemberVO vo){
+    // controller => service => dao 요청
+        List<MemberVO> list = service.memberMngList();
+        return "cmm/admin";
+    }
 }
 
