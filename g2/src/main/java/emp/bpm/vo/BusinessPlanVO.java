@@ -8,14 +8,6 @@ import emp.bpm.util.Criteria;
 
 public class BusinessPlanVO extends Criteria{
 	
-
-	
-	public String getWriter_id() {
-		return writer_id;
-	}
-	public void setWriter_id(String writer_id) {
-		this.writer_id = writer_id;
-	}
 	private int bpm_bplan_idx;
 	private int board_idx = 2;
 	private int bam_anc_idx;
@@ -30,6 +22,12 @@ public class BusinessPlanVO extends Criteria{
 	private Date mod_date;
 	private String status;
 	
+	public String getWriter_id() {
+		return writer_id;
+	}
+	public void setWriter_id(String writer_id) {
+		this.writer_id = writer_id;
+	}
 	public int getBam_anc_idx() {
 		return bam_anc_idx;
 	}
@@ -47,8 +45,7 @@ public class BusinessPlanVO extends Criteria{
 	}
 	public void setBoard_idx(int board_idx) {
 		this.board_idx = board_idx;
-	}
-	
+	}	
 	public String getWriter() {
 		return writer;
 	}
@@ -73,8 +70,7 @@ public class BusinessPlanVO extends Criteria{
 	public void setTitle_remark1(String title_remark1) {
 		this.title_remark1 = title_remark1;
 	}
-	
-		public String getTitle_remark2() {
+	public String getTitle_remark2() {
 		return title_remark2;
 	}
 	public void setTitle_remark2(String title_remark2) {
@@ -86,8 +82,6 @@ public class BusinessPlanVO extends Criteria{
 	public void setTitle_remark3(String title_remark3) {
 		this.title_remark3 = title_remark3;
 	}
-	
-	
 	public String getStatus() {
 		return status;
 	}
@@ -95,17 +89,4 @@ public class BusinessPlanVO extends Criteria{
 		this.status = status;
 	}
 
-	
-	
-
-
-	
-	
-
-	
-
-	
-	
-	
-	
 }
