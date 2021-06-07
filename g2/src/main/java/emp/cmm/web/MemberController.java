@@ -64,8 +64,10 @@ public class MemberController {
 		boolean pwdMatch = false;
 		session.getAttribute("member");
 		MemberVO login = service.login(vo);
-		pwdMatch = pwdEncoder.matches(vo.getUser_pwd() ,login.getUser_pwd());
-
+		
+		if(login != null)
+			pwdMatch = pwdEncoder.matches(vo.getUser_pwd() ,login.getUser_pwd());
+			
 		if(login != null && pwdMatch == true) {
 			session.setAttribute("member", login);
 			return "redirect:/bam/businessAnnouncementList";

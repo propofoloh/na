@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../resource/css/common.css">
     <link rel="stylesheet" href="../../resource/css/sub.css">
     <link rel="stylesheet" href="../../resource/css/board.css">
+    
 	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
     <script type="text/javascript" src="../../resource/js/sub.js"></script>	
@@ -43,14 +44,14 @@
  	
  	$(document).ready(function(){
  		  	
- 		$(".eval_score1").text(${read.eval_score1})
- 		$(".eval_score2").text(${read.eval_score2})
- 		$(".eval_score3").text(${read.eval_score3})
- 		$(".eval_score4").text(${read.eval_score4})
- 		$(".eval_score5").text(${read.eval_score5})
- 		$(".eval_score6").text(${read.eval_score6})
- 		$(".eval_score7").text(${read.eval_score7})
- 		$(".eval_score8").text(${read.eval_score8})
+ 		$(".eval_score1").val(${read.eval_score1})
+ 		$(".eval_score2").val(${read.eval_score2})
+ 		$(".eval_score3").val(${read.eval_score3})
+ 		$(".eval_score4").val(${read.eval_score4})
+ 		$(".eval_score5").val(${read.eval_score5})
+ 		$(".eval_score6").val(${read.eval_score6})
+ 		$(".eval_score7").val(${read.eval_score7})
+ 		$(".eval_score8").val(${read.eval_score8})
 
  	})
  
@@ -175,23 +176,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                   		 <tr>
                                     	 <th rowspan="8" class="f_bold">신청기업</th>
                                     <c:forEach items="${ancInfo}" var="ancInfo" varStatus="status" >
 	                                            <td class="type">${ancInfo.EVAL_FORM_TITLE}</td>
 	                                            <td >${ancInfo.EVAL_FORM_ITEM}</td>
 	                                            <td class="score" >${ancInfo.EVAL_FORM_SCORE}</td>
-	                                            <td id="eval_score"class="eval_score${status.index+1}"></td>   
-	                                           </tr>
+	                                            <td><input id="eval_score"class="eval_score${status.index+1}" disabled="disabled"></td>   
+	                                   </tr>
                                         </c:forEach>
                                     	</tbody>
                                     	<tr class="total">
-                                            <td colspan="	3">합계</td>
+                                            <td colspan="3">합계</td>
                                             <td>100</td>
-                                            <td class=""><span class="color_red f_bold">${read.eval_totalscore}</span></td>
+                                            <td class=""><input class="totalscore" disabled="disabled" value = "${read.eval_totalscore}"></td>
                                         </tr> 
-                                        
-                                    
+
                                 </table>
                                 <table>
                                     <colgroup>
@@ -209,7 +209,7 @@
                                             <th>일자</th>
                                             <td class="ta_c f_bold">2021.4.12</td>
                                             <td class="ta_c f_bold">평가위원 성명</td>
-                                            <td class="ta_r f_bold sign"><span class="f_bold">${read.eval_writer}</span>(서명)</td>
+                                            <td class="ta_r f_bold sign"><input disabled="disabled" value="${read.eval_writer}">(서명)</td>
                                         </tr>
                                     </tbody>
                                 </table>
