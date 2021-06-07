@@ -191,11 +191,11 @@
                                         </tr>
                                     </tbody>
                                 </table>
-							<form action="/bem/businessEvaluationUpdate" method="post">
+							<form action="/bem/businessEvaluation" method="post">
 							<input type="hidden" name ="bpm_bplan_idx" value="${param.bpm_bplan_idx}">
 							<input type="hidden" name ="bam_anc_idx" value="${param.bam_anc_idx}">  
 							<input type="hidden" name ="write_id" value="${member.user_id}"> 
-                                <table class="thead_gray">
+                                <table class="thead_gray mt_10" >
                                     <colgroup>
                                         <col style="width:7%">
                                         <col style="width:11%">
@@ -215,13 +215,13 @@
                                     <tbody>
                                     	 <tr>
                                     	 <th rowspan="8" class="f_bold">신청기업</th>
-                                    <c:forEach items="${ancInfo}" var="ancInfo" varStatus="status" >
+                                   <c:forEach items="${ancInfo}" var="ancInfo" varStatus="status" > 
 	                                            <td class="type">${ancInfo.EVAL_FORM_TITLE}</td>
 	                                            <td >${ancInfo.EVAL_FORM_ITEM}</td>
-	                                            <td class="score" >${ancInfo.EVAL_FORM_SCORE}</td>
-	                                            <td id="eval_score"class="eval_score${status.index+1}"></td>   
-	                                           </tr>
-                                        </c:forEach>
+	                                            <td style="text-align: center;">${ancInfo.EVAL_FORM_SCORE}</td>
+	                                            <td><input class="score"  id="eval_score" type="number" name="eval_score${status.index+1}" value=""></td>   
+                                       </tr>
+                                        </c:forEach>	
                                     	</tbody>
 	                                    	<tr class="total">
 	                                            <td colspan="3">합계</td>
