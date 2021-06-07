@@ -40,7 +40,7 @@ public interface BusinessEvaluationDAO {
 	public List<Map<String, Object>> businessEvaluationFormList(int bam_anc_idx) throws Exception;
 			
 	//평가지표 중복체크
-	public boolean businessEvaluationOverLapChk(Map<String,Object> evalparam) throws Exception;
+	public int businessEvaluationOverLapChk(Map<String,Object> evalparam) throws Exception;
 	    
 	
 }

@@ -82,9 +82,12 @@ public class BusinessEvaluationServiceImpl implements BusinessEvaluationService 
 	}
 	
 	@Override
-	public boolean businessEvaluationOverLapChk(Map<String, Object> evalparam) throws Exception {
+	public int businessEvaluationOverLapChk(Map<String, Object> evalparam) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.businessEvaluationOverLapChk(evalparam);
+		
+		int result = dao.businessEvaluationOverLapChk(evalparam);
+		 
+		return result;
 	}
 
 }

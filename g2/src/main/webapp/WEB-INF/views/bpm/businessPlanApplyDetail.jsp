@@ -21,21 +21,24 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#evalBtn').click(function(){
-		var memberId = '${member.user_id}'
 		var bam_anc_idx = ${param.bam_anc_idx}
-		var param = {"bam_anc_idx" : bam_anc_idx
-		}
+		var bpm_bplan_idx = ${read.bpm_bplan_idx}
+		var param = {"bam_anc_idx" : bam_anc_idx ,
+					 "bpm_bplan_idx" : bpm_bplan_idx 
+					}	
 		
 		
 		$.ajax({
-		    type:"POST",
-		    url: "/bpm/evalCheck",
+		    type: "post",
+		    url: "/bpm/evalCheck", 
 		    data: param,
 		    datatype : "json",
 		    success: function(e){
 		    
 		    	if(e == "Success")
-		    		location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'
+		    		location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}';
+		    	else if(e == "overLab")
+		    		alert("해당위원은 이미 평가를 완료하였습니다.")
 		    	else
 		    		alert("해당공고의 평가위원이 아닙니다.")
 		    },
@@ -292,7 +295,6 @@ function fn_fileDownload(fileidx){
 								<c:if test="${member.user_auth == 2}">
 									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">종합의견</button>
 								</c:if>
-								
 									<button type="button" class="normal" id="evalBtn" >평가하기</button>
 									<!-- onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'" -->
 							 </div>

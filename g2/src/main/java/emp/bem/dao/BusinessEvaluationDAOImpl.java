@@ -83,9 +83,10 @@ public class BusinessEvaluationDAOImpl implements BusinessEvaluationDAO {
 	}
 	
 	@Override
-	public boolean businessEvaluationOverLapChk(Map<String, Object> evalparam) throws Exception {
+	public int businessEvaluationOverLapChk(Map<String, Object> evalparam) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("businessEvaluationMapper.businessEvaluationOverLapChk",evalparam);
+		int result = sqlSession.selectOne("businessEvaluationMapper.businessEvaluationOverLapChk",evalparam);
+		return result;
 	}
 	
 }

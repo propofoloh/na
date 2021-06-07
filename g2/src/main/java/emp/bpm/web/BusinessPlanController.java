@@ -120,14 +120,7 @@ public class BusinessPlanController {
 	public String businessPlanApplyDetail(BusinessPlanVO businessPlanVO, @ModelAttribute("scri") SearchCriteria scri, Model model,RedirectAttributes redirect) throws Exception {
 		logger.info("businessPlanApplyDetail");
 		
-		/*
-		 * Map<String,Object> evalparam = new HashMap(); evalparam.put("bpm_bplan_idx",
-		 * businessPlanVO.getBpm_bplan_idx()); evalparam.put("writer_id",
-		 * businessPlanVO.getWriter_id()); System.out.println("@@@@@@@@@@@@@@@@@@"
-		 * +evalparam.get("bpm_bplan_idx")); System.out.println("@@@@@@@@@@@@@@@@@@"
-		 * +evalparam.get("writer_id")); boolean result =
-		 * evalservice.businessEvaluationOverLapChk(evalparam);
-		 */
+		
 		
 		Map<String,Object> resultMap = service.businessPlanApplyForm(businessPlanVO.getBam_anc_idx());
 		
@@ -168,14 +161,21 @@ public class BusinessPlanController {
 	}
 	@RequestMapping(value = "/evalCheck", method = RequestMethod.POST)
 	@ResponseBody
-	public String evalCheck(@SessionAttribute("member") MemberVO member, @RequestParam(value="bam_anc_idx") int bam_anc_idx) throws Exception {
+	public String evalCheck(@SessionAttribute("member") MemberVO member, @RequestParam(value="bam_anc_idx") int bam_anc_idx, @RequestParam(value="bpm_bplan_idx") int bpm_bplan_idx) throws Exception {
 		String user_id = member.getUser_id();
 		
+		  Map<String,Object> evalparam = new HashMap(); 
+		  evalparam.put("bpm_bplan_idx",bpm_bplan_idx); 
+		  evalparam.put("writer_id",user_id);  
+		  int result = evalservice.businessEvaluationOverLapChk(evalparam);
+		 System.out.println("@@@@@@@@@@@@@@@"+result);
 		//등록된 멤버 리스트 조회
 		List<Map<String,Object>> resultList = service.businessPlanEvalMember(bam_anc_idx);
 
 		String resultType = service.businessPlanEvalcheck(user_id, resultList);
 		
+		if(result == 1)
+			resultType ="overLab";
 		
 		return resultType;
 	}
