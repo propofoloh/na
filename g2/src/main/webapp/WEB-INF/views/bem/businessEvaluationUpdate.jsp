@@ -223,11 +223,11 @@
                                     	<tr class="total">
                                             <td colspan="3">합계</td>
                                             <td>100</td>
-                                            <td><input id="eval_totalscore" name="eval_totalscore" class="color_red f_bold" value="${read.eval_totalscore}"></td>
+                                            <td><input id="eval_totalscore" name="eval_totalscore" class="totalscore" value="${read.eval_totalscore}"></td>
                                         </tr> 
                                    
                                 </table>
-                                </form>
+                                
                                 <table>
                                     <colgroup>
                                         <col style="width:12%">
@@ -259,7 +259,7 @@
                                 <button type="submit" class="normal" > 수정</button>
                                 <button type="button" class="normal"  onclick="printFn()">인쇄</button>
                             </div>
-                
+                </form>
                        
                         </div>
                     </div>
