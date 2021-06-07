@@ -110,7 +110,7 @@ public class BusinessEvaluationController {
 	
 		//�궗�뾽怨꾪쉷�꽌 �룊媛�吏��몴 �긽�꽭 議고쉶
 		@RequestMapping(value = "/businessEvaluationDetail", method = RequestMethod.GET)
-		public void businessEvaluationDetail(BusinessEvaluationVO businessEvaluationVO, @RequestParam("bam_anc_idx") int bam_anc_idx, Model model,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx) throws Exception{
+		public void businessEvaluationDetail(BusinessEvaluationVO businessEvaluationVO,@RequestParam("bem_beval_idx") int bem_beval_idx, @RequestParam("bam_anc_idx") int bam_anc_idx, Model model,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx) throws Exception{
 			
 			model.addAttribute("ancInfo",service.businessEvaluationFormList(bam_anc_idx));
 			model.addAttribute("read", service.businessEvaluationDetail(businessEvaluationVO.getBem_beval_idx()));
@@ -135,7 +135,7 @@ public class BusinessEvaluationController {
 			
 		}
 
-
+		
 	//�궗�뾽怨꾪쉷�꽌 醫낇빀�쓽寃� 議고쉶
 	@RequestMapping(value = "/businessEvaluationOpinion", method = RequestMethod.GET)
 	public String opinion(Model model, @ModelAttribute("scri") SearchCriteria scri,@RequestParam("bam_anc_idx") int bam_anc_idx,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx) throws Exception{

@@ -178,6 +178,8 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                
+                                
                                  <span>${read.eval_totalscore}</span>
                             <form action="/bem/businessEvaluationUpdate" method="post">
                             <input type="hidden" name ="bpm_bplan_idx" value="${param.bpm_bplan_idx}">

@@ -59,9 +59,10 @@ public class MemberController {
 	public String login(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
 		logger.info("post login");
 	
+		boolean pwdMatch = false;
 		session.getAttribute("member");
 		MemberVO login = service.login(vo);
-		boolean pwdMatch = pwdEncoder.matches(vo.getUser_pwd() ,login.getUser_pwd());
+		pwdMatch = pwdEncoder.matches(vo.getUser_pwd() ,login.getUser_pwd());
 
 		if(login != null && pwdMatch == true) {
 			session.setAttribute("member", login);
