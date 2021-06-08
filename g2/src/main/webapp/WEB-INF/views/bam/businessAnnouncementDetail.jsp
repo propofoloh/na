@@ -140,15 +140,21 @@ function fn_fileDownload(fileidx){
                                         <button type="button" class="print" id="printBtn">게시물 프린트</button>
                                     </div>
                     
-                                    <div class="view-body"><p>${read.anc_remark} </p>
-                    <p>&nbsp;</p></div>
+                                    <div class="view-body" style="margin-bottom: 10px;"><p>${read.anc_remark}</p>
+                    				<p>&nbsp;</p>
+                    				</div>
                                 </div>
-                    
-                                <div class="btn_wrap same mt_20 ta_c">
+                    	
+                    		
+                    			<div class="btn_wrap text-left">
+									<button type="button" class="normal" onclick="window.location.href='/bam/businessAnnouncementUpdate?bam_anc_idx=${read.bam_anc_idx}'">수정</button>
+									<button type="button" class="normal" onclick="alert('준비중')">삭제</button>
+								</div>
+                                <div class="btn_wrap text-right">
 									<button type="button" class="normal" onclick="window.location.href='/bam/businessAnnouncementList'">목록</button>
 								</div>
-
-
+								
+					
 
 
 		                        	</div>

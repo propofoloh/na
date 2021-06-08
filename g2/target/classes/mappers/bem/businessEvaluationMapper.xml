@@ -211,24 +211,8 @@
 							  ORDER BY BEM_BEVAL_FORM_IDX ASC	
 	</select>
 	
-	<select id="businessEvaluationOverLapChk" resultType="emp.bem.vo.BusinessEvaluationVO" parameterType="hashMap">
-		SELECT 		      BEM_BEVAL_IDX 
-	   					      , BOARD_IDX 
-	   					      , EVAL_OPINION
-	   					      , EVAL_SCORE1
-	   					      , EVAL_SCORE2
-	   					      , EVAL_SCORE3
-	   					      , EVAL_SCORE4
-	   					      , EVAL_SCORE5
-	   					      , EVAL_SCORE6
-	   					      , EVAL_SCORE7
-	   					      , EVAL_SCORE8
-	   					      , EVAL_TOTALSCORE	
-	   					      , EVAL_WRITER
-	   					      , WRITER_ID
-	   					      , BPM_BPLAN_IDX
-	   					      , REG_DATE
-	   					      , MOD_DATE
+	<select id="businessEvaluationOverLapChk" resultType="int" parameterType="hashMap">
+		SELECT 		     COUNT(*)
 		 FROM EMP_BEM_BEVAL
 		 WHERE 1=1 
 		 AND BPM_BPLAN_IDX = #{bpm_bplan_idx}

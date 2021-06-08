@@ -65,11 +65,30 @@
 		  WHERE USER_AUTH = 1
 	</select>
 	
+	<!-- 회원관리 리스트 조회 -->
+	<select id="memberMngList" resultType="emp.cmm.vo.MemberVO" >
+		SELECT  				 
+	   					         USER_ID
+	   					       , USER_NAME
+	   					       , HP_NUM
+	   					       , USER_EMAIL
+	   					       , USER_AUTH
+	   					       , REG_DATE
+	   					       , MOD_DATE
+		  FROM EMP_MEMBER
+		  ORDER BY USER_ID
+	</select>
+	
 	<!-- 회원정보 수정 -->
 	<update id="memberUpdate">
-		UPDATE EMP_MEMBER SET 
-		<!-- USER_PWD = #{userPwd}, -->
+		UPDATE EMP_MEMBER SET 		
+		USER_ID = #{user_id},
+		USER_PWD = #{userPwd},
 		USERNAME = #{userName}
+		USER_EMAIL = #{user_email}
+		HP_NUM = #{hp_num}
+		USER_CRCODE = #{user_crcode}
+		
 		WHERE USER_ID = #{user_id}
 	</update>
 	

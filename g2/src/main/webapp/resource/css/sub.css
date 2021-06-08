@@ -73,6 +73,7 @@ ul.tab li.on::before{position:absolute; top:-1px; left:-1px; width:calc(100% + 2
 .btn_wrap button.cancel{min-width:80px; width:auto; padding:5px 10px; margin-bottom:10px; background:#bcbcbc; color:#fff; border-radius:5px;}
 .btn_wrap button.complete{background:#dd4132}
 .text-right{text-align:right;}
+.text-left{text-align:left; float:left;}
 
 /* 파일 목록 */
 .filelist{margin-top:20px; margin-bottom:20px;}

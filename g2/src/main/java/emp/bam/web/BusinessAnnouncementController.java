@@ -105,6 +105,7 @@ public class BusinessAnnouncementController {
 		logger.info("updateView");
 
 		model.addAttribute("update", service.businessAnnouncementDetail(businessAnnouncementVO.getBam_anc_idx()));
+		System.out.println("@#!#!#!#!#!#!#!"+businessAnnouncementVO.getAnc_begin_dt());
 		model.addAttribute("scri", scri);
 
 		List<Map<String, Object>> fileList = service.selectFileList(businessAnnouncementVO.getBam_anc_idx());
