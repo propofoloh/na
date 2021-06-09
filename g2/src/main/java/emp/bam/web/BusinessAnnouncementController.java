@@ -105,16 +105,15 @@ public class BusinessAnnouncementController {
 		logger.info("updateView");
 
 		model.addAttribute("update", service.businessAnnouncementDetail(businessAnnouncementVO.getBam_anc_idx()));
-		System.out.println("@#!#!#!#!#!#!#!"+businessAnnouncementVO.getAnc_begin_dt());
 		model.addAttribute("scri", scri);
-
+		
 		List<Map<String, Object>> fileList = service.selectFileList(businessAnnouncementVO.getBam_anc_idx());
 		model.addAttribute("file", fileList);
 		return "bam/businessAnnouncementUpdate";
 	}
 
 	//사업 공고 수정
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/businessAnnouncementUpdate", method = RequestMethod.POST)
 	public String update(BusinessAnnouncementVO businessAnnouncementVO, 
 			@ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr,
 			@RequestParam(value="fileNoDel[]") String[] files,

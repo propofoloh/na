@@ -49,10 +49,10 @@ public interface BusinessAnnouncementDAO {
 	public void businessPlanApplyEdit(Map<String,Object> paramMap) throws Exception;
 
 	// 사업 평가지표 양식등록
-	public void businessEvaluationEditUpdate(int bam_anc_idx) throws Exception;
+	public void businessEvaluationEditChk(int bam_anc_idx) throws Exception;
 		
 	// 사업 계획서 양식등록
-	public void businessPlanApplyEditUpdate(int bam_anc_idx) throws Exception;
+	public void businessPlanApplyEditChk(int bam_anc_idx) throws Exception;
 	
 	//사업 공고 평가위원 등록
 	public void businessAnnouncementMember(Map<String,Object> paramMap) throws Exception;

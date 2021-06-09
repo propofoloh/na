@@ -117,7 +117,7 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 		// TODO Auto-generated method stub
 		dao.businessPlanApplyEdit(paramMap);
 		int bam_anc_idx = Integer.parseInt(paramMap.get("bam_anc_idx").toString());
-		dao.businessPlanApplyEditUpdate(bam_anc_idx);
+		dao.businessPlanApplyEditChk(bam_anc_idx);
 		
 	}
 	@Override
@@ -136,8 +136,7 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 				paramMap.put("bam_anc_idx",bam_anc_idx);
 				dao.businessEvaluationEdit(paramMap);
 				if(i == arrEval_form_title.size()-1) {
-					System.out.println("@@@@@@@@@@@@@@@@@@@@ 업데이트 포문@@@@@@@@@@@");
-					dao.businessEvaluationEditUpdate(bam_anc_idx);
+					dao.businessEvaluationEditChk(bam_anc_idx);
 				
 				}
 			}
@@ -149,11 +148,8 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 			throws Exception {
 		// TODO Auto-generated method stub
 		for(int i=0; i <anc_member_id.size();i++) {
-			System.out.println("@@@@@@@@for문시작"+(i+1));
 			String Sanc_member_id = anc_member_id.get(i);
 			String Sanc_member_name = anc_member_name.get(i);
-			System.out.println("@@@@@@@@@@@@@@@@입력 iD"+"번째"+Sanc_member_id);
-			System.out.println("@@@@@@@@@@@@@@@@입력 iD"+"번째"+Sanc_member_name);
 			Map<String,Object> paramMap = new HashMap();
 			paramMap.put("anc_member_id",Sanc_member_id);
 			paramMap.put("anc_member_name",Sanc_member_name);
