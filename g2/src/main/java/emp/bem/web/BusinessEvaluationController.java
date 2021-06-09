@@ -127,11 +127,10 @@ public class BusinessEvaluationController {
 		}
 		//�궗�뾽怨꾪쉷�꽌 �룊媛�吏��몴 �닔�젙
 		@RequestMapping(value = "/businessEvaluationUpdate", method = RequestMethod.POST)
-		public String businessEvaluationUpdate(@RequestParam("bpm_bplan_idx") int bpm_bplan_idx,@RequestParam("bem_beval_idx") int bem_beval_idx,BusinessEvaluationVO businessEvaluationVO,Model model) throws Exception{
+		public String businessEvaluationUpdate(@RequestParam("bam_anc_idx") int bam_anc_idx,@RequestParam("bpm_bplan_idx") int bpm_bplan_idx,@RequestParam("bem_beval_idx") int bem_beval_idx,BusinessEvaluationVO businessEvaluationVO,Model model) throws Exception{
 			
 			service.businessEvaluationUpdate(businessEvaluationVO);
-			
-			return "redirect:/bem/businessEvaluationList?bpm_bplan_idx="+bpm_bplan_idx;
+			return "redirect:/bem/businessEvaluationList?bpm_bplan_idx="+bpm_bplan_idx+"&bam_anc_idx="+bam_anc_idx;
 			
 		}
 

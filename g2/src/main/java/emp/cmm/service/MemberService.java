@@ -18,6 +18,8 @@ public interface MemberService {
 	public int passChk(MemberVO vo) throws Exception;
 	//아이디체크
 	public int idChk(MemberVO vo) throws Exception;
+	//사업자등록번호체크
+	public int crcodeChk(MemberVO vo) throws Exception;
 	//멤버리스트 조회 
 	public List<Map<String,Object>> memberList() throws Exception;
 	

@@ -180,10 +180,12 @@
                                 </table>
                                 
                                 
-                                 <span>${read.eval_totalscore}</span>
+<%--                                  <span>${read.eval_totalscore}</span> --%>
+
                             <form action="/bem/businessEvaluationUpdate" method="post">
                             <input type="hidden" name ="bpm_bplan_idx" value="${param.bpm_bplan_idx}">
 							<input type="hidden" name ="bem_beval_idx" value="${param.bem_beval_idx}">
+							<input type="hidden" name ="bam_anc_idx" value="${param.bam_anc_idx}">
 							
                                 <table class="thead_gray mt_10">
                                     <colgroup>
@@ -217,8 +219,8 @@
 	                                            <td class="score" >${ancInfo.EVAL_FORM_SCORE}</td>
 	                                            <td><input class="eval_score"  id="eval_score${status.index+1}" type="number" name="eval_score${status.index+1}" value=""></td>   
                                         
-                                        </c:forEach>	
                                         	</tr>
+                                        </c:forEach>	
                                     	</tbody>
                                     	<tr class="total">
                                             <td colspan="3">합계</td>

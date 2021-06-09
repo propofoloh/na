@@ -25,6 +25,9 @@ public interface MemberDAO {
 	// 아이디 중복체크
 	public int idChk(MemberVO vo) throws Exception;
 	
+	// 사업자등록번호 중복체크
+	public int crcodeChk(MemberVO vo) throws Exception;
+	
 	//멤버리스트 조회 
 	public List<Map<String,Object>> memberList() throws Exception;
 	

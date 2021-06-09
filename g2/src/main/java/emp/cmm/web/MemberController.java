@@ -158,6 +158,14 @@ public class MemberController {
 		int result = service.idChk(vo);
 		return result;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/crcodeChk", method = RequestMethod.POST)
+	public int crcodeChk(MemberVO vo) throws Exception {
+		int result = service.crcodeChk(vo);
+		return result;
+	}
+	
 	@RequestMapping(value="/agreement", method = RequestMethod.GET)
 	public String agreement(MemberVO vo, HttpSession session) throws Exception{
 		

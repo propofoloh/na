@@ -111,4 +111,10 @@
 		SELECT COUNT(*) FROM EMP_MEMBER
 		WHERE USER_ID = #{user_id}
 	</select>
+	
+	<!-- 사업자등록번호 중복 체크 -->
+	<select id="crcodeChk" resultType="int">
+		SELECT COUNT(*) FROM EMP_MEMBER
+		WHERE USER_CRCODE = #{user_crcode}
+	</select>
 </mapper>

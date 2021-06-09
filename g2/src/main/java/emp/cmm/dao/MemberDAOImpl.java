@@ -58,6 +58,14 @@ public int idChk(MemberVO vo) throws Exception {
 	int result = sql.selectOne("memberMapper.idChk", vo);
 	return result;
 }
+
+//사업자등록번호 중복 체크
+@Override
+public int crcodeChk(MemberVO vo) throws Exception {
+	int result = sql.selectOne("memberMapper.crcodeChk", vo);
+	return result;
+}
+
 //회원정보 조회
 @Override
 public List<Map<String, Object>> memberList() throws Exception {

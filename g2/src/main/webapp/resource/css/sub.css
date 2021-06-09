@@ -32,6 +32,7 @@
 .join_wrap input.birthday::after {position:absolute;background:url(../image/calendar_gray.png);width:16px;height:16px;content:'';}
 .join_wrap button {margin-top: 20px; padding: 20px 0; width: 500px; background-color: #862640; color: #fff; font-size: 18px;}
 .join_wrap button.id_checkbtn {display:inline-block;margin-top:0;margin-left:5px;width:200px;height:50px;line-height:2px;vertical-align: bottom;font-size:15px;}
+.join_wrap button.crcode_checkbtn {display:inline-block;margin-top:0;margin-left:5px;width:200px;height:50px;line-height:2px;vertical-align: bottom;font-size:15px;}
 .join_wrap  input {width:calc(100% - 250px);height:35px;border-bottom:1px solid #ececec;}
 
 /* radio */
