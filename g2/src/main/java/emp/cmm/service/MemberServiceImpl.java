@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import emp.bam.vo.BusinessAnnouncementVO;
 import emp.cmm.dao.MemberDAO;
 import emp.cmm.vo.MemberVO;
 
@@ -71,30 +72,38 @@ public class MemberServiceImpl implements MemberService {
 		return dao.memberList();
 	}
 	
+	//선정된 평가위원 리스트
+    @Override
+    public List<Map<String, Object>> evalList(int bam_anc_idx) throws Exception {
+    	// TODO Auto-generated method stub
+    	return dao.evalList(bam_anc_idx);
+    }
+	
 	////****회원 관리
     @Override
-    public List<MemberVO> memberMngList() {
+    public List<MemberVO> memberMngList() throws Exception {
         return dao.memberMngList();
     }
  
     @Override
-    public void insertMember(MemberVO vo) {
+    public void insertMember(MemberVO vo) throws Exception {
         
     }
  
     @Override
-    public MemberVO viewMember() {
+    public MemberVO viewMember() throws Exception {
         return null;
     }
  
     @Override
-    public void deleteMember(String user_id) {
+    public void deleteMember(String user_id) throws Exception {
         
     }
  
     @Override
-    public void updateMember(MemberVO vo) {
+    public void updateMember(MemberVO vo) throws Exception {
         
     }
+    
 
 }

@@ -65,6 +65,18 @@
 		  WHERE USER_AUTH = 1
 	</select>
 	
+	<!-- 선정된 평가위원 리스트 조회 -->
+	<select id="evalList" resultType="emp.cmm.vo.EvalMemberVO" parameterType="int">
+		SELECT  				 
+	   					      BAM_ANC_IDX
+	   					    , BAM_ANC_MEMBER_IDX
+	   					    , ANC_MEMBER_ID
+	   					    , ANC_MEMBER_NAME
+	   					    , AUTH
+		  FROM EMP_BAM_ANC_MEMBER
+		  WHERE BAM_ANC_IDX = #{bam_anc_idx}
+	</select>
+	
 	<!-- 회원관리 리스트 조회 -->
 	<select id="memberMngList" resultType="emp.cmm.vo.MemberVO" >
 		SELECT  				 

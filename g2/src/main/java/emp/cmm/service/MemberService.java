@@ -3,6 +3,7 @@ package emp.cmm.service;
 import java.util.List;
 import java.util.Map;
 
+import emp.bam.vo.BusinessAnnouncementVO;
 import emp.cmm.vo.MemberVO;
 
 public interface MemberService {
@@ -22,17 +23,19 @@ public interface MemberService {
 	public int crcodeChk(MemberVO vo) throws Exception;
 	//멤버리스트 조회 
 	public List<Map<String,Object>> memberList() throws Exception;
-	
+	//선정된 평가위원 리스트 조회
+	public List<Map<String,Object>> evalList(int bam_anc_idx) throws Exception;
 	// 회원 관리
+	
     // 회원 목록 
-    public List<MemberVO> memberMngList();
+    public List<MemberVO> memberMngList() throws Exception;
     // 회원 입력
-    public void insertMember(MemberVO vo);
-    // 회원 정보 상세보기
-    public MemberVO viewMember();
+    public void insertMember(MemberVO vo) throws Exception;
+    // 회원 정보 상세보기 
+    public MemberVO viewMember() throws Exception;
     // 회원삭제
-    public void deleteMember(String user_id);
+    public void deleteMember(String user_id) throws Exception;
     // 회원정보 수정
-    public void updateMember(MemberVO vo);
+    public void updateMember(MemberVO vo) throws Exception;
 
 }

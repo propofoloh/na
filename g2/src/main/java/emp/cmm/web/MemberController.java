@@ -175,9 +175,10 @@ public class MemberController {
     // 회원 관리 회원 목록
     // url pattern mapping
     @RequestMapping("/admin")
-    public String memberMngList(MemberVO vo){
+    public String memberMngList(MemberVO vo) throws Exception{
     // controller => service => dao 요청
         List<MemberVO> list = service.memberMngList();
+        
         return "cmm/admin";
     }
 }

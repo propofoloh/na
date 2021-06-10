@@ -106,7 +106,8 @@ public class BusinessAnnouncementController {
 
 		model.addAttribute("update", service.businessAnnouncementDetail(businessAnnouncementVO.getBam_anc_idx()));
 		model.addAttribute("scri", scri);
-		
+		model.addAttribute("memberList", memberService.memberList()); 
+		model.addAttribute("evalList", memberService.evalList(businessAnnouncementVO.getBam_anc_idx()));
 		List<Map<String, Object>> fileList = service.selectFileList(businessAnnouncementVO.getBam_anc_idx());
 		model.addAttribute("file", fileList);
 		return "bam/businessAnnouncementUpdate";
