@@ -46,11 +46,10 @@
  				}
  		});
  		
- 		
  		 $('.score').on('keyup',function(){
  			 var Sum = 0;
             $('.score').each(function(idx,value){ 
-                if(!isNaN(this.value)&&this.value.length!=0){
+                if(!isNaN(this.value) && this.value.length!=0){
 	                	Sum+=Number($(value).val());
 	                	if(Sum <= 100)
 	                    	$('#eval_totalscore').val(Sum);
@@ -65,29 +64,16 @@
             });
             if(Sum > 100) 
             	alert("배점이 100점을 넘을수 없습니다.")
-         });
+         }); 		
  		 
- 		$('.maxScore').on('keyup',function(){
-			 var Sum = 0;
-           $('.maxScore').each(function(idx,value){ 
-               if(!isNaN(this.value)&&this.value.length!=0){
-            	   
-	                	Sum+=Number($(value).val());
-	                	if(Sum <= 100)
-	                    	$('#MaxScoreSum').val(Sum);
-	                	else if(Sum > 100){
-	           				$('#MaxScoreSum').val(Sum-Number($(value).val()));
-	           				this.value=null;
-	           				
-	                	}
-           			
-           		}	
-           });
-           if(Sum > 100) alert("총점이 100점을 넘을수 없습니다.")
-        });
- 		
- 		
-  	})
+ 		//총점 
+		   var Sum=0;
+           $('.point').each(function(idx,value){ 
+	                	Sum += Number($(value).text());
+	                	$('#MaxScore').text(Sum);
+           })
+        })
+
   	</script>
   	
 <body>
@@ -218,14 +204,14 @@
                                    <c:forEach items="${ancInfo}" var="ancInfo" varStatus="status" > 
 	                                            <td class="type">${ancInfo.EVAL_FORM_TITLE}</td>
 	                                            <td >${ancInfo.EVAL_FORM_ITEM}</td>
-	                                            <td style="text-align: center;">${ancInfo.EVAL_FORM_SCORE}</td>
-	                                            <td><input class="score"  id="eval_score" type="number" name="eval_score${status.index+1}" value=""></td>   
+	                                            <td style="text-align: center;" class="point" >${ancInfo.EVAL_FORM_SCORE}</td>
+	                                            <td><input class="score"id="eval_score" type="number" name="eval_score${status.index+1}" value=""></td>   
                                        </tr>
                                         </c:forEach>	
                                     	</tbody>
 	                                    	<tr class="total">
 	                                            <td colspan="3">합계</td>
-	                                            <td class="score">100</td>
+	                                            <td class="MaxScore" id="MaxScore"></td>
 	                                            <td ><input type="text" name="eval_totalscore" class="totalscore" id="eval_totalscore" readonly="readonly"></td>
 	                                       	</tr>
                                 </table>

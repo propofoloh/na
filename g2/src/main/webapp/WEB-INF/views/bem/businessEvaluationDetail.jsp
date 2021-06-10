@@ -53,8 +53,15 @@
  		$(".eval_score7").val(${read.eval_score7})
  		$(".eval_score8").val(${read.eval_score8})
 
+ 		 var Sum=0;
+           $('.point').each(function(idx,value){ 
+	                	Sum += Number($(value).text());
+	                	$('#MaxScore').text(Sum);
+           })
+           
  	})
  
+
  
  </script>
 <body>
@@ -181,14 +188,14 @@
                                     <c:forEach items="${ancInfo}" var="ancInfo" varStatus="status" >
 	                                            <td class="type">${ancInfo.EVAL_FORM_TITLE}</td>
 	                                            <td >${ancInfo.EVAL_FORM_ITEM}</td>
-	                                            <td class="score" >${ancInfo.EVAL_FORM_SCORE}</td>
+	                                            <td class="point" >${ancInfo.EVAL_FORM_SCORE}</td>
 	                                            <td><input id="eval_score"class="eval_score${status.index+1}" disabled="disabled"></td>   
 	                                   </tr>
                                         </c:forEach>
                                     	</tbody>
                                     	<tr class="total">
                                             <td colspan="3">합계</td>
-                                            <td>100</td>
+                                            <td class="MaxScore" id="MaxScore"></td>
                                             <td class=""><input class="totalscore" disabled="disabled" value = "${read.eval_totalscore}"></td>
                                         </tr> 
 

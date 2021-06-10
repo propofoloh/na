@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="businessAnnouncementMapper">
-   
       <!-- 게시판 글 작성 -->
    <insert id="insert" useGeneratedKeys="false">
 	   INSERT INTO EMP_BAM_ANC( BAM_ANC_IDX 
@@ -78,12 +77,16 @@
 		 WHERE BAM_ANC_IDX = #{bam_anc_idx}
 	</select>
 	
-	<!--     <update id="update" parameterType="emp.bam.vo.BusinessAnnouncementVO">
-		UPDATE MP_BOARD
-		   SET TITLE    =   #{title},
-		   	   CONTENT  =   #{content}
-		 WHERE BNO = #{bno} 
-	</update> -->
+	     <update id="update" parameterType="emp.bam.vo.BusinessAnnouncementVO">
+		UPDATE EMP_BAM_ANC
+		   SET    ANC_TITLE = #{anc_title}
+	   			, ANC_REMARK = #{anc_remark}
+	   	        , ANC_BEGIN_DT = #{anc_begin_dt}
+		        , ANC_END_DT = #{anc_end_dt}
+	   		    , WRITER = #{writer}
+		 WHERE BAM_ANC_IDX = #{bam_anc_idx} 
+	</update>
+	
 	
 	<!-- <delete id="delete" parameterType="int">
 		DELETE 
@@ -126,7 +129,7 @@
 			#{file_sname},
 			#{file_size}
 		)
-    </insert>
+  	   </insert>
 
 
  <select id="selectFileList" parameterType="int" resultType="hashMap">
@@ -149,13 +152,13 @@ SELECT      FILE_IDX,
 		WHERE FILE_IDX = #{FILE_IDX}
 	</select>
 
-   <!--  <update id="updateFile" parameterType="hashMap">
-    	UPDATE MP_FILE SET
-    	DEL_GB = 'Y'
-    	WHERE FILE_NO = #{FILE_NO}
-    </update> -->
+     <update id="updateFile" parameterType="hashMap">
+	    	UPDATE EMP_FILE SET
+	    	DEL_YN = 'Y'
+	    	WHERE FILE_IDX = #{FILE_IDX}
+    </update>
     
-    
+    																
       <insert id="businessEvaluationEdit" parameterType="hashMap" >
 	   INSERT INTO EMP_BEM_BEVAL_FORM( BAM_ANC_IDX
 	   						  , BEM_BEVAL_FORM_IDX
@@ -180,12 +183,11 @@ SELECT      FILE_IDX,
    
    </insert>
    
-   <update id="businessEvaluationEditUpdate">
+   <update id="businessEvaluationEditChk">
    		UPDATE EMP_BAM_ANC SET
    			EVAL_FORM_CHK = 'Y'
    			WHERE BAM_ANC_IDX = #{bam_anc_idx}
-   			
-   			     
+  			     
    </update>
    
          <insert id="businessPlanApplyEdit" parameterType="hashMap" >
@@ -213,7 +215,8 @@ SELECT      FILE_IDX,
 	              
    
    </insert>
-    <update id="businessPlanApplyEditUpdate">
+   
+    <update id="businessPlanApplyEditChk">
    		UPDATE EMP_BAM_ANC SET
    			BPLAN_FORM_CHK = 'Y'
    			WHERE BAM_ANC_IDX = #{bam_anc_idx}
@@ -243,6 +246,21 @@ SELECT      FILE_IDX,
    				 ANC_END_DT < SYSDATE
    				 ]]>
    </update>
+   
+   <!-- 해당 공고의 평가위원 리스트 조회 -->
+   <select id="eval" parameterType="int" resultType="emp.bam.vo.BusinessAnnouncementVO">
+		SELECT	BAM_ANC_IDX 
+	   					      , BOARD_IDX 
+	   					      , ANC_TITLE 
+	   					      , ANC_REMARK
+	   					      , ANC_BEGIN_DT
+	   					      , ANC_END_DT
+	   					      , WRITER
+	   					      , REG_DATE
+	   					      , MOD_DATE
+		 FROM EMP_BAM_ANC
+		 WHERE BAM_ANC_IDX = #{bam_anc_idx}
+	</select>
    
 </mapper>
 
