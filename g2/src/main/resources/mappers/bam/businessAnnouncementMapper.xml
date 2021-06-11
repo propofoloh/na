@@ -247,20 +247,7 @@ SELECT      FILE_IDX,
    				 ]]>
    </update>
    
-   <!-- 해당 공고의 평가위원 리스트 조회 -->
-   <select id="eval" parameterType="int" resultType="emp.bam.vo.BusinessAnnouncementVO">
-		SELECT	BAM_ANC_IDX 
-	   					      , BOARD_IDX 
-	   					      , ANC_TITLE 
-	   					      , ANC_REMARK
-	   					      , ANC_BEGIN_DT
-	   					      , ANC_END_DT
-	   					      , WRITER
-	   					      , REG_DATE
-	   					      , MOD_DATE
-		 FROM EMP_BAM_ANC
-		 WHERE BAM_ANC_IDX = #{bam_anc_idx}
-	</select>
+
    
 </mapper>
 

@@ -42,7 +42,6 @@ $(document).ready(function(){
 			return 0;
 		}else
 			$('#updateForm').submit();
-		
 	})
 	var memberInfo = new Array();
 	fn_addFile();
@@ -125,7 +124,7 @@ function fn_addFile(){
 	});
 	
 	$(document).on("click","#fileDelBtn", function(){
-		$(this).parent().remove();
+		$(this).parent("").remove();
 		
 	});
 	
@@ -133,8 +132,6 @@ function fn_addFile(){
 		$(this).parent().remove();
 		
 	});
-	
-	
 }
 </script>
 <body>
@@ -206,7 +203,7 @@ function fn_addFile(){
 	                        </li>
                         </c:if>
                        <c:if test="${member.user_auth != 0}">
-                        <li class=" ">
+                        <li class="">
                             <a href="/bpm/businessEvaluationMyList">사업 평가</a>
                             <ul class="second_menu">
                                 <li class=""><a href="/bem/businessEvaluationMyList">· 평가내역 조회</a></li>
@@ -215,8 +212,6 @@ function fn_addFile(){
                       </c:if>
                     </ul>
                 </div>
-          
-              
                 <div class="cont">
                     <h2>사업공지</h2>
                     	<div class="inner box mt15">
@@ -251,6 +246,21 @@ function fn_addFile(){
                                         	<div class="box">
 	                                            <button class="select_Evaluator" type="button" onClick="open_pop();">평가원선택</button></div>
 	                                            <div id="evaluatorList">
+	                                          <table style="width:70%; margin-left: auto; margin-right: auto;">
+	                                           <tr>
+	                                           		<td>ID</td>
+	                                           		<td>이름</td>
+	                                           		<td>버튼</td>
+	                                           </tr> 
+	                                           
+	                                          <c:forEach items="${evalList}" var="evalList">
+		                                       <tr>	
+		                                           <td class="evaltd"><input class="evalListData" type="text" value="${evalList.anc_member_id}"></td>
+		                                           <td><input class="evalListData" type="text" value="${evalList.anc_member_name}"></td>
+		                                           <td style="text-align: center;"><button class='evalerBtn'type='button'id='evalDelBtn'>삭제</button></td>
+	                                           </tr>
+	                                           </c:forEach>	  
+	                                           </table>
 	                                            </div>
                                         </td>
                                     </tr>
@@ -279,11 +289,17 @@ function fn_addFile(){
 														<button class="addFile" id="fileAdd_btn"  type="button">파일추가</button>
 												</div>
 											</div>
-											 <c:forEach var="file" items="${file}">
+											 <form name="download" method="post" action="/bam/fileDown">
+                                                    <input type="hidden" name="FILE_IDX" id="FILE_IDX" value="">
+                                                    <input type="hidden" name="no" value="">
+                                                    <input type="hidden" name="sno" value="">
+                                                
+						                           <c:forEach var="file" items="${file}">
 						                           <span class="file">
 														<a href="#" onclick="fn_fileDownload('${file.FILE_IDX}');">${file.FILE_FNAME}</a>(${file.FILE_SIZE}kb)<br>
 												   </span>
 												   </c:forEach>
+												   </form>
                                             <!-- <input type="file" name="bf_file[]" id="bf_file_2" class="file-loadingz" style="padding-bottom:5px" data-show-preview="false" onchange="checkFile(this)"> -->
                                         </td>
                                     </tr>
@@ -332,14 +348,14 @@ function fn_addFile(){
 					</table>
                
              <div>
-		            <div style="float:left; color:#000; width: 48%; pointer;background-color:#e6e6e6;text-align: center;padding-bottom: 10px;padding-top: 10px; margin-right: 10px;" onClick="close_pop();">
-		                <span class="pop_bt" style="font-size: 13pt;" >
+		            <div style="float:left; color:#000; width: 48%; pointer; background-color:#e6e6e6; text-align: center;padding-bottom: 10px;padding-top: 10px; margin-right: 10px;" onClick="close_pop();">
+		                <span class="pop_bt" style="font-size: 13pt;">
 		                   	 취소
 		                </span>
 		            </div>
 		            
 					<div id="check_Btn" style="float:left; color:#FFFFFF; width: 48%; pointer;background-color:#952940;text-align: center;padding-bottom: 10px;padding-top: 10px;">
-		                <span class="pop_bt" style="font-size: 13pt;" >
+		                <span class="pop_bt" style="font-size: 13pt;">
 		                   	 확인
 		                </span>
 		            </div>		            
@@ -356,7 +372,7 @@ function fn_addFile(){
             	
             	$("#datepicker").datepicker().datepicker("setDate",new Date(anc_begin_dt));
                 $("#datepicker").datepicker({
-                	setDate: anc_begin_dt
+                	
                 	dateFormat: 'yy-mm-dd'
                 	
                 });

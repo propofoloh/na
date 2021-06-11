@@ -206,13 +206,10 @@ public class BusinessAnnouncementController {
 				logger.info("businessFormEditList");
 				
 				model.addAttribute("list", service.businessAnnouncementList(scri));
-
 				PageMaker pageMaker = new PageMaker();
 				pageMaker.setCri(scri);
 				pageMaker.setTotalCount(service.listCount(scri));
-
 				model.addAttribute("pageMaker", pageMaker);
-
 				return "bam/businessFormEditList";
 				
 		}
