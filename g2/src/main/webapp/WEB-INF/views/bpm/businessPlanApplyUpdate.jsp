@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
+
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,52 +18,107 @@
 
 	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
-    <script type="text/javascript" src="../../resource/js/sub.js"></script>	
+    <script type="text/javascript" src="../../resource/js/sub.js"></script>
 </head>
-<script type="text/javascript">
+<script>
 $(document).ready(function(){
-	$('#evalBtn').click(function(){
-		var bam_anc_idx = ${param.bam_anc_idx}
-		var bpm_bplan_idx = ${read.bpm_bplan_idx}
-		var param = {"bam_anc_idx" : bam_anc_idx ,
-					 "bpm_bplan_idx" : bpm_bplan_idx 
-					}	
-		
-		
-		$.ajax({
-		    type: "post",
-		    url: "/bpm/evalCheck", 
-		    data: param,
-		    datatype : "json",
-		    success: function(e){
-		    
-		    	if(e == "Success")
-		    		location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}';
-		    	else if(e == "overLab")
-		    		alert("해당위원은 이미 평가를 완료하였습니다.")
-		    	else
-		    		alert("해당공고의 평가위원이 아닙니다.")
-		    },
-		    err: function(err){
-		      console.log("err:", err)
-		    }
-		    
-		  })
 	
-		
-	})
+	fn_addFile();
 	
-})
-function fn_fileDownload(fileidx){
-	var formObj = $("form[name='download']");
-	$("#FILE_IDX").attr("value", fileidx);
-	formObj.attr("action", "/bpm/fileDown");
-	formObj.submit();
+	var laborCost = 0;
+	var directCost = 0;
+	var indirectCost = 0;
+	 $('.laborCost').on('keyup',function(){
+			 var Sum = 0;
+        $('.laborCost').each(function(idx,value){ 
+            if(!isNaN(this.value)&&this.value.length!=0){
+                	Sum+=Number($(value).val());
+                    	$('.laborCostSum').val(Sum);
+        				$('.directCostSum').val(Sum);
+        				if($('.RDCostSum').val() == 0 ){
+        			
+        					$('.RDCostSum').val(Sum);
+        					}
+        				else{
+        					$('.RDCostSum').val(Number(directCost) + Number(indirectCost))
+        					}
+        					
+        				
+        				laborCost = $('.laborCostSum').val();
+        				
+        		}	
+        });
+	 });
+	 
+	 $('.directCost').on('keyup',function(){
+		 var Sum = 0;
+    $('.directCost').each(function(idx,value){ 
+        if(!isNaN(this.value)&&this.value.length!=0){
+            	Sum+=Number($(value).val());
+                	$('.directCostSum').val(Sum+Number(laborCost));
+                	$('.RDCostSum').val(Number(directCost) + Number(indirectCost));
+                	directCost = $('.directCostSum').val();
+    		}	
+   		});
+	 });
+	 
+    $('.indirectCostSum').on('keyup',function(){
+    	 var Sum = 0;
+    	 $('.indirectCostSum').each(function(idx,value){
+    	if(!isNaN(this.value)&&this.value.length!=0){
+    		Sum += Number($(value).val());
+        	$('.indirectCostSum').val(Sum);
+        	indirectCost = $('.indirectCostSum').val();
+        	$('.RDCostSum').val(Number(directCost) + Number(indirectCost));
+        	
+    	}
+    })
+  }); 
+        
+	  $('#write_btn').click(function(){
+			
+	  	 
+		   var form = $("form")[0];        
+	       var formData = new FormData(form);
+		   
+		 
+		  $.ajax({
+				type: "POST",
+				url : '/bpm/businessPlanApply',
+				dataType :"text",
+				data: formData,
+				processData: false,
+	            contentType: false,
+				success : function(data) {
+									
+					window.location.replace('/bpm/businessPlanApplyMyList')	
+
+				},
+				error : function(request, status, error){
+					alert("공백이 들어있습니다. 비용이 없으실 경우 0을 입력해주세요.")
+				}
+			});
+	
+
+	 })
+})	
+function fn_addFile(){
+	var fileIndex = 1;
+	//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
+	$("#fileAdd_btn").on("click", function(){
+		$("#fileIndex").append("<div id='fileAddDiv'><input type='file' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
+	});
+	$(document).on("click","#fileDelBtn", function(){
+		$(this).parent().remove();
+		
+	});
+	
 }
 
 
 </script>
 <body>
+ <c:if test ="${member.user_auth == 0}">
     <div class="wrap">
         <dl id="skip_nav">
             <dt>메뉴 건너띄기</dt>
@@ -71,14 +128,14 @@ function fn_fileDownload(fileidx){
             </dd>
         </dl>
         <header>
-            <%@include file="../cmm/topmenu.jsp"%>
+             <%@include file="../cmm/topmenu.jsp"%>
         </header>
         <div class="content">
             <span id="contents"></span>
             <div class="row content_outer">
                 <section class="location sect1">
                     <ul class="insideArea row">
-  	                  <c:choose>
+                <c:choose>
                     	<c:when test="${member.user_auth == 1}">
                     		<li>평가위원</li>
                     	</c:when>
@@ -140,32 +197,32 @@ function fn_fileDownload(fileidx){
                     </ul>
                 </div>
                 <div class="cont">
-                    <h2>사업계획서 상세</h2>
+                    <h2>사업계획서 수정</h2>
+                    <input type="hidden" value="${member.user_name}">
 					<ul class="tab d-flex">
 						<li data-tab="tab1" class="on"><a href="javascript:void(0)">${form.BPLAN_FORM_TITLE1}</a></li>
 						<li data-tab="tab2" class=""><a href="javascript:void(0)">${form.BPLAN_FORM_TITLE2}</a></li>
 						<li data-tab="tab3" class=""><a href="javascript:void(0)">${form.BPLAN_FORM_TITLE3}</a></li>
 						<li data-tab="tab4" ><a href="javascript:void(0)">${form.BPLAN_FORM_TITLE4}</a></li>
 					</ul>
+					<form action="/bpm/businessPlanApplyUpdate" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="bam_anc_idx" value="${param.bam_anc_idx}">
 					<div class="p_15">
 						<div class="tabcontent current" id="tab1">
-							<h2>연구목표</h2>
-							<textarea name="" id="" cols="30" rows="10" readonly="readonly">
-									${read.title_remark1}
-							</textarea>
+							<h2 id="title1">${form.BPLAN_FORM_TITLE1}</h2>
+							<textarea name="title_remark1" id="" cols="30" rows="10">${read.title_remark1}</textarea>
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab2">
-						<textarea name="" id="" cols="30" rows="10" readonly="readonly">
-									${read.title_remark2}
-							</textarea>
+							<h2 id="title2" >${form.BPLAN_FORM_TITLE2}</h2>
+							<textarea name="title_remark2" id="" cols="30" rows="10">${read.title_remark2}</textarea>
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab3">
-						<textarea name="" id="" cols="30" rows="10" readonly="readonly">
-									${read.title_remark3}
-							</textarea>
+							<h2 id="title3">${form.BPLAN_FORM_TITLE3}</h2>
+							<textarea name="title_remark3" id="" cols="30" rows="10">${read.title_remark3}</textarea>					 
 						</div><!--//#tab1-->
 						<div class="tabcontent" id="tab4">
-						<div class="tablebox">
+							<h2 id="title4" >${form.BPLAN_FORM_TITLE4}</h2>
+							<div class="tablebox">
 							<!-- <textarea name="title_remark4" id="" cols="30" rows="10"> -->
 							 <table class="thead_gray">
                                     <colgroup>
@@ -179,7 +236,7 @@ function fn_fileDownload(fileidx){
                                         <tr>
                                             <th class="boldtext" scope="col">비목</th>
                                             <th class="boldtext" colspan="3"scope="col">세목</th>	
-                                            <th class="boldtext" scope="col">당해</th>
+                                            <th class="boldtext" scope="col">금액 (단위 : 천원)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -188,127 +245,130 @@ function fn_fileDownload(fileidx){
                                     		<th class="boldtext" rowspan="6">인건비</th>
                                     		<th class="boldtext" rowspan="3">내부인건비</th>
                                     		<th class="boldtext">미지급</th>
-                                    		<th class="value">${cost.bplan_cost_value1} </th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value1" value="${cost.bplan_cost_value1}"></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">현금</th>
-                                    		<th class="value">${cost.bplan_cost_value2}</th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value2" value="${cost.bplan_cost_value2}"></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">현물</th>
-                                    		<th class="value">${cost.bplan_cost_value3}</th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value3" value="${cost.bplan_cost_value3}"></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext" rowspan="3">외부인건비</th>
                                     		<th class="boldtext">미지급</th>
-                                    		<th class="value">${cost.bplan_cost_value4}</th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value4" value="${cost.bplan_cost_value4}"></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">현금</th>
-                                    		<th class="value">${cost.bplan_cost_value5}</th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value5" value="${cost.bplan_cost_value5}"></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext">현물</th>
-                                    		<th class="value">${cost.bplan_cost_value6}</th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value6" value="${cost.bplan_cost_value6}"></th>
+                                    	<tr>
+                                    		<th class="boldtext"  colspan="3"_>학생인건비</th>
+                                    		<th ><input type="number" class="laborCost" name="bplan_cost_value7" value="${cost.bplan_cost_value7}"></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext" colspan="3">학생인건비</th>
-                                    		<th class="value">${cost.bplan_cost_value7}</th>
-                                    	</tr>
-                                    	<tr>
-                                    		<th class="boldtext" colspan="3"_>인건비 소계</th>
-                                    		<th class="value">${cost.bplan_cost_value8}</th>
+                                    		
+                                    		<th class="boldtext"  colspan="3"_>인건비 소계</th>
+                                    		<th ><input type="number" class="laborCostSum" name="bplan_cost_value8" value="${cost.bplan_cost_value8}" readonly="readonly"></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext" colspan="2">연구시설</th>
                                     		<th class="boldtext">현금_일반</th>
-                                    		<th class="value">${cost.bplan_cost_value9}</th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value9" value="${cost.bplan_cost_value8}"></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext" rowspan="2" colspan="2">장비비</th>
+                                    	
+                                    		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">장비비</th>
                                     		<th class="boldtext">현금통합관리</th>
-                                    		<th class="value">${cost.bplan_cost_value10}</th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value10" value="${cost.bplan_cost_value10}"></th>
                                     	</tr>
                                     	<tr>
+                                    	
                                     		<th class="boldtext">현물</th>
-                                    		<th class="value">${cost.bplan_cost_value11}</th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value11" value="${cost.bplan_cost_value11}"></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext" rowspan="2" colspan="2" >연구활동비</th>
+                                    		
+                                    		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">연구활동비</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th class="value">${cost.bplan_cost_value12}</th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value12" value="${cost.bplan_cost_value12}"></th>
                                     	</tr>
                                     	<tr>
+                                    	
                                     		<th class="boldtext">현물</th>
-                                    		<th class="value">${cost.bplan_cost_value13}</th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value13" value="${cost.bplan_cost_value13}"></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext" rowspan="2" colspan="2" >연구재료비</th>
+                                    		
+                                    		<th class="boldtext" rowspan="2" colspan="2" style="vertical-align: middle;">연구재료비</th>
                                     		<th class="boldtext">현금</th>
-                                    		<th class="value">${cost.bplan_cost_value14}</th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value14" value="${cost.bplan_cost_value14}"></th>
                                     	</tr>
                                     	<tr>
+                                    		
                                     		<th class="boldtext">현물</th>
-                                    		<th class="value">${cost.bplan_cost_value15}</th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value15" value="${cost.bplan_cost_value15}"></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext" colspan="3">연구수당</th>
-                                    		<th class="value">${cost.bplan_cost_value16}</th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value16" value="${cost.bplan_cost_value16}"></th>
                                     	</tr>
                                     	<tr>
                                     		<th class="boldtext" colspan="3">위탁연구개발비</th>
-                                    		<th class="value">${cost.bplan_cost_value17}</th>
+                                    		<th ><input type="number" class="directCost" name="bplan_cost_value17" value="${cost.bplan_cost_value17}"></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext" colspan="3">직접비 소계</th>
-                                    		<th class="value">${cost.bplan_cost_value18}</th>
+                                    	
+                                    		<th class="boldtext" colspan="3">직접비 소계(A)</th>
+                                    		<th ><input type="number" class="directCostSum"name="bplan_cost_value18" value="${cost.bplan_cost_value18}" readonly="readonly"></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext" colspan="4">간접비</th>
-                                    		<th class="value">${cost.bplan_cost_value19}</th>
+                                    		<th class="boldtext" colspan="4">간접비 소계(B)</th>
+                                    		<th ><input type="number" class="indirectCostSum"name="bplan_cost_value19" value="${cost.bplan_cost_value19}"></th>
                                     	</tr>
                                     	<tr>
-                                    		<th class="boldtext" colspan="4">연구개발비 총액</th>
-                                    		<th class="value">${cost.bplan_cost_value20}</th>
+                                    		<th class="boldtext" colspan="4">연구개발비 총액 (A + B)</th>
+                                    		<th ><input type="number" class="RDCostSum" name="bplan_cost_value20" value="${cost.bplan_cost_value20}" readonly="readonly"></th>
                                     	</tr>
-                                   	</tbody>
-                                 </table>
-                              </div>
                                     
-						</div><!--//#tab4-->
-						<div class="filelist form-group file_hwp mb-0">
-							 <form name="download" method="post" action="/bpm/fileDown">
-							 <input type="hidden" name ="FILE_IDX" id="FILE_IDX">
-								<p>파일 목록</p>
-								<ul>
-									<c:forEach var="file" items="${file}">
-										<li>첨부파일 : </span><a href="#" onclick="fn_fileDownload('${file.FILE_IDX}');">${file.FILE_FNAME}</a>(${file.FILE_SIZE}kb)
-									</c:forEach>
-								</ul>
-								</form>
+                                    </tbody>
+                                  
+                                </table>
+								</div> <!-- table box -->
+							
+						</div><!--//#tab1-->
+						
+						<div class="btn_wrap">
+							<div id="fileIndex">	
+									<input type="file" id="input-file" style="display: none" />	
+									<button class="addFile" id="fileAdd_btn"  type="button">파일추가</button>
 							</div>
-							<div class="btn_wrap text-right">
-								<c:if test="${member.user_auth != 0}">
-									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationList?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">평가리스트</button>
-								<c:if test="${member.user_auth == 2}">
-									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">종합의견</button>
-								</c:if>
-									<button type="button" class="normal" id="evalBtn" >평가하기</button>
-									<!-- onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'" -->
-							 	</c:if>
-								 <c:if test="${member.user_auth == 0}">
-									<button type="button" class="normal" onclick="location.href='../bpm/businessPlanApplyUpdate?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">수정</button>
-								 </c:if>
+						</div>
+						</div>
+						
+			 			 <div class="btn_wrap text-right">
+								<button id="write_btn" type="button" class="normal">저장</button>
 							 </div>
+						<input type="hidden" name="writer" value="${member.user_name}">
+						<input type="hidden" name="writer_id" value="${member.user_id}">
+						</form>
 					</div>
+					
                 </div>
             </div>
-            </section>
         </div>
+        </section>
         </div>
         <footer></footer>
     </div>
-
-	
+	</c:if>
+	<c:if test="${member.user_auth != 0}">
+		<p>사업자 전용 페이지 입니다. </p>
+	</c:if>
 </body>
 </html>

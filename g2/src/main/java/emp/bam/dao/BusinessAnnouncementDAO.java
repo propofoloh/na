@@ -48,10 +48,10 @@ public interface BusinessAnnouncementDAO {
 	// 사업 계획서 양식등록
 	public void businessPlanApplyEdit(Map<String,Object> paramMap) throws Exception;
 
-	// 사업 평가지표 양식등록
+	// 사업 평가지표 양식등록 체크
 	public void businessEvaluationEditChk(int bam_anc_idx) throws Exception;
 		
-	// 사업 계획서 양식등록
+	// 사업 계획서 양식등록 체크
 	public void businessPlanApplyEditChk(int bam_anc_idx) throws Exception;
 	
 	//사업 공고 평가위원 등록
@@ -60,6 +60,12 @@ public interface BusinessAnnouncementDAO {
 	//공고일자 만료된 사업공고 삭제
 	public void businessAnnouncementOldUpdate() throws Exception;
 	
+	// 사업 평가지표 양식등록
+	public void businessEvaluationEditUpdate(Map<String,Object> paramMap) throws Exception;
+	
+	// 사업 계획서 양식등록
+	public void businessPlanApplyEditUpdate(Map<String,Object> paramMap) throws Exception;
+		
 	
 	
 }

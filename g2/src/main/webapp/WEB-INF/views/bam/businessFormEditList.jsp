@@ -167,7 +167,7 @@
 												</c:when>
 												<c:otherwise>
 													<td class="quickBtn" style="text-align: center;">
-														<a href="">등록완료</a>
+														<a href="/bam/businessPlanApplyEditUpdate?bam_anc_idx=${list.bam_anc_idx}">양식수정</a>
 													</td>
 												</c:otherwise>
 											</c:choose>	
@@ -179,7 +179,7 @@
 												</c:when>
 												<c:otherwise>
 													<td class="quickBtn" style="text-align: center;">
-														<a href="">등록완료</a>
+														<a href="/bam/businessEvaluationEditUpdate?bam_anc_idx=${list.bam_anc_idx}">양식수정</a>
 													</td>
 												</c:otherwise>
 											</c:choose>	

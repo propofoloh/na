@@ -79,13 +79,14 @@ $(document).ready(function(){
      
                 <div class="cont">
                     <h2>사업평가리스트</h2>
-                    <form name="writeForm" action="/bam/businessPlanApplyEdit" method="post">
+                    <form name="writeForm" action="/bam/businessPlanApplyEditUpdate" method="post">
                     	<input type="hidden" name="Sbam_anc_idx" value="${param.bam_anc_idx}">
+                    	<input type="text" name="bpm_bplan_form_idx" value="${form.BPM_BPLAN_FORM_IDX}">
 						<ul class="tab d-flex">
-							<li data-tab="tab1" class="on"><a href="javascript:void(0)"><input type="text" id="bplan_form_title1" name="bplan_form_title1" placeholder="항목명 입력 ex)연구목표" value=""></a></li>
-							<li data-tab="tab2" class=""><a href="javascript:void(0)"><input type="text" id="bplan_form_title2" name="bplan_form_title2" placeholder="항목명 입력 " value=""></a></li>
-							<li data-tab="tab3" class=""><a href="javascript:void(0)"><input type="text" id="bplan_form_title3" name="bplan_form_title3" placeholder="항목명 입력"value=""></a></li>
-							<li data-tab="tab4" ><a href="javascript:void(0)"><input type="text" id="bplan_form_title4" name="bplan_form_title4" value="연구개발비"></a></li>
+							<li data-tab="tab1" class="on"><a href="javascript:void(0)"><input type="text" id="bplan_form_title1" name="bplan_form_title1" placeholder="항목명 입력 ex)연구목표" value="${form.BPLAN_FORM_TITLE1}"></a></li>
+							<li data-tab="tab2" class=""><a href="javascript:void(0)"><input type="text" id="bplan_form_title2" name="bplan_form_title2" placeholder="항목명 입력 " value="${form.BPLAN_FORM_TITLE2}"></a></li>
+							<li data-tab="tab3" class=""><a href="javascript:void(0)"><input type="text" id="bplan_form_title3" name="bplan_form_title3" placeholder="항목명 입력" value="${form.BPLAN_FORM_TITLE3}"></a></li>
+							<li data-tab="tab4" ><a href="javascript:void(0)"><input type="text" id="bplan_form_title4" name="bplan_form_title4" value="${form.BPLAN_FORM_TITLE4}"></a></li>
 						</ul>
 					</form>
 					<div class="p_15">
@@ -115,7 +116,6 @@ $(document).ready(function(){
 								</div>
 						</div><!--//#tab4-->
 					</div>
-				
                 </div>
             </div>
         </section>	

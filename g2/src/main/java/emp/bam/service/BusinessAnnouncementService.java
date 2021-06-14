@@ -45,7 +45,12 @@ public interface BusinessAnnouncementService {
 		
 		//공고일자 만료된 사업공고 삭제
 		public void businessAnnouncementOldUpdate() throws Exception;
-		    
+		
+		//사업 평가지표 양식 수정 
+		public void businessEvaluationEditUpdate(List<String> arrBem_beval_form_idx,List<String> arrEval_form_title, List<String> arrEval_form_item, List<String> arrEval_form_score,int bam_anc_idx) throws Exception;
+		
+		//사업 계획서 양식 수정 
+		public void businessPlanApplyEditUpdate(Map<String,Object> paramMap) throws Exception;
 		
 	}    
  

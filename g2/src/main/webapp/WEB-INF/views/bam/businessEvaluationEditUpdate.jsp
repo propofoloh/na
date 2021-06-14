@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.Calendar" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,13 +124,14 @@
 	  $('.write_btn').click(function(){
 			
 		  var len = 8;
+		  var arrBem_beval_form_idx =[];
 		  var arrEval_form_title =[];
 		  var arrEval_form_item = [];
 		  var arrEval_form_score = [];
 		  var Sbam_anc_idx=${param.bam_anc_idx}
 		 
 		   for(var i =0; i < len;i++){
-			  
+			  arrBem_beval_form_idx.push(document.getElementsByName("bem_beval_form_idx")[i].value);
 			  arrEval_form_title.push(document.getElementsByName("eval_form_title")[i].value);
 			  arrEval_form_item.push(document.getElementsByName("eval_form_item")[i].value);
 			  arrEval_form_score.push(document.getElementsByName("eval_form_score")[i].value);
@@ -137,6 +140,7 @@
 		  } 
 		  
 		  var objParams = {
+				  	"arrBem_beval_form_idx" : arrBem_beval_form_idx,
 				    "arrEval_form_title" : arrEval_form_title, 
 					"arrEval_form_item" : arrEval_form_item ,
 					"arrEval_form_score" : arrEval_form_score,
@@ -146,7 +150,7 @@
 		 
 		  $.ajax({
 				type: "POST",
-				url : '/bam/businessEvaluationEdit',
+				url : '/bam/businessEvaluationEditUpdate',
 				dataType :"text",
 				data: objParams,
 				success : function(data) {
@@ -204,7 +208,6 @@
  			<col style="width:15%">
  			<col style="width:55%">
  			<col style="width:10%">
- 			<col style="width:10%">
     	  </colgroup>
       <thead>
 	        <tr class="evaluationTableHeader">
@@ -214,12 +217,25 @@
 	          <th scope="col">배점</th>
 	        </tr>
 	  </thead>
-	  <tbody>
+	  	<c:forEach items="${ancInfo}" var="ancInfo" varStatus="status">
+	  		<input type="hidden" name="bem_beval_form_idx" value="${ancInfo.BEM_BEVAL_FORM_IDX}">
+	  	</c:forEach>
+		  	<tbody>
+	          <tr>
+	             <th rowspan="8" class="f_bold">신청기업</th>
+	           		<c:forEach items="${ancInfo}" var="ancInfo" varStatus="status">
+	     	      	   <th scope="col"><textarea name="eval_form_title">${ancInfo.EVAL_FORM_TITLE}</textarea></th> 
+		               <th scope="col"><textarea name="eval_form_item">${ancInfo.EVAL_FORM_ITEM}</textarea></th>
+		               <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="${ancInfo.EVAL_FORM_SCORE}"></th>	 
+	         </tr>
+	                </c:forEach>	
+	         </tbody>
+	 <!--  <tbody>
 	        <tr>
-	          <th rowspan="6" class="f_bold">신청기업</th>
-	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
-	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
-	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
+	          <th rowspan="8" class="f_bold">신청기업</th>
+	          <th scope="col"><textarea name="eval_form_title">{}</textarea></th>
+	         
+	          
 	        </tr>
 	        <tr>
 	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
@@ -247,7 +263,6 @@
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
 	        </tr>
 	        <tr>
-	          <th rowspan="2" class="f_bold">신청기업</th>
 	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
 	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
@@ -257,7 +272,7 @@
 	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
 	        </tr>
-	  </tbody>  
+	  </tbody>   -->
 	 </table>
 		 <div class="submitForm">
 			    <input class ="cancle_btn" type="button" onclick="location.href='/bpm/businessPlanApplyList?bam_anc_idx=${param.bam_anc_idx}'" value="취소"> 

@@ -149,7 +149,7 @@ function fn_addFile(){
                     		<li>비로그인</li>
                     	</c:when>
                     </c:choose>         
-                        <li>사업평가리스트</li>
+                        <li>사업계획서 작성</li>
                     </ul>
                 </section>
                 <section class="sect2">

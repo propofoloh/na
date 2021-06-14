@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.Calendar" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -216,7 +218,7 @@
 	  </thead>
 	  <tbody>
 	        <tr>
-	          <th rowspan="6" class="f_bold">신청기업</th>
+	          <th rowspan="8" class="f_bold">신청기업</th>
 	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
 	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
@@ -247,7 +249,6 @@
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	
 	        </tr>
 	        <tr>
-	          <th rowspan="2" class="f_bold">신청기업</th>
 	          <th scope="col"><textarea name="eval_form_title"></textarea></th>
 	          <th scope="col"><textarea name="eval_form_item"></textarea></th>
 	          <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="20"></th>	

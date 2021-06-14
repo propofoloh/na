@@ -28,6 +28,8 @@ import emp.bam.service.BusinessAnnouncementService;
 import emp.bam.util.PageMaker;
 import emp.bam.util.SearchCriteria;
 import emp.bam.vo.BusinessAnnouncementVO;
+import emp.bem.service.BusinessEvaluationService;
+import emp.bpm.service.BusinessPlanService;
 import emp.cmm.service.MemberService;
 
 @Controller
@@ -40,6 +42,10 @@ public class BusinessAnnouncementController {
 	BusinessAnnouncementService service;
 	@Inject
 	MemberService memberService;
+	@Inject
+	BusinessEvaluationService bemService;
+	@Inject
+	BusinessPlanService bpmService;
 
 	//사업 공고 조회
 	@RequestMapping(value = "/businessAnnouncementList", method = RequestMethod.GET)
@@ -167,11 +173,39 @@ public class BusinessAnnouncementController {
 		}
 
 	}
+	//사업평가지표 양식등록 뷰
 	@RequestMapping(value="/businessEvaluationEdit",method = RequestMethod.GET)
 	public void businessEvaluationEditView(@RequestParam(value = "bam_anc_idx") int bam_anc_idx,RedirectAttributes redirect) throws Exception{;
 			logger.info("businessEvaluationEdit");
 			redirect.addAttribute(bam_anc_idx);	
 	}
+	
+	//사업평가지표 양식 수정
+	@RequestMapping(value="/businessEvaluationEditUpdate",method = RequestMethod.POST)
+	public @ResponseBody void businessEvaluationEditUpdate (
+				@RequestParam(value = "arrBem_beval_form_idx[]") List<String> arrBem_beval_form_idx,
+				@RequestParam(value = "arrEval_form_title[]") List<String> arrEval_form_title,
+				@RequestParam(value = "arrEval_form_item[]") List<String> arrEval_form_item,
+				@RequestParam(value = "arrEval_form_score[]") List<String> arrEval_form_score,	
+				@RequestParam(value = "Sbam_anc_idx") String Sbam_anc_idx,
+				Model model,HttpServletResponse response) throws Exception{
+			try {
+				int bam_anc_idx=Integer.parseInt(Sbam_anc_idx);
+				service.businessEvaluationEditUpdate(arrBem_beval_form_idx,arrEval_form_title,arrEval_form_item,arrEval_form_score,bam_anc_idx);
+				
+			}catch (Exception e) {
+				
+			}
+
+		}
+	//사업평가지표 양식 수정 뷰
+	@RequestMapping(value="/businessEvaluationEditUpdate",method = RequestMethod.GET)
+	public void businessEvaluationEditUpdateView(@RequestParam(value = "bam_anc_idx") int bam_anc_idx,RedirectAttributes redirect,Model model) throws Exception{
+				logger.info("businessEvaluationEdit");
+				model.addAttribute("ancInfo",bemService.businessEvaluationFormList(bam_anc_idx));
+				redirect.addAttribute(bam_anc_idx);	
+		}
+	
 	//사업계획서 양식등록
 		@RequestMapping(value="/businessPlanApplyEdit",method = RequestMethod.POST)
 		public String businessPlanApplyEdit (
@@ -196,12 +230,50 @@ public class BusinessAnnouncementController {
 			
 		
 		}
+		//사업계획서 양식등록 뷰
 		@RequestMapping(value="/businessPlanApplyEdit",method = RequestMethod.GET)
 		public void businessPlanApplyEditView(@RequestParam(value = "bam_anc_idx") int bam_anc_idx,RedirectAttributes redirect) throws Exception{;
-				logger.info("businessEvaluationEdit");
+				logger.info("businessPlanApplyEdit");
 				redirect.addAttribute(bam_anc_idx);	
 		}
-	
+		
+		//사업계획서 양식수정
+		@RequestMapping(value="/businessPlanApplyEditUpdate",method = RequestMethod.POST)
+		public String businessPlanApplyEditUpdate (
+						@RequestParam(value = "bpm_bplan_form_idx") String bpm_bplan_form_idx,
+						@RequestParam(value = "Sbam_anc_idx") String Sbam_anc_idx,
+						@RequestParam(value = "bplan_form_title1") String bplan_form_title1,
+						@RequestParam(value = "bplan_form_title2") String bplan_form_title2,
+						@RequestParam(value = "bplan_form_title3") String bplan_form_title3,
+						@RequestParam(value = "bplan_form_title4") String bplan_form_title4,
+						Model model,HttpServletResponse response) throws Exception{
+					
+					
+						int bam_anc_idx=Integer.parseInt(Sbam_anc_idx);
+						Map<String,Object> paramMap = new HashMap();
+						paramMap.put("bpm_bplan_form_idx",bpm_bplan_form_idx);
+						paramMap.put("bplan_form_title1",bplan_form_title1);
+						paramMap.put("bplan_form_title2",bplan_form_title2);
+						paramMap.put("bplan_form_title3",bplan_form_title3);
+						paramMap.put("bplan_form_title4",bplan_form_title4);
+						paramMap.put("bam_anc_idx",bam_anc_idx);
+						service.businessPlanApplyEditUpdate(paramMap);
+						
+						return "redirect:/bam/businessFormEditList";
+					
+				
+				}
+		//사업계획서 양식수정 뷰
+		@RequestMapping(value="/businessPlanApplyEditUpdate",method = RequestMethod.GET)
+		public void businessPlanApplyEditUpdateView(@RequestParam(value = "bam_anc_idx") int bam_anc_idx,RedirectAttributes redirect,Model model) throws Exception{;
+						logger.info("businessEvaluationEdit");
+						
+						Map<String,Object> resultMap = bpmService.businessPlanApplyForm(bam_anc_idx);
+						model.addAttribute("form",resultMap);
+						redirect.addAttribute(bam_anc_idx);	
+				}
+		
+		//사업공고양식 리스트
 		@RequestMapping(value="/businessFormEditList",method = RequestMethod.GET)
 		public String businessFormEditList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 				logger.info("businessFormEditList");

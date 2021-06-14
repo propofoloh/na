@@ -201,7 +201,7 @@
                                     <tbody>
                                     	 <tr>
                                     	 <th rowspan="8" class="f_bold">신청기업</th>
-                                   <c:forEach items="${ancInfo}" var="ancInfo" varStatus="status" > 
+                                   <c:forEach items="${ancInfo}" var="ancInfo" varStatus="status"> 
 	                                            <td class="type">${ancInfo.EVAL_FORM_TITLE}</td>
 	                                            <td >${ancInfo.EVAL_FORM_ITEM}</td>
 	                                            <td style="text-align: center;" class="point" >${ancInfo.EVAL_FORM_SCORE}</td>

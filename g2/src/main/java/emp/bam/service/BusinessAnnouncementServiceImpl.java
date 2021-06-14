@@ -158,4 +158,34 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 			// TODO Auto-generated method stub
 			dao.businessAnnouncementOldUpdate();
 		}
+		
+		@Override
+		public void businessEvaluationEditUpdate(List<String> arrBem_beval_form_idx,List<String> arrEval_form_title, List<String> arrEval_form_item,
+				List<String> arrEval_form_score, int bam_anc_idx) throws Exception {
+			// TODO Auto-generated method stub
+			String bem_beval_form_idx="";
+			String eval_form_title ="";
+			String eval_form_item ="";
+			String eval_form_score="";
+			for(int i=0; i < arrEval_form_title.size();i++) {
+				bem_beval_form_idx = arrBem_beval_form_idx.get(i);
+				eval_form_title = arrEval_form_title.get(i);
+				eval_form_item = arrEval_form_item.get(i);
+				eval_form_score = arrEval_form_score.get(i);
+				
+				Map<String,Object> paramMap = new HashMap();
+				paramMap.put("bem_beval_form_idx",bem_beval_form_idx);
+				paramMap.put("eval_form_title",eval_form_title);
+				paramMap.put("eval_form_item",eval_form_item);
+				paramMap.put("eval_form_score",eval_form_score);
+				paramMap.put("bam_anc_idx",bam_anc_idx);
+				dao.businessEvaluationEditUpdate(paramMap);
+				
+			}
+		}
+		@Override
+		public void businessPlanApplyEditUpdate(Map<String, Object> paramMap) throws Exception {
+			// TODO Auto-generated method stub
+			dao.businessPlanApplyEditUpdate(paramMap);
+		}
 }
