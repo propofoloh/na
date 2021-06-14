@@ -65,11 +65,6 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 		return dao.businessAnnouncementDetail(BAM_ANC_IDX);
 	}
 	
-	@Override
-	public void update(BusinessAnnouncementVO businessAnnouncementVO) throws Exception {
-		// TODO Auto-generated method stub
-		dao.update(businessAnnouncementVO);
-	}
 	
 	@Override
 	public void delete(int bno) throws Exception {

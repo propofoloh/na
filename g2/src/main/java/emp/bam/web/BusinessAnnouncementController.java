@@ -130,6 +130,7 @@ public class BusinessAnnouncementController {
 
 		return "redirect:/bam/businessAnnouncementList";
 	}
+	
 	//파일첨부
 	@RequestMapping(value="/fileDown")
 	public void fileDown(@RequestParam Map<String, Object> map, HttpServletResponse response) throws Exception{

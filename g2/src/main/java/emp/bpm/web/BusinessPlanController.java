@@ -135,6 +135,30 @@ public class BusinessPlanController {
 		 
 		return "bpm/businessPlanApplyDetail";
 	}
+	//사업계획서 수정
+	@RequestMapping(value = "/businessPlanApplyUpdate", method = RequestMethod.GET)
+	public void businessPlanApplyUpdateView(BusinessPlanVO businessPlanVO, @RequestParam("bam_anc_idx") int bam_anc_idx, Model model) throws Exception {
+		logger.info("businessPlanApply");
+			
+		Map<String,Object> resultMap = service.businessPlanApplyForm(bam_anc_idx);
+		
+		model.addAttribute("form",resultMap);
+		model.addAttribute("read",service.businessPlanApplyDetail(businessPlanVO.getBpm_bplan_idx()));
+		model.addAttribute("cost",service.businessPlanSelectCost(businessPlanVO.getBpm_bplan_idx()));
+	}
+	
+	@RequestMapping(value = "/businessPlanApplyUpdate", method = RequestMethod.POST)
+	public void businessPlanApplyUpdate(BusinessPlanVO businessPlanVO,BusinessPlanCostVO businessPlanCostVO,@RequestParam(value="fileNoDel[]") String[] files,
+			@RequestParam(value="fileNameDel[]") String[] fileNames,
+			MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception {
+		logger.info("businessPlanApply");
+		
+			service.businessPlanApplyUpdate(businessPlanVO,files,fileNames,mpRequest);
+			businessPlanCostVO.setBpm_bplan_idx(businessPlanVO.getBpm_bplan_idx());
+			service.businessPlanInputCost(businessPlanCostVO);
+			redirect.addAttribute("bam_anc_idx",businessPlanVO.getBam_anc_idx());
+
+	}
 
 	@RequestMapping(value = "/fileDown")
 	public void fileDown(@RequestParam Map<String, Object> map, HttpServletResponse response) throws Exception {
@@ -168,7 +192,7 @@ public class BusinessPlanController {
 		  evalparam.put("bpm_bplan_idx",bpm_bplan_idx); 
 		  evalparam.put("writer_id",user_id);  
 		  int result = evalservice.businessEvaluationOverLapChk(evalparam);
-		 System.out.println("@@@@@@@@@@@@@@@"+result);
+		 
 		//등록된 멤버 리스트 조회
 		List<Map<String,Object>> resultList = service.businessPlanEvalMember(bam_anc_idx);
 

@@ -81,12 +81,17 @@
 		 WHERE BPM_BPLAN_IDX = #{bpm_bplan_idx}
 	</select>
 	
-	<!--     <update id="update" parameterType="emp.bam.vo.BusinessAnnouncementVO">
-		UPDATE MP_BOARD
-		   SET TITLE    =   #{title},
-		   	   CONTENT  =   #{content}
-		 WHERE BNO = #{bno} 
-	</update> -->
+	    <update id="businessPlanApplyUpdate" parameterType="emp.bpm.vo.BusinessPlanVO">
+		UPDATE EMP_BPM_BPLAN SET  
+					  		  , TITLE_REMARK1
+					   		  , TITLE_REMARK2
+					  		  , TITLE_REMARK3					  	
+					  	      , WRITER
+	   					      , WRITER_ID
+		WHERE BPM_BPLAN_IDX = #{bpm_bplan_idx}
+	</update> 
+	
+	
 	
 	<!-- <delete id="delete" parameterType="int">
 		DELETE 
@@ -296,6 +301,33 @@
 		   			AND BPM_BPLAN_IDX = #{bpm_bplan_idx}  	 
   	 	</select>
   	 	
+  	 	<!-- 연구개발비 수정 -->
+  	 	<update id="businessPlanApplyCostUpdate" parameterType="emp.bpm.vo.BusinessPlanCostVO">
+		UPDATE EMP_BPM_BPLAN_COST SET  
+		   					        BPLAN_COST_VALUE1 = #{bplan_cost_value1}
+		   					      , BPLAN_COST_VALUE2 = #{bplan_cost_value2}
+		   					      , BPLAN_COST_VALUE3 = #{bplan_cost_value3}
+		   					      , BPLAN_COST_VALUE4 = #{bplan_cost_value4}
+		   					      , BPLAN_COST_VALUE5 = #{bplan_cost_value5}
+		   					      , BPLAN_COST_VALUE6 = #{bplan_cost_value6}
+		   					      , BPLAN_COST_VALUE7 = #{bplan_cost_value7}
+		   					      , BPLAN_COST_VALUE8 = #{bplan_cost_value8}	
+		   					      , BPLAN_COST_VALUE9 = #{bplan_cost_value9}
+		   					      , BPLAN_COST_VALUE10 = #{bplan_cost_value10}
+		   					      , BPLAN_COST_VALUE11 = #{bplan_cost_value11}
+		   					      , BPLAN_COST_VALUE12 = #{bplan_cost_value12}
+		   					      , BPLAN_COST_VALUE13 = #{bplan_cost_value13}
+		   					      , BPLAN_COST_VALUE14 = #{bplan_cost_value14}
+		   					      , BPLAN_COST_VALUE15 = #{bplan_cost_value15}
+		   					      , BPLAN_COST_VALUE16 = #{bplan_cost_value16}
+		   					      , BPLAN_COST_VALUE17 = #{bplan_cost_value17}
+		   					      , BPLAN_COST_VALUE18 = #{bplan_cost_value18} 
+		   					      , BPLAN_COST_VALUE19 = #{bplan_cost_value19}
+		   					      , BPLAN_COST_VALUE20 = #{bplan_cost_value20}	
+		   					      
+				WHERE BPM_BPLAN_IDX = #{bpm_bplan_idx}
+		</update> 
+	
   	 	<select id="businessPlanEvalMember" parameterType="int" resultType="hashMap">
   	 		SELECT BAM_ANC_IDX
 			  	 				, BAM_ANC_MEMBER_IDX

@@ -137,10 +137,9 @@
                                     
                                     <caption>사업안내 | 사업공고 | 사업공지에 순번, 사업명, 작성자, 등록일을 나타낸  테이블</caption>				
                                     <colgroup>
-                                        <col style="width:10%" >
+                                        <col style="width:10%">
                                         <col style="width:30%">
                                         <col style="width:10%">
-                                        <col style="width:20%">
                                         <col style="width:20%">
                                     </colgroup>
                                     <thead>

@@ -289,16 +289,19 @@ function fn_fileDownload(fileidx){
 								</ul>
 								</form>
 							</div>
-							<c:if test="${member.user_auth != 0}">
-							 <div class="btn_wrap text-right">
+							<div class="btn_wrap text-right">
+								<c:if test="${member.user_auth != 0}">
 									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationList?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">평가리스트</button>
 								<c:if test="${member.user_auth == 2}">
 									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">종합의견</button>
 								</c:if>
 									<button type="button" class="normal" id="evalBtn" >평가하기</button>
 									<!-- onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'" -->
+							 	</c:if>
+								 <c:if test="${member.user_auth == 0}">
+									<button type="button" class="normal" onclick="location.href='../bpm/businessPlanApplyUpdate?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">수정</button>
+								 </c:if>
 							 </div>
-							 </c:if>
 					</div>
                 </div>
             </div>

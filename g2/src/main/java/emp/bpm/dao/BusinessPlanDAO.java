@@ -25,7 +25,7 @@ public interface BusinessPlanDAO {
 	public BusinessPlanVO businessPlanApplyDetail(int bam_bplan_idx) throws Exception;
 	
 	// 사업계획서 수정
-	public void update(BusinessPlanVO VO) throws Exception;
+	public void businessPlanApplyUpdate(BusinessPlanVO VO) throws Exception;
 	
 	// 사업계획서 삭제
 	public void delete(int bno) throws Exception;
@@ -56,6 +56,9 @@ public interface BusinessPlanDAO {
 		
 	//사업계획서 연구개발비 비용 조회
 	public BusinessPlanCostVO businessPlanSelectCost(int bpm_bplan_idx) throws Exception;
+	
+	//사업계획서 연구개발비 비용 수정
+	public void businessPlanUpdateCost(BusinessPlanCostVO businessPlanCostVO) throws Exception;
 	
 	//사업계획서 평가위원 리스트
 	public List<Map<String,Object>> businessPlanEvalMember(int bam_anc_idx) throws Exception;

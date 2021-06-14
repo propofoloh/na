@@ -70,11 +70,6 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 		return dao.businessPlanApplyDetail(bpm_bplan_idx);
 	}
 	
-	@Override
-	public void update(BusinessPlanVO BusinessPlanVO) throws Exception {
-		// TODO Auto-generated method stub
-		dao.update(BusinessPlanVO);
-	}
 	
 	@Override
 	public void delete(int bno) throws Exception {
@@ -82,6 +77,24 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 		
 		dao.delete(bno);
 		
+	}
+	
+	@Override
+	public void businessPlanApplyUpdate(BusinessPlanVO businessPlanVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
+		
+		dao.businessPlanApplyUpdate(businessPlanVO);
+		
+		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(businessPlanVO, files, fileNames, mpRequest);
+		Map<String, Object> tempMap = null;
+		int size = list.size();
+		for(int i = 0; i<size; i++) {
+			tempMap = list.get(i);
+			if(tempMap.get("IS_NEW").equals("Y")) {
+				dao.insertFile(tempMap);
+			}else {
+				dao.updateFile(tempMap);
+			}
+		}
 	}
 
 	// 泥⑤��뙆�씪 議고쉶
@@ -116,23 +129,7 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 		// TODO Auto-generated method stub
 		return dao.businessPlanSelectCost(bpm_bplan_idx);
 	}
-	@Override
-	public void update(BusinessPlanVO businessPlanVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
-		
-		dao.update(businessPlanVO);
-		
-		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(businessPlanVO, files, fileNames, mpRequest);
-		Map<String, Object> tempMap = null;
-		int size = list.size();
-		for(int i = 0; i<size; i++) {
-			tempMap = list.get(i);
-			if(tempMap.get("IS_NEW").equals("Y")) {
-				dao.insertFile(tempMap);
-			}else {
-				dao.updateFile(tempMap);
-			}
-		}
-	}
+	
 	
 	@Override
 	public Map<String,Object> businessPlanApplyForm(int bam_anc_idx) throws Exception {
@@ -164,5 +161,10 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 			Status = "Fail";
 		
 		return Status;
+	}
+	@Override
+	public void businessPlanUpdateCost(BusinessPlanCostVO businessPlanCostVO) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 }
