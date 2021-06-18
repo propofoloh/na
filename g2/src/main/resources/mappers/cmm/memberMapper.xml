@@ -87,6 +87,7 @@
 	   					       , HP_NUM
 	   					       , USER_EMAIL
 	   					       , USER_AUTH
+	   					       , USER_CRCODE
 	   					       , DEL_YN
 	   					       , REG_DATE
 	   					       , MOD_DATE
