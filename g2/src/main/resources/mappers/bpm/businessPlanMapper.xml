@@ -155,11 +155,11 @@
 		WHERE FILE_IDX = #{FILE_IDX}
 	</select>
 
-<!-- 	<update id="updateFile" parameterType="hashMap">
+	<update id="updateFile" parameterType="hashMap">
 		UPDATE EMP_FILE SET
-		DEL_GB = 'Y'
+		DEL_YN = 'Y'
 		WHERE FILE_NO = #{file_idx}
-	</update>  -->
+	</update>  
    
     <select id="businessPlanApplyMyList" resultType="emp.bpm.vo.BusinessPlanVO" parameterType="hashMap">
 		SELECT  BPM_BPLAN_IDX 

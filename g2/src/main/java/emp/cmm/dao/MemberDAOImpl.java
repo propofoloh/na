@@ -87,15 +87,11 @@ public List<MemberVO> memberMngList() throws Exception {
     return sql.selectList("memberMapper.memberMngList");
 }
 
-@Override
-public void insertMember(MemberVO vo) throws Exception {
-
-}
 
 @Override
-public MemberVO viewMember() throws Exception {
-    // TODO Auto-generated method stub
-    return null;
+public MemberVO memberMngDetail(int member_idx) throws Exception {
+	// TODO Auto-generated method stub
+	return sql.selectOne("memberMapper.memberMngDetail",member_idx);
 }
 
 @Override

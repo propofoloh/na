@@ -141,23 +141,27 @@ public class BusinessPlanController {
 		logger.info("businessPlanApply");
 			
 		Map<String,Object> resultMap = service.businessPlanApplyForm(bam_anc_idx);
-		
+		List<Map<String, Object>> fileList = service.selectFileList(businessPlanVO.getBpm_bplan_idx());
 		model.addAttribute("form",resultMap);
 		model.addAttribute("read",service.businessPlanApplyDetail(businessPlanVO.getBpm_bplan_idx()));
 		model.addAttribute("cost",service.businessPlanSelectCost(businessPlanVO.getBpm_bplan_idx()));
+		model.addAttribute("file", fileList);
 	}
 	
 	@RequestMapping(value = "/businessPlanApplyUpdate", method = RequestMethod.POST)
-	public void businessPlanApplyUpdate(BusinessPlanVO businessPlanVO,BusinessPlanCostVO businessPlanCostVO,@RequestParam(value="fileNoDel[]") String[] files,
+	public String businessPlanApplyUpdate(BusinessPlanVO businessPlanVO,
+			BusinessPlanCostVO businessPlanCostVO,
+			@RequestParam(value="fileNoDel[]") String[] files,
 			@RequestParam(value="fileNameDel[]") String[] fileNames,
 			MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception {
-		logger.info("businessPlanApply");
-		
+			logger.info("businessPlanApplyUpdate");
+			
 			service.businessPlanApplyUpdate(businessPlanVO,files,fileNames,mpRequest);
 			businessPlanCostVO.setBpm_bplan_idx(businessPlanVO.getBpm_bplan_idx());
-			service.businessPlanInputCost(businessPlanCostVO);
+			service.businessPlanUpdateCost(businessPlanCostVO);
 			redirect.addAttribute("bam_anc_idx",businessPlanVO.getBam_anc_idx());
-
+			
+			return "redirect:/bpm/businessPlanApplyList";
 	}
 
 	@RequestMapping(value = "/fileDown")

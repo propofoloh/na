@@ -37,10 +37,8 @@ public interface MemberDAO {
 ///////회원 관리//////////
     // 회원 목록 
     public List<MemberVO> memberMngList() throws Exception;
-    // 회원 입력
-    public void insertMember(MemberVO vo) throws Exception;
     // 회원 정보 상세보기
-    public MemberVO viewMember() throws Exception;
+    public MemberVO memberMngDetail(int member_idx) throws Exception;
     // 회원삭제
     public void deleteMember(String userId) throws Exception;
     // 회원정보 수정

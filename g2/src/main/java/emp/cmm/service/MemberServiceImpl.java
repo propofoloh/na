@@ -85,16 +85,12 @@ public class MemberServiceImpl implements MemberService {
         return dao.memberMngList();
     }
  
-    @Override
-    public void insertMember(MemberVO vo) throws Exception {
-        
-    }
  
-    @Override
-    public MemberVO viewMember() throws Exception {
-        return null;
-    }
- 
+   @Override
+	public MemberVO memberMngDetail(int member_idx) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.memberMngDetail(member_idx);
+	}
     @Override
     public void deleteMember(String user_id) throws Exception {
         

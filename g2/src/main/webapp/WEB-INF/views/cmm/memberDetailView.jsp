@@ -112,7 +112,7 @@
                         </div>
                         <div class="inner">
                         <div class="board-wrap">
-                        <form id="" name="" method="post" action="">
+                        <form id="writeForm" name="writeForm" method="post" action="/bam/businessAnnouncementInputWrite" enctype="multipart/form-data">
                             <table class="board-basic type-row">
                                 <caption>사업안내 | 사업공고 | 사업공지에  사업명, 작성자, 내용, 공고기간, 첨부파일을 나타낸  테이블</caption>
                                 <colgroup>
@@ -123,7 +123,7 @@
                                     <tr>
                                         <th scope="row"><span>* </span>아이디</th>
                                         <td>
-                                            ${member.user_id}
+                                            <input type="text" name="anc_title" id="anc_title" value="${member.user_id}" placeholder="제목을 입력하세요.">
                                         </td>
                                     </tr>
                                     <tr>

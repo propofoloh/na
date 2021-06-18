@@ -84,7 +84,7 @@ $(document).ready(function(){
 		 
 		  $.ajax({
 				type: "POST",
-				url : '/bpm/businessPlanApply',
+				url : '/bpm/businessPlanApplyUpdate',
 				dataType :"text",
 				data: formData,
 				processData: false,
@@ -345,12 +345,22 @@ function fn_addFile(){
 						
 						<div class="btn_wrap">
 							<div id="fileIndex">	
-									<input type="file" id="input-file" style="display: none" />	
-									<button class="addFile" id="fileAdd_btn"  type="button">파일추가</button>
+								<input type="file" id="input-file" style="display: none" />	
+								
+								<button class="addFile" id="fileAdd_btn"  type="button">파일추가</button>
+							<div class="filelist form-group file_hwp mb-0">
+								<p>파일 목록</p>
+								<ul>
+									<c:forEach var="file" items="${file}" varStatus="var">
+										<input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}" value="${file.FILE_NO }">
+										<input type="hidden" id="FILE_NAME" name="FILE_NAME" value="FILE_NO_${var.index}">
+										<div><span>첨부파일 : </span>${file.FILE_FNAME}(${file.FILE_SIZE}kb)<button type='button'style="margin-left: 80%" id='fileDelBtn'>삭제</button></div>
+									</c:forEach>
+								</div>
+								</ul>
 							</div>
 						</div>
 						</div>
-						
 			 			 <div class="btn_wrap text-right">
 								<button id="write_btn" type="button" class="normal">저장</button>
 							 </div>

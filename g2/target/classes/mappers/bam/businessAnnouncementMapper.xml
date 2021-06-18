@@ -247,20 +247,29 @@ SELECT      FILE_IDX,
    				 ]]>
    </update>
    
-   <!-- 해당 공고의 평가위원 리스트 조회 -->
-   <select id="eval" parameterType="int" resultType="emp.bam.vo.BusinessAnnouncementVO">
-		SELECT	BAM_ANC_IDX 
-	   					      , BOARD_IDX 
-	   					      , ANC_TITLE 
-	   					      , ANC_REMARK
-	   					      , ANC_BEGIN_DT
-	   					      , ANC_END_DT
-	   					      , WRITER
-	   					      , REG_DATE
-	   					      , MOD_DATE
-		 FROM EMP_BAM_ANC
-		 WHERE BAM_ANC_IDX = #{bam_anc_idx}
-	</select>
+   <update id="businessEvaluationEditUpdate" parameterType="hashMap">
+   UPDATE EMP_BEM_BEVAL_FORM SET
+   					EVAL_FORM_TITLE = #{eval_form_title}
+   				  , EVAL_FORM_ITEM = #{eval_form_item}
+   				  , EVAL_FORM_SCORE = #{eval_form_score}
+   					
+   				WHERE BAM_ANC_IDX = #{bam_anc_idx}
+   				AND DEL_YN = 'N'
+   				AND BEM_BEVAL_FORM_IDX = #{bem_beval_form_idx}
+   				
+   </update>
    
+   <update id="businessPlanApplyEditUpdate" parameterType="hashMap">
+   UPDATE EMP_BPM_BPLAN_FORM SET
+   					BPLAN_FORM_TITLE1 = #{bplan_form_title1}
+   					,BPLAN_FORM_TITLE2 = #{bplan_form_title2}
+   					,BPLAN_FORM_TITLE3 = #{bplan_form_title3}
+   					,BPLAN_FORM_TITLE4 = #{bplan_form_title4}
+   					
+   				WHERE BAM_ANC_IDX = #{bam_anc_idx}
+   				AND DEL_YN = 'N'
+   				AND BPM_BPLAN_FORM_IDX = #{bpm_bplan_form_idx}
+   </update>
+
 </mapper>
 

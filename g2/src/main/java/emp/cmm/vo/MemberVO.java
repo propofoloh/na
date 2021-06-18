@@ -3,6 +3,19 @@ package emp.cmm.vo;
 import java.util.List;
 
 public class MemberVO {
+	public int getMember_idx() {
+		return member_idx;
+	}
+	public void setMember_idx(int member_idx) {
+		this.member_idx = member_idx;
+	}
+	public String getDel_yn() {
+		return del_yn;
+	}
+	public void setDel_yn(String del_yn) {
+		this.del_yn = del_yn;
+	}
+	private int member_idx;
 	private String user_id;
 	private String user_pwd;
 	private String user_name;
@@ -11,6 +24,7 @@ public class MemberVO {
 	private String hp_num;
 	private String user_email;
 	private String user_auth;
+	private String del_yn;
 	
 	public String getUser_id() {
 		return user_id;

@@ -1,8 +1,6 @@
 package emp.cmm.web;
 
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -10,8 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -89,9 +89,17 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/memberUpdateView", method = RequestMethod.GET)
-	public String registerUpdateView() throws Exception{
+	public String registerUpdateView(@RequestParam(value = "member_idx") int member_idx,Model model) throws Exception{
 		
+		model.addAttribute("memberDetail",service.memberMngDetail(member_idx)); 
 		return "cmm/memberUpdateView";
+	}
+	
+	@RequestMapping(value="/memberDetailView", method = RequestMethod.GET)
+	public String memberDetailView(@RequestParam(value = "member_idx") int member_idx,Model model) throws Exception{
+		
+		model.addAttribute("memberDetail",service.memberMngDetail(member_idx));
+		return "cmm/memberDetailView";
 	}
 	
 	// �쉶�썝�젙蹂� �닔�젙  post
@@ -175,9 +183,9 @@ public class MemberController {
     // 회원 관리 회원 목록
     // url pattern mapping
     @RequestMapping("/admin")
-    public String memberMngList(MemberVO vo) throws Exception{
+    public String memberMngList(MemberVO vo, Model model) throws Exception{
     // controller => service => dao 요청
-        List<MemberVO> list = service.memberMngList();
+        model.addAttribute("memberList",service.memberMngList());
         
         return "cmm/admin";
     }

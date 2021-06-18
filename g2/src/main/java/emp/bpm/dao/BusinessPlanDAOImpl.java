@@ -54,7 +54,7 @@ public class BusinessPlanDAOImpl implements BusinessPlanDAO {
 	@Override
 	public void businessPlanApplyUpdate(BusinessPlanVO businessPlanVO) throws Exception {
 		
-		sqlSession.update("businessPlanMapper.update", businessPlanVO);
+		sqlSession.update("businessPlanMapper.businessPlanApplyUpdate", businessPlanVO);
 	}
 
 	// 사업공고 삭제
@@ -133,7 +133,7 @@ public class BusinessPlanDAOImpl implements BusinessPlanDAO {
 	@Override
 	public void businessPlanUpdateCost(BusinessPlanCostVO businessPlanCostVO) throws Exception {
 		// TODO Auto-generated method stub
-		
+		sqlSession.update("businessPlanMapper.businessPlanApplyCostUpdate", businessPlanCostVO);
 	}
 	
 }
