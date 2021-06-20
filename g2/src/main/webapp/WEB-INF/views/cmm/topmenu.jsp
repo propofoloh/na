@@ -59,15 +59,13 @@
 				<c:if test="${member != null}">
 			 		<p>[<span>${member.user_id}</span>]님, 안녕하세요!</p>
                		<p><img src="" alt=""></p>
-               		<a href="/cmm/memberUpdateView">마이페이지</a>
+               		<a href="/cmm/memberUpdateView?member_idx=${member.member_idx}">마이페이지</a>
+                	
                 	<a href="/cmm/logout">로그아웃</a>
-				</c:if>
-				
-				<c:if test="${member.user_auth == 2}">
-							<div class="memberMngList">
-								<a href="/cmm/admin">회원관리</a>
-							</div>
-				</c:if>
+                	<c:if test="${member.user_auth == 2}">
+                	<a href="/cmm/admin">회원관리</a>
+                	</c:if>
+				</c:if>		
 				<c:if test="${member == null}">
 			 		<a href="/">로그인</a>
 				</c:if>

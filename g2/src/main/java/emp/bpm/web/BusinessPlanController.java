@@ -149,17 +149,19 @@ public class BusinessPlanController {
 	}
 	
 	@RequestMapping(value = "/businessPlanApplyUpdate", method = RequestMethod.POST)
-	public String businessPlanApplyUpdate(BusinessPlanVO businessPlanVO,
+	public  String businessPlanApplyUpdate(BusinessPlanVO businessPlanVO,
 			BusinessPlanCostVO businessPlanCostVO,
+			@RequestParam("bam_anc_idx") int bam_anc_idx,
+			@RequestParam("bpm_bplan_idx") int bpm_bplan_idx,
 			@RequestParam(value="fileNoDel[]") String[] files,
 			@RequestParam(value="fileNameDel[]") String[] fileNames,
 			MultipartHttpServletRequest mpRequest,RedirectAttributes redirect) throws Exception {
 			logger.info("businessPlanApplyUpdate");
 			
 			service.businessPlanApplyUpdate(businessPlanVO,files,fileNames,mpRequest);
-			businessPlanCostVO.setBpm_bplan_idx(businessPlanVO.getBpm_bplan_idx());
+			businessPlanCostVO.setBpm_bplan_idx(bpm_bplan_idx);
 			service.businessPlanUpdateCost(businessPlanCostVO);
-			redirect.addAttribute("bam_anc_idx",businessPlanVO.getBam_anc_idx());
+			redirect.addAttribute("bam_anc_idx",bam_anc_idx);
 			
 			return "redirect:/bpm/businessPlanApplyList";
 	}

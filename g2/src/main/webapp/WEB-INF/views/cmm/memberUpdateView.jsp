@@ -29,17 +29,8 @@
 			})
 		
 			$("#submit").on("click", function(){
-				if($("#userPass").val()==""){
-					alert("비밀번호를 입력해주세요.");
-					$("#userPass").focus();
-					return false;
-				}
-				if($("#userName").val()==""){
-					alert("성명을 입력해주세요.");
-					$("#userName").focus();
-					return false;
-				}
-			});
+				$("#updateForm").submit();
+		})
 		})
 	</script>
 	<body>
@@ -97,9 +88,9 @@
                         <li class="on">
                             <a href="/bam/businessAnnouncementList">회원관리</a>
                             <ul class="second_menu">
-                                <li class="on"><a href="/bam/businessAnnouncementList">· 회원정보 조회</a></li>
+                                <li class=""><a href="/cmm/admin">· 회원정보 조회</a></li>
                                <c:if test="${member.user_auth == 2}">
-                                <li class=""><a href="/bam/businessFormEditList">· 회원정보 수정</a></li>
+                                <li class="on"><a href="#">· 회원정보 수정</a></li>
                                </c:if>
                             </ul>
                       
@@ -112,7 +103,8 @@
                         </div>
                         <div class="inner">
                         <div class="board-wrap">
-                        <form id="" name="" method="post" action="">
+                        <form id="updateForm" name="updateForm" method="post" action="/cmm/memberUpdate">
+                        <input type="hidden" name = "member_idx" value="${memberDetail.member_idx}">
                             <table class="board-basic type-row">
                                 <caption>사업안내 | 사업공고 | 사업공지에  사업명, 작성자, 내용, 공고기간, 첨부파일을 나타낸  테이블</caption>
                                 <colgroup>
@@ -121,96 +113,73 @@
                                 </colgroup>
                                 <tbody>
                                     <tr>
-                                        <th scope="row"><span>* </span>아이디</th>
+                                        <th scope="row"><span></span>아이디</th>
                                         <td>
-                                            ${member.user_id}
+                                            <input type="text" name="user_id" id="writer" class="" value="${memberDetail.user_id}" readonly="readonly"> 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row"><span>* </span>패스워드</th>
+                                        <th scope="row"><span></span>패스워드</th>
                                         <td>
-                                            <input type="text" name="writer" id="writer" class="" value="" placeholder="비밀번호를 입력해 주세요">
+                                            <input type="password" name="user_pwd" id="user_pwd" class="" value="" placeholder="비밀번호를 입력해 주세요">
                                         </td>
                                     </tr>
                                      <tr>
-                                        <th scope="row"><span>* </span>성명</th>
+                                        <th scope="row"><span></span>성명</th>
                                         <td>
-                              				<input type="text" name="writer" id="writer" class="" value="${member.user_name}" placeholder="성명을 입력해주세요">
+                              				<input type="text" name="user_name" id="user_name" class="" value="${memberDetail.user_name}" placeholder="성명을 입력해주세요">
                                         </td>
                                     </tr>
+                                    <c:if test="${memberDetail.user_auth == 0 }">
+	                                     <tr>
+	                                        <th scope="row"><span></span>회사 명</th>
+	                                        <td>
+	                              				<input type="text" name="user_bname" id="user_bname" class="" value="${memberDetail.user_bname}" placeholder="회사 명을 입력해주세요">
+	                                        </td>
+	                                    </tr>
+                                    </c:if>
                                     <tr>
-                                        <th scope="row"><span>* </span>이메일</th>
+                                        <th scope="row"><span></span>이메일</th>
                                         <td>
-											<input type="text" name="writer" id="writer" class="" value="${member.user_email}" placeholder="이메일을 입력해주세요">
+											<input type="text" name="user_email" id="user_email" class="" value="${memberDetail.user_email}" placeholder="이메일을 입력해주세요">
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">휴대폰번호</th>
                                         <td>
-                                        	<input type="text" name="writer" id="writer" class="" value="${member.hp_num}" placeholder="${member.user_name}">
+                                        	<input type="text" name="hp_num" id="hp_num" class="" value="${memberDetail.hp_num}" placeholder="${member.user_name}">
                                         </td>
                                     </tr>
+                                    <c:if test="${memberDetail.user_auth == 0 }">
                                     <tr>
                                         <th scope="row">사업자 등록번호</th>
                                         <td>
-                                       		<input type="text" name="writer" id="writer" class="" value="${member.user_crcode}" placeholder="${member.user_crcode}">
+                                       		<input type="text" name="user_crcode" id="user_crcode" class="" value="${memberDetail.user_crcode}" placeholder="${member.user_crcode}">
                                         </td>
                                     </tr>
+                                    </c:if>
                                 </tbody>
                             </table>
+                            </form>
                         </div> 
-                        
-							<form action="/cmm/memberUpdate" method="post" id = "updateForm">
-								
-								<div class="form-group has-feedback">
-									<button class="btn btn-success" type="submit" id="submit">회원정보수정</button>
-									<button class="cencle btn btn-danger" type="button">취소</button>
+                        <br>
+							<div class="btn_wrap text-left">
+									<button type="button" class="normal" onclick="location.href='/cmm/memberDetailView?member_idx=${memberDetail.member_idx}'">취소</button>
 								</div>
-								<div>
-								<a href="/cmm/memberDeleteView">회원탈퇴</a>
-				
+                                <div class="btn_wrap text-right">
+                                	<c:if test ="${member.user_auth != 2}">
+                               		<button type="button" class="normal" onclick="alert('관리자에게 문의하세요.')" retrun false;>회원탈퇴</button>
+                               		</c:if>
+									<button type="submit" id="submit" class="normal">수정</button>
 								</div>
-						</form>
-	
-	<%-- <body>
-		<section id="container">
-			<form action="/cmm/memberUpdate" method="post" id = "updateForm">
-				<div class="form-group has-feedback">
-					<label class="control-label" for="user_id">아이디</label>
-					<input class="form-control" type="text" id="user_id" name="user_id" value="${member.user_id}" readonly="readonly"/>
-				</div>
-				<div class="form-group has-feedback">
-					<label class="control-label" for="userPass">패스워드</label>
-					<input class="form-control" type="password" id="userPass" name="userPass" />
-				</div>
-				<div class="form-group has-feedback">
-					<label class="control-label" for="userName">성명</label>
-					<input class="form-control" type="text" id="userName" name="userName" value="${member.user_name}"/>
-				</div>
-				<div class="form-group has-feedback">
-					<label class="control-label" for="user_email">이메일</label>
-					<input class="form-control" type="text" id="user_email" name="user_email" value="${member.user_email}"/>
-				</div>
-				<div class="form-group has-feedback">
-					<label class="control-label" for="hp_num">휴대폰 번호</label>
-					<input class="form-control" type="text" id="hp_num" name="hp_num" value="${member.hp_num}"/>
-				</div>				
-				<div class="form-group has-feedback">
-					<label class="control-label" for="user_crcode">사업자 등록증</label>
-					<input class="form-control" type="text" id="user_crcode" name="user_crcode" value="${member.user_crcode}"/>
-				</div>
-
-				<div class="form-group has-feedback">
-					<button class="btn btn-success" type="submit" id="submit">회원정보수정</button>
-					<button class="cencle btn btn-danger" type="button">취소</button>
-				</div>
-				<div>
-				<a href="/cmm/memberDeleteView">회원탈퇴</a>
-
-				</div>
-			</form>
-		</section>
-		
-	</body> --%>
+									
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</body>
 	
 </html>

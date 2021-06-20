@@ -115,6 +115,19 @@ function fn_addFile(){
 	
 }
 
+	var fileNoArry = new Array();
+	var fileNameArry = new Array();
+	
+	function fn_del(value, name){
+		
+		fileNoArry.push(value);
+		fileNameArry.push(name);
+		$("#fileNoDel").attr("value", fileNoArry);
+		$("#fileNameDel").attr("value", fileNameArry);
+	}
+	
+	
+
 
 </script>
 <body>
@@ -207,6 +220,7 @@ function fn_addFile(){
 					</ul>
 					<form action="/bpm/businessPlanApplyUpdate" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="bam_anc_idx" value="${param.bam_anc_idx}">
+					<input type="hidden" name="bpm_bplan_idx" value="${read.bpm_bplan_idx}">
 					<div class="p_15">
 						<div class="tabcontent current" id="tab1">
 							<h2 id="title1">${form.BPLAN_FORM_TITLE1}</h2>
@@ -346,15 +360,16 @@ function fn_addFile(){
 						<div class="btn_wrap">
 							<div id="fileIndex">	
 								<input type="file" id="input-file" style="display: none" />	
-								
 								<button class="addFile" id="fileAdd_btn"  type="button">파일추가</button>
 							<div class="filelist form-group file_hwp mb-0">
 								<p>파일 목록</p>
 								<ul>
 									<c:forEach var="file" items="${file}" varStatus="var">
-										<input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}" value="${file.FILE_NO }">
+										<input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}" value="${file.FILE_IDX}">
 										<input type="hidden" id="FILE_NAME" name="FILE_NAME" value="FILE_NO_${var.index}">
-										<div><span>첨부파일 : </span>${file.FILE_FNAME}(${file.FILE_SIZE}kb)<button type='button'style="margin-left: 80%" id='fileDelBtn'>삭제</button></div>
+										<div><span>첨부파일 : </span>${file.FILE_FNAME}(${file.FILE_SIZE}kb)
+										<!-- <button type='button'style="margin-left: 80%" id='fileDelBtn'>삭제</button></div>  -->
+										<button id="fileDel" onclick="fn_del('${file.FILE_IDX}','FILE_NO_${var.index}');" type="button">삭제</button><br>
 									</c:forEach>
 								</div>
 								</ul>
@@ -363,9 +378,11 @@ function fn_addFile(){
 						</div>
 			 			 <div class="btn_wrap text-right">
 								<button id="write_btn" type="button" class="normal">저장</button>
-							 </div>
+							 </div>	
 						<input type="hidden" name="writer" value="${member.user_name}">
 						<input type="hidden" name="writer_id" value="${member.user_id}">
+						<input type="hidden" id="fileNoDel" name="fileNoDel[]" value=""> 
+						<input type="hidden" id="fileNameDel" name="fileNameDel[]" value=""> 
 						</form>
 					</div>
 					

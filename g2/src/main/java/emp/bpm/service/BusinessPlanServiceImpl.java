@@ -165,6 +165,6 @@ public class BusinessPlanServiceImpl implements BusinessPlanService {
 	@Override
 	public void businessPlanUpdateCost(BusinessPlanCostVO businessPlanCostVO) throws Exception {
 		// TODO Auto-generated method stub
-		
+		dao.businessPlanUpdateCost(businessPlanCostVO);
 	}
 }

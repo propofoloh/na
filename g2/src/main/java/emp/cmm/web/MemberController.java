@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import emp.cmm.service.MemberService;
@@ -106,46 +107,38 @@ public class MemberController {
 	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
 	public String registerUpdate(MemberVO vo, HttpSession session) throws Exception{
 		
-		MemberVO login = service.login(vo);
+		MemberVO SessionVO = (MemberVO)session.getAttribute("member");
+	
 		
-		boolean pwdMatch = pwdEncoder.matches(vo.getUser_pwd(), login.getUser_pwd());
-		if(pwdMatch) {
+		if(!vo.getUser_pwd().equals("")){
+			
+
+			String inputPass = vo.getUser_pwd();
+			String pwd = pwdEncoder.encode(inputPass);
+			vo.setUser_pwd(pwd);
+			
+			}
+		else if(vo.getUser_pwd().equals("")) {
+			
 			service.memberUpdate(vo);
-			session.invalidate();
-		}else {
-			return "cmm/memberUpdateView";
 		}
 		service.memberUpdate(vo);
-		session.invalidate();
-		return "redirect:/cmm/login";
-	}
-	
-	// �쉶�썝 �깉�눜 get
-	@RequestMapping(value="/memberDeleteView", method = RequestMethod.GET)
-	public String memberDeleteView() throws Exception{
-		return "cmm/memberDeleteView";
-	}
-	
-	// �쉶�썝 �깉�눜 post
-	@RequestMapping(value="/memberDelete", method = RequestMethod.POST)
-	public String memberDelete(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
-		
-		// 세션에 있는 member를 가져와 member변수에 넣어줍니다.
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		// 세션에있는 비밀번호
-		String sessionPass = member.getUser_pwd();
-		// vo로 들어오는 비밀번호
-		String voPass = vo.getUser_pwd();
-		
-		if(!(sessionPass.equals(voPass))) {
-			rttr.addFlashAttribute("msg", false);
-			return "redirect:/cmm/memberDeleteView";
+		if(SessionVO.getUser_auth() == "2")
+			return "redirect:/cmm/admin";
+		else {
+			session.invalidate();
+			return "redirect:/";
 		}
-		
+	}
+	
+	
+	//회원삭제
+	@RequestMapping(value="/memberDelete", method = RequestMethod.POST)
+	public String memberDelete(MemberVO vo, @RequestParam(value = "member_idx") int member_idx ) throws Exception{
+		vo.setMember_idx(member_idx);
 		service.memberDelete(vo);
-		session.invalidate();
 		
-		return "redirect:/cmm/login";
+		return "redirect:/cmm/admin";
 	}
 	
 	

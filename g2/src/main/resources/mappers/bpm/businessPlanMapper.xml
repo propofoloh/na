@@ -83,11 +83,9 @@
 	
 	    <update id="businessPlanApplyUpdate" parameterType="emp.bpm.vo.BusinessPlanVO">
 		UPDATE EMP_BPM_BPLAN SET  
-					  		  , TITLE_REMARK1
-					   		  , TITLE_REMARK2
-					  		  , TITLE_REMARK3					  	
-					  	      , WRITER
-	   					      , WRITER_ID
+					  		    TITLE_REMARK1 = #{title_remark1}
+					   		  , TITLE_REMARK2 = #{title_remark2}
+					  		  , TITLE_REMARK3 = #{title_remark3}					   	
 		WHERE BPM_BPLAN_IDX = #{bpm_bplan_idx}
 	</update> 
 	

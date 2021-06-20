@@ -282,7 +282,7 @@ function fn_fileDownload(fileidx){
 								<p>파일 목록</p>
 								<ul>
 									<c:forEach var="file" items="${file}">
-										<span>첨부파일 : </span><a href="#" onclick="fn_fileDownload('${file.FILE_IDX}');">${file.FILE_FNAME}</a>(${file.FILE_SIZE}kb)
+										<span>첨부파일 : </span><a href="#" onclick="fn_fileDownload('${file.FILE_IDX}');">${file.FILE_FNAME}</a>(${file.FILE_SIZE}kb)<br>	
 									</c:forEach>
 								</ul>
 								</form>

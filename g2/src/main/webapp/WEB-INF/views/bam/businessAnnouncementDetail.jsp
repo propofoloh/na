@@ -120,7 +120,7 @@ function fn_fileDownload(fileidx){
                                             <div class="info">
                                                 <span class="title">조회수</span> <span class="content">0</span>
                                             </div>
-                                        </div>
+                                        </div>	
                                         <div class="attach">
                                             <div class="title">첨부파일</div>
                                             <div class="contents">
