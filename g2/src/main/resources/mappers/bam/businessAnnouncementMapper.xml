@@ -237,7 +237,8 @@ SELECT      FILE_IDX,
    
    </insert>
    
-   <update id="businessAnnouncementOldUpdate">
+   <update id="businessAnnouncementOldUpdate" useGeneratedKeys="true" keyProperty="id">
+   
    UPDATE EMP_BAM_ANC SET
    					DEL_YN ='Y'
    					

@@ -5,12 +5,16 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import emp.bam.service.BusinessAnnouncementService;
+import emp.bpm.service.BusinessPlanService;
 
 @Component
 public class Scheduler {
 
 	@Autowired
 	BusinessAnnouncementService service;
+	
+	@Autowired
+	BusinessPlanService Pservice;
 	/**
 	 * 1. 매일 새벽 0시에 자동으로 실행되는 스케쥴러
 	 */
@@ -20,5 +24,9 @@ public class Scheduler {
 	 public void ANCUpdate() throws Exception {
 		 
 		service.businessAnnouncementOldUpdate();
+	
+		
+		
 	 }
+
 }
