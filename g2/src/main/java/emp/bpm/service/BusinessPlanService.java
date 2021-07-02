@@ -55,9 +55,9 @@ public interface BusinessPlanService {
 		
 		//사업계획서 평가위원 체크
 		public String businessPlanEvalcheck(String user_id, List<Map<String,Object>> EvalMember ) throws Exception;
+
+		//사업계획서 status 업데이트
+		public int businessPlanStatusUpdate() throws Exception;
 		
-		/*
-		 * //사업계획서 평가위원 체크 public String businessPlanStatusUpdate() throws Exception;
-		 */
 }    
  

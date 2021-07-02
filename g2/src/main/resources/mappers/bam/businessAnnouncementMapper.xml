@@ -88,11 +88,11 @@
 	</update>
 	
 	
-	<!-- <delete id="delete" parameterType="int">
-		DELETE 
-		  FROM MP_BOARD
-		 WHERE BNO = #{bno}
-	</delete> -->
+	 <delete id="delete" parameterType="int">
+		UPDATE EMP_BAM_ANC
+		   SET    DEL_YN = 'Y'
+		 WHERE BAM_ANC_IDX = #{bam_anc_idx}
+	</delete> 
 	
 	<select id="listCount" parameterType="emp.bam.util.SearchCriteria" resultType="int">
 		SELECT COUNT(BAM_ANC_IDX)

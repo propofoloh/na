@@ -57,9 +57,9 @@ public class BusinessAnnouncementDAOImpl implements BusinessAnnouncementDAO {
 
 	// 사업공고 삭제
 	@Override
-	public void delete(int bno) throws Exception {
+	public void businessAnnouncementdelete(int bam_anc_idx) throws Exception {
 		
-		sqlSession.delete("businessAnnouncementMapper.delete", bno);
+		sqlSession.delete("businessAnnouncementMapper.delete", bam_anc_idx);
 	}
 	
 	// 첨부파일 등록

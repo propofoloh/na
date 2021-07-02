@@ -62,4 +62,8 @@ public interface BusinessPlanDAO {
 	
 	//사업계획서 평가위원 리스트
 	public List<Map<String,Object>> businessPlanEvalMember(int bam_anc_idx) throws Exception;
+	
+	//사업계획서 status 업데이트
+	public int businessPlanStatusUpdate() throws Exception;
+			
 }

@@ -2,7 +2,6 @@ package emp.bam.web;
 
 import java.io.File;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,14 +14,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.sun.org.apache.bcel.internal.generic.Select;
 
 import emp.bam.service.BusinessAnnouncementService;
 import emp.bam.util.PageMaker;
@@ -299,6 +297,17 @@ public class BusinessAnnouncementController {
 			 List<Map<String, Object>> fileList =service.selectFileList(businessAnnouncementVO.getBam_anc_idx()); model.addAttribute("file",fileList);
 			 
 			return "bam/businessAnnouncementDetail2";
+		}
+		
+		//사업계획서 양식삭제
+		@RequestMapping(value="/businessAnnouncementDelete",method = RequestMethod.POST)
+		public @ResponseBody String businessPlanApplyEditUpdate (@RequestParam(value = "Sbam_anc_idx") String Sbam_anc_idx) throws Exception{
+														
+			int bam_anc_idx = Integer.parseInt(Sbam_anc_idx);
+			service.businessAnnouncementdelete(bam_anc_idx);
+			
+			String result = "success";
+			return result;
 		}
 }
 

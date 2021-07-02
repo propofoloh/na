@@ -172,7 +172,7 @@
 														<c:when test="${list.status == 2}">
 															평가 중
 														</c:when>
-														<c:when test="${list.status == 2}">
+														<c:when test="${list.status == 3}">
 															평가 완료
 														</c:when>
 													</c:choose>

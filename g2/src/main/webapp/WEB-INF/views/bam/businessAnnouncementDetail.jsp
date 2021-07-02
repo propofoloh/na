@@ -26,6 +26,32 @@ function fn_fileDownload(fileidx){
 	formObj.submit();
 }
 
+function Fn_boardDel(Sbam_anc_idx){
+
+	var delConfirm = confirm("정말로 삭제하시겠습니까?")
+	var param = {
+		"Sbam_anc_idx" : Sbam_anc_idx
+	}
+	
+	 if(delConfirm){
+		
+		$.ajax({
+				type: "POST",
+				url : '/bam/businessAnnouncementDelete',
+				dataType :"text",
+				data: param,
+				success : function(data) {
+					alert("삭제되었습니다.")
+					window.location.href='/bam/businessAnnouncementList'
+		        },
+		       	error : function(error){
+		       		alert(error);
+				}
+			});
+	 }else 
+		alert("취소 되었습니다.")
+	 }
+
 </script>
 <body>
     <div class="wrap">
@@ -144,18 +170,15 @@ function fn_fileDownload(fileidx){
                     				<p>&nbsp;</p>
                     				</div>
                                 </div>
-                    	
-                    		
-                    			<div class="btn_wrap text-left">
-									<button type="button" class="normal" onclick="window.location.href='/bam/businessAnnouncementUpdate?bam_anc_idx=${read.bam_anc_idx}'">수정</button>
-									<button type="button" class="normal" onclick="alert('준비중')">삭제</button>
-								</div>
-                                <div class="btn_wrap text-right">
-									<button type="button" class="normal" onclick="window.location.href='/bam/businessAnnouncementList'">목록</button>
-								</div>
-								
-					
-
+                    			<c:if test="${member.user_auth == 2}">
+	                    			<div class="btn_wrap text-left">
+										<!-- ><button type="button" class="normal" onclick="window.location.href='/bam/businessAnnouncementUpdate?bam_anc_idx=${read.bam_anc_idx}'">수정</button> -->
+										<button type="button" class="normal" onclick="Fn_boardDel(${read.bam_anc_idx})">삭제</button>
+									</div>
+								</c:if>
+	                                <div class="btn_wrap text-right">
+										<button type="button" class="normal" onclick="window.location.href='/bam/businessAnnouncementList'" return false;>목록</button>
+									</div>
 
 		                        	</div>
 		                    	</div>    

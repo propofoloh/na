@@ -67,10 +67,10 @@ public class BusinessAnnouncementServiceImpl implements BusinessAnnouncementServ
 	
 	
 	@Override
-	public void delete(int bno) throws Exception {
+	public void businessAnnouncementdelete(int bam_anc_idx) throws Exception {
 		// TODO Auto-generated method stub
 		
-		dao.delete(bno);
+		dao.businessAnnouncementdelete(bam_anc_idx);
 		
 	}
 

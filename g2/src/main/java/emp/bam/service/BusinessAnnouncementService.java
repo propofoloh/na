@@ -26,7 +26,7 @@ public interface BusinessAnnouncementService {
 		public void update(BusinessAnnouncementVO VO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception;		
 		
 		// 사업공고 삭제
-		public void delete(int bno) throws Exception;
+		public void businessAnnouncementdelete(int bam_anc_idx) throws Exception;
 		
 	    // 파일선택
 		public List<Map<String, Object>> selectFileList(int bno) throws Exception;

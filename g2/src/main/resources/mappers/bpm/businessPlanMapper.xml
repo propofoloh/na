@@ -74,6 +74,7 @@
 	   					      , TITLE_REMARK2
 	   					      , TITLE_REMARK3					  	
 	   					      , WRITER
+	   					      , STATUS
 	   					      , REG_DATE
 	   					      , MOD_DATE
 	   					      , WRITER_ID
@@ -337,6 +338,22 @@
   	 				AND DEL_YN = 'N'
   	 				AND BAM_ANC_IDX = #{bam_anc_idx}
   	 	</select>
+  	 	
+  	 	<update id="businessPlanStatusUpdate">
+  	 	
+			UPDATE EMP_BPM_BPLAN SET
+									STATUS = '2'	
+				WHERE BAM_ANC_IDX 
+				IN(
+				SELECT A.BAM_ANC_IDX FROM EMP_BAM_ANC  A , EMP_BPM_BPLAN  B
+				
+				WHERE
+					A.BAM_ANC_IDX = B.BAM_ANC_IDX
+					<![CDATA[ 
+					AND ANC_END_DT < SYSDATE
+					]]>
+					)
+  	 	</update>
   	 	
 </mapper>
 	

@@ -71,14 +71,12 @@ $(document).ready(function(){
 					var user_name= td.eq(1).text()+"";
 					
 					// 가져온 값을 배열에 담는다.
-				
+
 					memberArr.push(user_id); 
 					arrId.push(user_id);
 					arrName.push(user_name);
-					
 				});
-			
-					
+				
 				$.each(memberArr, function(index,item){
 					$('#evaluatorList').append("<div class='box'><div class='evalrator'>"+memberArr[index]+'</div>'+"<button class='filedel'type='button' style='float:right;' id='evalDelBtn'>"+"삭제"+"</button></div>");
 				});
@@ -103,6 +101,29 @@ $(document).ready(function(){
 	 //<div id='del_idx"+index+"'>
 	/* var formdata = $('#writeForm')[0]; */
 
+				
+				/* $.each(memberArr, function(index,item){
+					$('#evaluatorList').append("<div class='evalrator"+index+"'><div class='evalrator'>"+memberArr[index]+'</div>'+"<button class='filedel'type='button' style='float:right;' id='evalDelBtn'>"+"삭제"+"</button></div>");
+				});
+				 if(arrId.length > 1){ 
+				$.each(arrId, function(index,item){
+					alert(index) 
+					$('.evalrator'+arrId[index]+'').append("<input type='hidden' name='anc_member_id' value='"+arrId[index]+"'>");
+				});
+				 }else
+					$('.evalrator0').append("<input type='hidden' name='anc_member_id' value='"+arrId[0]+"'>"); 
+				 if(arrId.length > 1){ 
+				$.each(arrName, function(index,item){
+					$('.evalrator'+arrName[index]+'').append("<input type='hidden'name='anc_member_name' value='"+arrName[index]+"'>") ;
+				});
+				
+				}else
+					$('.evalrator0').append("<input type='hidden' name='anc_member_name' value='"+arrName[0]+"'>") ;
+				close_pop();
+			}) ))*/
+	
+	 //<div id='del_idx"+index+"'>
+	/* var formdata = $('#writeForm')[0]; */
 });
 
 function open_pop(flag){
@@ -121,12 +142,10 @@ function fn_addFile(){
 	
 	$(document).on("click","#fileDelBtn", function(){
 		$(this).parent().remove();
-		
 	});
 	
 	$(document).on("click","#evalDelBtn", function(){
 		$(this).parent().remove();
-		
 	});
 	
 	
@@ -213,7 +232,7 @@ function fn_addFile(){
                 <div class="cont">
                     <h2>사업공지</h2>
                     	<div class="inner box mt15">
-                                	게시판 설명 영역
+                                	게시판 설명 
                         </div>
                     <div class="inner">
                         <div class="board-wrap">

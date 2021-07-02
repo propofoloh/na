@@ -297,7 +297,9 @@ function fn_fileDownload(fileidx){
 									<!-- onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'" -->
 							 	</c:if>
 								 <c:if test="${member.user_auth == 0}">
-									<button type="button" class="normal" onclick="location.href='../bpm/businessPlanApplyUpdate?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">수정</button>
+								 	<c:if test="${read.status == 0 || read.status == 1}">
+										<button type="button" class="normal" onclick="location.href='../bpm/businessPlanApplyUpdate?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">수정</button>
+									 </c:if>
 								 </c:if>
 							 </div>
 					</div>

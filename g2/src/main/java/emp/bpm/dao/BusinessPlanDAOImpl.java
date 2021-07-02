@@ -136,4 +136,10 @@ public class BusinessPlanDAOImpl implements BusinessPlanDAO {
 		sqlSession.update("businessPlanMapper.businessPlanApplyCostUpdate", businessPlanCostVO);
 	}
 	
+	@Override
+	public int businessPlanStatusUpdate() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update("businessPlanMapper.businessPlanStatusUpdate");
+	}
+	
 }

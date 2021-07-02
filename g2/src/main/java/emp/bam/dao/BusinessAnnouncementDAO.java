@@ -25,7 +25,7 @@ public interface BusinessAnnouncementDAO {
 	public void update(BusinessAnnouncementVO VO) throws Exception;
 	
 	// 사업공고 삭제
-	public void delete(int bno) throws Exception;
+	public void businessAnnouncementdelete(int bam_anc_idx) throws Exception;
 
 	// 파일업로드
 	public void insertFile(Map<String, Object> map) throws Exception;

@@ -24,9 +24,6 @@ public class Scheduler {
 	 public void ANCUpdate() throws Exception {
 		 
 		service.businessAnnouncementOldUpdate();
-	
-		
-		
-	 }
-
+		Pservice.businessPlanStatusUpdate();
+	}
 }
