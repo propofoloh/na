@@ -17,7 +17,7 @@
 			<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
 		    <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
 		    <script type="text/javascript" src="../../resource/js/sub.js"></script>
-		    <title>충북대 평가관리프로그램</title>
+		    <title>충북대 산학협력단 평가관리프로그램</title>
 		</head>
 		<script>
         $(document).ready(function(){

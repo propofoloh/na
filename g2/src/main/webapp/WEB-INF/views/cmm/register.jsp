@@ -16,7 +16,7 @@
     <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
     <script type="text/javascript" src="../../resource/js/sub.js"></script>
 
-    <title>충북대 평가관리프로그램</title>
+    <title>충북대 산학협력단 평가관리프로그램</title>
 </head>
 
 <script type="text/javascript">
@@ -24,6 +24,10 @@ $(document).ready(function(){
 	// 취소
 	$(".cencle").on("click", function(){
 		location.href = "/";
+	})
+	
+	$("#userId").on("keyup", function(){
+		$(this).val($(this).val().replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, ''));
 	})
 	
 	$("#submit").on("click", function(){
@@ -191,9 +195,6 @@ function fn_crcodeChk(){
                                             <input type="radio" name="user_auth" id="type2" value="0"><span class="checkmark radio" title="클릭 사업자 선택"></span>
                                             사업자
                                         </label>
-                                    
-                                    
- 
                                     <p class="mt15">아이디</p>
                                     <input type="text" id="userId" name="user_id" title="입력 아이디"> <button class="id_checkbtn" type="button"onclick="fn_idChk() ">중복확인</button>
 

@@ -220,8 +220,7 @@
 		 					AND a.DEL_YN = 'N'
 							ORDER BY BEM_BEVAL_IDX DESC
 	</select>
-	
-     
+
     <select id="businessEvaluationFormList" parameterType="int" resultType="hashMap">
 		SELECT BEM_BEVAL_FORM_IDX
 							  , BAM_ANC_IDX
