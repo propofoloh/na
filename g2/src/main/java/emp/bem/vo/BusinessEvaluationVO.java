@@ -5,9 +5,9 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import emp.bpm.util.Criteria;
+import emp.bpm.vo.BusinessPlanVO;
 
 public class BusinessEvaluationVO extends Criteria{
-	
 	
 	private int bpm_bplan_idx;
 	private int board_idx;
@@ -29,6 +29,20 @@ public class BusinessEvaluationVO extends Criteria{
 	private Date reg_date;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date mod_date;
+	private BusinessPlanVO businessPlanVO;
+	
+	public String getWriter_id() {
+		return writer_id;
+	}
+	public void setWriter_id(String writer_id) {
+		this.writer_id = writer_id;
+	}
+	public BusinessPlanVO getBusinessPlanVO() {
+		return businessPlanVO;
+	}
+	public void setBusinessPlanVO(BusinessPlanVO businessPlanVO) {
+		this.businessPlanVO = businessPlanVO;
+	}
 	public String getWrite_id() {
 		return writer_id;
 	}

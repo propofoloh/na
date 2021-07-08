@@ -224,7 +224,6 @@
                             		<c:if test="${member.user_auth == '2'}">
                             			 <button type="button" class="red" onclick="window.location.href='businessAnnouncementInput'">사업등록</button>
 									</c:if>
-								
                         	 </div>
                     </div>    
                 </div>

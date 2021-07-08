@@ -155,13 +155,13 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">구분</th>
-                                            <th scope="col">미래기술융합혁신제품지원</th>
+                                            <th scope="col">제목</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td class="ta_c">사업명</td>
-                                            <td class="ta_c">낙상감지기술 기반의 노약자용 변좌 자동 리프트 시스템</td>
+                                            <td class="ta_c">${bamnotice.anc_title}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -188,7 +188,7 @@
                                     <c:forEach items="${ancInfo}" var="ancInfo" varStatus="status" >
 	                                            <td class="type">${ancInfo.EVAL_FORM_TITLE}</td>
 	                                            <td >${ancInfo.EVAL_FORM_ITEM}</td>
-	                                            <td class="point" >${ancInfo.EVAL_FORM_SCORE}</td>
+	                                            <td class="point" style="text-align: center;" >${ancInfo.EVAL_FORM_SCORE}</td>
 	                                            <td><input id="eval_score"class="eval_score${status.index+1}" disabled="disabled"></td>   
 	                                   </tr>
                                         </c:forEach>

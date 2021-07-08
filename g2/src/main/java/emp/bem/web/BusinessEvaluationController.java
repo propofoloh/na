@@ -93,6 +93,7 @@ public class BusinessEvaluationController {
 		System.out.println("bamidx"+bam_anc_idx);
 		System.out.println("bpm_bplan_idx"+bpm_bplan_idx);
 		model.addAttribute("ancInfo",service.businessEvaluationFormList(bam_anc_idx));
+		model.addAttribute("bamnotice",ancService.businessAnnouncementDetail(bam_anc_idx));
 		return "bem/businessEvaluation";
 	}
 	
@@ -115,6 +116,7 @@ public class BusinessEvaluationController {
 			model.addAttribute("ancInfo",service.businessEvaluationFormList(bam_anc_idx));
 			model.addAttribute("read", service.businessEvaluationDetail(businessEvaluationVO.getBem_beval_idx()));
 			model.addAttribute("Bplan", planService.businessPlanApplyDetail(bpm_bplan_idx));
+			model.addAttribute("bamnotice",ancService.businessAnnouncementDetail(bam_anc_idx));
 			 
 		}
 		//�궗�뾽怨꾪쉷�꽌 �룊媛�吏��몴 �닔�젙 酉�
@@ -123,7 +125,7 @@ public class BusinessEvaluationController {
 			
 			model.addAttribute("ancInfo",service.businessEvaluationFormList(bam_anc_idx));
 			model.addAttribute("read", service.businessEvaluationDetail(businessEvaluationVO.getBem_beval_idx()));
-			
+			model.addAttribute("bamnotice",ancService.businessAnnouncementDetail(bam_anc_idx));
 		}
 		//�궗�뾽怨꾪쉷�꽌 �룊媛�吏��몴 �닔�젙
 		@RequestMapping(value = "/businessEvaluationUpdate", method = RequestMethod.POST)

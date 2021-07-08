@@ -157,7 +157,7 @@
 										<tr>
 									
 											<td style="text-align: center">
-												<a href="/bem/businessEvaluationDetail?bem_beval_idx=${businessEvaluationList.bem_beval_idx}&bpm_bplan_idx=${businessEvaluationList.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}"><c:out value="${businessEvaluationList.eval_writer}" /></a>
+												<a href="/bem/businessEvaluationDetail?bem_beval_idx=${businessEvaluationList.bem_beval_idx}&bpm_bplan_idx=${businessEvaluationList.bpm_bplan_idx}&bam_anc_idx=${businessEvaluationList.businessPlanVO.bam_anc_idx}"><c:out value="${businessEvaluationList.eval_writer}" /></a>
 											</td>
 											<td style="text-align: center">${businessEvaluationList.eval_totalscore}</td>
 											<td style="text-align: center"><fmt:formatDate value="${businessEvaluationList.reg_date}" pattern="yyyy-MM-dd"/></td>

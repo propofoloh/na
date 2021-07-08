@@ -167,13 +167,13 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">구분</th>
-                                            <th scope="col">테스트2</th>
+                                            <th scope="col">제목</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td class="ta_c">사업명</td>
-                                            <td class="ta_c">테스트2</td>
+                                            <td class="ta_c">${bamnotice.anc_title}</td>
                                         </tr>
                                     </tbody>
                                 </table>
