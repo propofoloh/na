@@ -22,7 +22,7 @@
                     		<a href="/bam/businessAnnouncementList"><img src="../../resource/image/logo.jpg" alt="충북대학교"></a>
                     	</c:when>
                     	</c:choose>
-                    <span>평가관리프로그램</span>
+                    <span>산학협력단 평가관리프로그램</span>
                 </h1>
                 <c:if test="${member != null}">
 				<div class="gnb clearfix">
@@ -59,7 +59,7 @@
 				<c:if test="${member != null}">
 			 		<p>[<span>${member.user_id}</span>]님, 안녕하세요!</p>
                		<p><img src="" alt=""></p>
-               		<a href="/cmm/memberUpdateView?member_idx=${member.member_idx}">마이페이지</a>
+               		<a href="/cmm/memberDetailView?member_idx=${member.member_idx}">마이페이지</a>
                 	
                 	<a href="/cmm/logout">로그아웃</a>
                 	<c:if test="${member.user_auth == 2}">

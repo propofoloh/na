@@ -94,7 +94,7 @@
 	<body>
 	
 	<div style="float: right;">
-		<%@include file="nav.jsp"%>
+		<%-- <%@include file="nav.jsp"%> --%>
 	</div>
   <div class="body">
 	<div class="memberUpdate-text">회원정보 수정</div>

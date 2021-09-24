@@ -156,7 +156,7 @@ function fn_addFile(){
                     		<li>평가위원</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 2}">
-                    		<li>평가위원장</li>
+                    		<li>관리자</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 0}">
                     		<li>사용자</li>
@@ -176,7 +176,7 @@ function fn_addFile(){
                    		<p class="tit">평가위원</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 2}">
-                   		<p class="tit">평가위원장</p>
+                   		<p class="tit">관리자</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 0}">
                    		<p class="tit">사용자</p>
@@ -267,7 +267,7 @@ function fn_addFile(){
                                     <tr>
                                         <th scope="row"><span>* </span>내용</th>
                                         <td>
-                                            <textarea style="height: 300px" name="anc_remark" id="anc_remark">${update.anc_title}</textarea>
+                                            <textarea style="height: 300px" name="anc_remark" id="anc_remark">${update.anc_remark}</textarea>
                                         </td>
                                     </tr>
                                     

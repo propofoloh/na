@@ -52,7 +52,6 @@
  		$(".eval_score6").val(${read.eval_score6})
  		$(".eval_score7").val(${read.eval_score7})
  		$(".eval_score8").val(${read.eval_score8})
-
  		 var Sum=0;
            $('.point').each(function(idx,value){ 
 	                	Sum += Number($(value).text());
@@ -61,7 +60,6 @@
            
  	})
  
-
  
  </script>
 <body>
@@ -86,7 +84,7 @@
                     		<li>평가위원</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 2}">
-                    		<li>평가위원장</li>
+                    		<li>관리자</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 0}">
                     		<li>사용자</li>
@@ -106,7 +104,7 @@
                    		<p class="tit">평가위원</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 2}">
-                   		<p class="tit">평가위원장</p>
+                   		<p class="tit">관리자</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 0}">
                    		<p class="tit">사용자</p>

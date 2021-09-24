@@ -36,8 +36,8 @@
     
     <!-- 로그인 -->
 	<select id="login" resultType="emp.cmm.vo.MemberVO" >
-		SELECT  				 
-	   					         USER_ID 
+		SELECT  			   	 MEMBER_IDX	 
+	   					       , USER_ID 
 	   					       , USER_PWD
 	   					       , USER_NAME
 	   					       , HP_NUM
@@ -47,18 +47,20 @@
 	   					       , MOD_DATE
 		  FROM EMP_MEMBER
 		 WHERE USER_ID = #{user_id}
-		 <!--  AND USER_PWD = #{userPwd} -->
+		 AND DEL_YN = 'N'
 	</select>
 	
 	<!-- 회원 리스트 조회 -->
 	<select id="memberList" resultType="emp.cmm.vo.MemberVO" >
-		SELECT  				 
-	   					         USER_ID 
+		SELECT  				MEMBER_IDX 
+	   					       , USER_ID 
 	   					       , USER_PWD
 	   					       , USER_NAME
+	   					       , USER_BNAME
 	   					       , HP_NUM
 	   					       , USER_EMAIL
 	   					       , USER_AUTH
+	   					       , DEL_YN
 	   					       , REG_DATE
 	   					       , MOD_DATE
 		  FROM EMP_MEMBER
@@ -80,35 +82,65 @@
 	<!-- 회원관리 리스트 조회 -->
 	<select id="memberMngList" resultType="emp.cmm.vo.MemberVO" >
 		SELECT  				 
-	   					         USER_ID
+	   					       MEMBER_IDX
+	   					       , USER_ID
 	   					       , USER_NAME
 	   					       , HP_NUM
 	   					       , USER_EMAIL
 	   					       , USER_AUTH
+	   					       , USER_CRCODE
+	   					       , USER_BNAME
+	   					       , DEL_YN
 	   					       , REG_DATE
 	   					       , MOD_DATE
 		  FROM EMP_MEMBER
-		  ORDER BY USER_ID
+		  ORDER BY USER_AUTH DESC
+	</select>
+	
+	<!-- 회원관리 상세조회 -->
+	<select id="memberMngDetail" resultType="emp.cmm.vo.MemberVO" >
+		SELECT  				 
+	   					       MEMBER_IDX
+	   					       , USER_ID
+	   					       , USER_NAME
+	   					       , USER_BNAME
+	   					       , HP_NUM
+	   					       , USER_EMAIL
+	   					       , USER_AUTH
+	   					       , USER_CRCODE
+	   					       , DEL_YN
+	   					       , REG_DATE
+	   					       , MOD_DATE
+		  FROM EMP_MEMBER
+		  WHERE MEMBER_IDX = #{member_idx}
 	</select>
 	
 	<!-- 회원정보 수정 -->
 	<update id="memberUpdate">
-		UPDATE EMP_MEMBER SET 		
-		USER_ID = #{user_id},
-		USER_PWD = #{userPwd},
-		USERNAME = #{userName}
-		USER_EMAIL = #{user_email}
-		HP_NUM = #{hp_num}
-		USER_CRCODE = #{user_crcode}
-		
-		WHERE USER_ID = #{user_id}
+		UPDATE EMP_MEMBER
+				<set>
+								USER_ID = #{user_id},
+								<if test="user_pwd != ''">
+								USER_PWD = #{user_pwd},
+								</if>
+								USER_NAME = #{user_name},
+								USER_EMAIL = #{user_email},
+								HP_NUM = #{hp_num},
+								<if test="user_crcode != null">
+								USER_CRCODE = #{user_crcode},
+								</if>
+								<if test="user_bname != null">
+								USER_BNAME = #{user_bname}
+								</if>
+				</set>
+		WHERE MEMBER_IDX = #{member_idx}
 	</update>
 	
 	<!-- 회원탈퇴 -->
-	<delete id="memberDelete">
-		DELETE FROM EMP_MEMBER
-		WHERE USER_ID = #{user_id}
-		AND USER_PWD = #{user_pwd}
+	<delete id="memberDelete" parameterType="emp.cmm.vo.MemberVO">
+		UPDATE EMP_MEMBER SET
+					DEL_YN = 'Y'
+		WHERE MEMBER_IDX = #{member_idx}
 	</delete>
 	
 	<!-- 패스워드 체크 -->

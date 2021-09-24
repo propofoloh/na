@@ -172,32 +172,55 @@
 		DEL_GB = 'Y'
 		WHERE FILE_NO = #{file_idx}
 	</update>  -->
-   
-   <select id="businessEvaluationMyList" resultType="emp.bem.vo.BusinessEvaluationVO" parameterType="hashMap">
-		SELECT 		      BEM_BEVAL_IDX 
-	   					      , BOARD_IDX 
-	   					      , EVAL_OPINION
-	   					      , EVAL_SCORE1
-	   					      , EVAL_SCORE2
-	   					      , EVAL_SCORE3
-	   					      , EVAL_SCORE4
-	   					      , EVAL_SCORE5
-	   					      , EVAL_SCORE6
-	   					      , EVAL_SCORE7
-	   					      , EVAL_SCORE8
-	   					      , EVAL_TOTALSCORE	
-	   					      , EVAL_WRITER
-	   					      , WRITER_ID
-	   					      , BPM_BPLAN_IDX
-	   					      , REG_DATE
-	   					      , MOD_DATE
-		 FROM EMP_BEM_BEVAL
-		 WHERE 1=1
-		 AND DEL_YN = 'N'
-		 AND WRITER_ID = #{user_id}
-		ORDER BY BEM_BEVAL_IDX DESC
-	</select>
+ 
+    <resultMap type="emp.bpm.vo.BusinessPlanVO" id="BusinessPlanVO">
+    	<result column="BAM_ANC_IDX" property="bam_anc_idx"/>
+    </resultMap>
     
+    <resultMap type="emp.bem.vo.BusinessEvaluationVO" id="BusinessEvaluationVO">
+    	
+    	<result column="EVAL_SCORE1" property="eval_score1"/>   
+    	<result column="EVAL_SCORE2" property="eval_score2"/>   
+    	<result column="EVAL_SCORE3" property="eval_score3"/>   
+    	<result column="EVAL_SCORE4" property="eval_score4"/>   
+    	<result column="EVAL_SCORE5" property="eval_score5"/>   
+    	<result column="EVAL_SCORE6" property="eval_score6"/>   
+    	<result column="EVAL_SCORE7" property="eval_score7"/>   
+    	<result column="EVAL_SCORE8" property="eval_score8"/> 
+    	<result column="EVAL_TOTALSCORE" property="eval_totalscore"/>   
+    	<result column="EVAL_WRITER" property="eval_writer"/>   
+    	<result column="WRITER_ID" property="writer_id"/>   
+    	<result column="BPM_BPLAN_IDX" property="bpm_bplan_idx"/>
+    	<result column="REG_DATE" property="reg_date"/>
+    	<result column="MOD_DATE" property="mod_date"/>
+    	<collection property="businessPlanVO" resultMap="BusinessPlanVO"/>
+    </resultMap> 
+ 
+   <select id="businessEvaluationMyList" resultMap="BusinessEvaluationVO" parameterType="hashMap">
+		
+		SELECT            b.BAM_ANC_IDX
+							, a.BPM_BPLAN_IDX
+		                    , a.EVAL_SCORE1 
+		                    , a.EVAL_SCORE2 
+		                    , a.EVAL_SCORE3
+	   					    , a.EVAL_SCORE4
+	   					    , a.EVAL_SCORE5
+	   					    , a.EVAL_SCORE6
+	   			            , a.EVAL_SCORE7
+	   			   	        , a.EVAL_SCORE8
+	   					    , a.EVAL_TOTALSCORE	
+	   					    , a.EVAL_WRITER
+	   			            , a.WRITER_ID
+	   			            , a.BPM_BPLAN_IDX
+	   			  	        , a.REG_DATE
+	   					    , a.MOD_DATE
+		                    FROM EMP_BEM_BEVAL a, EMP_BPM_BPLAN b 
+		                    WHERE a.BPM_BPLAN_IDX = b.BPM_BPLAN_IDX(+) 
+		                    AND a.WRITER_ID = #{user_id}
+		 					AND a.DEL_YN = 'N'
+							ORDER BY BEM_BEVAL_IDX DESC
+	</select>
+
     <select id="businessEvaluationFormList" parameterType="int" resultType="hashMap">
 		SELECT BEM_BEVAL_FORM_IDX
 							  , BAM_ANC_IDX

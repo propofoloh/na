@@ -75,7 +75,7 @@
                    		<p class="tit">평가위원</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 2}">
-                   		<p class="tit">평가위원장</p>
+                   		<p class="tit">관리자</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 0}">
                    		<p class="tit">사용자</p>

@@ -83,7 +83,7 @@ function fn_fileDownload(fileidx){
                     		<li>평가위원</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 2}">
-                    		<li>평가위원장</li>
+                    		<li>관리자</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 0}">
                     		<li>사용자</li>
@@ -103,7 +103,7 @@ function fn_fileDownload(fileidx){
                    		<p class="tit">평가위원</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 2}">
-                   		<p class="tit">평가위원장</p>
+                   		<p class="tit">관리자</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 0}">
                    		<p class="tit">사용자</p>
@@ -179,7 +179,7 @@ function fn_fileDownload(fileidx){
                                         <tr>
                                             <th class="boldtext" scope="col">비목</th>
                                             <th class="boldtext" colspan="3"scope="col">세목</th>	
-                                            <th class="boldtext" scope="col">당해</th>
+                                            <th class="boldtext" scope="col">금액 (단위 : 천원)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -293,7 +293,7 @@ function fn_fileDownload(fileidx){
 								<c:if test="${member.user_auth == 2}">
 									<button type="button" class="normal" onclick="location.href='../bem/businessEvaluationOpinion?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">종합의견</button>
 								</c:if>
-									<button type="button" class="normal" id="evalBtn" >평가하기</button>
+									<button type="button" class="normal" id="evalBtn" onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'">평가하기</button>
 									<!-- onclick="location.href='../bem/businessEvaluation?bpm_bplan_idx=${read.bpm_bplan_idx}&bam_anc_idx=${param.bam_anc_idx}'" -->
 							 	</c:if>
 								 <c:if test="${member.user_auth == 0}">

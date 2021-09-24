@@ -11,11 +11,18 @@
     <link rel="stylesheet" href="../../resource/css/reset.css">
     <link rel="stylesheet" href="../../resource/css/common.css">
     <link rel="stylesheet" href="../../resource/css/sub.css">
-    <link rel="stylesheet" href="../../resource/css/board.css">
+    <link rel="stylesheet" href="../../resource/css/board.css?after">
 
 	<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="../../resource/js/jquery-ui.js"></script>
     <script type="text/javascript" src="../../resource/js/sub.js"></script>
+    
+    <script type="text/javascript">
+    	function deleteBPA(){
+    		let result = confirm("접수하신 사업공고를 취소하시겠습니까?");
+    		
+    	}
+    </script>
 
     <title>충북대 산학협력단 평가관리프로그램</title>
 </head>
@@ -41,7 +48,7 @@
                     		<li>평가위원</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 2}">
-                    		<li>평가위원장</li>
+                    		<li>관리자</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 0}">
                     		<li>사용자</li>
@@ -61,7 +68,7 @@
                    		<p class="tit">평가위원</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 2}">
-                   		<p class="tit">평가위원장</p>
+                   		<p class="tit">관리자</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 0}">
                    		<p class="tit">사용자</p>
@@ -106,19 +113,16 @@
                                     <div class="search2">
                                         <div class="s_select">
                                             <label for="srSearchKey">검색분류</label>
-            
                                             <select for="" name="srSearchKey" id="srSearchKey" title="분류값 제목, 내용, 연구책임자 선택">
                                                 <option value="">전체</option>
                                                 <option value="article_title">제목</option>
                                                 <option value="article_text">내용</option>
                                             </select>
-            
                                         </div>
                                         <div class="s_search">
                                             <input type="text" class="form-control" title="검색어 입력" id="search_val" name="srSearchVal" value="" placeholder="검색어를 입력해 주세요" aria-label="" aria-describedby="basic-addon1">
                                             <input type="submit" title="검색" value="" class="btn_finder_s search_btn" onclick="javascript: document.search_form.submit();">
                                         </div>
-            
                                     </div>
                                 </div>
                             </div>
@@ -126,73 +130,55 @@
                         </form>
                     </div>
                     <div class="inner box mt15">
-                        게시판 설명 영역
-                    </div>
-
-                    <div class="inner">
-                        <div class="total">총 12570건</div>
-                        <div class="board-wrap respon notscroll manage">			
-					    
-                            <table summary="사업안내 | 사업공고 | 사업공지" class="board-basic horizon notice list dataroom notscroll ">
-                                    
-                                    <caption>사업안내 | 사업공고 | 사업공지에 순번, 사업명, 작성자, 등록일을 나타낸  테이블</caption>				
-                                    <colgroup>
-                                        <col style="width:10%">
-                                        <col style="width:30%">
-                                        <col style="width:10%">
-                                        <col style="width:20%">
-                                    </colgroup>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">순번</th>
-                                            <th scope="col">작성자(사업자)</th>
-                                            <th scope="col">등록일</th>
-                                            <th scopr="col">진행상태</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                            			<c:forEach items="${list}" var = "list" varStatus="status">
-											
-												<tr class="  ">
-													<td ><c:out value="${status.index+1}" /></td>
-													<td>
-															<a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${list.bam_anc_idx}">
-															<span>${list.writer}</span>
-															</a>
-													</td>
-													<td ><fmt:formatDate value="${list.reg_date}" pattern="MM/dd H시mm분"/></td>
-													<td >
-													<c:choose>
-														<c:when test="${list.status == 0}">
-															접수 중
-														</c:when>
-														<c:when test="${list.status == 1}">
-															접수 완료
-														</c:when>
-														<c:when test="${list.status == 2}">
-															평가 중
-														</c:when>
-														<c:when test="${list.status == 3}">
-															평가 완료
-														</c:when>
-													</c:choose>
-													</td>
-												</tr>
-											
-						</c:forEach>
-                                        <!-- <tr class="  ">
-                                            <td>
-                                               <div align="center">12570</div>
-                                            </td>
-                                            <td class="al">
-                                                <a href="javascript:void(0)"> <span>신산업분야 특화 선도전문대학 지원사업 사업계획서 작성 서식 관련 추가 FAQ 안내</span></a>
-                                            </td>
-                                            <td>윤용준</td>
-                                            <td>2021.04.09</td>
-                                        </tr> -->
-                                       
-                                     </tbody>
-                            </table>
+                        접수 내역 조회입니다.
+               </div>
+               <div class="inner">
+                <div class="total">총 12570건</div>
+                 <div class="board-wrap respon notscroll manage">			
+                  <table summary="사업안내 | 사업공고 | 사업공지" class="board-basic horizon notice list dataroom notscroll ">
+                   <caption>사업안내 | 사업공고 | 사업공지에 순번, 사업명, 작성자, 등록일을 나타낸  테이블</caption>				
+                    <colgroup>
+                     <col style="width:5%" >
+                     <col style="width:10%">
+                     <col style="width:auto">
+                     <col style="width:15%">
+                     <col style="width:15%">
+                     <col style="width:10%">
+                    </colgroup>
+                    <thead>
+                     <tr>
+                      <th scope="col"><input type="hidden" id="del" name="del" ></th>
+                      <th scope="col">순번</th>
+                      <th scope="col">사업명</th>
+                      <th scope="col">작성자(사업자)</th>
+                      <th scope="col">등록일</th>
+                      <th scope="col">진행상태</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                     <c:forEach items="${list}" var = "list" varStatus="status">
+					  <tr class="">
+					   <td><input type="checkbox" id="rowCheck" name="rowCheck"></td>
+					   <td><c:out value="${status.index+1}"/></td>
+					   <td><a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${list.bam_anc_idx}"><c:out value="${list.anc_title}"/></a></td>
+					   <td><a href="/bpm/businessPlanApplyDetail?bpm_bplan_idx=${list.bpm_bplan_idx}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}&bam_anc_idx=${list.bam_anc_idx}"><span>${list.writer}</span></a></td>
+						<td><fmt:formatDate value="${list.reg_date}" pattern="MM/dd H시mm분"/></td>
+						<td><c:choose>
+							<c:when test="${list.status == 0}">접수 중</c:when>
+							<c:when test="${list.status == 1}">접수 완료</c:when>
+							<c:when test="${list.status == 2}">평가 중</c:when>
+							<c:when test="${list.status == 3}">평가 완료</c:when>
+							</c:choose>
+						</td>
+					  </tr>
+					 </c:forEach>
+                     </tbody>
+                     </table>
+                        </div>
+                         <div class="board_btn_wrap btn2 right">
+                            <c:if test="${member.user_auth == '2' || member.user_auth == '0'}">
+                            	<button type="button" onclick="deleteBPA();" class="red">접수취소</button>
+							</c:if>
                         </div>
                     </div>    
                 </div>

@@ -69,7 +69,7 @@ function fn_fileDownload(fileidx){
                    		<p class="tit">평가위원</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 2}">
-                   		<p class="tit">평가위원장</p>
+                   		<p class="tit">관리자</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 0}">
                    		<p class="tit">사용자</p>
@@ -82,16 +82,16 @@ function fn_fileDownload(fileidx){
                         <li class="on">
                             <a href="/bam/businessAnnouncementList">회원관리</a>
                             <ul class="second_menu">
-                                <li class="on"><a href="/bam/businessAnnouncementList">· 회원정보 조회</a></li>
+                                <li class="on"><a href="/cmm/memberDetailView?member_idx=${member.member_idx}">· 회원정보 조회</a></li>
                                <c:if test="${member.user_auth == 2}">
-                                <li class=""><a href="/bam/businessFormEditList">· 회원메뉴1</a></li>
+                                <li class=""><a href="/cmm/admin">· 회원목록 조회</a></li>
                                </c:if>
                             </ul>
                       
                     </ul>
                 </div>
  <div class="cont">
-                    <h2>회원관리</h2>
+                    <h2>회원목록 조회</h2>
                     <div class="inner box search_box">
                         <form method="get" action="?">
                             <div class="board_search row">
@@ -118,7 +118,7 @@ function fn_fileDownload(fileidx){
                         </form>
                     </div>
                     <div class="inner box mt15">
-                      	회원정보 관리 페이지 입니다.
+                      	회원목록 조회 및 관리 페이지 입니다.
                     </div>
 
                     <div class="inner">

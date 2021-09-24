@@ -75,7 +75,7 @@ function Fn_boardDel(Sbam_anc_idx){
                     		<li>평가위원</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 2}">
-                    		<li>평가위원장</li>
+                    		<li>관리자</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 0}">
                     		<li>사용자</li>
@@ -95,7 +95,7 @@ function Fn_boardDel(Sbam_anc_idx){
                    		<p class="tit">평가위원</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 2}">
-                   		<p class="tit">평가위원장</p>
+                   		<p class="tit">관리자</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 0}">
                    		<p class="tit">사용자</p>
@@ -157,11 +157,11 @@ function Fn_boardDel(Sbam_anc_idx){
                                                 
 						                           <c:forEach var="file" items="${file}">
 						                           <span class="file">
-														<a href="#" onclick="fn_fileDownload('${file.FILE_IDX}');">${file.FILE_FNAME}</a>(${file.FILE_SIZE}kb)<br>
+													<a href="#" onclick="fn_fileDownload('${file.FILE_IDX}');">${file.FILE_FNAME}</a>(${file.FILE_SIZE}kb)<br>
 												   </span>
 												   </c:forEach>
-												   </form>
-                                                </div>
+												 </form>
+                                            </div>
                                         </div>
                                         <button type="button" class="print" id="printBtn">게시물 프린트</button>
                                     </div>
@@ -172,7 +172,7 @@ function Fn_boardDel(Sbam_anc_idx){
                                 </div>
                     			<c:if test="${member.user_auth == 2}">
 	                    			<div class="btn_wrap text-left">
-										<!-- ><button type="button" class="normal" onclick="window.location.href='/bam/businessAnnouncementUpdate?bam_anc_idx=${read.bam_anc_idx}'">수정</button> -->
+										<button type="button" class="normal" onclick="window.location.href='/bam/businessAnnouncementUpdate?bam_anc_idx=${read.bam_anc_idx}'">수정</button>
 										<button type="button" class="normal" onclick="Fn_boardDel(${read.bam_anc_idx})">삭제</button>
 									</div>
 								</c:if>

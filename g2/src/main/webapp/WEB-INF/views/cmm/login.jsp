@@ -106,7 +106,7 @@ body {
 				 	
 			 </div>
 			 	<input id="login" type="submit" value="로그인">	 
-			
+			</div>
 		</c:if>
 		<%-- <c:if test="${member != null }">
 			<div>

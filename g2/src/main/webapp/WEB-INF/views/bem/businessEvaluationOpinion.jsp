@@ -108,7 +108,7 @@
                     		<li>평가위원</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 2}">
-                    		<li>평가위원장</li>
+                    		<li>관리자</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 0}">
                     		<li>사용자</li>
@@ -122,21 +122,21 @@
                 </section>
                 <section class="sect2">
                     <div  class="insideArea row">
-        <div class="lnb">
-        	<c:choose>
-                   	<c:when test="${member.user_auth == 1}">
+        			 <div class="lnb">
+        	  		  <c:choose>
+                   	   <c:when test="${member.user_auth == 1}">
                    		<p class="tit">평가위원</p>
-                   	</c:when>
-                   	<c:when test="${member.user_auth == 2}">
-                   		<p class="tit">평가위원장</p>
-                   	</c:when>
-                   	<c:when test="${member.user_auth == 0}">
+                   	   </c:when>
+                   	   <c:when test="${member.user_auth == 2}">
+                   		<p class="tit">관리자</p>
+                   	   </c:when>
+                   	   <c:when test="${member.user_auth == 0}">
                    		<p class="tit">사용자</p>
-                   	</c:when>
-                   	<c:when test="${member.user_auth == null}">
+                   	   </c:when>
+                   	   <c:when test="${member.user_auth == null}">
                    		<p class="tit">비로그인</p>
-                   	</c:when>
-            </c:choose>
+                   	   </c:when>
+                      </c:choose>
                     <ul>
                         <li class="">
                             <a href="/bam/businessAnnouncementList">사업공고</a>
@@ -263,12 +263,12 @@
                                         
                             </div>    
                         </div>
+                        </c:if>
                     </div>
-
+					</section>
 				</div>
             </div>
         </div>
         <footer></footer>
-</c:if>
 </body>
 </html>

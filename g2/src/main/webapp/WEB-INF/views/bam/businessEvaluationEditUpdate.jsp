@@ -227,8 +227,8 @@
 	     	      	   <th scope="col"><textarea name="eval_form_title">${ancInfo.EVAL_FORM_TITLE}</textarea></th> 
 		               <th scope="col"><textarea name="eval_form_item">${ancInfo.EVAL_FORM_ITEM}</textarea></th>
 		               <th scope="col"><input name="eval_form_score" class="maxScore" type="number" value="${ancInfo.EVAL_FORM_SCORE}"></th>	 
-	         </tr>
-	                </c:forEach>	
+		            </c:forEach>
+	          </tr>	
 	         </tbody>
 	 <!--  <tbody>
 	        <tr>

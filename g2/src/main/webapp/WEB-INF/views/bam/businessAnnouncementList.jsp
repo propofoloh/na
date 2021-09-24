@@ -42,7 +42,7 @@
                     		<li>평가위원</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 2}">
-                    		<li>평가위원장</li>
+                    		<li>관리자</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 0}">
                     		<li>사용자</li>
@@ -55,22 +55,22 @@
                     </ul>
                 </section>
                 <section class="sect2">
-                    <div  class="insideArea row">
-        <div class="lnb">
-        	<c:choose>
-                   	<c:when test="${member.user_auth == 1}">
+                  <div  class="insideArea row">
+                    <div class="lnb">
+        	          <c:choose>
+                   	   <c:when test="${member.user_auth == 1}">
                    		<p class="tit">평가위원</p>
-                   	</c:when>
-                   	<c:when test="${member.user_auth == 2}">
-                   		<p class="tit">평가위원장</p>
-                   	</c:when>
-                   	<c:when test="${member.user_auth == 0}">
+                   	   </c:when>
+                       <c:when test="${member.user_auth == 2}">
+                   		<p class="tit">관리자</p>
+                   	   </c:when>
+                   	   <c:when test="${member.user_auth == 0}">
                    		<p class="tit">사용자</p>
-                   	</c:when>
-                   	<c:when test="${member.user_auth == null}">
+                   	   </c:when>
+                   	   <c:when test="${member.user_auth == null}">
                    		<p class="tit">비로그인</p>
-                   	</c:when>
-            </c:choose>
+                       </c:when>
+                      </c:choose>
 		            <ul>
                         <li class="on">
                             <a href="/bam/businessAnnouncementList">사업공고</a>
@@ -99,7 +99,7 @@
                     </ul>
                 </div>
                 <div class="cont">
-                    <h2>사업공지</h2>
+                    <h2>사업공고</h2>
                     <div class="inner box search_box">
                         <form method="get" action="?">
                             <div class="board_search row">
@@ -128,7 +128,7 @@
                         </form>
                     </div>
                     <div class="inner box mt15">
-                        게시판 설명 영역
+                       사업공고 게시판입니다.
                     </div>
 
                     <div class="inner">
@@ -229,8 +229,8 @@
                 </div>
             </div>
             </div>
+            </section>
         </div>
-       </section>
        </div>
         <footer></footer>
     </div>

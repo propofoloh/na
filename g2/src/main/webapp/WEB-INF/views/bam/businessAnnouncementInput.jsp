@@ -173,7 +173,7 @@ function fn_addFile(){
                     		<li>평가위원</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 2}">
-                    		<li>평가위원장</li>
+                    		<li>관리자</li>
                     	</c:when>
                     	<c:when test="${member.user_auth == 0}">
                     		<li>사용자</li>
@@ -193,7 +193,7 @@ function fn_addFile(){
                    		<p class="tit">평가위원</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 2}">
-                   		<p class="tit">평가위원장</p>
+                   		<p class="tit">관리자</p>
                    	</c:when>
                    	<c:when test="${member.user_auth == 0}">
                    		<p class="tit">사용자</p>
@@ -232,7 +232,7 @@ function fn_addFile(){
                 <div class="cont">
                     <h2>사업공지</h2>
                     	<div class="inner box mt15">
-                                	게시판 설명 
+                                	사업공지 등록입니다.
                         </div>
                     <div class="inner">
                         <div class="board-wrap">
@@ -292,18 +292,16 @@ function fn_addFile(){
                                             <!-- <input type="file" name="bf_file[]" id="bf_file_2" class="file-loadingz" style="padding-bottom:5px" data-show-preview="false" onchange="checkFile(this)"> -->
                                         </td>
                                     </tr>
-                                   
                                 </tbody>
                             </table>
+                           </form>
                         </div> 
-                        
                         <div class="board_btn_wrap btn2 right">
                             <div class="btn_wrap">
                             	 <button id="submit_Btn" type="button" class="red">등록</button>
                             	 <button type="button" class="gray" onclick="window.location.href='/bam/businessAnnouncementList'">목록보기</button>
                             </div>
                         </div>
-                        </form>
                     </div>    
                 </div>
             </div>
@@ -358,10 +356,34 @@ function fn_addFile(){
         <script>
             $(function() {
                 $("#datepicker").datepicker({
-                	dateFormat: 'yy-mm-dd'
+                	dateFormat: 'yy-mm-dd',
+                	prevText: '이전 달',	// 마우스 오버시 이전달 텍스트
+                    nextText: '다음 달',	// 마우스 오버시 다음달 텍스트
+                    closeText: '닫기', // 닫기 버튼 텍스트 변경
+                    currentText: '오늘', // 오늘 텍스트 변경
+                    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],	//한글 캘린더중 월 표시를 위한 부분
+                    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],	//한글 캘린더 중 월 표시를 위한 부분
+                    dayNames: ['일', '월', '화', '수', '목', '금', '토'],	//한글 캘린더 요일 표시 부분
+                    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],	//한글 요일 표시 부분
+                    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],	// 한글 요일 표시 부분
+                    showMonthAfterYear: true,	// true : 년 월  false : 월 년 순으로 보여줌
+                    yearSuffix: '년',	//
+                    showButtonPanel: true,	// 오늘로 가는 버튼과 달력 닫기 버튼 보기 옵션
                 });
                 $("#datepicker2").datepicker({
-                	dateFormat: 'yy-mm-dd'
+                	dateFormat: 'yy-mm-dd',
+                	prevText: '이전 달',	// 마우스 오버시 이전달 텍스트
+                    nextText: '다음 달',	// 마우스 오버시 다음달 텍스트
+                    closeText: '닫기', // 닫기 버튼 텍스트 변경
+                    currentText: '오늘', // 오늘 텍스트 변경
+                    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],	//한글 캘린더중 월 표시를 위한 부분
+                    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],	//한글 캘린더 중 월 표시를 위한 부분
+                    dayNames: ['일', '월', '화', '수', '목', '금', '토'],	//한글 캘린더 요일 표시 부분
+                    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],	//한글 요일 표시 부분
+                    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],	// 한글 요일 표시 부분
+                    showMonthAfterYear: true,	// true : 년 월  false : 월 년 순으로 보여줌
+                    yearSuffix: '년',	//
+                    showButtonPanel: true,	// 오늘로 가는 버튼과 달력 닫기 버튼 보기 옵션
                 });
             });
 

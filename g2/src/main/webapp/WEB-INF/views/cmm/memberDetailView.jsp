@@ -71,16 +71,16 @@
                 <section class="location sect1">
                     <ul class="insideArea row">
                     <c:choose>
-                    	<c:when test="${memberDetailuser_auth == 1}">
+                    	<c:when test="${member.user_auth == 1}">
                     		<li>평가위원</li>
                     	</c:when>
-                    	<c:when test="${memberDetailuser_auth == 2}">
+                    	<c:when test="${member.user_auth == 2}">
                     		<li>관리자</li>
                     	</c:when>
-                    	<c:when test="${memberDetailuser_auth == 0}">
+                    	<c:when test="${member.user_auth == 0}">
                     		<li>사용자</li>
                     	</c:when>
-                    	<c:when test="${memberDetailuser_auth == null}">
+                    	<c:when test="${member.user_auth == null}">
                     		<li>비로그인</li>
                     	</c:when>
                     </c:choose>         
@@ -89,35 +89,40 @@
                 </section>
                 <section class="sect2">
                     <div  class="insideArea row">
-        <div class="lnb">
-        	<c:choose>
-                   	<c:when test="${memberDetailuser_auth == 1}">
+                     <div class="lnb">
+        	          <c:choose>
+                   	   <c:when test="${member.user_auth == 1}">
                    		<p class="tit">평가위원</p>
                    	</c:when>
-                   	<c:when test="${memberDetailuser_auth == 2}">
-                   		<p class="tit">평가위원장</p>
+                   	<c:when test="${member.user_auth == 2}">
+                   		<p class="tit">관리자</p>
                    	</c:when>
-                   	<c:when test="${memberDetailuser_auth == 0}">
+                   	<c:when test="${member.user_auth == 0}">
                    		<p class="tit">사용자</p>
                    	</c:when>
-                   	<c:when test="${memberDetailuser_auth == null}">
+                   	<c:when test="${member.user_auth == null}">
                    		<p class="tit">비로그인</p>
                    	</c:when>
-            </c:choose>
+                  </c:choose>
                     <ul>
                         <li class="on">
                             <a href="/bam/businessAnnouncementList">회원관리</a>
                             <ul class="second_menu">
-                                <li class="on"><a href="/bam/businessAnnouncementList">· 회원정보 조회</a></li>
-                               <c:if test="${memberDetailuser_auth == 2}">
-                                <li class=""><a href="/bam/businessFormEditList">· 회원정보 수정</a></li>
+                            	<c:if test="${member.user_auth == 2 }">
+                            	<li class="on"><a href="/cmm/memberDetailView?member_idx=${member.member_idx}">· 회원정보 조회</a></li>
+                            	</c:if>
+                            	<c:if test="${member.user_auth == 0 || member.user_auth == 1 }">
+                            	<li class="on"><a href="/cmm/memberDetailView?member_idx=${member.member_idx}">· 회원정보 조회</a></li>
+                            	</c:if>
+                               <c:if test="${member.user_auth == 2}">
+                                <li class=""><a href="/cmm/admin">· 회원목록 조회</a></li>
                                </c:if>
                             </ul>
                       
                     </ul>
                 </div>
                 <div class="cont">
-                    <h2>회원정보 상세</h2>
+                    <h2>회원정보 조회</h2>
                     	<div class="inner box mt15">
                                 	회원정보 상세 페이지 입니다.
                         </div>
@@ -137,12 +142,12 @@
                                             <input type="text" name="anc_title" id="anc_title" value="${memberDetail.user_id}" placeholder="제목을 입력하세요." readonly="readonly">
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <th scope="row"><span>* </span>패스워드</th>
                                         <td>
                                             <input type="text" name="writer" id="writer" class="" value="" placeholder="비밀번호를 입력해 주세요" readonly="readonly">
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                      <tr>
                                         <th scope="row"><span>* </span>성명</th>
                                         <td>
@@ -182,8 +187,9 @@
                         </div> 
                         <br>
                         	<div class="btn_wrap text-left">
-									
+									<c:if test ="${member.user_auth == 2}">
 									<button type="button" class="normal" onclick="window.location.href='/cmm/admin'">목록</button>
+									</c:if>
 								</div>
                                 <div class="btn_wrap text-right">
                                 	<button type="button" class="normal" onclick="FnDeleteMember()">회원탈퇴</button>
@@ -193,8 +199,13 @@
 								<form name="deleteForm" id="deleteForm" action="/cmm/memberDelete" method="post">
 									<input type="hidden" name="member_idx" value="${memberDetail.member_idx}">
 								</form>
-					
-	
+								</div>
+							</div>
+					    </div>
+	                </section>
+	                </div>
+	               </div>
+	              </div>
 	<%-- <body>
 		<section id="container">
 			<form action="/cmm/memberUpdate" method="post" id = "updateForm">

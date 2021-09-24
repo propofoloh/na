@@ -21,6 +21,7 @@ public class BusinessPlanVO extends Criteria{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date mod_date;
 	private String status;
+	private String anc_title;
 	
 	public String getWriter_id() {
 		return writer_id;
@@ -87,6 +88,12 @@ public class BusinessPlanVO extends Criteria{
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getAnc_title() {
+		return anc_title;
+	}
+	public void setAnc_title(String anc_title) {
+		this.anc_title = anc_title;
 	}
 
 }

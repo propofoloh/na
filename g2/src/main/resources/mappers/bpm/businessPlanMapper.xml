@@ -161,7 +161,39 @@
 	</update>  
    
     <select id="businessPlanApplyMyList" resultType="emp.bpm.vo.BusinessPlanVO" parameterType="hashMap">
-		SELECT  BPM_BPLAN_IDX 
+		SELECT BPM_BPLAN_IDX,
+               BAM_ANC_IDX,
+               BOARD_IDX,
+               TITLE_REMARK1,
+               TITLE_REMARK2,
+               TITLE_REMARK3,
+               WRITER,
+	           REG_DATE,
+               MOD_DATE,
+	           STATUS,	
+	           WRITER_ID,
+               ANC_TITLE
+        FROM (SELECT EBB.BPM_BPLAN_IDX,
+                     EBB.BAM_ANC_IDX,
+                     EBB.BOARD_IDX,
+                     EBB.TITLE_REMARK1,
+                     EBB.TITLE_REMARK2,
+                     EBB.TITLE_REMARK3,
+                     EBB.WRITER,
+	                 EBB.REG_DATE,
+                     EBB.MOD_DATE,
+	                 EBB.STATUS,	
+	                 EBB.WRITER_ID,
+	                 EB.ANC_TITLE,
+	                 ROW_NUMBER() OVER(ORDER BY BPM_BPLAN_IDX DESC) AS RNUM
+              FROM EMP_BPM_BPLAN EBB, EMP_BAM_ANC EB
+              WHERE EBB.BAM_ANC_IDX = EB.BAM_ANC_IDX 
+              AND WRITER_ID = #{user_id} AND EB.DEL_YN = 'N'
+              <include refid="search"></include>) MP 
+        WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd} 
+        ORDER BY BPM_BPLAN_IDX DESC
+	</select>
+	<!-- SELECT  BPM_BPLAN_IDX 
 							  , BAM_ANC_IDX
 	   					      , BOARD_IDX 
 	   					      , TITLE_REMARK1
@@ -193,8 +225,7 @@
 		         	<include refid="search"></include>
 		                       ) MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-		ORDER BY BPM_BPLAN_IDX DESC
-	</select>
+		ORDER BY BPM_BPLAN_IDX DESC; -->
 	
 	<select id="businessPlanApplyForm" parameterType="int" resultType="hashMap">
 		SELECT BPM_BPLAN_FORM_IDX
@@ -207,7 +238,7 @@
 							  WHERE 1=1
 							  AND DEL_YN = 'N'
 							  AND BAM_ANC_IDX = #{bam_anc_idx}
-	
+
 	</select>
 	
 	<!-- 사업 계획서 연구개발비 등록 -->
